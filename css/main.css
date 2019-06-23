@@ -6,6 +6,8 @@
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
+ 
+ /* https://mycolor.space/?hex=%23E59100&sub=1 */
 
 /* ==========================================================================
    Base styles: opinionated defaults
@@ -111,7 +113,7 @@ textarea {
 }
 
  
- [class^="icon-"]:before, [class*=" icon-"]:before {
+[class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
@@ -128,22 +130,49 @@ textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body, html {
+    font-family: 'Montserrat', sans-serif;
+}
  
 .icon-cancel:before { content: '\e800'; }
 .icon-attach:before { content: '\e801'; }
    
 header h1 {
-    margin: 0 0 1rem 0;
+    margin: 0;
     padding: 1rem 0;
     font-weight: 300;
     text-align: center;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
+    background-color: #e59100;
+    color: white;
+}
+
+nav {
+    background-color: #8d6940;
+    text-align: center;
+}
+
+.pure-menu-active>.pure-menu-link, .pure-menu-link:focus, .pure-menu-link:hover {
+    background-color: #ffebcc;
+    color: #8d6940;
+}
+
+.pure-menu-link {
+    color: white;
 }
    
 main {
     max-width: 80rem;
     margin: 1rem auto;
+}
+
+footer {
+    background-color: #dd8808;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1;
 }
 
 .rating-panel td {
