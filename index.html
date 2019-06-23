@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js" lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Essence</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+  <meta name="theme-color" content="#fafafa">
+  
+  <script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Essence Tool",
+    "url": "http://155.54.205.139/essence/"
+  }</script>  
+  
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+  
+  <!-- Header -->
+  <header>
+    <h1>Essence tool</h1>
+  </header>
+  
+  <!-- Navigation -->
+  <div class="pure-menu pure-menu-horizontal">
+    <nav>
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a class="pure-menu-link" href="#create">Create new rubric</a></li>
+        <li class="pure-menu-item"><a class="pure-menu-link" href="#import">Import students</a></li>
+        <li class="pure-menu-item"><a class="pure-menu-link" href="#check">Check student progress</a></li>
+        <li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link" href="#rate">Rate</a></li> 
+        <li class="pure-menu-item"><a class="pure-menu-link" href="#export">Export</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <!-- Content -->
+  <main>
+  
+    <form class="pure-form">
+      <table class="pure-table pure-table-bordered rating-panel">
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th>Very good</th>
+            <th>Good</th>
+            <th>Acceptable</th>
+            <th>Unacceptable</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <tr>
+            <th>Planning</th>
+            <td><label><input type="radio" name="tranquillity" /><strong>Remains calm in the face of difficulties</strong> in performing a sequence of activities and finds alternative solutions.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="tranquillity" />He has <strong>difficulty keeping calm</strong> in the face of difficulties but ends up finding solutions.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="tranquillity" />Keeps calm in the face of difficulties and asks for help or examples.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="tranquillity" />You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given.<span class="shadow"></span></label></td>
+            <td>
+              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
+              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
+            </td>
+          </tr>
+          <tr>
+            <th>Tranquillity</th>
+            <td><label><input type="radio" name="tranquillity" />Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="tranquillity" />He has difficulty keeping calm in the face of difficulties but ends up finding solutions.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="tranquillity" />Keeps calm in the face of difficulties and asks for help or examples.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="tranquillity" />You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given.<span class="shadow"></span></label></td>
+            <td>
+              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
+              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
+            </td>
+
+          </tr>
+          
+          <tr>
+            <th>Motivation</th>
+            <td><label><input type="radio" name="motivation" />Maintains motivation towards the activity from the first moment to the last.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="motivation" />Start the activity highly motivated but have difficulty maintaining it throughout the course of the activity.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="motivation" />You need support from your group or teachers to maintain motivation towards the activity.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="motivation" />Their low motivation causes problems in the group. <span class="shadow"></span></label></td>
+            <td>
+              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
+              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
+            </td>
+
+          </tr>
+          
+          <tr>
+            <th>Help and Respect</th>
+            <td><label><input type="radio" name="help-and-respect" />Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="help-and-respect" />It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="help-and-respect" />Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="help-and-respect" />It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult.<span class="shadow"></span></label></td>
+            <td>
+              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
+              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
+            </td>
+
+          </tr>
+          
+          <tr>
+            <th>Friendliness</th>
+            <td><label><input type="radio" name="Friendliness" />When you disagree don't agree with what a colleague does or says with a peer, you know how to give him or her suggest alternatives with correct and respectful language.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="Friendliness" />Expresses disagreement with a peer, but does not suggest alternatives at first and/or uses inappropriate language. Ends up suggesting alternatives.<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="Friendliness" />When disagreeing, he gets angry and doesn't talk about it or look for alternatives, even though he/she continue working<span class="shadow"></span></label></td>
+            <td><label><input type="radio" name="Friendliness" />When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions. Ends up giving in.<span class="shadow"></span></label></td>
+            <td>
+              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
+              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
+            </td>
+
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
+      
+    </form>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; Essence Tool
+  </footer>
+
+  
+  <!-- Scripts -->
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
