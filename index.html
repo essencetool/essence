@@ -11,13 +11,14 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link href="css/normalize.css" rel="stylesheet" >
   <link href="css/main.css" rel="stylesheet" >
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/vex.css" />
+  <link rel="stylesheet" href="css/vex-theme-plain.css" />  
   
-  
-  
+  <base href="/essence/" />
 
   <meta name="theme-color" content="#fafafa">
   
@@ -36,7 +37,7 @@
   <![endif]-->
   
   <!-- Header -->
-  <header>
+  <header class="main-header">
     <h1>Essence tool</h1>
   </header>
   
@@ -56,8 +57,37 @@
   <!-- Content -->
   <main>
   
+    <!-- Student profile -->
+    <article class="student-profile">
+      <div class="pure-g">
+        <div class="pure-u-1-5">
+          <figure class="thumb">
+            <img src="img/student.png" alt="John Doe" class="pure-img" />
+          </figure>
+        </div>
+        <div class="pure-u-2-5">
+          <header>
+            <h1>John Doe</h1>
+          </header>
+          <p><a href="mailto:john.doe@um.es">john.doe@um.es</a></p>
+          <p>Student of 4th degree of Computer Science</p>
+          
+          <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">
+            View progress of the student
+          </button>
+          
+        </div>
+      </div>    
+    </article>
+    
+    <!-- End of student profile -->
+  
     <form class="pure-form">
+    
       <table class="pure-table pure-table-bordered rating-panel">
+      
+        <caption>Rubric #1. General assessments</caption>
+      
         <thead>
           <tr>
             <th>Criteria</th>
@@ -136,7 +166,11 @@
         </tbody>
       </table>
       
-      <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
+      <div class="rating-panel-actions">
+        <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
+        <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&lt;</button>
+        <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&gt;</button>
+      </div>
       
     </form>
   </main>
@@ -151,8 +185,11 @@
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-  <script src="js/plugins.js"></script>
+  <script src="js/vendor/vex.combined.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/plugins.js"></script>
+  <script>vex.defaultOptions.className = 'vex-theme-plain';</script>
+  <script src="js/vendor/require.js" data-main="js/main"></script>
 
 </body>
 
