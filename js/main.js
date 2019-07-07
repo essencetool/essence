@@ -48,6 +48,10 @@ require.config ({
         'templatePath': '../templates',
         
         
+        // Assets
+        'assetsPath': '../assets',
+        
+        
         // CSSPaths
         'cssPath': '../css',
         
@@ -84,6 +88,11 @@ require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18
     
     // Update cancel
     vex.dialog.buttons.NO.text = i18n.vex.cancel;
+    
+    
+    // i18n the main page
+    $('.loading-title').html (i18n.common.loading.title);
+    $('.loading-message').html (i18n.common.loading.description);
     
     
     /**
@@ -178,6 +187,15 @@ require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18
      * @package AllergyLESS
      */
     var route_handler = function (hash, params) {
+        
+        $('nav')
+            .find ('.pure-menu-item')
+                .removeClass ('pure-menu-selected')
+                .find ('.pure-menu-link')
+                    .filter ('[href="#' + hash + '"]')
+                        .closest ('li')
+                            .addClass ('pure-menu-selected')
+        ;        
     
         // Routes. According to the hash call individual controllers
         switch (hash) {
@@ -185,8 +203,29 @@ require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18
             // Set locale
             case '':
             case 'rate':
+                require (['controllers/rate'], function (controller) {
+                    controller.index (params);
+                });
                 break;
-            
+                
+            case 'import':
+                require (['controllers/import-students'], function (controller) {
+                    controller.index (params);
+                });            
+                break;
+                
+            case 'check':
+                require (['controllers/progress'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
+            case 'export':
+                require (['controllers/export'], function (controller) {
+                    controller.index (params);
+                });            
+                break;                
+                            
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
                 window.location = '#map' ;
@@ -198,26 +237,18 @@ require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18
                 break;                
                 
         }
+        
     }
-
 
     
     
     // Handle redirections. Each time the hash changes, we need
     // to perform a call to the main controller to decide in which
     // controller has to delegate to.
-    if (Modernizr.hashchange) {
-        $(window).on ('hashchange', function() {
-            main_controller () ;
-        }) ;
-    } else {
-        prevHash = window.location.hash;
-        window.setInterval (function () {
-            if (window.location.hash != prevHash) {
-                window.location.reload () ;
-            }
-        }, 100); 
-    }
+    
+    $(window).on ('hashchange', function() {
+        main_controller () ;
+    }) ;
     
 
     // First run

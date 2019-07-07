@@ -1,0 +1,107 @@
+[{
+    "id": 1,
+    "name": "Assessment rubric for the ball (Working with others)",
+    "description": "To be used as an expert assessment tool, as a peer to peer tool, or as a self-assessment tool.",
+    
+    "valorations": [
+        {"text": "Very good", "id": 1, "score": 4},
+        {"text": "Good", "id": 2, "score": 3},
+        {"text": "Acceptable", "id": 3, "score": 2},
+        {"text": "Unacceptable", "id": 4, "score": 1}
+    ],
+    "rows": [{
+        "key": "planning",
+        "name": "Planning",
+        "values": [
+            {"id": 1, "text": "Participate in planning by making valuable proposals and making reasoned decisions"},
+            {"id": 2, "text": "Participates in decision-making but does not make valuable proposals"},
+            {"id": 3, "text": "Does not participate in goal planning, but accepts the group's decision and follow the plan."},
+            {"id": 4, "text": "Does not participate in planning goals and boycotts decisions made by peers."}
+        ]
+    }, {
+        "key": "tranquillity",
+        "name": "Tranquillity",
+        "values": [
+            {"id": 1, "text": "Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions."},
+            {"id": 2, "text": "He has difficulty keeping calm in the face of difficulties but ends up finding solutions."},
+            {"id": 3, "text": "Keeps calm in the face of difficulties and asks for help or examples."},
+            {"id": 4, "text": "You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given."}
+        ]
+    }, {
+        "key": "motivation",
+        "name": "Motivation",
+        "values": [
+            {"id": 1, "text": "Maintains motivation towards the activity from the first moment to the last."},
+            {"id": 2, "text": "Start the activity highly motivated but have difficulty maintaining it throughout the course of the activity."},
+            {"id": 3, "text": "You need support from your group or teachers to maintain motivation towards the activity."},
+            {"id": 4, "text": "Their low motivation causes problems in the group."}
+        ]
+    }, {
+        "key": "help-and-respect",
+        "name": "Help and respect",
+        "values": [
+            {"id": 1, "text": "Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them."},
+            {"id": 2, "text": "It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others."},
+            {"id": 3, "text": "Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work."},
+            {"id": 4, "text": "It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult. "}
+        ]
+    }, {
+        "key": "friendliness",
+        "name": "Friendliness",
+        "values": [
+            {"id": 1, "text": "When you disagree don't agree with what a colleague does or says with a peer, you know how to give him or her suggest alternatives with correct and respectful language. "},
+            {"id": 2, "text": "Expresses disagreement with a peer, but does not suggest alternatives at first and/or uses inappropriate language. Ends up suggesting alternatives."},
+            {"id": 3, "text": "When disagreeing, he gets angry and doesn't talk about it or look for alternatives, even though he/she continue working"},
+            {"id": 4, "text": "When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions. Ends up giving in."}
+        ]
+    }]
+}, {
+
+    "id": 2,
+    "name": "Vision. General Assessment",
+    "description": "Those aspects would be showed in many different ways, but would be basically being substanciated into some criteria to evaluate:",
+    
+    "valorations": [
+        {"text": "Very good", "id": 1, "score": 4},
+        {"text": "Good", "id": 2, "score": 3},
+        {"text": "Acceptable", "id": 3, "score": 2},
+        {"text": "Unacceptable", "id": 4, "score": 1}
+    ],
+    "rows": [{
+        "key": "future-number-of-ideas",
+        "name": "Number of ideas for the future imagined",
+        "values": [
+            {"id": 1, "text": "Always deliver much more new ideas she/he needs on each moment."},
+            {"id": 2, "text": "Deliver as much new ideas as they need on each moment and sometimes more."},
+            {"id": 3, "text": "Not always deliver as much new ideas as they need on each moment."},
+            {"id": 4, "text": "Cannot imagine enough or even any new ideas."}
+        ]
+    }, {
+        "key": "future-easy-to-imagine",
+        "name": "Easy to imagine future ideas",
+        "values": [
+            {"id": 1, "text": "Fast and natural delivering of new ideas."},
+            {"id": 2, "text": "Focused, systematic and successful delivering of new ideas"},
+            {"id": 3, "text": "Slow but constant and successful delivering of some new ideas"},
+            {"id": 4, "text": "Painful, slow and unsuccessful process of delivering new ideas"}
+        ]
+    }, {
+        "key": "future-novelty-of-ideas",
+        "name": "Novelty of ideas imagined",
+        "values": [
+            {"id": 1, "text": "Ideas proposed are completely new and unknown."},
+            {"id": 2, "text": "Ideas proposed are based on other ideas from external sources and new proposals."},
+            {"id": 3, "text": "Ideas proposed are based on other ideas from external sources."},
+            {"id": 4, "text": "Cannot imagine any new ideas."}
+        ]
+    }, {
+        "key": "think-strategical-argumentation",
+        "name": "Argumentation of ideas",
+        "values": [
+            {"id": 1, "text": "She/he arguments, debate and defends its ideas clearly."},
+            {"id": 2, "text": "She/he arguments and debate its ideas "},
+            {"id": 3, "text": "She/he arguments its ideas. "},
+            {"id": 4, "text": "She/he cannot argument or debate its ideas."}
+        ]
+    }]
+}]

@@ -142,8 +142,6 @@ function ref (obj, str) {
 
 
 
-
-
 /**
  * load_css
  *
@@ -157,4 +155,15 @@ var load_css = function (url) {
     link.rel = "stylesheet";
     link.href = url + '?v=' + (new Date()).getTime();
     document.getElementsByTagName("head")[0].appendChild(link);
+}
+
+
+/**
+ * pluck
+ *
+ * @link https://stackoverflow.com/questions/25726066/equivalent-of-underscore-pluck-in-pure-javascript
+ * @package EssenceTool
+ */
+var pluck = function (array, key) {
+  return array.map(o => o[key]);
 }

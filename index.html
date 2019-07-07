@@ -13,10 +13,13 @@
 
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link href="css/normalize.css" rel="stylesheet" >
+  <link href="css/loader.css" rel="stylesheet" >
   <link href="css/main.css" rel="stylesheet" >
+  <link href="css/desktop.css?v4" media="(min-width: 768px)" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/vex.css" />
-  <link rel="stylesheet" href="css/vex-theme-plain.css" />  
+  <link rel="stylesheet" href="css/vex-theme-plain.css" />
+  
   
   <base href="/essence/" />
 
@@ -31,162 +34,54 @@
   
 </head>
 
-<body>
+<body class="loading-state">
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
   
-  <!-- Header -->
-  <header class="main-header">
-    <h1>Essence tool</h1>
-  </header>
+  <!-- Loading -->
+  <div class="loading-box">
+    <div class="loader"></div>
+    <div class="loading-title"></div>
+    <div class="loading-message"></div>
+  </div>  
   
-  <!-- Navigation -->
-  <div class="pure-menu pure-menu-horizontal">
-    <nav>
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a class="pure-menu-link" href="#create">Create new rubric</a></li>
-        <li class="pure-menu-item"><a class="pure-menu-link" href="#import">Import students</a></li>
-        <li class="pure-menu-item"><a class="pure-menu-link" href="#check">Check student progress</a></li>
-        <li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link" href="#rate">Rate</a></li> 
-        <li class="pure-menu-item"><a class="pure-menu-link" href="#export">Export</a></li>
-      </ul>
-    </nav>
+  
+  <!-- Header -->
+  <div id="page">
+    <header class="main-header">
+      <h1>Essence tool</h1>
+    </header>
+    
+    <!-- Navigation -->
+    <div class="pure-menu pure-menu-horizontal">
+      <nav>
+        <ul class="pure-menu-list">
+          <li class="pure-menu-item"><a class="pure-menu-link" href="#check">Check student progress</a></li>
+          <li class="pure-menu-item"><a class="pure-menu-link" href="#rate">Rate</a></li> 
+          <li class="pure-menu-item"><a class="pure-menu-link" href="#import">Import students</a></li>
+          <li class="pure-menu-item"><a class="pure-menu-link" href="#export">Export</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- Content -->
+    <main id="wrapper">
+    
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+      <p>&copy; Proyecto ESSENCE 2019.
+    </footer>
   </div>
   
-  <!-- Content -->
-  <main>
-  
-    <!-- Student profile -->
-    <article class="student-profile">
-      <div class="pure-g">
-        <div class="pure-u-1-5">
-          <figure class="thumb">
-            <img src="img/student.png" alt="John Doe" class="pure-img" />
-          </figure>
-        </div>
-        <div class="pure-u-2-5">
-          <header>
-            <h1>John Doe</h1>
-          </header>
-          <p><a href="mailto:john.doe@um.es">john.doe@um.es</a></p>
-          <p>Student of 4th degree of Computer Science</p>
-          
-          <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">
-            View progress of the student
-          </button>
-          
-        </div>
-      </div>    
-    </article>
-    
-    <!-- End of student profile -->
-  
-    <form class="pure-form">
-    
-      <table class="pure-table pure-table-bordered rating-panel">
-      
-        <caption>Rubric #1. General assessments</caption>
-      
-        <thead>
-          <tr>
-            <th>Criteria</th>
-            <th>Very good</th>
-            <th>Good</th>
-            <th>Acceptable</th>
-            <th>Unacceptable</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          <tr>
-            <th>Planning</th>
-            <td><label><input type="radio" name="tranquillity" /><strong>Remains calm in the face of difficulties</strong> in performing a sequence of activities and finds alternative solutions.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="tranquillity" />He has <strong>difficulty keeping calm</strong> in the face of difficulties but ends up finding solutions.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="tranquillity" />Keeps calm in the face of difficulties and asks for help or examples.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="tranquillity" />You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given.<span class="shadow"></span></label></td>
-            <td>
-              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
-              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
-            </td>
-          </tr>
-          <tr>
-            <th>Tranquillity</th>
-            <td><label><input type="radio" name="tranquillity" />Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="tranquillity" />He has difficulty keeping calm in the face of difficulties but ends up finding solutions.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="tranquillity" />Keeps calm in the face of difficulties and asks for help or examples.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="tranquillity" />You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given.<span class="shadow"></span></label></td>
-            <td>
-              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
-              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
-            </td>
-
-          </tr>
-          
-          <tr>
-            <th>Motivation</th>
-            <td><label><input type="radio" name="motivation" />Maintains motivation towards the activity from the first moment to the last.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="motivation" />Start the activity highly motivated but have difficulty maintaining it throughout the course of the activity.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="motivation" />You need support from your group or teachers to maintain motivation towards the activity.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="motivation" />Their low motivation causes problems in the group. <span class="shadow"></span></label></td>
-            <td>
-              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
-              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
-            </td>
-
-          </tr>
-          
-          <tr>
-            <th>Help and Respect</th>
-            <td><label><input type="radio" name="help-and-respect" />Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="help-and-respect" />It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="help-and-respect" />Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="help-and-respect" />It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult.<span class="shadow"></span></label></td>
-            <td>
-              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
-              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
-            </td>
-
-          </tr>
-          
-          <tr>
-            <th>Friendliness</th>
-            <td><label><input type="radio" name="Friendliness" />When you disagree don't agree with what a colleague does or says with a peer, you know how to give him or her suggest alternatives with correct and respectful language.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="Friendliness" />Expresses disagreement with a peer, but does not suggest alternatives at first and/or uses inappropriate language. Ends up suggesting alternatives.<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="Friendliness" />When disagreeing, he gets angry and doesn't talk about it or look for alternatives, even though he/she continue working<span class="shadow"></span></label></td>
-            <td><label><input type="radio" name="Friendliness" />When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions. Ends up giving in.<span class="shadow"></span></label></td>
-            <td>
-              <button type="button" class="pure-button"><span class="icon-cancel"></span>Clear selection</button>
-              <button type="button" class="pure-button"><span class="icon-attach"></span>Attach evidences</button>
-            </td>
-
-          </tr>
-          
-        </tbody>
-      </table>
-      
-      <div class="rating-panel-actions">
-        <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
-        <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&lt;</button>
-        <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&gt;</button>
-      </div>
-      
-    </form>
-  </main>
-  
-  <!-- Footer -->
-  <footer>
-    <p>&copy; Proyecto ESSENCE 2019.
-  </footer>
-
   
   <!-- Scripts -->
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
   <script src="js/vendor/vex.combined.min.js"></script>
-  <script src="js/main.js"></script>
   <script src="js/plugins.js"></script>
   <script>vex.defaultOptions.className = 'vex-theme-plain';</script>
   <script src="js/vendor/require.js" data-main="js/main"></script>

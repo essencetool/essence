@@ -1,0 +1,22 @@
+#wrapper {
+    background-color: white;    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: luminosity;
+}
+
+body.state-map #wrapper {
+    background-color: transparent;
+    background-image: none;
+    background-blend-mode: unset;
+}
+
+/** loading */
+.loading-title {
+    font-size: 5vw;
+}
+
+.loading-message {
+    font-size: 2vw;
+    line-height: 1;
+}    

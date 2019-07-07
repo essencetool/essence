@@ -1,0 +1,39 @@
+<label class="form-step">
+  <div>Group</div>
+  <select name="group">
+    <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+    {{# groups }}
+    <optgroup label="{{ name }}">
+      {{# subgroups }}
+      <option value="{{ id }}">{{ name }}</option>
+      {{/ subgroups }}
+    </optgroup>
+    {{/ groups }}
+  </select>
+</label>
+
+<table class="pure-table pure-table-bordered students-table">
+
+<caption>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</caption>
+
+<thead>
+  <tr>
+    <th>Photo</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+</thead>
+<tbody>
+  {{# students }}
+  <tr>
+    <td>
+      <figure class="thumb">
+        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
+      </figure>
+      </td>
+    <td>{{ name }}</td>
+    <td>{{ email }}</td>
+  </tr>
+  {{/ students }}
+</tbody>
+</table>

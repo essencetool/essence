@@ -1,0 +1,20 @@
+<form>
+  <label class="form-step">
+    <div>Group</div>
+    <select name="">
+      <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+      {{# groups }}
+      <optgroup label="{{ name }}">
+        {{# subgroups }}
+        <option>{{ name }}</option>
+        {{/ subgroups }}
+      </optgroup>
+      {{/ groups }}
+    </select>
+  </label>
+
+
+  <div class="rating-panel-actions">
+    <button type="submit" class="pure-button pure-button-primary">Get CSV</button>
+  </div>
+</form>

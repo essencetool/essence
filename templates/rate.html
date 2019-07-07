@@ -1,0 +1,127 @@
+<!-- Student profile -->
+<label class="form-step inline">
+  <div>Select rubric</div>
+  <select name="rubric">
+    <option value="" disabled selected>Select your option</option>
+    {{# rubrics }}
+      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }} >{{ name }}</option>
+    {{/ rubrics }}
+  </select>
+</label>
+
+<label class="form-step inline">
+  <div>Group</div>
+  <select name="group">
+    <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+    {{# groups }}
+    <optgroup label="{{ name }}">
+      {{# subgroups }}
+      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }}>{{ name }}</option>
+      {{/ subgroups }}
+    </optgroup>
+    {{/ groups }}
+  </select>
+</label>
+
+
+<!-- Student profile -->
+<label class="form-step inline">
+  <div>Select student</div>
+  <select name="student">
+    <option value="" disabled selected>Select your option</option>
+    {{# students }}
+      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }} >{{ name }}</option>
+    {{/ students }}
+  </select>
+</label>
+
+  
+{{# student }}
+<article class="student-profile">
+  <div class="pure-g">
+    <div class="pure-u-1-5">
+      <figure class="thumb">
+        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
+      </figure>
+    </div>
+    <div class="pure-u-2-5">
+      <header>
+        <h1>{{ name }}</h1>
+      </header>
+      <p><a href="mailto:{{ email }}">{{ email }}</a></p>
+      <p>{{ group }}</p>
+      
+      <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">
+        View progress of the student
+      </button>
+      
+    </div>
+  </div>    
+</article>
+<!-- End of student profile -->
+
+
+<form class="pure-form" novalidate>
+
+  <input type="hidden" name="student_id=" value="{{ id }}" />
+
+  {{# rubric }}
+  <table class="pure-table pure-table-bordered rating-panel">
+  
+    <caption>{{ name }}</caption>
+  
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        {{# valorations }}
+          <th>{{ text }}</th>
+        {{/ valorations }}
+        <th>Evidences</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{# rows }}
+      <tr>
+        <th>
+          {{ name }}<br />
+          <button type="button" class="pure-button remove-selection-action"><span class="icon-cancel"></span></button>
+        </th>
+        {{# values }}
+        <td>
+          <label>
+            <input 
+              novalidate 
+              required 
+              type="radio" 
+              {{# is_selected }} checked {{/ is_selected }}
+              name="{{ key }}" 
+              value="{{ id }}" />{{ text }}
+            <span class="shadow"></span>
+          </label>
+        </td>
+        {{/ values }}
+        <td>
+          <div class="pure-button-group" role="group">
+            <button 
+              data-field="{{ key }}-evidences"
+              type="button" 
+              class="pure-button attach-evidence-action">
+                <span class="icon-commenting-o"></span>
+            </button>
+            <input type="hidden" name="{{ key }}-evidences" value="" />
+          </div>
+        </td>
+      </tr>
+      {{/ rows }}
+    </tbody>
+  </table>
+  {{/ rubric }}
+  
+  <div class="rating-panel-actions">
+    <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
+    <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&lt;</button>
+    <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&gt;</button>
+  </div>
+  
+</form>
+{{/ student }}

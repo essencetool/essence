@@ -133,11 +133,18 @@ textarea {
 
 body, html {
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
 }
+
  
 .icon-cancel:before { content: '\e800'; }
 .icon-attach:before { content: '\e801'; }
-   
+.icon-text-width:before { content: '\e802'; }
+.icon-wrench:before { content: '\e803'; }
+.icon-cog:before { content: '\e804'; } 
+.icon-trash:before { content: '\f1f8'; }
+.icon-commenting-o:before { content: '\f27b'; }
+
 .main-header h1 {
     margin: 0;
     padding: 1rem 0;
@@ -160,13 +167,21 @@ nav {
 .pure-menu-link {
     color: white;
 }
-   
+      
 main {
     max-width: 80rem;
     margin: 1rem auto;
 }
 
+#wrapper {
+    padding-bottom: 6rem;
+}
+
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: #dd8808;
     color: white;
     padding: 1rem 0;
@@ -249,7 +264,32 @@ footer {
 .thumb img {
     max-width: 100%;
 }
-   
+
+.students-table {
+    width: 100%;
+}
+
+.students-table thead th:first-child {
+    width: 9rem;
+}
+
+.form-step,
+.pure-form .form-step {
+    display: block;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px dotted #ccc;
+    padding: 0 0 1rem 0;
+}    
+
+.form-step > div {
+    margin: 0 0 1rem 0;
+}
+
+.form-step.inline {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 1rem;
+}
 
 /* ==========================================================================
    Helper classes

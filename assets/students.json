@@ -1,0 +1,13 @@
+[{
+    "id": 1,
+    "name": "John Doe",
+    "photo": "img/student.png",
+    "email": "john.doe@um.es",
+    "group_id": 4
+}, {
+    "id": 2,
+    "name": "Jane Doe",
+    "photo": "img/jane.png",
+    "email": "jane.doe@um.es",
+    "group_id": 6
+}]
