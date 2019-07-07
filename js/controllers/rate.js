@@ -100,13 +100,27 @@ define ([
         
         
         // Make it the default option
-        var ratings = localStorage.getItem ('ratings');
-        ratings = JSON.parse (ratings);
+        var ratings = localStorage.getItem ('ratings') ? JSON.parse (localStorage.getItem ('ratings')) : {};
         
         
-        if (rubric) $.each (rubric.rows, function (index, row) {
+        var has_rubric = ! $.isEmptyObject (rubric);
+        var has_ratings = ! $.isEmptyObject (ratings);
+        
+        
+        // Update
+        if (has_rubric && has_ratings) $.each (rubric.rows, function (index, row) {
+            
+            row.evidence = (has_rubric && ratings[student_id][row.key]) 
+                ? ratings[student_id][row.key]['evidence']
+                : ""
+            ;
+            
+            
             $.each (row.values, function (index, item) {
-                item.is_selected = (rubric && ratings[student_id]) ? (item.id == (ratings[student_id][row.key] * 1)) : false;
+                item.is_selected = (has_rubric && ratings[student_id][row.key]) 
+                    ? (item.id == (ratings[student_id][row.key]['value'] * 1)) 
+                    : false
+                ;
             });
         });
 
@@ -156,33 +170,7 @@ define ([
         
         // Attach evidence
         wrapper.find ('.attach-evidence-action').unbind ().click (function (e) {
-            
-            var self = $(this);
-            var field = self.attr ('data-field');
-            
-            vex.dialog.open ({
-                message: 'Please, comment the evidences',
-                input: '<textarea name="notes" rows="6", cols="80"></textarea>',
-                buttons: [
-                  $.extend({}, vex.dialog.buttons.YES, {
-                    text: 'Save'
-                  }),
-                  $.extend({}, vex.dialog.buttons.NO, {
-                    text: 'Cancel'
-                  })
-                ],
-                callback: function (response) {
-                    
-                    if ( ! response) {
-                        return;
-                    }
-                    
-                    console.log (response);
-                    
-                    wrapper.find ('[name="' + field + '"]').val (response.notes);
-                    
-                }
-            });
+            $(this).closest ('tr').next ().toggleClass ('has-evidence');
         });
         
         
@@ -195,17 +183,25 @@ define ([
             
             // Get all values 
             rate_form.find ('[type="radio"]:checked').each (function (key, item) {
+                
+                /** @var self DOM */
                 var self = $(item);
-                ratings[self.attr ('name')] = self.val ();
+                
+                
+                /** @var evidence_field String */
+                var evidence_field = self.attr ('name') + '-evidences';
+                
+                
+                // Set value and evidence
+                ratings[self.attr ('name')] = {
+                    'value': self.val (),
+                    'evidence': rate_form.find ('[name="' + evidence_field + '"]').val ()
+                }
             });
 
             
-            var all_ratings = localStorage.getItem ('ratings');
-            if ( ! all_ratings) {
-                all_ratings = {};
-            } else {
-                all_ratings = JSON.parse (all_ratings);
-            }
+            /** @var all_ratings Item */
+            var all_ratings = localStorage.getItem ('ratings') ? JSON.parse (localStorage.getItem ('ratings')) : {};
             
             
             // Update ratings
@@ -216,6 +212,7 @@ define ([
             localStorage.setItem ('ratings', JSON.stringify (all_ratings));
             
             
+            // Notify the user
             vex.dialog.alert ('Done!');
             
             

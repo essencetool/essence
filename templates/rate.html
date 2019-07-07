@@ -76,15 +76,23 @@
         {{# valorations }}
           <th>{{ text }}</th>
         {{/ valorations }}
-        <th>Evidences</th>
       </tr>
     </thead>
     <tbody>
       {{# rows }}
       <tr>
         <th>
-          {{ name }}<br />
-          <button type="button" class="pure-button remove-selection-action"><span class="icon-cancel"></span></button>
+          {{ name }}
+          
+          <div class="actions">
+            <button type="button" class="pure-button remove-selection-action"><span class="icon-cancel"></span></button>
+            <button 
+              data-field="{{ key }}-evidences"
+              type="button" 
+              class="pure-button attach-evidence-action">
+              <span class="icon-commenting-o"></span>
+            </button>
+          </div>
         </th>
         {{# values }}
         <td>
@@ -100,16 +108,16 @@
           </label>
         </td>
         {{/ values }}
-        <td>
-          <div class="pure-button-group" role="group">
-            <button 
-              data-field="{{ key }}-evidences"
-              type="button" 
-              class="pure-button attach-evidence-action">
-                <span class="icon-commenting-o"></span>
-            </button>
-            <input type="hidden" name="{{ key }}-evidences" value="" />
-          </div>
+      </tr>
+      <tr class="evidences-row {{# evidence }} has-evidence {{/ evidence }}">
+        <td></td>
+        <td colspan="4">
+          <label>
+            <div>Evidences</div>
+            <textarea rows="6" name="{{ key }}-evidences">{{ evidence }}</textarea>
+            <label for="{{ key }}-evidence-files" class="pure-button"><span class="icon-attach"></span>Attach local files</label>
+            <input id="{{ key }}-evidence-files" type="file" hidden name="file" />
+          </label>
         </td>
       </tr>
       {{/ rows }}

@@ -240,14 +240,43 @@ footer {
     color: white;
 }
 
+.rating-panel .evidences-row {
+    display: none;
+}
+
+.rating-panel .evidences-row.has-evidence {
+    display: table-row;
+}
+
+.rating-panel textarea {
+    width: 100%;
+}
+
+.rating-panel tbody th {
+    position: relative;
+}
+
+.rating-panel .actions {
+    position: absolute;
+    top: 0;
+    left: -6.75rem;
+    display: none;    
+    font-size: 0;
+}
+
+.rating-panel tbody tr:hover .actions {
+    display: block;
+}
+
+.rating-panel .actions .pure-button {
+    font-size: 1rem;
+}
+
 .rating-panel-actions {
     margin: 1rem 0;
     text-align: right;
 }
 
-.rating-panel-actions .pure-button {
-
-}
 
 .student-profile {
     background: #f7f7f7;
