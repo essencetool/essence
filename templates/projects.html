@@ -1,0 +1,29 @@
+<!-- Project -->
+<table class="pure-table pure-table-bordered">
+
+  <caption>Projects</caption>
+
+  <thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{# projects }}
+    <tr>
+        <td><input type="checkbox" name="projects" id="projects_{{ id }}" /></td>
+        <td>{{ name }}</td>
+        <td>{{ description }}</td>
+    </tr>
+  {{/ projects }}
+  </tbody>
+</table>
+
+
+
+<div class="rating-panel-actions">
+    <button type="button" class="create-rubric-action pure-button pure-button-primary">Create new project</button>
+    <button type="button" disabled class="pure-button">Delete selected project</button>
+</div>

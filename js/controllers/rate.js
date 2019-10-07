@@ -12,8 +12,9 @@ define ([
     'i18n!nls/translations',
     'json!assetsPath/sample.json',
     'json!assetsPath/students.json',
-    'json!assetsPath/groups.json'
-], function (tpl, $, hogan, config, i18n, rubrics, students, groups) {
+    'json!assetsPath/groups.json',
+    'json!assetsPath/projects.json'
+], function (tpl, $, hogan, config, i18n, rubrics, students, groups, projects) {
 
     /** @var wrapper DOM zero element */
     var wrapper;
@@ -48,12 +49,20 @@ define ([
         var student_id = params[3] * 1;
         
         
+        /** @var project_id int */
+        var project_id = params[4] * 1;
+        
+        
         // Get student
         var student = students.find (x => x.id === student_id);
         
         
         // Get rubric
         var rubric = rubrics.find (x => x.id === rubric_id);
+        
+        
+        // Get project
+        var project = projects.find (x => x.id === project_id);
         
         
         
@@ -78,6 +87,13 @@ define ([
         if (rubric_id) {
             rubrics.find (x => x.id).is_selected = false;
             rubrics.find (x => x.id === rubric_id).is_selected = true;
+        }
+        
+        
+        // Default project
+        if (project_id) {
+            projects.find (x => x.id).is_selected = false;
+            projects.find (x => x.id === project_id).is_selected = true;
         }
         
         
@@ -141,11 +157,16 @@ define ([
         template_params['rubric'] = rubric;
         template_params['students'] = available_students;
         template_params['student'] = student;
+        template_params['projects'] = projects;
         
         
         
         // Render
         wrapper.html (template.render (template_params));
+        
+        
+        // Render
+        wrapper.find ('select').select2 ();
         
         
         // Get elements
@@ -159,12 +180,13 @@ define ([
         
         
         // Bind change form
-        wrapper.find ('[name="rubric"], [name="student"], [name="group"]').change (function (e) {
+        wrapper.find ('[name="rubric"], [name="student"], [name="group"], [name="project"]').on ('select2:select', function (e) {
             window.location.hash = 
                 'rate'
                 + '/' + wrapper.find ('[name="rubric"]').val () 
                 + '/' + wrapper.find ('[name="group"]').val () 
-                + '/' + wrapper.find ('[name="student"]').val ();
+                + '/' + wrapper.find ('[name="student"]').val ()
+                + '/' + wrapper.find ('[name="project"]').val ();
         });        
         
         
@@ -205,7 +227,7 @@ define ([
             
             
             // Update ratings
-            all_ratings[student_id] = ratings;
+            all_ratings[project_id][rubric_id][student_id] = ratings;
             
             
             // Store ratings

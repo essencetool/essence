@@ -132,6 +132,7 @@ textarea {
 }
 
 body, html {
+    background-color: #ebeced;
     font-family: 'Montserrat', sans-serif;
     height: 100%;
 }
@@ -149,6 +150,8 @@ body, html {
     margin: 0;
     padding: 1rem 0;
     font-weight: 300;
+    font-family: 'Amatic SC', cursive;
+    font-size: 4rem;
     text-align: center;
     background-color: #e59100;
     color: white;
@@ -159,9 +162,31 @@ nav {
     text-align: center;
 }
 
-.pure-menu-active>.pure-menu-link, .pure-menu-link:focus, .pure-menu-link:hover {
+.pure-menu-selected .pure-menu-link, 
+.pure-menu-selected .pure-menu-link:visited,
+.pure-menu-active > .pure-menu-link, 
+.pure-menu-link:focus, 
+.pure-menu-link:hover {
     background-color: #ffebcc;
     color: #8d6940;
+}
+
+.pure-menu-selected .pure-menu-link:before,
+.pure-menu-selected .pure-menu-link:visited:before,
+.pure-menu-active > .pure-menu-link:before {
+    background: #ffebcc;
+    bottom: -.38462rem;
+    content: " ";
+    display: inline-block;
+    height: .76923rem;
+    left: 50%;
+    position: absolute;
+    -webkit-transform-origin: top left;    
+    transform-origin: top left;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: .76923rem;
+    z-index: 1;
 }
 
 .pure-menu-link {
@@ -178,10 +203,6 @@ main {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: #dd8808;
     color: white;
     padding: 1rem 0;
@@ -296,6 +317,11 @@ footer {
 
 .students-table {
     width: 100%;
+}
+
+.students-table .thumb {
+    margin: 0 auto;
+    max-width: 4rem;
 }
 
 .students-table thead th:first-child {

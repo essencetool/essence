@@ -13,6 +13,7 @@ body:not(.loading-state) .loading-box {
     visibility: hidden;
     z-index: -1;
     pointer-events: none;
+    min-height: calc(100vh - 100px);
 }
 
 body:not(.loading-state) #page {

@@ -1,4 +1,15 @@
-<!-- Student profile -->
+<!-- Project -->
+<label class="form-step inline">
+  <div>Project</div>
+  <select name="project">
+    <option value="" disabled selected>Select your option</option>
+    {{# projects }}
+      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }} >{{ name }}</option>
+    {{/ projects }}
+  </select>
+</label>
+
+<!-- Rubric -->
 <label class="form-step inline">
   <div>Select rubric</div>
   <select name="rubric">
@@ -12,7 +23,7 @@
 <label class="form-step inline">
   <div>Group</div>
   <select name="group">
-    <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+    <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
     {{# groups }}
     <optgroup label="{{ name }}">
       {{# subgroups }}

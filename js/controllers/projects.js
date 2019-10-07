@@ -1,17 +1,21 @@
 /**
- * ImportStudents Controller
+ * ProjectsController
  *
  * @package EssenceTool
  */
 
 define ([
-    'text!templatePath/import-students.html',
+    'text!templatePath/projects.html',
     'jquery', 
     'hogan',
     'config', 
     'i18n!nls/translations',
-    'json!assetsPath/groups.json'
-], function (tpl, $, hogan, config, i18n, groups) {
+    'json!assetsPath/projects.json'
+], function (tpl, $, hogan, config, i18n, projects) {
+
+    /** @var wrapper DOM zero element */
+    var wrapper;
+    
 
     /**
      * index
@@ -22,8 +26,8 @@ define ([
      */
     var index = function (params) {
     
-        /** @var wrapper DOM zero element */
-        var wrapper = $('#wrapper');
+        // Get wrapper
+        wrapper = $('#wrapper');
         
         
         /** @var template TPL */
@@ -39,9 +43,10 @@ define ([
         };
         
         
-        // Send rubric
-        template_params['groups'] = groups;
-
+        // Send data to the template
+        template_params['projects'] = projects;
+        
+        
         
         // Render
         wrapper.html (template.render (template_params));
@@ -51,9 +56,25 @@ define ([
         wrapper.find ('select').select2 ();
         
         
+        // Bind actions
+        wrapper.find ('.create-rubric-action').click (function (e) {
+
+            vex.dialog.prompt ({
+                message: "Please, type the name of the new project",
+                callback: function (name) {
+                    
+                    if ( ! name) {
+                        return;
+                    }
+                    
+                }
+            });
+           
+        });
+        
         
         // Remove loading state
-        $('body').removeClass ('loading-state');        
+        $('body').removeClass ('loading-state');
         
     }
     

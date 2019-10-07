@@ -50,6 +50,10 @@ define ([
         wrapper.html (template.render (template_params));
         
         
+        // Render
+        wrapper.find ('select').select2 ();
+        
+        
         // Remove loading state
         $('body').removeClass ('loading-state');        
         

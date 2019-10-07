@@ -63,6 +63,14 @@ require.config ({
         // JQuery
         'jquery': 'vendor/jquery-3.4.1.min',
         
+        
+        // vex
+        'vex': 'vendor/vex.combined.min',
+        
+        
+        // Select2
+        'select2': 'vendor/select2.min',
+        
     },
     
     
@@ -71,7 +79,13 @@ require.config ({
         'jquery-ui': {
             exports: '$',
             deps: ['jquery']
+        },
+        
+        'select2': {
+            exports: '$',
+            deps: ['jquery']
         }
+        
     }
 });
 
@@ -84,15 +98,31 @@ require.config ({
  * @package EssenceTool
  */
  
-require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18n) {
+require ([
+    'jquery', 
+    'config', 
+    'db',
+    'i18n!nls/translations', 
+    'vex',
+    'select2'
+], function ($, config, db, i18n, vex) {
+    
+    // Configure VEX
+    // VEX is set in "window" to make this feature global
+    window.vex.defaultOptions.className = 'vex-theme-plain';
+    
     
     // Update cancel
-    vex.dialog.buttons.NO.text = i18n.vex.cancel;
+    window.vex.dialog.buttons.NO.text = i18n.vex.cancel;
     
     
     // i18n the main page
     $('.loading-title').html (i18n.common.loading.title);
     $('.loading-message').html (i18n.common.loading.description);
+    
+    
+    // Create database
+    db.init ();
     
     
     /**
@@ -213,19 +243,25 @@ require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18
                     controller.index (params);
                 });            
                 break;
-                
+            
             case 'check':
                 require (['controllers/progress'], function (controller) {
                     controller.index (params);
                 });
                 break;
-                
+            
             case 'export':
                 require (['controllers/export'], function (controller) {
                     controller.index (params);
-                });            
-                break;                
-                            
+                });
+                break;
+                
+            case 'projects':
+                require (['controllers/projects'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+            
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
                 window.location = '#map' ;
@@ -234,7 +270,7 @@ require (['jquery', 'config', 'i18n!nls/translations'], function ($, config, i18
 
             default:
                 vex.dialog.alert ('@todo: ' + hash);
-                break;                
+                break;
                 
         }
         
