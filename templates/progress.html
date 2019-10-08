@@ -1,14 +1,7 @@
 <label class="form-step">
   <div>Group</div>
-  <select name="group">
+  <select name="group" disabled>
     <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
-    {{# groups }}
-    <optgroup label="{{ name }}">
-      {{# subgroups }}
-      <option value="{{ id }}">{{ name }}</option>
-      {{/ subgroups }}
-    </optgroup>
-    {{/ groups }}
   </select>
 </label>
 
@@ -23,17 +16,5 @@
     <th>Email</th>
   </tr>
 </thead>
-<tbody>
-  {{# students }}
-  <tr>
-    <td>
-      <figure class="thumb">
-        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
-      </figure>
-      </td>
-    <td>{{ name }}</td>
-    <td>{{ email }}</td>
-  </tr>
-  {{/ students }}
-</tbody>
+<tbody class="students-table-placeholder"></tbody>
 </table>

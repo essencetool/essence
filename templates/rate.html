@@ -3,9 +3,6 @@
   <div>Project</div>
   <select name="project">
     <option value="" disabled selected>Select your option</option>
-    {{# projects }}
-      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }} >{{ name }}</option>
-    {{/ projects }}
   </select>
 </label>
 
@@ -14,9 +11,6 @@
   <div>Select rubric</div>
   <select name="rubric">
     <option value="" disabled selected>Select your option</option>
-    {{# rubrics }}
-      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }} >{{ name }}</option>
-    {{/ rubrics }}
   </select>
 </label>
 
@@ -24,13 +18,6 @@
   <div>Group</div>
   <select name="group">
     <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
-    {{# groups }}
-    <optgroup label="{{ name }}">
-      {{# subgroups }}
-      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }}>{{ name }}</option>
-      {{/ subgroups }}
-    </optgroup>
-    {{/ groups }}
   </select>
 </label>
 
@@ -40,101 +27,19 @@
   <div>Select student</div>
   <select name="student">
     <option value="" disabled selected>Select your option</option>
-    {{# students }}
-      <option value="{{ id }}" {{# is_selected }} selected {{/ is_selected }} >{{ name }}</option>
-    {{/ students }}
   </select>
 </label>
 
   
-{{# student }}
-<article class="student-profile">
-  <div class="pure-g">
-    <div class="pure-u-1-5">
-      <figure class="thumb">
-        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
-      </figure>
-    </div>
-    <div class="pure-u-2-5">
-      <header>
-        <h1>{{ name }}</h1>
-      </header>
-      <p><a href="mailto:{{ email }}">{{ email }}</a></p>
-      <p>{{ group }}</p>
-      
-      <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">
-        View progress of the student
-      </button>
-      
-    </div>
-  </div>    
-</article>
-<!-- End of student profile -->
+<div class="student-profile-placeholder"/></div>
 
 
 <form class="pure-form" novalidate>
 
-  <input type="hidden" name="student_id=" value="{{ id }}" />
+  <input type="hidden" name="student_id" value="" />
+  <input type="hidden" name="rubric_id" value="" />
 
-  {{# rubric }}
-  <table class="pure-table pure-table-bordered rating-panel">
-  
-    <caption>{{ name }}</caption>
-  
-    <thead>
-      <tr>
-        <th>Criteria</th>
-        {{# valorations }}
-          <th>{{ text }}</th>
-        {{/ valorations }}
-      </tr>
-    </thead>
-    <tbody>
-      {{# rows }}
-      <tr>
-        <th>
-          {{ name }}
-          
-          <div class="actions">
-            <button type="button" class="pure-button remove-selection-action"><span class="icon-cancel"></span></button>
-            <button 
-              data-field="{{ key }}-evidences"
-              type="button" 
-              class="pure-button attach-evidence-action">
-              <span class="icon-commenting-o"></span>
-            </button>
-          </div>
-        </th>
-        {{# values }}
-        <td>
-          <label>
-            <input 
-              novalidate 
-              required 
-              type="radio" 
-              {{# is_selected }} checked {{/ is_selected }}
-              name="{{ key }}" 
-              value="{{ id }}" />{{ text }}
-            <span class="shadow"></span>
-          </label>
-        </td>
-        {{/ values }}
-      </tr>
-      <tr class="evidences-row {{# evidence }} has-evidence {{/ evidence }}">
-        <td></td>
-        <td colspan="4">
-          <label>
-            <div>Evidences</div>
-            <textarea rows="6" name="{{ key }}-evidences">{{ evidence }}</textarea>
-            <label for="{{ key }}-evidence-files" class="pure-button"><span class="icon-attach"></span>Attach local files</label>
-            <input id="{{ key }}-evidence-files" type="file" hidden name="file" />
-          </label>
-        </td>
-      </tr>
-      {{/ rows }}
-    </tbody>
-  </table>
-  {{/ rubric }}
+  <div class="rubric-form-placeholder"></div>
   
   <div class="rating-panel-actions">
     <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
@@ -143,4 +48,3 @@
   </div>
   
 </form>
-{{/ student }}

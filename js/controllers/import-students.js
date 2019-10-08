@@ -9,9 +9,9 @@ define ([
     'jquery', 
     'hogan',
     'config', 
-    'i18n!nls/translations',
-    'json!assetsPath/groups.json'
-], function (tpl, $, hogan, config, i18n, groups) {
+    'db',
+    'i18n!nls/translations'
+], function (tpl, $, hogan, config, db, i18n) {
 
     /**
      * index
@@ -39,16 +39,43 @@ define ([
         };
         
         
-        // Send rubric
-        template_params['groups'] = groups;
-
-        
         // Render
         wrapper.html (template.render (template_params));
         
         
-        // Render
-        wrapper.find ('select').select2 ();
+        // Populate groups
+        db.getAll ('groups', function (groups) {
+            
+            /** @var select DOM */
+            var select = wrapper.find ('[name="group"]');
+            
+            
+            // Iterate over the groups
+            $.each (groups, function (index, group) {
+                
+                console.log (wrapper.find ('[name="group"]'));
+                
+                // Append the optgroup
+                select.append ($("<optgroup />").attr ('label', group.name));
+                
+                
+                // Iterate over the subgruoups
+                $.each (group.subgroups, function (index_subgroup, subgroup) {
+                    select
+                        .find ('optgroup:last-child')
+                            .append ($("<option />")
+                                .attr ('value', subgroup.id)
+                                .text (subgroup.name)
+                            );
+                });
+                
+            });
+            
+            
+            // Render select2 field
+            select.prop ('disabled', false).select2 ();
+            
+        });
         
         
         

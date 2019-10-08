@@ -1,0 +1,22 @@
+<article class="student-profile">
+  <div class="pure-g">
+    <div class="pure-u-1-5">
+      <figure class="thumb">
+        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
+      </figure>
+    </div>
+    <div class="pure-u-2-5">
+      <header>
+        <h1>{{ name }}</h1>
+      </header>
+      <p><a href="mailto:{{ email }}">{{ email }}</a></p>
+      <p>{{ group }}</p>
+      
+      <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">
+        View progress of the student
+      </button>
+      
+    </div>
+  </div>    
+</article>
+<!-- End of student profile -->

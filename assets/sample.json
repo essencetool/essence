@@ -56,7 +56,6 @@
         ]
     }]
 }, {
-
     "id": 2,
     "name": "Vision. General Assessment",
     "description": "Those aspects would be showed in many different ways, but would be basically being substanciated into some criteria to evaluate:",
@@ -102,6 +101,101 @@
             {"id": 2, "text": "She/he arguments and debate its ideas "},
             {"id": 3, "text": "She/he arguments its ideas. "},
             {"id": 4, "text": "She/he cannot argument or debate its ideas."}
+        ]
+    }]
+    
+    
+}, {
+    "id": 3,
+    "name": "Self-awareness & Self-efficacy",
+    "description": "Self-awareness (SA) and Self-efficacy (SE) are two psychological abilities that help people to face their projects (e.g.) in a more realistic way, starting from their own conditions and improving them in order to improve also their possibilities of achieving their goals. As very well studied psychological skills, seems sensible start the definition of the assessment of these both from the criteria (dimensions) that are already evaluated in some validated scales created for psychological diagnosis (For self-efficacy we used Scholz, Doña, Sud, & Schwarzer, 2002, based on Schwarzer & Jerusalem, 1995; and for Self-awareness we used Govern & Marsch, 2001); but doing an adaptation to be useful in participative learning environments. ",
+    
+    "valorations": [
+        {"text": "Very good", "id": 1, "score": 4},
+        {"text": "Good", "id": 2, "score": 3},
+        {"text": "Acceptable", "id": 3, "score": 2},
+        {"text": "Unacceptable", "id": 4, "score": 1}
+    ],
+    "rows": [{
+        "key": "awareness-on-its-environment",
+        "name": "[SELF-AWARENESS] Awareness of everything on its environment",
+        "values": [
+            {"id": 1, "text": "He/ She understands the overall picture and pays attention to the details of what is around him/her, not only to the elements he/she finds, but to the complex and wide relationships between those elements."},
+            {"id": 2, "text": "He pays attention to what is around him/her, not only to the elements but to the relationships between elements. Nevertheless she/he miss some details"},
+            {"id": 3, "text": "He pays attention to some of the details that surround him/her, some of the elements and some of the situations, but does not relate to them or understand them as a complex context."},
+            {"id": 4, "text": "He pays no attention to surrounding, shows no interest in what's around him/her."}
+        ]
+    }, {
+        "key": "consciousness-of-what-is-happening",
+        "name": "[SELF-AWARENESS] Consciousness of what is happening.",
+        "values": [
+            {"id": 1, "text": "Describes in detail the situation in which he finds himself and understands in a complex way the processes that happen in that situation. Pay close attention to details."},
+            {"id": 2, "text": "She/he describes the situation in which he finds himself and understands the processes that take place in it."},
+            {"id": 3, "text": "She/he knows that something is happening, he describes it superficially, but he is not able to describe it completely."},
+            {"id": 4, "text": "She/he doesn't realize what's going on."}
+        ]
+    }, {
+        "key": "consciousness-about-the-image-she-he-projects.",
+        "name": "[SELF-AWARENESS] Consciousness about the image she/he projects.",
+        "values": [
+            {"id": 1, "text": "She/he knows what image he projects on himself and in it he includes not only what he shows, what she/he does, but also the relationships and people around him/her."},
+            {"id": 2, "text": "She/he believes he/she projects an image about itself based on what others see of it and what it does."},
+            {"id": 3, "text": "She/He thinks he projects an image on her/himself based on what others see of him/her."},
+            {"id": 4, "text": "She/He has no idea what image she/he projects to others."}
+        ]
+    }, {
+        "key": "concern-about-what-other-people-think-of-him-her",
+        "name": "[SELF-AWARENESS] Concern about what other people think of him/her",
+        "values": [
+            {"id": 1, "text": "She/he is aware of the image she/he projects of her/himself. When getting constructive feedback she/he can make conscious change that image."},
+            {"id": 2, "text": "She/he is aware of the image she/he projects of her/himself.  Doesn’t modify that image."},
+            {"id": 3, "text": "She/he is partialy aware of the image she/he projects of her/himself."},
+            {"id": 4, "text": "She/He pays no attention to what imagen she/he projects to others. At the opposite extreme, everything she/he does is done by thinking about what others think of him/her."}
+        ]
+    }, {
+        "key": "consciousness-of-its-inner-feelings",
+        "name": "[SELF-AWARENESS] Consciousness of its inner feelings.",
+        "values": [
+            {"id": 1, "text": "Knows  his/her own feelings/preferences and their causes and expresses them assertively."},
+            {"id": 2, "text": "Knows and expresses feelings/preferences."},
+            {"id": 3, "text": "Not really showing nor recognizing his/her own feelings and preferences but always looks for others' feelings/preferences for reference (Just in case)."},
+            {"id": 4, "text": "She/he doesn’t understand or express its own feelings/preferences."}
+        ]
+    }, {
+        "key": "confidence-on-having-enough-persistence-to-achieve-goals",
+        "name": "[SELF-EFFICACY] Confidence on having enough persistence to achieve goals. ",
+        "values": [
+            {"id": 1, "text": "She/he is convinced that can persist until achieve its goals, even if they are big or taught."},
+            {"id": 2, "text": "She/he believes on its potential to persist until achieving most of the goals."},
+            {"id": 3, "text": "She/he has doubts about on its potential to persist until achieving most of the goals."},
+            {"id": 4, "text": "It’s convinced that she/he cannot persist until achieve its goals."}
+        ]
+    }, {
+        "key": "confidence-on-handle-obstacles-and-overcome-them",
+        "name": "[SELF-EFFICACY] Confidence on handle obstacles and overcome them.",
+        "values": [
+            {"id": 1, "text": "She/he is convinced that can handle and overcome obstacles, even if they are unexpected or difficult."},
+            {"id": 2, "text": "She/he has the conviction of its potential on handle and overcome the majority of the potential obstacles."},
+            {"id": 3, "text": "She/he believes on its potential to handle or overcome some easy potential obstacles."},
+            {"id": 4, "text": "It’s convinced that she/he cannot handle any obstacle. "}
+        ]
+    }, {
+        "key": "confidence-on-overcoming-opponents",
+        "name": "[SELF-EFFICACY] Confidence on overcoming opponents",
+        "values": [
+            {"id": 1, "text": "She/he is convinced that can overcome any opponent she/he could have."},
+            {"id": 2, "text": "She/he has the conviction of its potential to overcome its potential opponents."},
+            {"id": 3, "text": "She/he has the conviction of its potential to overcome some easy potential opponents."},
+            {"id": 4, "text": "It’s convinced that she/he cannot overcome any opponent."}
+        ]
+    }, {
+        "key": "confidence-on-solving-difficult-problems",
+        "name": "[SELF-EFFICACY] Confidence on solving difficult problems",
+        "values": [
+            {"id": 1, "text": "She/he is convinced that can solve any problem or difficulty she/he has, even if they are unexpected or taught."},
+            {"id": 2, "text": "She/he has the conviction of its potential to solve the majority of problems /difficulties."},
+            {"id": 3, "text": "She/he has the conviction of its potential to solve the easiest problems /difficulties."},
+            {"id": 4, "text": "It’s convinced that she/he cannot solve any difficulty."}
         ]
     }]
 }]

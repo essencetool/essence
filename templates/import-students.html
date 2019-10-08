@@ -2,14 +2,8 @@
   
   <label class="form-step">
     <div><strong>Step 1. </strong>Select the group or create a new one</div>
-    <select name="">
-      {{# groups }}
-      <optgroup label="{{ name }}">
-        {{# subgroups }}
-        <option>{{ name }}</option>
-        {{/ subgroups }}
-      </optgroup>
-      {{/ groups }}
+    <select name="group" disabled>
+      <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
     </select>
   </label>
 

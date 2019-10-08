@@ -165,5 +165,5 @@ var load_css = function (url) {
  * @package EssenceTool
  */
 var pluck = function (array, key) {
-  return array.map(o => o[key]);
+  return array.map (o => o[key]);
 }

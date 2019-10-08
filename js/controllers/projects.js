@@ -6,12 +6,13 @@
 
 define ([
     'text!templatePath/projects.html',
+    'text!templatePath/templates/projects-row.html',
     'jquery', 
     'hogan',
     'config', 
-    'i18n!nls/translations',
-    'json!assetsPath/projects.json'
-], function (tpl, $, hogan, config, i18n, projects) {
+    'db',
+    'i18n!nls/translations'
+], function (tpl, tpl_projects_row, $, hogan, config, db, i18n) {
 
     /** @var wrapper DOM zero element */
     var wrapper;
@@ -43,17 +44,27 @@ define ([
         };
         
         
-        // Send data to the template
-        template_params['projects'] = projects;
-        
-        
-        
         // Render
         wrapper.html (template.render (template_params));
         
         
-        // Render
-        wrapper.find ('select').select2 ();
+        // Populate projects
+        db.getAll ('projects', function (projects) {
+            
+            /** @var table DOM */
+            var table = wrapper.find ('.projects-table-placeholder');
+            
+            
+            /** @var template_project_row TPL */
+            var template_project_row = hogan.compile (tpl_projects_row);
+            
+            
+            // Iterate over the groups
+            $.each (projects, function (index, project) {
+                table.append (template_project_row.render (project));
+            });
+            
+        });
         
         
         // Bind actions
@@ -69,7 +80,6 @@ define ([
                     
                 }
             });
-           
         });
         
         
