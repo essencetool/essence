@@ -71,12 +71,17 @@ require.config ({
         // Select2
         'select2': 'vendor/select2.min',
         
+        
+        // jQuery CSV plugin
+        'jquery-csv': 'vendor/jquery.csv.min'
+        
     },
     
     
     // Dependencies
     shim: {
-        'jquery-ui': {
+        
+        'jquery-csv': {
             exports: '$',
             deps: ['jquery']
         },

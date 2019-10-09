@@ -10,7 +10,8 @@ define ([
     'hogan',
     'config', 
     'db',
-    'i18n!nls/translations'
+    'i18n!nls/translations',
+    'jquery-csv'
 ], function (tpl, $, hogan, config, db, i18n) {
 
     /**
@@ -53,8 +54,6 @@ define ([
             // Iterate over the groups
             $.each (groups, function (index, group) {
                 
-                console.log (wrapper.find ('[name="group"]'));
-                
                 // Append the optgroup
                 select.append ($("<optgroup />").attr ('label', group.name));
                 
@@ -78,9 +77,95 @@ define ([
         });
         
         
+        // Handle form
+        var form = wrapper.find ('[name="import-students-form"');
+        
+        
+        // Upload file
+        form.find ('[name="file"]').on ('change', function () {
+            
+            /** @var fileReader */
+            var fileReader = new FileReader ();
+            fileReader.onload = function () {
+                form.find ('[name="students"]').val (fileReader.result);
+            };
+            fileReader.readAsText (form.find ('[name="file"]').prop ('files')[0]);
+        });
+        
+        
+        // Handle submit
+        form.submit (function (e) {
+            
+            /** @var group_id int */
+            var group_id = form.find ('[name="group"]').val () * 1;
+            
+            
+            /** @var students Array */
+            var students = form.find ('[name="students"]').val ();
+            
+            
+            // Check the validity of the students
+            if ( ! students) {
+                vex.dialog.alert (i18n.frontend.pages.import_students.messages.no_file);
+                return false;
+            }
+            
+            
+            // Transform to an array
+            students = $.csv.toArrays (students);
+            
+            
+            // For each student... 
+            $.each (students, function (index, student) {
+                
+                // Avoid title
+                if ( ! index) {
+                    return true;
+                }
+                
+                
+                // Attach student
+                db.add ('students', {
+                    name: student[0],
+                    email: student[1],
+                    group_id: [group_id],
+                    photo: "img/student.png"
+                }, {
+                    key: 'email',
+                    callback: function (student) {
+                        
+                        // Attach the new group
+                        student.group_id.push (group_id);
+                        
+                        
+                        // Filter unique items
+                        student.group_id = student.group_id.filter (function (itm, i, a) {
+                            return i == a.indexOf (itm);
+                        });
+                        
+                        
+                        // Return the student
+                        return student;
+                    }
+                });
+            });
+            
+            
+            // Notify the user
+            vex.dialog.alert (i18n.frontend.pages.import_students.messages.success);
+            
+            
+            // Reset the form
+            form.trigger ("reset");
+            
+            
+            return false;
+        });
+        
+        
         
         // Remove loading state
-        $('body').removeClass ('loading-state');        
+        $('body').removeClass ('loading-state');
         
     }
     

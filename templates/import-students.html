@@ -1,20 +1,37 @@
-<form class="pure-form">
+<!-- Help and tips -->
+<blockquote class="help">
+    {{# i18n }} frontend.pages.import_students.help.text {{/ i18n }}
+</blockquote>
+
+
+<!-- Form -->
+<form class="pure-form" name="import-students-form" method="post">
+
+  <input type="hidden" name="students" value="" />
   
+  <!-- First step. Select group -->
   <label class="form-step">
-    <div><strong>Step 1. </strong>Select the group or create a new one</div>
-    <select name="group" disabled>
-      <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+    <div>{{# i18n }} frontend.pages.import_students.controls.group.label {{/ i18n }}</div>
+    <select name="group" disabled required>
+      <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
     </select>
   </label>
 
-  <div  class="form-step">
-    <div><strong>Step 2. </strong>Submit a file with the students</div>
-    <label for="file" class="pure-button"><span class="icon-attach"></span>Select file</label>
-    <input id="file" type="file" hidden name="file" accept=".csv" />
+  <!-- Second step. Include file -->
+  <div class="form-step">
+    <div>{{# i18n }} frontend.pages.import_students.controls.file.label {{/ i18n }}</div>
+    <label for="file" class="pure-button">
+        <span class="icon-attach"></span>
+        {{# i18n }} frontend.pages.import_students.controls.file.placeholder {{/ i18n }}
+    </label>
+    <input id="file" name="file" type="file" hidden name="file" accept=".csv" />
   </div>  
 
+  <!-- Submit -->
   <div class="rating-panel-actions">
-    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    <button type="submit" class="pure-button pure-button-primary">
+        {{# i18n }} frontend.pages.import_students.controls.submit.text {{/ i18n }}
+    </button>
   </div>
   
 </form>

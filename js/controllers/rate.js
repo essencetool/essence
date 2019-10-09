@@ -54,14 +54,6 @@ define ([
         var project_id = params[4] * 1;
         
         
-        /** @var ratings Make it the default option */
-        var ratings = localStorage.getItem ('ratings') ? JSON.parse (localStorage.getItem ('ratings')) : {};
-        
-        
-        var has_rubric = rubric_id != null;
-        var has_ratings = ! $.isEmptyObject (ratings);
-        
-        
         /** @var template_params Object */
         var template_params = {};
         template_params['i18n'] = function () {
@@ -73,6 +65,10 @@ define ([
         
         // Send data to the template
         wrapper.html (template.render (template_params));
+        
+        
+        // Get elements
+        var rate_form = wrapper.find ('form');
         
         
         // Populate projects
@@ -137,45 +133,41 @@ define ([
         
         
         // Populate groups
-        db.getAll ('groups', function (groups) {
+        
+        /** @var select DOM */
+        var select_group = wrapper.find ('[name="group"]');
+
             
-            /** @var select DOM */
-            var select = wrapper.find ('[name="group"]');
+        db.getAllGroups (function (group) {
+            
+            // Append the optgroup
+            select_group.append ($("<optgroup />").attr ('label', group.name));
             
             
-            // Iterate over the groups
-            $.each (groups, function (index, group) {
-                
-                // Append the optgroup
-                select.append ($("<optgroup />").attr ('label', group.name));
-                
-                
-                // Get rubric
-                if (group_id) {
-                    group.subgroups.find (x => x.id).is_selected = false;
-                    group.subgroups.find (x => x.id === group_id).is_selected = true;
-                }
-                
-                
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    select
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .attr ('selected', subgroup.is_selected)
-                                .text (subgroup.name)
-                            );
+            // Get rubric
+            if (group_id) {
+                $.each (group.subgroups, function (index, subgroup) {
+                    subgroup.is_selected = subgroup.id = group_id;
                 });
-                
+            }
+            
+            
+            // Iterate over the subgruoups
+            $.each (group.subgroups, function (index_subgroup, subgroup) {
+                select_group
+                    .find ('optgroup:last-child')
+                        .append ($("<option />")
+                            .attr ('value', subgroup.id)
+                            .attr ('selected', subgroup.is_selected)
+                            .text (subgroup.name)
+                        );
             });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
+
+            select_group.prop ('disabled', false).select2 ();
             
         });
         
+
         
         // Populate students
         db.getAll ('students', function (students) {
@@ -213,7 +205,7 @@ define ([
         });
         
         
-        // Render rubric form
+        // Render the rubric if available
         if (rubric_id) db.getByID ('rubrics', rubric_id, function (rubric) {
             
             // Update form
@@ -223,37 +215,8 @@ define ([
                     .end ()
             
             
-            /** @var has_evidences boolean Determine if we have results for this rubric */
-            var has_evidences = 
-                ratings
-                && ratings[project_id]
-                && ratings[project_id][rubric_id]
-                && ratings[project_id][rubric_id][student_id]
-            ;
-            
-            
-            // Update rubric information with the last score of the user
-            if (has_evidences) $.each (rubric.rows, function (index, row) {
-                
-                // Update evidence
-                row.evidence = ratings[project_id][rubric_id][student_id][row.key]
-                    ? ratings[project_id][rubric_id][student_id][row.key]['evidence']
-                    : ""
-                ;
-                
-                
-                // Determine the value of each row
-                $.each (row.values, function (index, item) {
-                    item.is_selected = ratings[project_id][rubric_id][student_id][row.key]
-                        ? (item.id == (ratings[project_id][rubric_id][student_id][row.key]['value'] * 1)) 
-                        : false
-                    ;
-                });
-            });
-
-            
             // Render HTML
-            wrapper.find ('.rubric-form-placeholder').html (template_rubric_form.render (rubric));
+            rate_form.find ('.rubric-form-placeholder').html (template_rubric_form.render (rubric));
             
             
             // Attach evidence
@@ -266,14 +229,49 @@ define ([
             wrapper.find ('.remove-selection-action').unbind ().click (function (e) {
                 $(e.target).closest ('tr').find ('[type="radio"]').prop ('checked',false);
             });
+            
+            
+            // Nothing to do if we didn't have selected the project nor the student
+            if ( ! (project_id && student_id)) {
+                return;
+            }
+            
+            
+            // Update the rubric form with current rating
+            db.getRatingById ([project_id, rubric_id, student_id], function (rating) {
+                
+                // Update rubric information with the last score of the user
+                $.each (rating.values, function (key, info) {
+                
+                    // Update evidence
+                    rate_form
+                        .find ('[name="' + key + '"][value="' + info.value + '"]')
+                            .prop ('checked', true)
+                            .end ()
+                        .find ('[name="' + key + '-evidences"]')
+                            .val (info.evidence)
 
-        
+                });
+            });
         });
         
         
         // If we have an student selected, when can print their information
         // on the screen
         if (student_id) db.getStudentById (student_id, function (student) {
+            
+            if (group_id && student.group_id.indexOf (group_id) == -1) {
+                window.location.hash = 
+                    'rate'
+                    + '/' + wrapper.find ('[name="rubric"]').val () 
+                    + '/' + wrapper.find ('[name="group"]').val () 
+                    + '/' 
+                    + '/' + wrapper.find ('[name="project"]').val ()
+                ;
+                return;
+
+            }
+            
             
             wrapper
                 .find ('[name="student_id"]')
@@ -284,12 +282,7 @@ define ([
             ;
            
         });
-        
-        
-        
-        // Get elements
-        var rate_form = wrapper.find ('form');
-        
+  
         
         // Bind change form
         wrapper.find ('[name="rubric"], [name="student"], [name="group"], [name="project"]').on ('select2:select', function (e) {
@@ -307,8 +300,13 @@ define ([
         // Submit rating
         rate_form.submit (function (e) {
             
-            /** @var ratings Object */
-            var ratings = {};
+            /** @var rating Object */
+            var rating = {
+                'student_id': student_id,
+                'project_id': project_id,
+                'rubric_id': rubric_id,
+                'values': {}
+            };
             
             
             // Get all values 
@@ -323,36 +321,15 @@ define ([
                 
                 
                 // Set value and evidence
-                ratings[self.attr ('name')] = {
+                rating['values'][self.attr ('name')] = {
                     'value': self.val (),
                     'evidence': rate_form.find ('[name="' + evidence_field + '"]').val ()
                 }
             });
-
-            
-            /** @var all_ratings Item */
-            var all_ratings = localStorage.getItem ('ratings') ? JSON.parse (localStorage.getItem ('ratings')) : {};
-
-            
-            
-            // Update ratings
-            if ( ! all_ratings[project_id]) {
-                all_ratings[project_id] = {};
-            }
-            
-            if ( ! all_ratings[project_id][rubric_id]) {
-                all_ratings[project_id][rubric_id] = {};
-            }
-            
-            if ( ! all_ratings[project_id][rubric_id][student_id]) {
-                all_ratings[project_id][rubric_id][student_id] = {};
-            }
-            
-            all_ratings[project_id][rubric_id][student_id] = ratings;
             
             
             // Store ratings
-            localStorage.setItem ('ratings', JSON.stringify (all_ratings));
+            db.put ('ratings', rating);
             
             
             // Notify the user

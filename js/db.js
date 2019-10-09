@@ -99,11 +99,23 @@ define ([
             var groupsStore = db.createObjectStore ('groups', {autoIncrement: true });
             var rubricsStore = db.createObjectStore ('rubrics', {autoIncrement: true });
             var studentsStore = db.createObjectStore ('students', {keyPath: 'id', autoIncrement: true });
+            var ratingsStore = db.createObjectStore ('ratings', {
+                keyPath: [
+                    'project_id', 
+                    'rubric_id', 
+                    'student_id'
+                ],
+                unique: true
+            });
             
             
             // Create alternate indexes
             studentsStore.createIndex ('id', 'id');
-            studentsStore.createIndex ('group_id', 'group_id');
+            studentsStore.createIndex ('email', 'email', { unique: true });
+            ratingsStore.createIndex ('project_id', 'project_id');
+            ratingsStore.createIndex ('student_id', 'student_id');
+            ratingsStore.createIndex ('rubric_id', 'rubric_id');
+            
             
             
             // Set the flag to determine that the database has to be populated again
@@ -137,6 +149,82 @@ define ([
     
     
     /**
+     * put
+     *
+     * Note that this function will retrieve items 
+     * without being hidrated
+     *
+     * @param object_store String
+     * @param object Object
+     *
+     */
+    var put = function (object_store, object) {
+        
+        /** @var transaction Create a transaction for all the objects */
+        var transaction = db.transaction (object_store, 'readwrite');
+        var store = transaction.objectStore (object_store);
+        
+        
+        // Modify the element in the store
+        store.put (object);
+
+    }    
+    
+    /**
+     * add
+     *
+     * Note that this function will retrieve items 
+     * without being hidrated
+     *
+     * @param object_store String
+     * @param object Object
+     *
+     */
+    var add = function (object_store, object, on_duplicate) {
+        
+        /** @var transaction Create a transaction for all the objects */
+        var transaction = db.transaction (object_store, 'readwrite');
+        var store = transaction.objectStore (object_store);
+        
+        
+        // Add the element in the store
+        store.add (object);
+        
+        
+        // On duplicate...
+        transaction.onerror = function (event) {
+            
+            if ( ! typeof on_duplicate.callback == 'function') {
+                return;
+            }
+            
+            db.transaction (object_store)
+                .objectStore (object_store)
+                    .index (on_duplicate.key)
+                        .get (object.email)
+                            .onsuccess = function (event) {
+                                
+                                // Get the object that causes the duplicate item
+                                object = event.target.result;
+
+                                
+                                 // Get modified object
+                                object = on_duplicate.callback (object);
+                                
+                                
+                                /** @var transaction Create a transaction for all the objects */
+                                var transaction = db.transaction (object_store, 'readwrite');
+                                var store = transaction.objectStore (object_store);
+                                store.put (object);
+
+                            }
+            ;
+            
+        }
+    }
+    
+    
+    /**
      * getByID
      *
      * Note that this function will retrieve items 
@@ -163,6 +251,34 @@ define ([
     }
     
     
+   /**
+     * getRatingById
+     *
+     * Note that this function will retrieve rubric by its composite key
+     *
+     * @param id int
+     * @param callback function
+     *
+     * Retrives item from a object store
+     */
+    var getRatingById = function (id, callback) {
+        
+        /** @var transaction Create a transaction for all the objects */
+        var transaction = db.transaction ('ratings');
+        var store = transaction.objectStore ('ratings');
+        
+        
+        store.get (id)
+            .onsuccess = function (event) {
+                if (typeof callback === 'function') {
+                    callback (event.target.result);
+                }
+            }
+        ;
+    }
+    
+    
+    
     /**
      * getStudentById
      *
@@ -182,6 +298,12 @@ define ([
         
         // Get student by ID
         getByID ('students', id, function (student) {
+            
+            // Attach photo
+            if ( ! student.photo) {
+                student.photo = "img/student.png";
+            }
+            
             
             /** @var callbacks int */
             var callbacks = student.group_id.length;
@@ -238,16 +360,88 @@ define ([
                     callback (student) 
                 }
             );
-            
         });
+    }
+    
+    
+    
+    
+    /**
+     * getAllStudents
+     *
+     * @param callback function
+     */
+    var getAllStudents = function (callback) {
+        
+        /** @var transaction Create a transaction for all the objects */
+        var transaction = db.transaction ('students');
+        var store = transaction.objectStore ('students');
+        
+        
+        // Open cursor
+        store.openCursor ().onsuccess = function (event) {
+            
+            // Get cursor
+            var cursor = event.target.result;
+            
+            
+            // If we have an element
+            if (cursor) {
+                
+                // Get hidrated version of the student 
+                getStudentById (cursor.value.id, callback);
+                
+                
+                // Go no next item
+                cursor.continue();
+            }
+        };
+    }
+    
+    
+    /**
+     * getAllGroups
+     *
+     * @param callback function
+     */
+    var getAllGroups = function (callback) {
+        
+        /** @var transaction Create a transaction for all the objects */
+        var transaction = db.transaction ('groups');
+        var store = transaction.objectStore ('groups');
+        
+        
+        // Open cursor
+        store.openCursor ().onsuccess = function (event) {
+            
+            // Get cursor
+            var cursor = event.target.result;
+            
+            
+            // If we have an element
+            if (cursor) {
+                
+                // Get hidrated version of the student 
+                callback (cursor.value);
+                
+                
+                // Go no next item
+                cursor.continue();
+            }
+        };
     }
     
     
     // Return public API
     return {
         init: init,
+        add: add,
+        put: put,
         getAll: getAll,
         getByID: getByID,
-        getStudentById: getStudentById
+        getStudentById: getStudentById,
+        getRatingById: getRatingById,
+        getAllStudents: getAllStudents,
+        getAllGroups: getAllGroups
     }
 }) ;

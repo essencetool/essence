@@ -23,6 +23,10 @@ define ([
      * @package EssenceTool
      */
     var index = function (params) {
+        
+        /** @var group_id int */
+        var group_id = params[1] * 1;
+        
     
         /** @var wrapper DOM zero element */
         var wrapper = $('#wrapper');
@@ -30,6 +34,10 @@ define ([
         
         /** @var template TPL */
         var template = hogan.compile (tpl);
+        
+        
+        /** @var template_student_row TPL */
+        var template_student_row = hogan.compile (tpl_student_row);
         
         
         /** @var template_params Object */
@@ -45,62 +53,77 @@ define ([
         wrapper.html (template.render (template_params));
         
         
+        /** @var table DOM */
+        var table = wrapper.find ('.students-table-placeholder');
+        
+        
         // Populate students
-        db.getAll ('students', function (students) {
+        db.getAllStudents (function (student) {
             
-            /** @var table DOM */
-            var table = wrapper.find ('.students-table-placeholder');
+            if (group_id) {
+                if (student.group_id.indexOf (group_id) == -1) {
+                    return true;
+                }
+            }
             
-            
-            /** @var template_student_row TPL */
-            var template_student_row = hogan.compile (tpl_student_row);
-            
-            
-            // Iterate over the groups
-            $.each (students, function (index, student) {
-                table.append (template_student_row.render (student));
-            });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
+            table.append (template_student_row.render (student));
         });
+        
+        
+        /** @var select_group DOM */
+        var select_group = wrapper.find ('[name="group"]');
+        
+        
+        // Render select2 field
+        select_group.prop ('disabled', false).select2 ();
         
         
         // Populate groups
-        db.getAll ('groups', function (groups) {
+        db.getAllGroups (function (group) {
             
-            /** @var select DOM */
-            var select = wrapper.find ('[name="group"]');
+            // Append the optgroup
+            select_group.append ($("<optgroup />").attr ('label', group.name));
             
-            
-            // Iterate over the groups
-            $.each (groups, function (index, group) {
                 
-                // Append the optgroup
-                select.append ($("<optgroup />").attr ('label', group.name));
+            // Iterate over the subgruoups
+            $.each (group.subgroups, function (index_subgroup, subgroup) {
+                
+                // Get project
+                if (group_id && subgroup.id == group_id) {
+                    
+                    // Mark as selected
+                    subgroup.is_selected = true;
+                    
+                    
+                    // Update the caption of the table
+                    wrapper.find ('.group-name-ph').html (subgroup.name);
+                    
+                }
                 
                 
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    select
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .text (subgroup.name)
-                            );
-                });
-                
+                // Attach to the optgroup
+                select_group
+                    .find ('optgroup:last-child')
+                        .append ($("<option />")
+                            .attr ('value', subgroup.id)
+                            .prop ('selected', subgroup.is_selected)
+                            .text (subgroup.name)
+                        );
             });
             
             
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
+            select_group.prop ('disabled', false).select2 ();
+
         });
+            
         
         
+        // Bind select group 
+        select_group.on ('select2:select', function (e) {
+            window.location.hash = 'check' + '/' + select_group.val ();
+        });
+
+
         
         
         // Remove loading state

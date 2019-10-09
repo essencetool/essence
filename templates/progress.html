@@ -1,20 +1,25 @@
+<!-- Filter by group -->
 <label class="form-step">
-  <div>Group</div>
-  <select name="group" disabled>
-    <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
-  </select>
+    <div>{{# i18n }} frontend.pages.progress.controls.group.label {{/ i18n }}</div>
+    <select name="group" disabled>
+        <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+    </select>
 </label>
 
+
+<!-- Table -->
 <table class="pure-table pure-table-bordered students-table">
 
-<caption>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</caption>
+    <caption class="group-name-ph">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</caption>
 
-<thead>
-  <tr>
-    <th>Photo</th>
-    <th>Name</th>
-    <th>Email</th>
-  </tr>
-</thead>
-<tbody class="students-table-placeholder"></tbody>
+    <thead>
+        <tr>
+            <th>{{# i18n }} frontend.pages.progress.tables.students.fields.photo {{/ i18n }}</th>
+            <th>{{# i18n }} frontend.pages.progress.tables.students.fields.name {{/ i18n }}</th>
+            <th>{{# i18n }} frontend.pages.progress.tables.students.fields.email {{/ i18n }}</th>
+            <th>{{# i18n }} frontend.pages.progress.tables.students.fields.groups {{/ i18n }}</th>
+            <th>{{# i18n }} frontend.pages.progress.tables.students.fields.rubrics {{/ i18n }}</th>
+        </tr>
+    </thead>
+    <tbody class="students-table-placeholder"></tbody>
 </table>
