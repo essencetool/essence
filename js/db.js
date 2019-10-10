@@ -20,6 +20,16 @@ define ([
     
     /** @var needs_populate Boolean Determine if the database has to be populated again */
     var needs_populate = false;
+    
+    
+    /** @var object_stores Boolean Determine if the database has to be populated again */
+    var object_stores = [
+        'projects',
+        'groups',
+        'rubrics',
+        'students',
+        'ratings'
+    ];
    
     
     /**
@@ -129,22 +139,77 @@ define ([
      * getAll
      *
      * @param object_store String
-     * @param callback function
      *
      * Retrives items from a object store
      */
-    var getAll = function (object_store, callback) {
+    var getAll = function (object_store) {
         
-        /** @var transaction Create a transaction for all the objects */
-        var transaction = db.transaction (object_store);
-        var store = transaction.objectStore (object_store);
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var result Array */
+            var result = [];
+            
+            
+            /** @var transaction Transaction in read only */
+            var transaction = db.transaction (object_store, 'readonly');
+            
+            
+            /** @var store objectStore */
+            var store = transaction.objectStore (object_store);
+            
+            
+            // Open cursor and iterate
+            store.openCursor ().onsuccess = function (event) {
+                
+                /** var cursor Cursor */
+                var cursor = event.target.result;
+                
+                
+                // While we are receicing items, we iterate with the cursor
+                if (cursor) {
+                    result.push (cursor.value);
+                    cursor.continue ();
+                    
+                // When cursor ends, resolve our promise
+                } else {
+                    resolve (result);
+                }
+                
+            };
+        });
+    }
+    
+    
+    /**
+     * getAllKeys
+     *
+     * @param object_store String
+     *
+     * Retrives items from a object store
+     */
+    var getAllKeys = function  (object_store) {
         
-        
-        store.getAll ().onsuccess = function (event) {
-            if (typeof callback === 'function') {
-                callback (event.target.result);
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var result Array */
+            var result = [];
+            
+            
+            /** @var transaction Transaction in read only */
+            var transaction = db.transaction (object_store, 'readonly');
+            
+            
+            /** @var store objectStore */
+            var store = transaction.objectStore (object_store);
+            
+            
+            /** @var store objectStore */
+            store.getAllKeys ().onsuccess = function (event) {
+                resolve (event.target.result);
             }
-        };
+        });
     }
     
     
@@ -232,22 +297,36 @@ define ([
      *
      * @param object_store String
      * @param id int
-     * @param callback function
      *
      * Retrives item from a object store
      */
-    var getByID = function (object_store, id, callback) {
+    var getByID = function (object_store, id) {
         
-        /** @var transaction Create a transaction for all the objects */
-        var transaction = db.transaction (object_store);
-        var store = transaction.objectStore (object_store);
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var result Array */
+            var result = {};
+            
+            
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (db.objectStoreNames, 'readwrite');
+            
+            
+            /** @var object */
+            var store = transaction.objectStore (object_store);
+            
         
-        
-        store.get (id).onsuccess = function (event) {
-            if (typeof callback === 'function') {
-                callback (event.target.result);
-            }
-        };
+            // Bind error handling
+            transaction.onerror = function (event) {
+                vex.dialog.alert ("Database error: " + event.target.errorCode);
+            };
+            
+            
+            store.get (id).onsuccess = function (event) {
+                resolve (event.target.result);
+            };
+        });
     }
     
     
@@ -290,76 +369,90 @@ define ([
      *
      * Retrives item from a object store
      */
-    var getStudentById = function (id, callback) {
+    var getStudentById = function (id) {
         
-        /** @var identified_groups Array */
-        var identified_groups = [];
+        return new Promise ((resolve, reject) => {
         
-        
-        // Get student by ID
-        getByID ('students', id, function (student) {
-            
-            // Attach photo
-            if ( ! student.photo) {
-                student.photo = "img/student.png";
-            }
-            
-            
-            /** @var callbacks int */
-            var callbacks = student.group_id.length;
-            
-            
-            // Defered
-            var dfd = jQuery.Deferred ();
-            
-            
-            // For each group
-            if (callbacks > 0) $.each (student.group_id, function (index, group_id) {
+            // Get student by ID
+            getByID ('students', id).then (function (student) {
                 
-                // Get all groups
-                // @todo Index by subgroups
-                getAll ('groups', function (groups) {
-                    
-                    // ITerate over all groups
-                    $.each (groups, function (index_group, group) {
+                // Attach photo if the student hasn't any
+                if ( ! student.photo) {
+                    student.photo = "img/student.png";
+                }
+                
+                
+                // Hidrate groups
+                student.groups = [];
+                student.ratings = [];
+                
+                
+                /** @var transaction Create a transaction for all the objects */
+                db.transaction ('ratings')
+                    .objectStore ('ratings')
+                    .index ('student_id')
+                    .openCursor (IDBKeyRange.only (student.id)).onsuccess = function (event) {
                         
-                        // ITerate over subgroups
-                        $.each (group.subgroups, function (index_subgroup, subgroup) {
+                        // Get cursor
+                        var cursor = event.target.result;
+            
+            
+                        // If we have an element
+                        if (cursor) {
                             
-                            if (subgroup.id == group_id) {
-                                
-                                // Attach subgroup
-                                identified_groups.push (subgroup);
-                                
-                                
-                                // Update callbacks
-                                callbacks--;
-                                
-                                if (callbacks === 0) {
-                                    dfd.resolve ('hurray');
-                                }
+                            // Attacg
+                            student.ratings.push (cursor.value);
+                        
+                        
+                            // Go no next item
+                            cursor.continue ();
+                        }
+                    }
+                ;
 
-                                return false;
-                            }
+            
+                /** @var callbacks int */
+                var callbacks = student.group_id.length;
+                
+                
+                // Get subgroups
+                if ( ! callbacks)  {
+                    resolve (student);
+                }
+                
+            
+                // For each group
+                if (callbacks > 0) $.each (student.group_id, function (index, group_id) {
+                
+                    // Get all groups. @todo Index by subgroups
+                    getAll ('groups').then (function (groups) {
+                    
+                        // ITerate over all groups
+                        $.each (groups, function (index_group, group) {
+                        
+                            // ITerate over subgroups
+                            $.each (group.subgroups, function (index_subgroup, subgroup) {
                             
+                                if (subgroup.id == group_id) {
+                                
+                                    // Attach subgroup
+                                    student.groups.push (subgroup);
+                                
+                                
+                                    // Update callbacks
+                                    callbacks--;
+                                
+                                    if (callbacks === 0) {
+                                        resolve (student);
+                                    }
+
+                                    return false;
+                                }
+                            });
                         });
                     });
                 });
             });
-            
-            
-            // When all the subgroups are done, run the callback
-            $.when (dfd.promise ()).then (
-                function () {
-                    
-                    // Update information of the user
-                    student.group = pluck (identified_groups, 'name').join (', ');
-                
-                
-                    // Run callback
-                    callback (student) 
-                }
-            );
         });
     }
     
@@ -369,33 +462,36 @@ define ([
     /**
      * getAllStudents
      *
-     * @param callback function
      */
-    var getAllStudents = function (callback) {
+    var getAllStudents = function () {
         
-        /** @var transaction Create a transaction for all the objects */
-        var transaction = db.transaction ('students');
-        var store = transaction.objectStore ('students');
-        
-        
-        // Open cursor
-        store.openCursor ().onsuccess = function (event) {
+        // Return promise
+        return new Promise ((resolve, reject) => {
             
-            // Get cursor
-            var cursor = event.target.result;
+            /** @var response Array */
+            var response = [];
             
             
-            // If we have an element
-            if (cursor) {
+            // Retrieve all student objects plain
+            getAllKeys ('students').then (function (ids) {
+            
+                /** @var callbacks int To know when every object is full */
+                var callbacks = students.length;
                 
-                // Get hidrated version of the student 
-                getStudentById (cursor.value.id, callback);
                 
-                
-                // Go no next item
-                cursor.continue();
-            }
-        };
+                // Get each plain object
+                $.each (ids, function (index, student_id) {
+                    getStudentById (student_id).then (function (student) {
+                        response.push (student);
+                        callbacks--;
+                   
+                        if ( ! callbacks) {
+                            resolve (response);
+                        }
+                    });
+                });
+            });
+        });
     }
     
     
@@ -404,44 +500,94 @@ define ([
      *
      * @param callback function
      */
-    var getAllGroups = function (callback) {
-        
-        /** @var transaction Create a transaction for all the objects */
-        var transaction = db.transaction ('groups');
-        var store = transaction.objectStore ('groups');
-        
-        
-        // Open cursor
-        store.openCursor ().onsuccess = function (event) {
-            
-            // Get cursor
-            var cursor = event.target.result;
-            
-            
-            // If we have an element
-            if (cursor) {
-                
-                // Get hidrated version of the student 
-                callback (cursor.value);
-                
-                
-                // Go no next item
-                cursor.continue();
-            }
-        };
+    var getAllGroups = function () {
+        return getAll ('groups');
     }
+    
+    
+    /** 
+     * getAllItems
+     */
+    var getAllItems = function (callback) {
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var result Array */
+            var result = {};
+            
+            
+            /** @var countdown int */
+            var countdown = object_stores.length;
+            
+            
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (db.objectStoreNames, 'readwrite');
+            
+        
+            // Bind error handling
+            transaction.onerror = function (event) {
+                vex.dialog.alert ("Database error: " + event.target.errorCode);
+            };
+            
+            
+            // Get each object store
+            $.each (object_stores, function (index, object_store) {
+                
+                /** @var store */
+                var store = transaction.objectStore (object_store);
+                
+                
+                // Create storage
+                result[object_store] = [];
+                    
+                
+                // Iterate
+                store.openCursor ().onsuccess = function (event) {
+            
+                    // Get cursor
+                    var cursor = event.target.result;
+            
+            
+                    // If we have an element
+                    if (cursor) {
+                            
+                        result[object_store].push (cursor.value);
+                        
+                        
+                        // Go no next item
+                        cursor.continue ();
+                    
+                    } else {
+                        
+                        countdown--;
+                        if ( ! countdown) {
+                            resolve (result);
+                        }
+                        
+                    }
+                }
+            });
+        });
+    }
+
     
     
     // Return public API
     return {
         init: init,
+        
+        object_stores: object_stores,
+        
         add: add,
         put: put,
         getAll: getAll,
+        getAllKeys: getAllKeys,
         getByID: getByID,
         getStudentById: getStudentById,
         getRatingById: getRatingById,
         getAllStudents: getAllStudents,
-        getAllGroups: getAllGroups
+        getAllGroups: getAllGroups,
+        getAllItems: getAllItems,
     }
 }) ;

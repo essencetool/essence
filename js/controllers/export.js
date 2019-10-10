@@ -11,8 +11,8 @@ define ([
     'config', 
     'db', 
     'i18n!nls/translations',
-    'json!assetsPath/students.json',
-], function (tpl, $, hogan, config, db, i18n, students) {
+    'jquery-csv'
+], function (tpl, $, hogan, config, db, i18n) {
 
     /**
      * index
@@ -40,76 +40,43 @@ define ([
         };
         
         
-        // Send data to the template
-        template_params['students'] = students;
-        
         
         // Render
         wrapper.html (template.render (template_params));
         
         
-        // Populate groups
-        db.getAll ('groups', function (groups) {
-            
-            /** @var select DOM */
-            var select = wrapper.find ('[name="group"]');
-            
-            
-            // Iterate over the groups
-            $.each (groups, function (index, group) {
-                
-                // Append the optgroup
-                select.append ($("<optgroup />").attr ('label', group.name));
-                
-                
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    select
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .text (subgroup.name)
-                            );
-                });
-                
-            });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
-        });
-        
-        
         
         /** @var form DOM */
-        var form = wrapper.find ('form');
+        var form = wrapper.find ('form[name="export-form"]');
         
         
         // Bind submit form
         form.unbind ().submit (function () {
             
-            /** @var group int */
-            var group = form.find ('[name="group"]').val () * 1;
+            /** @var response */
+            var response = {};
             
             
-            /** @var all_ratings Object */
-            var all_ratings = localStorage.getItem ('ratings');
-            if ( ! all_ratings) {
-                all_ratings = {};
-            } else {
-                all_ratings = JSON.parse (all_ratings);
-            }
-            
-            
-            var csv = "data:text/csv;charset=utf-8,";
-            Object.keys (all_ratings).map (function (key, item) {
-                console.log (all_ratings[key]);
-                csv = csv + "\n";
+            // Get all items from the database
+            db.getAllItems ().then (function (response) {
+                
+                /** @var database String */
+                var database = JSON.stringify (response, null, 2);
+                
+                var element = document.createElement ('a');
+                element.setAttribute ('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent (database));
+                element.setAttribute ('download', 'essence-' + new Date ().getTime () + '.json');
+                element.style.display = 'none';
+                document.body.appendChild (element);
+                element.click ();
+
+                document.body.removeChild(element);
+                
+                
+                // Notify the user
+                vex.dialog.alert (i18n.frontend.pages.export.messages.export_success);
+                
             });
-            
-            
-            vex.dialog.alert ('@todo');
             
             
             // prevent

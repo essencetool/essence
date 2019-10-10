@@ -72,7 +72,7 @@ define ([
         
         
         // Populate projects
-        db.getAll ('projects', function (projects) {
+        db.getAll ('projects').then (function (projects) {
             
             /** @var select DOM */
             var select = wrapper.find ('[name="project"]');
@@ -102,7 +102,7 @@ define ([
         
         
         // Populate rubrics
-        db.getAll ('rubrics', function (rubrics) {
+        db.getAll ('rubrics').then (function (rubrics) {
             
             /** @var select DOM */
             var select = wrapper.find ('[name="rubric"]');
@@ -138,29 +138,33 @@ define ([
         var select_group = wrapper.find ('[name="group"]');
 
             
-        db.getAllGroups (function (group) {
+        db.getAllGroups ().then (function (groups) {
             
-            // Append the optgroup
-            select_group.append ($("<optgroup />").attr ('label', group.name));
+            $.each (groups, function (index, group) {
             
-            
-            // Get rubric
-            if (group_id) {
-                $.each (group.subgroups, function (index, subgroup) {
-                    subgroup.is_selected = subgroup.id = group_id;
+                // Append the optgroup
+                select_group.append ($("<optgroup />").attr ('label', group.name));
+                
+                
+                // Get rubric
+                if (group_id) {
+                    $.each (group.subgroups, function (index, subgroup) {
+                        subgroup.is_selected = subgroup.id = group_id;
+                    });
+                }
+                
+                
+                // Iterate over the subgruoups
+                $.each (group.subgroups, function (index_subgroup, subgroup) {
+                    select_group
+                        .find ('optgroup:last-child')
+                            .append ($("<option />")
+                                .attr ('value', subgroup.id)
+                                .attr ('selected', subgroup.is_selected)
+                                .text (subgroup.name)
+                            );
                 });
-            }
-            
-            
-            // Iterate over the subgruoups
-            $.each (group.subgroups, function (index_subgroup, subgroup) {
-                select_group
-                    .find ('optgroup:last-child')
-                        .append ($("<option />")
-                            .attr ('value', subgroup.id)
-                            .attr ('selected', subgroup.is_selected)
-                            .text (subgroup.name)
-                        );
+                
             });
 
             select_group.prop ('disabled', false).select2 ();
@@ -170,7 +174,7 @@ define ([
 
         
         // Populate students
-        db.getAll ('students', function (students) {
+        db.getAll ('students').then (function (students) {
             
             /** @var select DOM */
             var select = wrapper.find ('[name="student"]');
@@ -206,7 +210,7 @@ define ([
         
         
         // Render the rubric if available
-        if (rubric_id) db.getByID ('rubrics', rubric_id, function (rubric) {
+        if (rubric_id) db.getByID ('rubrics', rubric_id).then (function (rubric) {
             
             // Update form
             wrapper

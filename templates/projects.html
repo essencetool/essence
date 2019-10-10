@@ -1,8 +1,16 @@
+<!-- Title -->
+<h1>
+    {{# i18n }} frontend.pages.projects.title {{/ i18n }}
+</h1>
+
+<!-- Help and tips -->
+<blockquote class="help">
+    {{# i18n }} frontend.pages.projects.help.text {{/ i18n }}
+</blockquote>
+
+
 <!-- Project -->
 <table class="pure-table pure-table-bordered">
-
-  <caption>Projects</caption>
-
   <thead>
   <tr>
     <th>&nbsp;</th>
@@ -16,6 +24,10 @@
 
 
 <div class="rating-panel-actions">
-    <button type="button" class="create-rubric-action pure-button pure-button-primary">Create new project</button>
-    <button type="button" disabled class="pure-button">Delete selected project</button>
+    <button type="button" class="create-project-action pure-button pure-button-primary">
+        {{# i18n }} frontend.pages.projects.controls.create_project.text {{/ i18n }}
+    </button>
+    <button type="button" disabled class="delete-project-action pure-button">
+        {{# i18n }} frontend.pages.projects.controls.delete_project.text {{/ i18n }}
+    </button>
 </div>

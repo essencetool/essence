@@ -1,13 +1,18 @@
-<form>
-  <label class="form-step">
-    <div>Group</div>
-    <select name="group" disabled>
-      <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
-    </select>
-  </label>
+<!-- Title -->
+<h1>
+    {{# i18n }} frontend.pages.export.title {{/ i18n }}
+</h1>
 
+<!-- Help and tips -->
+<blockquote class="help">
+    {{# i18n }} frontend.pages.export.help.text {{/ i18n }}
+</blockquote>
+
+<form name="export-form" class="pure-form" method="post">
 
   <div class="rating-panel-actions">
-    <button type="submit" class="pure-button pure-button-primary">Get CSV</button>
+    <button type="submit" class="pure-button pure-button-primary">
+        {{# i18n }} frontend.pages.export.controls.submit.text {{/ i18n }}
+    </button>
   </div>
 </form>

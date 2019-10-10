@@ -1,8 +1,14 @@
+<!-- Title -->
+<h1>
+    {{# i18n }} frontend.pages.progress.title {{/ i18n }}
+</h1>
+
+
 <!-- Filter by group -->
 <label class="form-step">
     <div>{{# i18n }} frontend.pages.progress.controls.group.label {{/ i18n }}</div>
     <select name="group" disabled>
-        <option>{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
+        <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
     </select>
 </label>
 

@@ -35,6 +35,10 @@ define ([
         var template = hogan.compile (tpl);
         
         
+        /** @var template_project_row TPL */
+        var template_project_row = hogan.compile (tpl_projects_row);
+        
+        
         /** @var template_params Object */
         var template_params = {};
         template_params['i18n'] = function () {
@@ -48,27 +52,28 @@ define ([
         wrapper.html (template.render (template_params));
         
         
+        /** @var table DOM */
+        var table = wrapper.find ('.projects-table-placeholder');
+        
+        
         // Populate projects
-        db.getAll ('projects', function (projects) {
-            
-            /** @var table DOM */
-            var table = wrapper.find ('.projects-table-placeholder');
-            
-            
-            /** @var template_project_row TPL */
-            var template_project_row = hogan.compile (tpl_projects_row);
-            
-            
-            // Iterate over the groups
+        db.getAll ('projects').then (function (projects) {
             $.each (projects, function (index, project) {
                 table.append (template_project_row.render (project));
             });
-            
         });
         
         
         // Bind actions
-        wrapper.find ('.create-rubric-action').click (function (e) {
+        table.on ('change', 'input[type="checkbox"]', function () {
+            wrapper.find ('.delete-project-action')
+                .prop ('disabled', ! table.find ('input[type="checkbox"]:checked').length)
+            ;
+        });
+        
+        
+        // Create new project
+        wrapper.find ('.create-project-action').click (function (e) {
 
             vex.dialog.prompt ({
                 message: "Please, type the name of the new project",
@@ -78,6 +83,38 @@ define ([
                         return;
                     }
                     
+                    
+                    /** @var project Object */
+                    var project = {
+                        name: name
+                    }
+                    
+                    
+                    // Add to the database
+                    db.add ('projects', project);
+                    
+                    
+                    // Repopulate
+                    index (params);
+                    
+                    
+                }
+            });
+        });
+        
+        
+        // Delete selected projects
+        wrapper.find ('.delete-project-action').click (function (e) {
+
+            vex.dialog.confirm ({
+                message: i18n.frontend.pages.projects.confirm.delete_projects,
+                callback: function (confirm) {
+                    
+                    if ( ! confirm) {
+                        return;
+                    }
+                    
+                    vex.dialog.alert ('@todo');
                 }
             });
         });

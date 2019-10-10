@@ -58,15 +58,21 @@ define ([
         
         
         // Populate students
-        db.getAllStudents (function (student) {
+        db.getAllStudents ().then (function (students) {
             
-            if (group_id) {
-                if (student.group_id.indexOf (group_id) == -1) {
-                    return true;
+            // Get each student
+            $.each (students, function (index, student) {
+                
+                
+                
+                if (group_id) {
+                    if (student.group_id.indexOf (group_id) == -1) {
+                        // return true;
+                    }
                 }
-            }
             
-            table.append (template_student_row.render (student));
+                table.append (template_student_row.render (student));
+            });
         });
         
         
@@ -79,38 +85,40 @@ define ([
         
         
         // Populate groups
-        db.getAllGroups (function (group) {
+        db.getAllGroups ().then (function (groups) {
             
-            // Append the optgroup
-            select_group.append ($("<optgroup />").attr ('label', group.name));
+            $.each (groups, function (index, group) {
             
-                
-            // Iterate over the subgruoups
-            $.each (group.subgroups, function (index_subgroup, subgroup) {
-                
-                // Get project
-                if (group_id && subgroup.id == group_id) {
-                    
-                    // Mark as selected
-                    subgroup.is_selected = true;
-                    
-                    
-                    // Update the caption of the table
-                    wrapper.find ('.group-name-ph').html (subgroup.name);
-                    
-                }
+                // Append the optgroup
+                select_group.append ($("<optgroup />").attr ('label', group.name));
                 
                 
-                // Attach to the optgroup
-                select_group
-                    .find ('optgroup:last-child')
-                        .append ($("<option />")
-                            .attr ('value', subgroup.id)
-                            .prop ('selected', subgroup.is_selected)
-                            .text (subgroup.name)
-                        );
+                // Iterate over the subgruoups
+                $.each (group.subgroups, function (index_subgroup, subgroup) {
+                    
+                    // Get project
+                    if (group_id && subgroup.id == group_id) {
+                        
+                        // Mark as selected
+                        subgroup.is_selected = true;
+                        
+                        
+                        // Update the caption of the table
+                        wrapper.find ('.group-name-ph').html (subgroup.name);
+                        
+                    }
+                
+                
+                    // Attach to the optgroup
+                    select_group
+                        .find ('optgroup:last-child')
+                            .append ($("<option />")
+                                .attr ('value', subgroup.id)
+                                .prop ('selected', subgroup.is_selected)
+                                .text (subgroup.name)
+                            );
+                });
             });
-            
             
             select_group.prop ('disabled', false).select2 ();
 

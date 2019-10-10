@@ -132,7 +132,6 @@ textarea {
 }
 
 body, html {
-    background-color: #ebeced;
     font-family: 'Montserrat', sans-serif;
     height: 100%;
 }
@@ -146,20 +145,36 @@ body, html {
 .icon-trash:before { content: '\f1f8'; }
 .icon-commenting-o:before { content: '\f27b'; }
 
+.main-header {
+    position: fixed;
+    z-index: 10;
+    width: 15rem;
+    top: 0;
+}
+
 .main-header h1 {
     margin: 0;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     font-weight: 300;
     font-family: 'Amatic SC', cursive;
-    font-size: 4rem;
+    font-size: 2rem;
     text-align: center;
     background-color: #e59100;
     color: white;
+    line-height: 1;
 }
 
 nav {
     background-color: #8d6940;
-    text-align: center;
+    text-align: right;
+    height: 100%;
+}
+
+.pure-menu-main {
+    position: fixed;
+    top: 3rem;
+    bottom: 0;
+    width: 15rem;
 }
 
 .pure-menu-selected .pure-menu-link, 
@@ -167,6 +182,7 @@ nav {
 .pure-menu-active > .pure-menu-link, 
 .pure-menu-link:focus, 
 .pure-menu-link:hover {
+    position: relative;
     background-color: #ffebcc;
     color: #8d6940;
 }
@@ -174,23 +190,30 @@ nav {
 .pure-menu-selected .pure-menu-link:before,
 .pure-menu-selected .pure-menu-link:visited:before,
 .pure-menu-active > .pure-menu-link:before {
-    background: #ffebcc;
-    bottom: -.38462rem;
     content: " ";
-    display: inline-block;
-    height: .76923rem;
-    left: 50%;
     position: absolute;
-    -webkit-transform-origin: top left;    
-    transform-origin: top left;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    width: .76923rem;
+    left: 100%;
+    top: 50%;
+    margin-top: -.33rem;
+    margin-left: -.33em;
     z-index: 1;
+    display: block;
+    width: .76923rem;
+    height: .76923rem;
+    background-color: #ffebcc;
+    -webkit-transform-origin: center center;    
+            transform-origin: center center;
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+
 }
 
 .pure-menu-link {
     color: white;
+}
+
+.pure-table {
+    width: 100%;
 }
       
 main {
@@ -198,17 +221,32 @@ main {
     margin: 1rem auto;
 }
 
+main h1 {
+    margin: 0 -1rem .5rem -1rem;
+    padding: 0 1rem 0 1rem;
+    line-height: 2;
+    background-color: #feda9a;
+    box-shadow: -0.5rem 0.5rem 0.25rem rgba(0,0,0,.1);
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.5rem;
+    color: #8d6940;
+    
+}
+
 #wrapper {
     padding-bottom: 6rem;
 }
 
 footer {
-    background-color: #dd8808;
-    color: white;
-    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 15rem;
+    padding: 0;
     text-align: center;
-    font-size: 1em;
+    font-size: .5rem;
     line-height: 1;
+    color: white;
 }
 
 .rating-panel td {
@@ -349,7 +387,17 @@ footer {
 .help {
     background: #f0f0f0;
     padding: 1rem;
+    margin: 1rem 0;
 }
+
+.help *:first-child {
+    margin-top: 0;
+}
+
+.help *:last-child {
+    margin-bottom: 0;
+}
+
 
 /* ==========================================================================
    Helper classes

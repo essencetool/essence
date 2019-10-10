@@ -6,6 +6,18 @@
     </td>
     <td>{{ name }}</td>
     <td><a href="mailto:{{ email }}">{{ email }}</a></td>
-    <td>{{ group }}</td>
-    <td></td>
+    <td>
+        <ul>
+        {{# groups }}
+            <li>{{ name }}</li>
+        {{/ groups }}
+        </ul>
+    </td>
+    <td>
+        <ul>
+        {{# ratings }}
+            <li><a href="#rate/{{ rubric_id }}/{{ project_id }}/{{ student_id }}">link</a></li>
+        {{/ ratings }}
+        </ul>
+    </td>
 </tr>

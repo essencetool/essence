@@ -45,7 +45,7 @@ define ([
         
         
         // Populate groups
-        db.getAll ('groups', function (groups) {
+        db.getAll ('groups').then (function (groups) {
             
             /** @var select DOM */
             var select = wrapper.find ('[name="group"]');
