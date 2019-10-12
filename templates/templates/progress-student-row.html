@@ -1,23 +1,22 @@
-<tr>
-    <td>
-        <figure class="thumb">
-            <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
-        </figure>
-    </td>
-    <td>{{ name }}</td>
-    <td><a href="mailto:{{ email }}">{{ email }}</a></td>
-    <td>
-        <ul>
-        {{# groups }}
+<article class="student">
+    <figure class="student-thumb thumb">
+        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
+    </figure>
+    <div>
+        <h2 class="student-name">{{ name }}</h2>
+        <a class="student-email" href="mailto:{{ email }}">{{ email }}</a>
+        
+        <ul class="student-groups">
+        {{# _groups }}
             <li>{{ name }}</li>
-        {{/ groups }}
+        {{/ _groups }}
         </ul>
-    </td>
-    <td>
-        <ul>
-        {{# ratings }}
+        
+        <ul class="student-groups">
+        {{# _ratings }}
             <li><a href="#rate/{{ rubric_id }}/{{ project_id }}/{{ student_id }}">link</a></li>
-        {{/ ratings }}
+        {{/ _ratings }}
         </ul>
-    </td>
-</tr>
+        
+    </div>
+</article>

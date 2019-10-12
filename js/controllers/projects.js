@@ -72,6 +72,53 @@ define ([
         });
         
         
+        // Bind modify parameters
+        table.on ('click', '.modify-name-action, .modify-description-action', function () {
+            
+            /** @var id int */
+            var id = $(this).attr ('data-id') * 1;
+            
+            
+            /** @var key String */
+            var key = $(this).is ('.modify-name-action') ? 'name' : 'description';
+            
+            
+            // Get project
+            db.getByID ('projects', id).then (function (project) {
+                
+                if ( ! project) {
+                    return;
+                }
+                
+                vex.dialog.prompt ({
+                    message: "Please, type the new " + key,
+                    value: project[key],
+                    callback: function (value) {
+                        
+                        if ( ! value) {
+                            return;
+                        }
+                        
+                        
+                        /** @var project Object */
+                        project[key] = value;
+                        
+                        
+                        // Add to the database
+                        db.put ('projects', project);
+                        
+                        
+                        // Repopulate
+                        index (params);
+                        
+                    }
+                });
+            });
+        });
+        
+
+        
+        
         // Create new project
         wrapper.find ('.create-project-action').click (function (e) {
 

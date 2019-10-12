@@ -42,16 +42,16 @@ define ([
         var rubric_id = params[1] * 1;
         
         
-        /** @var group_id int */
-        var group_id = params[2] * 1;
-        
-        
         /** @var student_id int */
-        var student_id = params[3] * 1;
+        var student_id = params[2] * 1;
         
         
         /** @var project_id int */
-        var project_id = params[4] * 1;
+        var project_id = params[3] * 1;
+        
+        
+        /** @var group_id int  */
+        var group_id = params[4] * 1;
         
         
         /** @var template_params Object */
@@ -73,6 +73,10 @@ define ([
         
         // Populate projects
         db.getAll ('projects').then (function (projects) {
+            
+            // Sort
+            projects.sort ((a, b) => a.name.localeCompare (b.name));
+            
             
             /** @var select DOM */
             var select = wrapper.find ('[name="project"]');
@@ -104,6 +108,10 @@ define ([
         // Populate rubrics
         db.getAll ('rubrics').then (function (rubrics) {
             
+            // Sort
+            rubrics.sort ((a, b) => a.name.localeCompare (b.name));
+
+            
             /** @var select DOM */
             var select = wrapper.find ('[name="rubric"]');
             
@@ -134,12 +142,14 @@ define ([
         
         // Populate groups
         
-        /** @var select DOM */
+        /** @var select_group DOM */
         var select_group = wrapper.find ('[name="group"]');
 
-            
+        
+        // Retrieve the groups
         db.getAllGroups ().then (function (groups) {
             
+            // Get qll groups
             $.each (groups, function (index, group) {
             
                 // Append the optgroup
@@ -176,6 +186,10 @@ define ([
         // Populate students
         db.getAll ('students').then (function (students) {
             
+            // Sort
+            students.sort ((a, b) => a.name.localeCompare (b.name));
+            
+            
             /** @var select DOM */
             var select = wrapper.find ('[name="student"]');
             
@@ -191,7 +205,7 @@ define ([
             $.each (students, function (index, student) {
                 
                 // Filtering students not of the selected group
-                if (group_id && student.group_id.indexOf (group_id) == -1) {
+                if (group_id && student.groups.indexOf (group_id) == -1) {
                     return true;
                 }
                 
@@ -211,7 +225,7 @@ define ([
         
         // Render the rubric if available
         if (rubric_id) db.getByID ('rubrics', rubric_id).then (function (rubric) {
-            
+
             // Update form
             wrapper
                 .find ('[name="rubric_id"]')
@@ -244,6 +258,10 @@ define ([
             // Update the rubric form with current rating
             db.getRatingById ([project_id, rubric_id, student_id], function (rating) {
                 
+                if ( ! rating) {
+                    return;
+                }
+                
                 // Update rubric information with the last score of the user
                 $.each (rating.values, function (key, info) {
                 
@@ -268,9 +286,9 @@ define ([
                 window.location.hash = 
                     'rate'
                     + '/' + wrapper.find ('[name="rubric"]').val () 
-                    + '/' + wrapper.find ('[name="group"]').val () 
-                    + '/' 
-                    + '/' + wrapper.find ('[name="project"]').val ()
+                    + '/' + wrapper.find ('[name="student"]').val () 
+                    + '/' + wrapper.find ('[name="project"]').val () 
+                    + '/' + wrapper.find ('[name="group"]').val ()
                 ;
                 return;
 
@@ -293,12 +311,10 @@ define ([
             window.location.hash = 
                 'rate'
                 + '/' + wrapper.find ('[name="rubric"]').val () 
-                + '/' + wrapper.find ('[name="group"]').val () 
-                + '/' + wrapper.find ('[name="student"]').val ()
-                + '/' + wrapper.find ('[name="project"]').val ();
-        });        
-        
-        
+                + '/' + wrapper.find ('[name="student"]').val () 
+                + '/' + wrapper.find ('[name="project"]').val ()
+                + '/' + wrapper.find ('[name="group"]').val ();
+        });
         
         
         // Submit rating

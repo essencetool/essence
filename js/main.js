@@ -122,12 +122,25 @@ require ([
     
     
     // i18n the main page
-    $('.loading-title').html (i18n.common.loading.title);
-    $('.loading-message').html (i18n.common.loading.description);
+    $('[data-i18n]').each (function () {
+        $(this).html (ref (i18n, $(this).attr ('data-i18n')));
+    });
     
+    
+    // Set base url
+    $('.main-header').find ('a').attr ('href', config.base_url);
+
     
     // Create database
     db.init ();
+    
+    
+    /** @var body DOM */
+    var body = $('body');
+    
+    
+    /** @var nav DOM */
+    var nav = $('nav');
     
     
     /**
@@ -223,18 +236,24 @@ require ([
      */
     var route_handler = function (hash, params) {
         
-        $('nav')
+        // Select the default option
+        nav
             .find ('.pure-menu-item')
                 .removeClass ('pure-menu-selected')
                 .find ('.pure-menu-link')
                     .filter ('[href="#' + hash + '"]')
                         .closest ('li')
                             .addClass ('pure-menu-selected')
-        ;        
-    
+        ;
+        
+        
+        // Remove menu state
+        body.removeClass ('state-menu');
+        
+        
         // Routes. According to the hash call individual controllers
         switch (hash) {
-
+            
             // Set locale
             case '':
             case 'rate':
@@ -266,7 +285,13 @@ require ([
                     controller.index (params);
                 });
                 break;
-            
+                
+            case 'groups':
+                require (['controllers/groups'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
                 window.location = '#map' ;
@@ -278,18 +303,21 @@ require ([
                 break;
                 
         }
-        
     }
-
+    
+    
+    // Bind menu events
+    $('.toggle-menu-action').click (function (e) {
+        body.toggleClass ('state-menu');
+    });
     
     
     // Handle redirections. Each time the hash changes, we need
     // to perform a call to the main controller to decide in which
     // controller has to delegate to.
-    
     $(window).on ('hashchange', function() {
         main_controller () ;
-    }) ;
+    });
     
 
     // First run

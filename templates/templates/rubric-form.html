@@ -1,57 +1,63 @@
 <table class="pure-table pure-table-bordered rating-panel">
 
-<caption>{{ name }}</caption>
+    <caption>{{ name }}</caption>
 
-<thead>
-  <tr>
-    <th>Criteria</th>
-    {{# valorations }}
-      <th>{{ text }}</th>
-    {{/ valorations }}
-  </tr>
-</thead>
-<tbody>
-  {{# rows }}
-  <tr>
-    <th>
-      {{ name }}
+    <thead>
+        <tr>
+            <th>Criteria</th>
+            {{# valorations }}
+                <th>{{ text }}</th>
+            {{/ valorations }}
+        </tr>
+    </thead>
+    <tbody>
+        {{# rows }}
+        <tr>
+            <th>
+                {{ name }}
       
-      <div class="actions">
-        <button type="button" class="pure-button remove-selection-action"><span class="icon-cancel"></span></button>
-        <button 
-          data-field="{{ key }}-evidences"
-          type="button" 
-          class="pure-button attach-evidence-action">
-          <span class="icon-commenting-o"></span>
-        </button>
-      </div>
-    </th>
-    {{# values }}
-    <td>
-      <label>
-        <input 
-          novalidate 
-          required 
-          type="radio" 
-          {{# is_selected }} checked {{/ is_selected }}
-          name="{{ key }}" 
-          value="{{ id }}" />{{ text }}
-        <span class="shadow"></span>
-      </label>
-    </td>
-    {{/ values }}
-  </tr>
-  <tr class="evidences-row {{# evidence }} has-evidence {{/ evidence }}">
-    <td></td>
-    <td colspan="4">
-      <label>
-        <div>Evidences</div>
-        <textarea rows="6" name="{{ key }}-evidences">{{ evidence }}</textarea>
-        <label for="{{ key }}-evidence-files" class="pure-button"><span class="icon-attach"></span>Attach local files</label>
-        <input id="{{ key }}-evidence-files" type="file" hidden name="file" />
-      </label>
-    </td>
-  </tr>
-  {{/ rows }}
+                <div class="actions">
+                    <button 
+                        type="button" çclas
+                        class="pure-button remove-selection-action">
+                        <span class="icon-cancel"></span></button>
+                    <button 
+                        data-field="{{ key }}-evidences"
+                        type="button" 
+                        class="pure-button attach-evidence-action">
+                        <span class="icon-attach"></span>
+                    </button>
+                </div>
+            </th>
+    
+            {{# values }}
+                <td>
+                    <label>
+                        <input 
+                            novalidate 
+                            required 
+                            type="radio" 
+                            {{# is_selected }} checked {{/ is_selected }}
+                            name="{{ key }}" 
+                            value="{{ id }}" />{{ text }}
+                            <span class="shadow"></span>
+                    </label>
+                </td>
+            {{/ values }}
+        </tr>
+        <tr class="evidences-row {{# evidence }} has-evidence {{/ evidence }}">
+            <td></td>
+            <td colspan="4">
+                <label>
+                    <div>Evidences</div>
+                    <textarea rows="6" name="{{ key }}-evidences">{{ evidence }}</textarea>
+                </label>
+                <label for="{{ key }}-evidence-files" class="pure-button">
+                    <span class="icon-attach"></span>Attach local files</label>
+                    <input id="{{ key }}-evidence-files" type="file" hidden name="file" />
+                </label>
+            </td>
+        </tr>
+    {{/ rows }}
 </tbody>
 </table>

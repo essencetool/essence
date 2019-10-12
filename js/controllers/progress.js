@@ -25,7 +25,7 @@ define ([
     var index = function (params) {
         
         /** @var group_id int */
-        var group_id = params[1] * 1;
+        var group_id = params[1];
         
     
         /** @var wrapper DOM zero element */
@@ -62,13 +62,9 @@ define ([
             
             // Get each student
             $.each (students, function (index, student) {
-                
-                
-                
-                if (group_id) {
-                    if (student.group_id.indexOf (group_id) == -1) {
-                        // return true;
-                    }
+
+                if (group_id && student.groups.indexOf (group_id) == -1) {
+                    return true;
                 }
             
                 table.append (template_student_row.render (student));

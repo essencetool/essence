@@ -1,55 +1,73 @@
 <!-- Title -->
-<h1>
-    {{# i18n }} frontend.pages.rate.title {{/ i18n }}
-</h1>
-
-<!-- Project -->
-<label class="form-step inline">
-  <div>Project</div>
-  <select name="project">
-    <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
-  </select>
-</label>
-
-<!-- Rubric -->
-<label class="form-step inline">
-  <div>Select rubric</div>
-  <select name="rubric">
-    <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
-  </select>
-</label>
-
-<label class="form-step inline">
-  <div>Group</div>
-  <select name="group">
-    <option value="">{{# i18n }} common.controls.select_all_groups.text {{/ i18n }}</option>
-  </select>
-</label>
+<h1>{{# i18n }} frontend.pages.rate.title {{/ i18n }}</h1>
 
 
-<!-- Student profile -->
-<label class="form-step inline">
-  <div>Select student</div>
-  <select name="student">
-    <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
-  </select>
-</label>
+<!-- Help and tips -->
+<blockquote class="help">{{# i18n }} frontend.pages.rate.help.text {{/ i18n }}</blockquote>
 
-  
+
+<!-- Filters -->
+<section class="filters pure-g">
+
+    <!-- Project -->
+    <div class="pure-u-1-3">
+        <label class="form-step">
+            <div>{{# i18n }} frontend.pages.rate.controls.project.label {{/ i18n }}</div>
+            <select name="project" required>
+                <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
+            </select>
+        </label>
+    </div>
+    
+
+    <!-- Rubric -->
+    <div class="pure-u-1-3">
+        <label class="form-step">
+            <div>{{# i18n }} frontend.pages.rate.controls.rubric.label {{/ i18n }}</div>
+            <select name="rubric" required>
+                <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
+            </select>
+        </label>
+    </div>
+    
+
+    <!-- Student profile -->
+    <div class="pure-u-1-3">
+        <label class="form-step">
+            <div>
+                {{# i18n }} frontend.pages.rate.controls.student.label {{/ i18n }}
+                <button type="button" title="{{# i18n }} frontend.pages.rate.tooltips.filter_by_group.text {{/ i18n }}"><span class="icon-cog"></span></button>
+             </div>
+            <select name="student">
+                <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
+            </select>
+            
+        </label>
+    </div>
+
+</section>
+
+<!-- Placeholder -->
 <div class="student-profile-placeholder"/></div>
 
 
+<!-- Rate form -->
 <form class="pure-form" novalidate>
 
-  <input type="hidden" name="student_id" value="" />
-  <input type="hidden" name="rubric_id" value="" />
+    <!-- Hidden fields -->
+    <input type="hidden" name="student_id" value="" />
+    <input type="hidden" name="rubric_id" value="" />
 
-  <div class="rubric-form-placeholder"></div>
-  
-  <div class="rating-panel-actions">
-    <button type="submit" class="pure-button pure-button-primary">Post rubric</button>
-    <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&lt;</button>
-    <button type="button" class="pure-button" onclick="vex.dialog.alert ('@todo')">&gt;</button>
-  </div>
+    <div class="rubric-form-placeholder"></div>
+    
+    
+    <!-- Actions -->
+    <div class="rating-panel-actions">
+        <button type="submit" class="pure-button pure-button-primary">
+            {{# i18n }} frontend.pages.rate.controls.rate_action.text {{/ i18n }}
+        </button>
+        <button type="button" class="pure-button prev-action">&lt;</button>
+        <button type="button" class="pure-button next-action">&gt;</button>
+    </div>
   
 </form>

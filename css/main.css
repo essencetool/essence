@@ -7,7 +7,7 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
  
- /* https://mycolor.space/?hex=%23E59100&sub=1 */
+ /* https://mycolor.space/?hex=%23E59100&sub=1 #ffebcc */
 
 /* ==========================================================================
    Base styles: opinionated defaults
@@ -134,22 +134,35 @@ textarea {
 body, html {
     font-family: 'Montserrat', sans-serif;
     height: 100%;
+    overflow-x: hidden;
 }
 
  
-.icon-cancel:before { content: '\e800'; }
-.icon-attach:before { content: '\e801'; }
-.icon-text-width:before { content: '\e802'; }
-.icon-wrench:before { content: '\e803'; }
-.icon-cog:before { content: '\e804'; } 
-.icon-trash:before { content: '\f1f8'; }
-.icon-commenting-o:before { content: '\f27b'; }
+.icon-cancel:before { content: '\e800'; } /* '' */
+.icon-attach:before { content: '\e801'; } /* '' */
+.icon-right-big:before { content: '\e802'; } /* '' */
+.icon-left-big:before { content: '\e803'; } /* '' */
+.icon-down-big:before { content: '\e804'; } /* '' */
+.icon-up-big:before { content: '\e805'; } /* '' */
+.icon-edit:before { content: '\e806'; } /* '' */
+.icon-users:before { content: '\e807'; } /* '' */
+.icon-folder-open:before { content: '\e808'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
+.icon-chart-pie:before { content: '\f200'; } /* '' */
 
-.main-header {
-    position: fixed;
-    z-index: 10;
-    width: 15rem;
-    top: 0;
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-header a,
+.main-header a:hover,
+.main-header a:visited {
+    text-decoration: inherit;
+    color: inherit;
 }
 
 .main-header h1 {
@@ -162,6 +175,29 @@ body, html {
     background-color: #e59100;
     color: white;
     line-height: 1;
+}
+
+.toggle-menu-action {
+    position: fixed;
+    right: .5rem;
+    display: none;
+    top: .5rem;
+    width: 2rem;
+    height: 2rem;
+    z-index: 10000;
+    margin: 0;
+    border: none;
+    padding: 0;
+    border-radius: 100%;
+    background: none;
+    background-color: #8d6940;
+    line-height: 1;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    
+    -webkit-transition: all .3s ease-out;
+            transition: all .3s ease-out;
 }
 
 nav {
@@ -177,6 +213,10 @@ nav {
     width: 15rem;
 }
 
+.pure-menu-item {
+    border-bottom: 1px dotted rgba(255,255,255,.7);
+}
+
 .pure-menu-selected .pure-menu-link, 
 .pure-menu-selected .pure-menu-link:visited,
 .pure-menu-active > .pure-menu-link, 
@@ -185,6 +225,17 @@ nav {
     position: relative;
     background-color: #ffebcc;
     color: #8d6940;
+}
+
+.pure-menu-link > span {
+    position: absolute;
+    right: 0;
+    font-size: 5rem;
+    top: 50%;
+    margin-top: -2.5rem;
+    line-height: 1;
+    color: rgba(255,255,255,.1);
+}    
 }
 
 .pure-menu-selected .pure-menu-link:before,
@@ -209,6 +260,8 @@ nav {
 }
 
 .pure-menu-link {
+    position: relative;
+    overflow: hidden;
     color: white;
 }
 
@@ -222,15 +275,9 @@ main {
 }
 
 main h1 {
-    margin: 0 -1rem .5rem -1rem;
-    padding: 0 1rem 0 1rem;
-    line-height: 2;
-    background-color: #feda9a;
-    box-shadow: -0.5rem 0.5rem 0.25rem rgba(0,0,0,.1);
-    font-family: 'Amatic SC', cursive;
-    font-size: 1.5rem;
-    color: #8d6940;
-    
+    text-transform: uppercase;
+    font-size: 1rem;
+    text-align: center;
 }
 
 #wrapper {
@@ -238,10 +285,6 @@ main h1 {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    z-index: 10;
-    width: 15rem;
     padding: 0;
     text-align: center;
     font-size: .5rem;
@@ -318,7 +361,7 @@ footer {
 .rating-panel .actions {
     position: absolute;
     top: 0;
-    left: -6.75rem;
+    left: 0;
     display: none;    
     font-size: 0;
 }
@@ -334,6 +377,34 @@ footer {
 .rating-panel-actions {
     margin: 1rem 0;
     text-align: right;
+}
+
+.help {
+    background: #f0f0f0;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: .25rem;
+    box-shadow: 0.1rem 0.1rem 0.05rem rgba(0,0,0,0.1);
+}
+
+.help *:first-child {
+    margin-top: 0;
+}
+
+.help *:last-child {
+    margin-bottom: 0;
+}
+
+.filters {
+    margin: 1rem 0;
+    padding: 1rem;   
+    background: #f0f0f0;
+    border-radius: .25rem;
+    box-shadow: 0.1rem 0.1rem 0.05rem rgba(0,0,0,0.1);
+}
+
+.filter {
+    
 }
 
 
@@ -353,23 +424,45 @@ footer {
     max-width: 100%;
 }
 
-.students-table {
-    width: 100%;
+.student {
+    display: block;
+    margin: 0 0 .5rem .5rem;
+    overflow: hidden;
 }
 
-.students-table .thumb {
-    margin: 0 auto;
+.student-thumb {
+    float: left;
+    margin: 0 .5rem .5rem 0;
     max-width: 4rem;
 }
 
-.students-table thead th:first-child {
-    width: 9rem;
+.student-thumb + div {
+    margin-left: 5rem;
+}
+
+.student-name {
+    display: block;
+    margin: 0;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.student-email {
+    font-size: .7125rem;
+}
+
+.student-groups {
+    font-size: .7125rem;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .form-step,
 .pure-form .form-step {
     display: block;
-    margin: 0 0 1rem 0;
+    margin: 0 1rem 1rem 0;
     border-bottom: 1px dotted #ccc;
     padding: 0 0 1rem 0;
 }    
@@ -384,19 +477,6 @@ footer {
     padding-right: 1rem;
 }
 
-.help {
-    background: #f0f0f0;
-    padding: 1rem;
-    margin: 1rem 0;
-}
-
-.help *:first-child {
-    margin-top: 0;
-}
-
-.help *:last-child {
-    margin-bottom: 0;
-}
 
 
 /* ==========================================================================
@@ -482,11 +562,30 @@ footer {
   clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
+@media only screen and (max-width: 768px) {
+    
+    .toggle-menu-action {
+        display: block;
+    }
+    
+    .pure-menu-main {
+        left: -35rem;
+        z-index: 9999;
+        
+        -webkit-transition: all .5s ease-out;
+                transition: all .5s ease-out;
+    }
+    
+    body.state-menu .pure-menu-main {
+        left: 0;
+    }
+    
+    body.state-menu .toggle-menu-action {
+        transform: rotate(90deg);
+    }
+    
+}
+
 
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */

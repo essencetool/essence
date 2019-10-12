@@ -45,7 +45,7 @@ define ([
         
         
         // Populate groups
-        db.getAll ('groups').then (function (groups) {
+        db.getAllGroups ().then (function (groups) {
             
             /** @var select DOM */
             var select = wrapper.find ('[name="group"]');
@@ -97,7 +97,7 @@ define ([
         form.submit (function (e) {
             
             /** @var group_id int */
-            var group_id = form.find ('[name="group"]').val () * 1;
+            var group_id = form.find ('[name="group"]').val ();
             
             
             /** @var students Array */
@@ -128,20 +128,13 @@ define ([
                 db.add ('students', {
                     name: student[0],
                     email: student[1],
-                    group_id: [group_id],
-                    photo: "img/student.png"
+                    groups: [group_id],
                 }, {
                     key: 'email',
                     callback: function (student) {
                         
                         // Attach the new group
-                        student.group_id.push (group_id);
-                        
-                        
-                        // Filter unique items
-                        student.group_id = student.group_id.filter (function (itm, i, a) {
-                            return i == a.indexOf (itm);
-                        });
+                        student.groups.push (group_id);
                         
                         
                         // Return the student
@@ -157,6 +150,7 @@ define ([
             
             // Reset the form
             form.trigger ("reset");
+            form.find ('[name="students"]').val ('');
             
             
             return false;

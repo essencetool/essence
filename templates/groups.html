@@ -1,0 +1,33 @@
+<!-- Title -->
+<h1>
+    {{# i18n }} frontend.pages.groups.title {{/ i18n }}
+</h1>
+
+<!-- Help and tips -->
+<blockquote class="help">
+    {{# i18n }} frontend.pages.groups.help.text {{/ i18n }}
+</blockquote>
+
+
+<!-- group -->
+<table class="pure-table pure-table-bordered">
+  <thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th>Name</th>
+    <th>Subgroups</th>
+  </tr>
+  </thead>
+  <tbody class="groups-table-placeholder"></tbody>
+</table>
+
+
+
+<div class="rating-panel-actions">
+    <button type="button" class="create-group-action pure-button pure-button-primary">
+        {{# i18n }} frontend.pages.groups.controls.create_group.text {{/ i18n }}
+    </button>
+    <button type="button" disabled class="delete-group-action pure-button">
+        <span class="icon-cancel"></span> {{# i18n }} frontend.pages.groups.controls.delete_group.text {{/ i18n }}
+    </button>
+</div>

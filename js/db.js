@@ -10,9 +10,8 @@ define ([
     'i18n!nls/translations',
     'json!assetsPath/projects.json',
     'json!assetsPath/groups.json',
-    'json!assetsPath/students.json',
     'json!assetsPath/sample.json',
-], function ($, config, i18n, projects, groups, students, rubrics) {
+], function ($, config, i18n, projects, groups, rubrics) {
     
     /** @var db Here, we will store our database */
     var db;
@@ -26,6 +25,7 @@ define ([
     var object_stores = [
         'projects',
         'groups',
+        'subgroups',
         'rubrics',
         'students',
         'ratings'
@@ -81,14 +81,46 @@ define ([
             // Populate items
             $.each ({
                 'projects': projects, 
-                'groups': groups,
-                'students': students,
                 'rubrics': rubrics
             }, function (object_store, data) {
                 var store = transaction.objectStore (object_store);
                 data.forEach (function (item) {
                     store.add (item);
                 });
+            });
+            
+            
+            // Populate groups
+            var store_group = transaction.objectStore ('groups');
+            var store_subgroup = transaction.objectStore ('subgroups');
+            
+            $.each (groups, function (index, group) {
+                
+                /** @var slug String */
+                var slug = slugify (group.name);
+                
+                
+                // Crate group
+                store_group.add ({
+                    name: group.name,
+                    slug: slug,
+                    key: group.key
+                }).onsuccess = function (e) {
+                    
+                    var group_id = e.target.result;
+                    
+                    // Create subgroup
+                    $.each (group.subgroups, function (index2, subgroup) {
+                        store_subgroup.add ({
+                            name: subgroup.name,
+                            slug: slugify (subgroup.name),
+                            group_id: group_id,
+                        });
+                    });
+
+                };
+                
+                
             });
         };
         
@@ -100,34 +132,55 @@ define ([
          */
         request.onupgradeneeded = function (event) {
             
-            // Save the IDBDatabase interface 
+            /** @var db Object */
             var db = event.target.result;
             
             
-            // Create an projects for this database
-            var projectsStore = db.createObjectStore ('projects', {autoIncrement: true });
-            var groupsStore = db.createObjectStore ('groups', {autoIncrement: true });
-            var rubricsStore = db.createObjectStore ('rubrics', {autoIncrement: true });
-            var studentsStore = db.createObjectStore ('students', {keyPath: 'id', autoIncrement: true });
-            var ratingsStore = db.createObjectStore ('ratings', {
-                keyPath: [
-                    'project_id', 
-                    'rubric_id', 
-                    'student_id'
-                ],
-                unique: true
-            });
+            /** @var default_values Object */
+            var default_properties = {
+                keyPath: 'id',
+                autoIncrement: true 
+            };
             
             
-            // Create alternate indexes
-            studentsStore.createIndex ('id', 'id');
-            studentsStore.createIndex ('email', 'email', { unique: true });
-            ratingsStore.createIndex ('project_id', 'project_id');
-            ratingsStore.createIndex ('student_id', 'student_id');
-            ratingsStore.createIndex ('rubric_id', 'rubric_id');
+            // Create the object stores for this database
+            // Projects
+            db.createObjectStore ('projects', default_properties);
             
             
+            // Groups and subgroups
+            db.createObjectStore ('groups', default_properties)
+                .createIndex ('slug', 'slug', { unique: true })
+            ;
             
+            var subgroup_object_store = db.createObjectStore ('subgroups', default_properties);
+            subgroup_object_store.createIndex ('group_id', 'group_id');
+            subgroup_object_store.createIndex ('slug', 'slug', { unique: true });
+            
+            
+            // Rubrics
+            db.createObjectStore ('rubrics', default_properties);
+            
+            
+            // Students
+            var student_object_store = db.createObjectStore ('students', default_properties);
+            student_object_store.createIndex ('id', 'id')
+            student_object_store.createIndex ('email', 'email', { unique: true });
+            
+            
+            // Ratings
+            var ratings_object_store = db.createObjectStore ('ratings', default_properties);
+            ratings_object_store.createIndex ('unique', [
+                'project_id', 
+                'rubric_id', 
+                'student_id'
+            ], { unique: true })
+            ratings_object_store.createIndex ('project_id', 'project_id')
+            ratings_object_store.createIndex ('student_id', 'student_id')
+            ratings_object_store.createIndex ('rubric_id', 'rubric_id')
+            ;
+
+
             // Set the flag to determine that the database has to be populated again
             needs_populate = true;
             
@@ -143,7 +196,7 @@ define ([
      * Retrives items from a object store
      */
     var getAll = function (object_store) {
-        
+
         // Return promise
         return new Promise ((resolve, reject) => {
             
@@ -161,6 +214,56 @@ define ([
             
             // Open cursor and iterate
             store.openCursor ().onsuccess = function (event) {
+                
+                /** var cursor Cursor */
+                var cursor = event.target.result;
+                
+                
+                // While we are receicing items, we iterate with the cursor
+                if (cursor) {
+                    result.push (cursor.value);
+                    cursor.continue ();
+                    
+                // When cursor ends, resolve our promise
+                } else {
+                    resolve (result);
+                }
+                
+            };
+        });
+    }
+    
+    
+    /**
+     * getAllByKey
+     *
+     * Get all elements that match an specific key value
+     *
+     * @param object_store String
+     * @param index String 
+     * @param value 
+     *
+     * Retrives items from a object store
+     */
+    var getAllByKey = function (object_store, index, value) {
+
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var result Array */
+            var result = [];
+            
+            
+            /** @var transaction Transaction in read only */
+            var transaction = db.transaction (object_store, 'readonly');
+            
+            
+            /** @var store objectStore */
+            var store = transaction.objectStore (object_store).index (index);
+            
+            
+            // Open cursor and iterate
+            store.openCursor (IDBKeyRange.only (value)).onsuccess = function (event) {
                 
                 /** var cursor Cursor */
                 var cursor = event.target.result;
@@ -233,7 +336,69 @@ define ([
         // Modify the element in the store
         store.put (object);
 
-    }    
+    }
+    
+    
+    /**
+     * delete_item
+     *
+     * Delete item
+     *
+     * @param object_store String
+     * @param key Object
+     */
+    var delete_item = function (object_store, key) {
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
+        
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (object_store, 'readwrite');
+            var store = transaction.objectStore (object_store);
+            
+            
+            // Modify the element in the store
+            store.delete (key)
+                .onsuccess = function () {
+                    resolve ();
+                }
+            ;
+            
+        });
+    }
+    
+    
+    /**
+     * delete_items
+     *
+     * Delete item
+     *
+     * @param object_store String
+     * @param key Object
+     */
+    var delete_items = function (object_store, keys) {
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var callbacks int */
+            var callbacks = keys.length;
+            
+            
+            // Delete item 
+            $.each (keys, function (index, key) {
+                delete_item (object_store, key).then (function () {
+                    callbacks--;
+                    
+                    if ( ! callbacks) {
+                        resolve ();
+                    }
+                });
+            });
+        });
+        
+    }
+    
     
     /**
      * add
@@ -259,10 +424,20 @@ define ([
         // On duplicate...
         transaction.onerror = function (event) {
             
+            // No callback supplied. Nothing to do here
             if ( ! typeof on_duplicate.callback == 'function') {
                 return;
             }
             
+            
+            // Callback supplied, but no id
+            if (typeof on_duplicate.callback == 'function' && ! on_duplicate.key) {
+                on_duplicate.callback ();
+                return;
+            }
+            
+            
+            // Callback and id supplied. 
             db.transaction (object_store)
                 .objectStore (object_store)
                     .index (on_duplicate.key)
@@ -305,12 +480,8 @@ define ([
         // Return promise
         return new Promise ((resolve, reject) => {
             
-            /** @var result Array */
-            var result = {};
-            
-            
             /** @var transaction Create a transaction for all the objects */
-            var transaction = db.transaction (db.objectStoreNames, 'readwrite');
+            var transaction = db.transaction (object_store);
             
             
             /** @var object */
@@ -323,6 +494,7 @@ define ([
             };
             
             
+            // Bind on success action
             store.get (id).onsuccess = function (event) {
                 resolve (event.target.result);
             };
@@ -383,8 +555,8 @@ define ([
                 
                 
                 // Hidrate groups
-                student.groups = [];
-                student.ratings = [];
+                student._ratings = [];
+                student._groups = [];
                 
                 
                 /** @var transaction Create a transaction for all the objects */
@@ -401,7 +573,7 @@ define ([
                         if (cursor) {
                             
                             // Attacg
-                            student.ratings.push (cursor.value);
+                            student._ratings.push (cursor.value);
                         
                         
                             // Go no next item
@@ -412,7 +584,7 @@ define ([
 
             
                 /** @var callbacks int */
-                var callbacks = student.group_id.length;
+                var callbacks = student.groups.length;
                 
                 
                 // Get subgroups
@@ -422,33 +594,29 @@ define ([
                 
             
                 // For each group
-                if (callbacks > 0) $.each (student.group_id, function (index, group_id) {
+                if (callbacks > 0) $.each (student.groups, function (index, subgroup_id) {
                 
                     // Get all groups. @todo Index by subgroups
-                    getAll ('groups').then (function (groups) {
-                    
-                        // ITerate over all groups
-                        $.each (groups, function (index_group, group) {
+                    getAll ('subgroups').then (function (subgroups) {
                         
-                            // ITerate over subgroups
-                            $.each (group.subgroups, function (index_subgroup, subgroup) {
+                        // ITerate over subgroups
+                        $.each (subgroups, function (index_subgroup, subgroup) {
                             
-                                if (subgroup.id == group_id) {
+                            if (subgroup.id == subgroup_id) {
                                 
-                                    // Attach subgroup
-                                    student.groups.push (subgroup);
+                                // Attach subgroup
+                                student._groups.push (subgroup);
                                 
                                 
-                                    // Update callbacks
-                                    callbacks--;
+                                // Update callbacks
+                                callbacks--;
                                 
-                                    if (callbacks === 0) {
-                                        resolve (student);
-                                    }
-
-                                    return false;
+                                if (callbacks === 0) {
+                                    resolve (student);
                                 }
-                            });
+
+                                return false;
+                            }
                         });
                     });
                 });
@@ -457,10 +625,10 @@ define ([
     }
     
     
-    
-    
     /**
      * getAllStudents
+     *
+     * Retrieves all the students of the system
      *
      */
     var getAllStudents = function () {
@@ -476,7 +644,7 @@ define ([
             getAllKeys ('students').then (function (ids) {
             
                 /** @var callbacks int To know when every object is full */
-                var callbacks = students.length;
+                var callbacks = ids.length;
                 
                 
                 // Get each plain object
@@ -486,7 +654,7 @@ define ([
                         callbacks--;
                    
                         if ( ! callbacks) {
-                            resolve (response);
+                            resolve (response.sort ((a,b) => a.name.localeCompare (b.name)));
                         }
                     });
                 });
@@ -501,7 +669,37 @@ define ([
      * @param callback function
      */
     var getAllGroups = function () {
-        return getAll ('groups');
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var response Array */
+            var response = [];
+            
+            
+            // Retrieve all student objects plain
+            getAll ('groups').then (function (groups) {
+            
+                /** @var callbacks int To know when every object is full */
+                var callbacks = groups.length;
+                
+                
+                // Get each plain object
+                $.each (groups, function (index, group) {
+                    
+                    // Get all of the subgroups that belong to this group
+                    getAllByKey ('subgroups', 'group_id', group.id).then (function (subgroups) {
+                        group.subgroups = subgroups;
+                        response.push (group);
+                        callbacks--;
+                   
+                        if ( ! callbacks) {
+                            resolve (response.sort ((a,b) => a.name.localeCompare (b.name)));
+                        } 
+                    });
+                });
+            });
+        });
     }
     
     
@@ -581,7 +779,11 @@ define ([
         
         add: add,
         put: put,
+        delete_item: delete_item, 
+        delete_items: delete_items,
+        
         getAll: getAll,
+        getAllByKey: getAllByKey, 
         getAllKeys: getAllKeys,
         getByID: getByID,
         getStudentById: getStudentById,

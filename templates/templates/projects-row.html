@@ -1,5 +1,11 @@
 <tr>
     <td><input type="checkbox" name="projects" id="projects_{{ id }}" /></td>
-    <td>{{ name }}</td>
-    <td>{{ description }}</td>
+    <td>
+        {{ name }} 
+        <button data-id="{{ id }}" type="button" class="edit-action modify-name-action"><span class="icon-edit"></span></button>
+    </td>
+    <td>
+        {{ description }}
+        <button data-id="{{ id }}" type="button" class="edit-action modify-description-action"><span class="icon-edit"></span></button>
+    </td>
 </tr>

@@ -35,6 +35,42 @@ define ({
         
         
         "frontend": {
+            
+            "layout": {
+                "main": {
+                    "header": {
+                        "text": "E.s.s.e.n.c.e. <small>tool</small>"
+                    },
+                    "footer": {
+                        "copyright": {
+                            "text": "&copy; Proyecto ESSENCE 2019."
+                        }
+                    },
+                    "menu": {
+                        "items": {
+                            "projects": {
+                                "text": "<span class='icon-folder-open'></span> Projects"
+                            },
+                            "progress": {
+                                "text": "<span class='icon-chart-pie'></span> Students"
+                            },
+                            "groups": {
+                                 "text": "<span class='icon-users'></span> Groups",
+                            },
+                            "rate": {
+                                "text": "<span class='icon-edit'></span> Rate"
+                            },
+                            "import_students": {
+                                "text": "<span class='icon-right-big'></span> Import students"
+                            },
+                            "export": {
+                                "text": "<span class='icon-left-big'></span> Export"
+                            }
+                        }
+                    }
+                }
+            },
+            
             "pages": {
                 "import_students": {
                     
@@ -92,7 +128,7 @@ define ({
                     },
                     
                    "confirm": {
-                        "delete_projects": "Are you sure do you want to delete this projects?. This action cannot be undone",
+                        "delete_projects": "Are you sure do you want to delete these projects?. This action cannot be undone",
                     },
                     
                     "controls": {
@@ -107,8 +143,77 @@ define ({
                 },
                 
                 
+                "groups": {
+                    "title": "Groups",
+                    
+                    "help": {
+                        "text": "<p>In this section you can manage groups. A group is a way about how you can organise the students in teams</p>"
+                    },
+                    
+                   "confirm": {
+                        "delete_groups": "Are you sure do you want to delete these groups?. This action cannot be undone",
+                        "delete_subgroups": "Are you sure do you want to delete these subgroups?. This action cannot be undone",
+                    },
+                    
+                    "prompt": {
+                        "name_gruop": "Please, type the name of the group",
+                        "name_subgruop": "Please, type the name of the new subgroup"
+                    },
+                    
+                    "controls": {
+                        "create_group": {
+                            "text": "Create new group"
+                        },
+                        "create_subgroup": {
+                            "text": "Create subgroup"
+                        },
+                        "delete_group": {
+                            "text": "Delete selected groups"
+                        },
+                        "delete_subgroup": {
+                            "text": "Delete selected subgroups"
+                        }
+                    },
+                    
+                    "messages": {
+                        "duplicate_group": "There is already a group with the same name",
+                        "duplicate_subgroup": "There is already a subgroup with the same name"
+                    }
+                    
+                },
+                
                 "rate": {
                     "title": "Rate the students",
+                    
+                    "help": {
+                        "text": "In this section, you can rate the students. To do it, you need to select also the rubric form and the project attached to it."
+                    },
+                    
+                    "tooltips": {
+                        "filter_by_group": {
+                            "text": "Filter by group"
+                        }
+                    },
+                    
+                    "controls": {
+                        "project": {
+                            "label": "(1) Select a project"
+                        },
+                        "rubric": {
+                            "label": "(2) Select the rubric"
+                        },
+                        "student": {
+                            "label": "(3) Select the student to rate"
+                        },
+                       "group": {
+                            "label": "Filter students by group"
+                        },
+                        
+                        "rate_action": {
+                            "text": "Save rate"
+                        },
+                    }
+                    
                 },
                 
                 "progress": {

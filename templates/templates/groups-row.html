@@ -1,0 +1,29 @@
+<tr>
+    <td><input data-id="{{ id }}" type="checkbox" name="groups" id="groups_{{ id }}" /></td>
+    <td>
+        {{ name }}
+        <button data-id="{{ id }}" type="button" class="edit-action modify-group-name-action"><span class="icon-edit"></span></button>
+    </td>
+    <td>
+        {{# subgroups }}
+            <label>
+                <input 
+                    data-id="{{ id }}" 
+                    type="checkbox" 
+                    name="subgroups" 
+                    data-group="{{ group_slug }}" 
+                    id="subgroups_{{ id }}" /> {{ name }}
+            </label><button data-id="{{ id }}" type="button" class="edit-action modify-subgroup-name-action"><span class="icon-edit"></span></button><br />
+        {{/ subgroups }}
+
+        
+        <div class="rating-panel-actions">
+            <button type="button" data-group="{{ slug }}" class="create-subgroup-action pure-button pure-button-primary">
+                {{# i18n }} frontend.pages.groups.controls.create_subgroup.text {{/ i18n }}
+            </button>
+            <button type="button" data-group="{{ slug }}" disabled class="delete-subgroup-action pure-button">
+                <span class="icon-cancel"></span> {{# i18n }} frontend.pages.groups.controls.delete_subgroup.text {{/ i18n }}
+            </button>
+        </div>
+    </td>
+</tr>

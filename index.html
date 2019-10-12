@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Essence</title>
+  <title>Essence Tool</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,16 +15,14 @@
   <link href="css/normalize.css" rel="stylesheet" >
   <link href="css/loader.css" rel="stylesheet" >
   <link href="css/main.css" rel="stylesheet" >
-  <link href="css/desktop.css?v4" media="(min-width: 768px)" rel="stylesheet" />
+  <link href="css/desktop.css?v4" media="(min-width: 769px)" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/vex.css" />
   <link rel="stylesheet" href="css/vex-theme-plain.css" />
   <link rel="stylesheet" href="css/select2.min.css" />
-  
-  
-  
+
   <base href="/essence/" />
 
   <meta name="theme-color" content="#fafafa">
@@ -43,49 +41,71 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
   
-  <!-- Loading -->
-  <div class="loading-box">
-    <div class="loader"></div>
-    <div class="loading-title"></div>
-    <div class="loading-message"></div>
-  </div>  
+    <!-- Loading -->
+    <div class="loading-box">
+        <div class="loader"></div>
+        <div class="loading-title" data-i18n="common.loading.title"></div>
+        <div class="loading-message" data-i18n="common.loading.description"></div>
+    </div>  
   
   
-  <!-- Header -->
-  <div id="page">
-    <header class="main-header">
-      <h1>E.s.s.e.n.c.e. <small>tool</small></h1>
-    </header>
+    <!-- Header -->
+    <div id="page">
     
-    <!-- Navigation -->
-    <div class="pure-menu pure-menu-main">
-      <nav>
-        <ul class="pure-menu-list">
-          <li class="pure-menu-item"><a class="pure-menu-link" href="#check">Check student progress</a></li>
-          <li class="pure-menu-item"><a class="pure-menu-link" href="#projects">Projects</a></li>
-          <li class="pure-menu-item"><a class="pure-menu-link" href="#rate">Rate</a></li> 
-          <li class="pure-menu-item"><a class="pure-menu-link" href="#import">Import students</a></li>
-          <li class="pure-menu-item"><a class="pure-menu-link" href="#export">Export</a></li>
-        </ul>
-      </nav>
+        <!-- Title -->
+        <header class="main-header">
+            <h1><a href="/" data-i18n="frontend.layout.main.header.text"></a></h1>
+        </header>
+        
+        
+        <!-- Navigation menu -->
+        <button type="button" class="toggle-menu-action">
+            <span class="icon-menu"></span>
+        </button>
+    
+    
+        <!-- Navigation -->
+        <div class="pure-menu pure-menu-main">
+            <nav>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#projects" data-i18n="frontend.layout.main.menu.items.projects.text"></a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#groups" data-i18n="frontend.layout.main.menu.items.groups.text"></a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#check" data-i18n="frontend.layout.main.menu.items.progress.text"></a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#rate" data-i18n="frontend.layout.main.menu.items.rate.text"></a>
+                    </li> 
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#import" data-i18n="frontend.layout.main.menu.items.import_students.text"></a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#export" data-i18n="frontend.layout.main.menu.items.export.text"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- Content -->
+        <main id="wrapper"></main>
+    
     </div>
-    
-    <!-- Content -->
-    <main id="wrapper"></main>
-    
-  </div>
   
-  <!-- Footer -->
-  <footer>
-    <p>&copy; Proyecto ESSENCE 2019.
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="frontend.layout.main.footer.copyright.text"></p>
+    </footer>
   
   
-  <!-- Scripts -->
-  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
-  <script src="js/vendor/vex.combined.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/vendor/require.js" data-main="js/main"></script>
+    <!-- Scripts -->
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="js/vendor/vex.combined.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/vendor/require.js" data-main="js/main"></script>
 
 </body>
 

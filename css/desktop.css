@@ -21,4 +21,60 @@ body.state-map #wrapper {
 .loading-message {
     font-size: 2vw;
     line-height: 1;
-}    
+}
+
+.edit-action {
+    border: none;
+    background: none;
+    color: blue;
+    line-height: 1;
+    visibility: hidden;
+}
+
+td:hover .edit-action {
+    visibility: initial;
+}
+
+.main-header {
+    position: fixed;
+    z-index: 10;
+    width: 15rem;
+    top: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 15rem;
+    padding: 0;
+    text-align: center;
+    font-size: .5rem;
+    line-height: 1;
+    color: white;
+}
+
+main h1 {
+    margin: 0 -1rem .5rem -1rem;
+    padding: 0 1rem 0 1rem;
+    line-height: 2;
+    
+    box-shadow: -0.5rem 0.5rem 0.25rem rgba(0,0,0,.1);
+    font-size: 1.5rem;
+    color: white;
+    letter-spacing: .5rem;
+    text-align: left;
+    
+    background-color: #feda9a;
+    background: -moz-linear-gradient(359deg, rgba(229,145,0,1) 0%, rgba(229,145,0,1) 80%, rgba(254,218,154,1) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(229,145,0,1)), color-stop(80%, rgba(229,145,0,1)), color-stop(100%, rgba(254,218,154,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(359deg, rgba(229,145,0,1) 0%, rgba(229,145,0,1) 80%, rgba(254,218,154,1) 100%);
+
+}
+
+.student {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 1.5rem 1.5rem 0;
+    width: 45%;
+}
