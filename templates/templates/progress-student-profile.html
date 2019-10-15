@@ -1,0 +1,15 @@
+<article class="student">
+    <figure class="student-thumb thumb">
+        <img src="{{ photo }}" alt="{{ name }}" class="pure-img" />
+    </figure>
+    <div>
+        <h2 class="student-name">{{ name }}</h2>
+        <a class="student-email" href="mailto:{{ email }}">{{ email }}</a>
+        
+        <ul class="student-groups">
+        {{# _groups }}
+            <li>{{ name }}</li>
+        {{/ _groups }}
+        </ul>
+    </div>
+</article>

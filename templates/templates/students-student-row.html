@@ -12,11 +12,9 @@
         {{/ _groups }}
         </ul>
         
-        <ul class="student-groups">
-        {{# _ratings }}
-            <li><a href="#rate/{{ rubric_id }}/{{ project_id }}/{{ student_id }}">link</a></li>
-        {{/ _ratings }}
-        </ul>
+        <a href="#progress/{{ id }}" class="pure-button">
+            {{# i18n }} frontend.pages.students.controls.progress.text {{/ i18n }}
+        </a>
         
     </div>
 </article>

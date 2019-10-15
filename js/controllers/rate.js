@@ -12,8 +12,9 @@ define ([
     'hogan',
     'config', 
     'db',
+    'helpers',
     'i18n!nls/translations'
-], function (tpl, tpl_rubric_form, tpl_student_box, $, hogan, config, db, i18n) {
+], function (tpl, tpl_rubric_form, tpl_student_box, $, hogan, config, db, helpers, i18n) {
 
     /** @var wrapper DOM zero element */
     var wrapper;
@@ -72,155 +73,10 @@ define ([
         
         
         // Populate projects
-        db.getAll ('projects').then (function (projects) {
-            
-            // Sort
-            projects.sort ((a, b) => a.name.localeCompare (b.name));
-            
-            
-            /** @var select DOM */
-            var select = wrapper.find ('[name="project"]');
-            
-             
-            // Get project
-            if (project_id) {
-                projects.find (x => x.id).is_selected = false;
-                projects.find (x => x.id === project_id).is_selected = true;
-            }
-            
-            
-            // Iterate over the groups
-            $.each (projects, function (index, project) {
-                select.append ($("<option />")
-                    .attr ('value', project.id)
-                    .attr ('selected', project.is_selected)
-                    .text (project.name)
-                );
-            });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
-        });
-        
-        
-        // Populate rubrics
-        db.getAll ('rubrics').then (function (rubrics) {
-            
-            // Sort
-            rubrics.sort ((a, b) => a.name.localeCompare (b.name));
-
-            
-            /** @var select DOM */
-            var select = wrapper.find ('[name="rubric"]');
-            
-             
-            // Get rubric
-            if (rubric_id) {
-                rubrics.find (x => x.id).is_selected = false;
-                rubrics.find (x => x.id === rubric_id).is_selected = true;
-            }
-            
-            
-            // Iterate over the groups
-            $.each (rubrics, function (index, rubric) {
-                
-                select.append ($("<option />")
-                    .attr ('value', rubric.id)
-                    .attr ('selected', rubric.is_selected)
-                    .text (rubric.name)
-                );
-            });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
-        });
-        
-        
-        // Populate groups
-        
-        /** @var select_group DOM */
-        var select_group = wrapper.find ('[name="group"]');
-
-        
-        // Retrieve the groups
-        db.getAllGroups ().then (function (groups) {
-            
-            // Get qll groups
-            $.each (groups, function (index, group) {
-            
-                // Append the optgroup
-                select_group.append ($("<optgroup />").attr ('label', group.name));
-                
-                
-                // Get rubric
-                if (group_id) {
-                    $.each (group.subgroups, function (index, subgroup) {
-                        subgroup.is_selected = subgroup.id = group_id;
-                    });
-                }
-                
-                
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    select_group
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .attr ('selected', subgroup.is_selected)
-                                .text (subgroup.name)
-                            );
-                });
-                
-            });
-
-            select_group.prop ('disabled', false).select2 ();
-            
-        });
-        
-
-        
-        // Populate students
-        db.getAll ('students').then (function (students) {
-            
-            // Sort
-            students.sort ((a, b) => a.name.localeCompare (b.name));
-            
-            
-            /** @var select DOM */
-            var select = wrapper.find ('[name="student"]');
-            
-             
-            // Get student
-            if (student_id) {
-                students.find (x => x.id).is_selected = false;
-                students.find (x => x.id === student_id).is_selected = true;
-            }
-            
-            
-            // Iterate over the groups
-            $.each (students, function (index, student) {
-                
-                // Filtering students not of the selected group
-                if (group_id && student.groups.indexOf (group_id) == -1) {
-                    return true;
-                }
-                
-                select.append ($("<option />")
-                    .attr ('value', student.id)
-                    .attr ('selected', student.is_selected)
-                    .text (student.name)
-                );
-            });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
-        });
+        helpers.populate_select (wrapper.find ('[name="project"]'), 'projects', project_id);
+        helpers.populate_select (wrapper.find ('[name="rubric"]'), 'rubrics', rubric_id);
+        helpers.populate_select (wrapper.find ('[name="student"]'), 'students', student_id);
+        helpers.populate_select_group (wrapper.find ('[name="group"]'), group_id);
         
         
         // Render the rubric if available
@@ -233,8 +89,12 @@ define ([
                     .end ()
             
             
-            // Render HTML
+            // Render the rubric form
             rate_form.find ('.rubric-form-placeholder').html (template_rubric_form.render (rubric));
+            
+            
+            // Render the student ID
+            wrapper.find ('[name="student_id"]').val (student_id);
             
             
             // Attach evidence
@@ -256,8 +116,9 @@ define ([
             
             
             // Update the rubric form with current rating
-            db.getRatingById ([project_id, rubric_id, student_id], function (rating) {
+            db.getRatingById ([project_id, rubric_id, student_id]).then (function (rating) {
                 
+                // No rating was found
                 if ( ! rating) {
                     return;
                 }
@@ -295,13 +156,8 @@ define ([
             }
             
             
-            wrapper
-                .find ('[name="student_id"]')
-                    .val (student.id)
-                    .end ()
-                .find ('.student-profile-placeholder')
-                    .html (template_student_profile.render (student))
-            ;
+            // Render the student profile
+            wrapper.find ('.student-profile-placeholder').html (template_student_profile.render (student));
            
         });
   
@@ -322,11 +178,26 @@ define ([
             
             /** @var rating Object */
             var rating = {
+                'created': new Date (),
                 'student_id': student_id,
                 'project_id': project_id,
                 'rubric_id': rubric_id,
                 'values': {}
             };
+            
+            
+            // Validate
+            if ( ! rating.project_id) {
+                vex.dialog.alert (i18n.frontend.pages.rate.messages.no_project);
+                return false;
+            }
+            
+            
+            if ( ! rating.student_id) {
+                vex.dialog.alert (i18n.frontend.pages.rate.messages.no_student);
+                return false;
+            }
+            
             
             
             // Get all values 

@@ -27,6 +27,15 @@ define ({
                "select_all_groups": {
                    "text": "All groups"
                },
+               
+               "select_all_projects": {
+                    "text": "All projects"
+               },
+               
+               "select_all_rubrics": {
+                    "text": "All rubrics",
+               },
+               
                "select": {
                    "placeholder": "Please, select an option"
                }
@@ -212,17 +221,24 @@ define ({
                         "rate_action": {
                             "text": "Save rate"
                         },
-                    }
+                    },
                     
+                    "messages": {
+                        "no_student": "You must select a student",
+                        "no_project": "You must select a project"
+                    }
                 },
                 
-                "progress": {
+                "students": {
                     
-                    "title": "Student progress",
+                    "title": "Students",
                     
                     "controls": {
                         "group": {
                             "label": "Group"
+                        },
+                        "progress": {
+                            "text": "View progress"
                         }
                     },
                     
@@ -238,7 +254,26 @@ define ({
                         }
                     }
                     
+                },
+                
+                
+                "progress": {
+                    "title": "Progress of student",
+                    
+                    "controls": {
+                        "project": {
+                            "label": "Filter by project"
+                        },
+                        "rubric": {
+                            "label": "Filter by rubric"
+                        }
+                    },
+                    
+                    "messages": {
+                        "no_student": "Can't find this student in the database",
+                    }
                 }
+                
             }
         }
         

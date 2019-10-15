@@ -16,12 +16,15 @@
   <link href="css/loader.css" rel="stylesheet" >
   <link href="css/main.css" rel="stylesheet" >
   <link href="css/desktop.css?v4" media="(min-width: 769px)" rel="stylesheet" />
+  
+  
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/vex.css" />
   <link rel="stylesheet" href="css/vex-theme-plain.css" />
   <link rel="stylesheet" href="css/select2.min.css" />
+  <link rel="stylesheet" href="css/chart.min.css">
 
   <base href="/essence/" />
 
@@ -51,12 +54,6 @@
   
     <!-- Header -->
     <div id="page">
-    
-        <!-- Title -->
-        <header class="main-header">
-            <h1><a href="/" data-i18n="frontend.layout.main.header.text"></a></h1>
-        </header>
-        
         
         <!-- Navigation menu -->
         <button type="button" class="toggle-menu-action">
@@ -66,8 +63,18 @@
     
         <!-- Navigation -->
         <div class="pure-menu pure-menu-main">
+        
+            <!-- Title -->
+            <header class="main-header">
+                <h1><a href="/" data-i18n="frontend.layout.main.header.text"></a></h1>
+            </header>
+
+        
             <nav>
                 <ul class="pure-menu-list">
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link" href="#rate" data-i18n="frontend.layout.main.menu.items.rate.text"></a>
+                    </li> 
                     <li class="pure-menu-item">
                         <a class="pure-menu-link" href="#projects" data-i18n="frontend.layout.main.menu.items.projects.text"></a>
                     </li>
@@ -75,11 +82,8 @@
                         <a class="pure-menu-link" href="#groups" data-i18n="frontend.layout.main.menu.items.groups.text"></a>
                     </li>
                     <li class="pure-menu-item">
-                        <a class="pure-menu-link" href="#check" data-i18n="frontend.layout.main.menu.items.progress.text"></a>
+                        <a class="pure-menu-link" href="#students" data-i18n="frontend.layout.main.menu.items.progress.text"></a>
                     </li>
-                    <li class="pure-menu-item">
-                        <a class="pure-menu-link" href="#rate" data-i18n="frontend.layout.main.menu.items.rate.text"></a>
-                    </li> 
                     <li class="pure-menu-item">
                         <a class="pure-menu-link" href="#import" data-i18n="frontend.layout.main.menu.items.import_students.text"></a>
                     </li>

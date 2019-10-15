@@ -1,4 +1,15 @@
+<!-- Hidden fields -->
+<input type="hidden" name="student_id" value="" />
+<input type="hidden" name="rubric_id" value="" />
+
+
 <table class="pure-table pure-table-bordered rating-panel">
+
+    <col width="12%">
+    <col width="22%">
+    <col width="22%">
+    <col width="22%">
+    <col width="22%">
 
     <caption>{{ name }}</caption>
 
@@ -25,7 +36,7 @@
                         data-field="{{ key }}-evidences"
                         type="button" 
                         class="pure-button attach-evidence-action">
-                        <span class="icon-attach"></span>
+                        <span class="icon-edit"></span>
                     </button>
                 </div>
             </th>
@@ -51,10 +62,6 @@
                 <label>
                     <div>Evidences</div>
                     <textarea rows="6" name="{{ key }}-evidences">{{ evidence }}</textarea>
-                </label>
-                <label for="{{ key }}-evidence-files" class="pure-button">
-                    <span class="icon-attach"></span>Attach local files</label>
-                    <input id="{{ key }}-evidence-files" type="file" hidden name="file" />
                 </label>
             </td>
         </tr>

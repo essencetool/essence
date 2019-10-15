@@ -1,5 +1,5 @@
 /**
- * ProjectsController
+ * DB and model functionality
  *
  * @package EssenceTool
  */
@@ -171,6 +171,7 @@ define ([
             // Ratings
             var ratings_object_store = db.createObjectStore ('ratings', default_properties);
             ratings_object_store.createIndex ('unique', [
+                'created',
                 'project_id', 
                 'rubric_id', 
                 'student_id'
@@ -178,7 +179,7 @@ define ([
             ratings_object_store.createIndex ('project_id', 'project_id')
             ratings_object_store.createIndex ('student_id', 'student_id')
             ratings_object_store.createIndex ('rubric_id', 'rubric_id')
-            ;
+            ratings_object_store.createIndex ('created', 'created', {unique:false});
 
 
             // Set the flag to determine that the database has to be populated again
@@ -262,8 +263,12 @@ define ([
             var store = transaction.objectStore (object_store).index (index);
             
             
+            /** @var filter IDBKeyRange Create the filter */
+            var filter = IDBKeyRange.only (value);
+            
+            
             // Open cursor and iterate
-            store.openCursor (IDBKeyRange.only (value)).onsuccess = function (event) {
+            store.openCursor (filter).onsuccess = function (event) {
                 
                 /** var cursor Cursor */
                 var cursor = event.target.result;
@@ -276,7 +281,12 @@ define ([
                     
                 // When cursor ends, resolve our promise
                 } else {
-                    resolve (result);
+                    
+                    if (result.length != 0) {
+                        resolve (result);
+                    }
+                    resolve ();
+                    
                 }
                 
             };
@@ -508,26 +518,40 @@ define ([
      * Note that this function will retrieve rubric by its composite key
      *
      * @param id int
-     * @param callback function
      *
      * Retrives item from a object store
      */
-    var getRatingById = function (id, callback) {
-        
-        /** @var transaction Create a transaction for all the objects */
-        var transaction = db.transaction ('ratings');
-        var store = transaction.objectStore ('ratings');
-        
-        
-        store.get (id)
-            .onsuccess = function (event) {
-                if (typeof callback === 'function') {
-                    callback (event.target.result);
-                }
-            }
-        ;
+    var getRatingById = function (id) {
+        return getByID ('ratings', id);
     }
     
+    
+   /**
+     * getLastRatingById
+     *
+     * Get the last rating from a triplet student, project, rubric
+     *
+     * @param student_id int
+     * @param rubric_id int
+     *
+     * @todo Try to use complex indexes
+     * @todo Get the last item by time
+     * @todo Add project to the filter
+     */
+    var getLastRatingById = function (student_id, rubric_id) {
+        
+        return new Promise ((resolve, reject) => {
+            
+            getAllByKey ('ratings', 'student_id', student_id).then (function (ratings) {
+                $.each (ratings, function (index, rating) {
+                    if (rating.rubric_id == rubric_id) {
+                        resolve (rating);
+                        return false;
+                    }
+                });
+            });
+        });
+    }
     
     
     /**
@@ -547,6 +571,13 @@ define ([
         
             // Get student by ID
             getByID ('students', id).then (function (student) {
+                
+                // No student
+                if ( ! student) {
+                    reject ();
+                    return;
+                }
+                
                 
                 // Attach photo if the student hasn't any
                 if ( ! student.photo) {
@@ -791,5 +822,6 @@ define ([
         getAllStudents: getAllStudents,
         getAllGroups: getAllGroups,
         getAllItems: getAllItems,
+        getLastRatingById: getLastRatingById
     }
 }) ;

@@ -2,6 +2,7 @@
     "id": 1,
     "name": "Assessment rubric for the ball (Working with others)",
     "description": "To be used as an expert assessment tool, as a peer to peer tool, or as a self-assessment tool.",
+    "color": [255, 99, 132], 
     
     "valorations": [
         {"text": "Very good", "id": 1, "score": 4},
@@ -59,6 +60,7 @@
     "id": 2,
     "name": "Vision. General Assessment",
     "description": "Those aspects would be showed in many different ways, but would be basically being substanciated into some criteria to evaluate:",
+    "color": [75, 192, 192], 
     
     "valorations": [
         {"text": "Very good", "id": 1, "score": 4},
@@ -109,6 +111,7 @@
     "id": 3,
     "name": "Self-awareness & Self-efficacy",
     "description": "Self-awareness (SA) and Self-efficacy (SE) are two psychological abilities that help people to face their projects (e.g.) in a more realistic way, starting from their own conditions and improving them in order to improve also their possibilities of achieving their goals. As very well studied psychological skills, seems sensible start the definition of the assessment of these both from the criteria (dimensions) that are already evaluated in some validated scales created for psychological diagnosis (For self-efficacy we used Scholz, Doña, Sud, & Schwarzer, 2002, based on Schwarzer & Jerusalem, 1995; and for Self-awareness we used Govern & Marsch, 2001); but doing an adaptation to be useful in participative learning environments. ",
+    "color": [54, 162, 235], 
     
     "valorations": [
         {"text": "Very good", "id": 1, "score": 4},

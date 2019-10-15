@@ -73,7 +73,11 @@ require.config ({
         
         
         // jQuery CSV plugin
-        'jquery-csv': 'vendor/jquery.csv.min'
+        'jquery-csv': 'vendor/jquery.csv.min',
+        
+        
+        // ChartJS
+        'chartjs': 'vendor/chart.bunble.min'
         
     },
     
@@ -89,6 +93,10 @@ require.config ({
         'select2': {
             exports: '$',
             deps: ['jquery']
+        },
+        
+        'helpers': {
+            deps: ['db']
         }
         
     }
@@ -255,6 +263,7 @@ require ([
         switch (hash) {
             
             // Set locale
+            default:
             case '':
             case 'rate':
                 require (['controllers/rate'], function (controller) {
@@ -265,10 +274,16 @@ require ([
             case 'import':
                 require (['controllers/import-students'], function (controller) {
                     controller.index (params);
-                });            
+                });
                 break;
             
-            case 'check':
+            case 'students':
+                require (['controllers/students'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
+            case 'progress':
                 require (['controllers/progress'], function (controller) {
                     controller.index (params);
                 });
@@ -294,12 +309,8 @@ require ([
                 
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
-                window.location = '#map' ;
+                window.location = '#projects' ;
                 window.location.reload () ;
-                break;
-
-            default:
-                vex.dialog.alert ('@todo: ' + hash);
                 break;
                 
         }

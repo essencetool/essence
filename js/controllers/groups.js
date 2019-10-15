@@ -62,7 +62,7 @@ define ([
                 
                 // Attach the group to the template
                 $.each (group.subgroups, function (index, subgroup) {
-                   subgroup.group_slug = group.slug; 
+                   subgroup.group_id = group.id; 
                 });
                 
                 
@@ -96,15 +96,15 @@ define ([
         // Bind subgroup button
         table.on ('change', '[name="subgroups"][type="checkbox"]', function () {
             
-            /** @var group_slug String */
-            var group_slug = $(this).attr ('data-group');
+            /** @var group_id int */
+            var group_id = $(this).attr ('data-group') * 1;
             
             
             // Get the button
             wrapper
                 .find ('.delete-subgroup-action')
-                    .filter ('[data-group="' + group_slug + '"]')
-                        .prop ('disabled', ! table.find ('[data-group="' + group_slug + '"][type="checkbox"]:checked').length)
+                    .filter ('[data-group="' + group_id + '"]')
+                        .prop ('disabled', ! table.find ('[data-group="' + group_id + '"][type="checkbox"]:checked').length)
             ;
         });
         
@@ -144,8 +144,8 @@ define ([
         // Create subgroup action
         table.on ('click', '.create-subgroup-action', function (e) {
         
-            /** @var group_slug String */
-            var group_slug = $(this).attr ('data-group');
+            /** @var group_id String */
+            var group_id = $(this).attr ('data-group') * 1;
             
             
             // Request information
@@ -161,7 +161,7 @@ define ([
                     var subgroup = {
                         name: name,
                         slug: slugify (name),
-                        group_id: group_slug,
+                        group_id: group_id,
                     }
                     
                     
@@ -227,7 +227,11 @@ define ([
         });
         
         
-        // Delete selected groups
+        /** 
+         * Delete selected groups
+         *
+         * @todo. Check if there are students with these groups
+         */
         wrapper.find ('.delete-group-action').click (function (e) {
             vex.dialog.confirm ({
                 message: i18n.frontend.pages.groups.confirm.delete_groups,
@@ -239,24 +243,35 @@ define ([
                     }
                     
                     
-                    // Get each selected subgroup
-                    var ids = [];
+                    /** @var group_ids Array */
+                    var group_ids = [];
+                    
+                    
+                    // Get each selected group by the user
                     wrapper.find ('[name="groups"]:checked').each (function () {
-                        ids.push ($(this).attr ('data-id') * 1);
+                        
+                        /** @var group_id int */
+                        var group_id = $(this).attr ('data-id') * 1;
+                        
+                        
+                        // Attach the group id
+                        group_ids.push (group_id);
+                        
+                        
+                        // Delete the subgroup
+                        db.getAllByKey ('subgroups', 'group_id', group_id).then (function (subgroups) {
+                            $.each (subgroups, function (index, subgroup) {
+                                db.delete_item ('subgroups', subgroup.id);
+                            });
+                        });
                     });
-                    
-                    
-                    // @todo. Check if there are students with these groups
-                    // 
                     
                     
                     // Delete items
-                    db.delete_items ('groups', ids).then (function () {
-                        
-                        // @todo Delete orphan subgroups
-                        
+                    db.delete_items ('groups', group_ids).then (function () {
                         index (params);
                     });
+                    
                 }
             });
         });
@@ -265,8 +280,8 @@ define ([
         // Delete subgroup action
         table.on ('click', '.delete-subgroup-action', function (e) {
             
-            /** @var group_slug String */
-            var group_slug = $(this).attr ('data-group');
+            /** @var group_id int */
+            var group_id = $(this).attr ('data-group') * 1;
             
             
             // Request user confirmation
@@ -282,7 +297,7 @@ define ([
                     
                     // Get each selected subgroup
                     var ids = [];
-                    wrapper.find ('[name="subgroups"][data-group="' + group_slug + '"]:checked').each (function () {
+                    wrapper.find ('[name="subgroups"][data-group="' + group_id + '"]:checked').each (function () {
                         ids.push ($(this).attr ('data-id') * 1);
                     });
                     

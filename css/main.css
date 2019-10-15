@@ -208,9 +208,11 @@ nav {
 
 .pure-menu-main {
     position: fixed;
-    top: 3rem;
+    top: 0;
+    left: -14.5rem;
     bottom: 0;
     width: 15rem;
+    box-shadow: 0 0 2rem black;
 }
 
 .pure-menu-item {
@@ -296,6 +298,7 @@ footer {
     position: relative;
 }
 
+
 .rating-panel .shadow {
     position: absolute;
     top: 0;
@@ -310,6 +313,11 @@ footer {
 
 .rating-panel label {
     cursor: pointer;
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-size: .725rem;
+    font-family: arial, sans-serif;
 }
 
 .rating-panel label:hover .shadow {
@@ -562,29 +570,30 @@ footer {
   clear: both;
 }
 
-@media only screen and (max-width: 768px) {
-    
-    .toggle-menu-action {
-        display: block;
-    }
-    
-    .pure-menu-main {
-        left: -35rem;
-        z-index: 9999;
-        
-        -webkit-transition: all .5s ease-out;
-                transition: all .5s ease-out;
-    }
-    
-    body.state-menu .pure-menu-main {
-        left: 0;
-    }
-    
-    body.state-menu .toggle-menu-action {
-        transform: rotate(90deg);
-    }
-    
+.toggle-menu-action {
+    display: block;
 }
+
+.pure-menu-main {
+    left: -14.9rem;
+    z-index: 9999;
+    
+    -webkit-transition: all .3s ease-out;
+            transition: all .3s ease-out;
+}
+
+body.state-menu .pure-menu-main {
+    left: 0;
+}
+
+.pure-menu-main:hover {
+    left: 0;
+}
+
+body.state-menu .toggle-menu-action {
+    transform: rotate(90deg);
+}
+    
 
 
 @media only screen and (min-width: 35em) {
