@@ -11,8 +11,9 @@ define ([
     'hogan',
     'config',
     'db',
+    'helpers',
     'i18n!nls/translations'
-], function (tpl, tpl_student_row, $, hogan, config, db, i18n) {
+], function (tpl, tpl_student_row, $, hogan, config, db, helpers, i18n) {
 
     /**
      * index
@@ -24,7 +25,7 @@ define ([
     var index = function (params) {
         
         /** @var group_id int */
-        var group_id = params[1];
+        var group_id = params[1] * 1;
         
     
         /** @var wrapper DOM zero element */
@@ -63,21 +64,18 @@ define ([
             $.each (students, function (index, student) {
                 
                 // Filter
-                if (group_id && student.groups.indexOf (group_id) == -1) {
+                if (group_id && student.groups.indexOf (group_id) === -1) {
                     return true;
                 }
                 
                 
-                // Include i18n
-                student['i18n'] = function () {
-                    return function (text, render) {
-                        return ref (i18n, text);
-                    }
-                };
+                /** @var template_params Object */
+                var template_params = helpers.i18n_tpl (student);
                 
                 
                 // Append
-                table.append (template_student_row.render (student));
+                table.append (template_student_row.render (template_params));
+                
             });
         });
         
@@ -86,58 +84,14 @@ define ([
         var select_group = wrapper.find ('[name="group"]');
         
         
-        // Render select2 field
-        select_group.prop ('disabled', false).select2 ();
-        
-        
         // Populate groups
-        db.getAllGroups ().then (function (groups) {
-            
-            $.each (groups, function (index, group) {
-            
-                // Append the optgroup
-                select_group.append ($("<optgroup />").attr ('label', group.name));
-                
-                
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    
-                    // Get project
-                    if (group_id && subgroup.id == group_id) {
-                        
-                        // Mark as selected
-                        subgroup.is_selected = true;
-                        
-                        
-                        // Update the caption of the table
-                        wrapper.find ('.group-name-ph').html (subgroup.name);
-                        
-                    }
-                
-                
-                    // Attach to the optgroup
-                    select_group
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .prop ('selected', subgroup.is_selected)
-                                .text (subgroup.name)
-                            );
-                });
-            });
-            
-            select_group.prop ('disabled', false).select2 ();
+        helpers.populate_select_group (select_group, group_id);
 
-        });
-            
-        
         
         // Bind select group 
         select_group.on ('select2:select', function (e) {
             window.location.hash = 'students' + '/' + select_group.val ();
         });
-
-
         
         
         // Remove loading state

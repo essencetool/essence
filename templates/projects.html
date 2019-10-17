@@ -9,25 +9,50 @@
 </blockquote>
 
 
+<!-- Filters -->
+<section class="filters pure-g">
+
+    <!-- Project -->
+    <div class="pure-u-1-1">
+        <label class="form-step">
+            <div>{{# i18n }} frontend.pages.projects.controls.project.label {{/ i18n }}</div>
+            <select name="project" required>
+                <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
+            </select>
+        </label>
+        
+        {{# show_create_button }}
+        <div class="rating-panel-actions">
+            <a href="#projects" class="create-project-action pure-button pure-button-primary">
+                {{# i18n }} frontend.pages.projects.controls.create_project.text {{/ i18n }}
+            </a>
+        </div>
+        {{/ show_create_button }}
+        
+    </div>
+
+</section>
+
+
 <!-- Project -->
-<table class="pure-table pure-table-bordered">
-  <thead>
-  <tr>
-    <th>&nbsp;</th>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-  </thead>
-  <tbody class="projects-table-placeholder"></tbody>
-</table>
+<form class="pure-form" name="project-form">
 
-
-
-<div class="rating-panel-actions">
-    <button type="button" class="create-project-action pure-button pure-button-primary">
-        {{# i18n }} frontend.pages.projects.controls.create_project.text {{/ i18n }}
-    </button>
-    <button type="button" disabled class="delete-project-action pure-button">
-        <span class="icon-cancel"></span> {{# i18n }} frontend.pages.projects.controls.delete_project.text {{/ i18n }}
-    </button>
-</div>
+    <!-- Placeholder -->
+    <div class="project-list projects-table-placeholder"></div>
+    
+    
+    <!-- Actions -->
+    <div class="rating-panel-actions">
+        <button type="submit" class="create-project-action pure-button pure-button-primary">
+            {{# i18n }} frontend.pages.projects.controls.submit.text {{/ i18n }}
+        </button>
+        
+        {{# show_delete_button }}
+        <button type="button" class="delete-project-action pure-button">
+            <span class="icon-cancel"></span> 
+            {{# i18n }} frontend.pages.projects.controls.delete_project.text {{/ i18n }}
+        </button>
+        {{/ show_delete_button }}
+    </div>
+    
+</form>

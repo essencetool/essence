@@ -70,6 +70,7 @@ define ([
                 var template_params = group;
                 
                 
+                // Attach i18n
                 template_params['i18n'] = function () {
                     return function (text, render) {
                         return ref (i18n, text);
@@ -78,37 +79,13 @@ define ([
                 
                 
                 // Render the group
-                table.append (template_group_row.render (group));
+                table.append (template_group_row.render (template_params));
                 
             });
         });
         
         
-        // Bind actions
-        // Bind delete group button
-        table.on ('change', '[name="groups"][type="checkbox"]', function () {
-            wrapper.find ('.delete-group-action')
-                .prop ('disabled', ! table.find ('[name="groups"][type="checkbox"]:checked').length)
-            ;
-        });
-        
-        
-        // Bind subgroup button
-        table.on ('change', '[name="subgroups"][type="checkbox"]', function () {
-            
-            /** @var group_id int */
-            var group_id = $(this).attr ('data-group') * 1;
-            
-            
-            // Get the button
-            wrapper
-                .find ('.delete-subgroup-action')
-                    .filter ('[data-group="' + group_id + '"]')
-                        .prop ('disabled', ! table.find ('[data-group="' + group_id + '"][type="checkbox"]:checked').length)
-            ;
-        });
-        
-        
+        // Bind actions  
         // Create new project
         wrapper.find ('.create-group-action').click (function (e) {
             vex.dialog.prompt ({
@@ -153,9 +130,11 @@ define ([
                 message: i18n.frontend.pages.groups.prompt.name_subgruop,
                 callback: function (name) {
                     
+                    // User cancel action or doesn't provide a valid name
                     if ( ! name) {
                         return;
                     }
+                    
                     
                     /** @var subgroup Object */
                     var subgroup = {
@@ -195,21 +174,25 @@ define ([
             // Get item
             db.getByID (object_store, id).then (function (item) {
                 
+                // No item was fetched from the database
                 if ( ! item) {
                     return;
                 }
                 
+                
+                // Request the new name
                 vex.dialog.prompt ({
                     message: "Please, type the new name",
                     value: item.name,
                     callback: function (value) {
                         
+                        // User does not provide any name
                         if ( ! value) {
                             return;
                         }
                         
                         
-                        /** @var item Object */
+                        // Update new information about the group/subgroup
                         item['name'] = value;
                         item['slug'] = slugify (value);
                         
@@ -232,7 +215,13 @@ define ([
          *
          * @todo. Check if there are students with these groups
          */
-        wrapper.find ('.delete-group-action').click (function (e) {
+        table.on ('click', '.delete-group-action', function (e) {
+            
+            /** @var group_id int */
+            var group_id = $(this).attr ('data-id') * 1;
+            
+            
+            // Request user confirmation
             vex.dialog.confirm ({
                 message: i18n.frontend.pages.groups.confirm.delete_groups,
                 callback: function (confirm) {
@@ -243,32 +232,16 @@ define ([
                     }
                     
                     
-                    /** @var group_ids Array */
-                    var group_ids = [];
-                    
-                    
-                    // Get each selected group by the user
-                    wrapper.find ('[name="groups"]:checked').each (function () {
-                        
-                        /** @var group_id int */
-                        var group_id = $(this).attr ('data-id') * 1;
-                        
-                        
-                        // Attach the group id
-                        group_ids.push (group_id);
-                        
-                        
-                        // Delete the subgroup
-                        db.getAllByKey ('subgroups', 'group_id', group_id).then (function (subgroups) {
-                            $.each (subgroups, function (index, subgroup) {
-                                db.delete_item ('subgroups', subgroup.id);
-                            });
+                    // Delete the subgroups
+                    db.getAllByKey ('subgroups', 'group_id', group_id).then (function (subgroups) {
+                        $.each (subgroups, function (index, subgroup) {
+                            db.deleteItems ('subgroups', subgroup.id);
                         });
                     });
                     
                     
-                    // Delete items
-                    db.delete_items ('groups', group_ids).then (function () {
+                    // Delete group
+                    db.deleteItems ('groups', group_id).then (function () {
                         index (params);
                     });
                     
@@ -278,10 +251,11 @@ define ([
         
         
         // Delete subgroup action
+        // @todo. Check if there are students with these groups
         table.on ('click', '.delete-subgroup-action', function (e) {
             
-            /** @var group_id int */
-            var group_id = $(this).attr ('data-group') * 1;
+            /** @var subgroup_id int */
+            var subgroup_id = $(this).attr ('data-id') * 1;
             
             
             // Request user confirmation
@@ -295,24 +269,15 @@ define ([
                     }
                     
                     
-                    // Get each selected subgroup
-                    var ids = [];
-                    wrapper.find ('[name="subgroups"][data-group="' + group_id + '"]:checked').each (function () {
-                        ids.push ($(this).attr ('data-id') * 1);
-                    });
-                    
-                    
-                    // @todo. Check if there are students with these groups
-                    
-                    
                     // Delete items
-                    db.delete_items ('subgroups', ids).then (function () {
+                    db.deleteItems ('subgroups', subgroup_id).then (function () {
                         index (params);
                     });
                     
                 }
             });
         });
+        
         
         // Remove loading state
         $('body').removeClass ('loading-state');

@@ -1,0 +1,51 @@
+<!-- Title -->
+<h1>
+    {{# i18n }} frontend.pages.assessment.title {{/ i18n }}
+</h1>
+
+<!-- Help and tips -->
+<blockquote class="help">
+    {{# i18n }} frontend.pages.assessment.help.text {{/ i18n }}
+</blockquote>
+
+
+
+<!-- Rate form -->
+<form class="pure-form" name="assessment-form">
+
+    <!-- Name -->
+    <label class="form-step">
+        <div>{{# i18n }} frontend.pages.assessment.controls.name.label {{/ i18n }}</div>
+        <input 
+            required 
+            type="text" 
+            name="name" 
+            size="60" 
+            placeholder="{{# i18n }} frontend.pages.assessment.controls.name.placeholder {{/ i18n }}" />
+    </label>
+    
+
+    <!-- Email -->
+    <label class="form-step">
+        <div>{{# i18n }} frontend.pages.assessment.controls.email.label {{/ i18n }}</div>
+        <input 
+            required 
+            type="email" 
+            name="email" 
+            size="60" 
+            placeholder="{{# i18n }} frontend.pages.assessment.controls.email.placeholder {{/ i18n }}" />
+    </label>
+
+    
+    <!-- Placeholder -->
+    <section class="assessment-ph"></section>
+    
+    
+    <!-- Actions -->
+    <div class="rating-panel-actions">
+        <button type="submit" class="pure-button pure-button-primary">
+            {{# i18n }} frontend.pages.assessment.controls.submit.text {{/ i18n }}
+        </button>
+    </div>
+  
+</form>

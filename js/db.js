@@ -10,8 +10,9 @@ define ([
     'i18n!nls/translations',
     'json!assetsPath/projects.json',
     'json!assetsPath/groups.json',
-    'json!assetsPath/sample.json',
-], function ($, config, i18n, projects, groups, rubrics) {
+    'json!assetsPath/rubrics.json',
+    'json!assetsPath/assessments.json'
+], function ($, config, i18n, projects, groups, rubrics, assessments) {
     
     /** @var db Here, we will store our database */
     var db;
@@ -28,7 +29,8 @@ define ([
         'subgroups',
         'rubrics',
         'students',
-        'ratings'
+        'ratings',
+        'assessments'
     ];
    
     
@@ -37,155 +39,184 @@ define ([
      */
     var init = function () {
         
-        // Check compatibility
-        if ( ! window.indexedDB) {
-            vex.dialog.alert ("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
-            return;
-        }
+        // Return promise
+        return new Promise ((resolve, reject) => {
         
-        
-        /** @var request indexedDB */
-        var request = window.indexedDB.open ('essenceDB', 1);
-        
-        
-        // Handle errors
-        request.onerror = function (event) {
-            vex.dialog.alert ("Database error: " + event.target.errorCode);
-        };
-        
-        
-        // Handle database updated. This event is only fired
-        // when the 'onupgradeneeded' has taken placed
-        request.onsuccess = function (event) {
-            
-            // Reference database
-            db = event.target.result;
-            
-            
-            // We have finish here
-            if ( ! needs_populate) {
-                return;
+            // Check compatibility
+            if ( ! window.indexedDB) {
+                reject (i18n.common.message,indexed_db_not_supported);
+                return false;
             }
+        
+        
+            /** @var request indexedDB */
+            var request = window.indexedDB.open ('essenceDB', 1);
             
             
-            /** @var transaction Create a transaction for all the objects */
-            var transaction = db.transaction (db.objectStoreNames, 'readwrite');
-            
-            
-            // Bind error handling
-            transaction.onerror = function (event) {
+            // Handle errors
+            request.onerror = function (event) {
                 vex.dialog.alert ("Database error: " + event.target.errorCode);
             };
+        
+        
+            // Handle database updated. This event is only fired
+            // when the 'onupgradeneeded' has taken placed
+            request.onsuccess = function (event) {
             
-            
-            // Populate items
-            $.each ({
-                'projects': projects, 
-                'rubrics': rubrics
-            }, function (object_store, data) {
-                var store = transaction.objectStore (object_store);
-                data.forEach (function (item) {
-                    store.add (item);
-                });
-            });
-            
-            
-            // Populate groups
-            var store_group = transaction.objectStore ('groups');
-            var store_subgroup = transaction.objectStore ('subgroups');
-            
-            $.each (groups, function (index, group) {
-                
-                /** @var slug String */
-                var slug = slugify (group.name);
+                // Reference database
+                db = event.target.result;
                 
                 
-                // Crate group
-                store_group.add ({
-                    name: group.name,
-                    slug: slug,
-                    key: group.key
-                }).onsuccess = function (e) {
-                    
-                    var group_id = e.target.result;
-                    
-                    // Create subgroup
-                    $.each (group.subgroups, function (index2, subgroup) {
-                        store_subgroup.add ({
-                            name: subgroup.name,
-                            slug: slugify (subgroup.name),
-                            group_id: group_id,
-                        });
-                    });
-
+                // We have finish here
+                if ( ! needs_populate) {
+                    resolve ();
+                    return;
+                }
+                
+                
+                /** @var transaction Create a transaction for all the objects */
+                var transaction = db.transaction (db.objectStoreNames, 'readwrite');
+                
+                
+                // Bind error handling
+                transaction.onerror = function (event) {
+                    console.log (event);
+                    reject ('Database error: ' + event.target.error.message);
                 };
                 
                 
-            });
-        };
-        
-        
-        /**
-         * onupgradeneeded
-         *
-         * Database creation scheme
-         */
-        request.onupgradeneeded = function (event) {
-            
-            /** @var db Object */
-            var db = event.target.result;
-            
-            
-            /** @var default_values Object */
-            var default_properties = {
-                keyPath: 'id',
-                autoIncrement: true 
+                // Bind success handling
+                transaction.oncomplete = function () {
+                    resolve ();
+                }
+                
+                
+                // Populate items
+                $.each ({
+                    'projects': projects, 
+                    'rubrics': rubrics,
+                    'assessments': assessments
+                }, function (object_store, data) {
+                    
+                    /** @var store objectStore */
+                    var store = transaction.objectStore (object_store);
+                    
+                    
+                    // Store individual items
+                    data.forEach (function (item) {
+                        store.add (item);
+                    });
+                    
+                });
+                
+                
+                /** @var store_group objectStore */
+                var store_group = transaction.objectStore ('groups');
+                
+                
+                /** @var store_subgroup objectStore */
+                var store_subgroup = transaction.objectStore ('subgroups');
+                
+                
+                // Iterate over groups
+                $.each (groups, function (index, group) {
+                    
+                    /** @var slug String */
+                    var slug = slugify (group.name);
+                
+                
+                    // Crate group
+                    store_group.add ({
+                        name: group.name,
+                        slug: slug,
+                        key: group.key
+                    }).onsuccess = function (e) {
+                        
+                        /** @var group_id int */
+                        var group_id = e.target.result;
+                        
+                        
+                        // Create subgroup
+                        $.each (group.subgroups, function (index2, subgroup) {
+                            store_subgroup.add ({
+                                name: subgroup.name,
+                                slug: slugify (subgroup.name),
+                                group_id: group_id,
+                            });
+                        });
+                    };
+                });
             };
-            
-            
-            // Create the object stores for this database
-            // Projects
-            db.createObjectStore ('projects', default_properties);
-            
-            
-            // Groups and subgroups
-            db.createObjectStore ('groups', default_properties)
-                .createIndex ('slug', 'slug', { unique: true })
-            ;
-            
-            var subgroup_object_store = db.createObjectStore ('subgroups', default_properties);
-            subgroup_object_store.createIndex ('group_id', 'group_id');
-            subgroup_object_store.createIndex ('slug', 'slug', { unique: true });
-            
-            
-            // Rubrics
-            db.createObjectStore ('rubrics', default_properties);
-            
-            
-            // Students
-            var student_object_store = db.createObjectStore ('students', default_properties);
-            student_object_store.createIndex ('id', 'id')
-            student_object_store.createIndex ('email', 'email', { unique: true });
-            
-            
-            // Ratings
-            var ratings_object_store = db.createObjectStore ('ratings', default_properties);
-            ratings_object_store.createIndex ('unique', [
-                'created',
-                'project_id', 
-                'rubric_id', 
-                'student_id'
-            ], { unique: true })
-            ratings_object_store.createIndex ('project_id', 'project_id')
-            ratings_object_store.createIndex ('student_id', 'student_id')
-            ratings_object_store.createIndex ('rubric_id', 'rubric_id')
-            ratings_object_store.createIndex ('created', 'created', {unique:false});
+        
+        
+            /**
+             * onupgradeneeded
+             *
+             * Database creation scheme
+             */
+            request.onupgradeneeded = function (event) {
+                
+                /** @var db Object */
+                var db = event.target.result;
+                
+                
+                /** @var default_values Object */
+                var default_properties = {
+                    keyPath: 'id',
+                    autoIncrement: true 
+                };
+                
+                
+                // Create the object stores for this database
+                // Projects
+                db.createObjectStore ('projects', default_properties);
+                
+                
+                // Assessments
+                db.createObjectStore ('assessments', default_properties)
+                    .createIndex ('rubric_id', 'rubric_id', { unique: true })
+                ;
+                
+                
+                // Groups and subgroups
+                db.createObjectStore ('groups', default_properties)
+                    .createIndex ('slug', 'slug', { unique: true })
+                ;
+                
+                var subgroup_object_store = db.createObjectStore ('subgroups', default_properties);
+                subgroup_object_store.createIndex ('group_id', 'group_id');
+                subgroup_object_store.createIndex ('slug', 'slug', { unique: true });
+                
+                
+                // Rubrics
+                db.createObjectStore ('rubrics', default_properties);
+                
+                
+                // Students
+                var student_object_store = db.createObjectStore ('students', default_properties);
+                student_object_store.createIndex ('id', 'id')
+                student_object_store.createIndex ('email', 'email', { unique: true });
+                
+                
+                // Ratings
+                var ratings_object_store = db.createObjectStore ('ratings', default_properties);
+                ratings_object_store.createIndex ('unique', [
+                    'created',
+                    'project_id', 
+                    'rubric_id', 
+                    'student_id'
+                ], { unique: true })
+                ratings_object_store.createIndex ('project_id', 'project_id')
+                ratings_object_store.createIndex ('student_id', 'student_id')
+                ratings_object_store.createIndex ('rubric_id', 'rubric_id')
+                ratings_object_store.createIndex ('created', 'created', {unique:false});
 
 
-            // Set the flag to determine that the database has to be populated again
-            needs_populate = true;
-            
-        };
+                // Set the flag to determine that the database has to be populated again
+                needs_populate = true;
+                
+            };
+        });
     }
     
     
@@ -318,7 +349,7 @@ define ([
             var store = transaction.objectStore (object_store);
             
             
-            /** @var store objectStore */
+            // Get all items
             store.getAllKeys ().onsuccess = function (event) {
                 resolve (event.target.result);
             }
@@ -327,86 +358,81 @@ define ([
     
     
     /**
-     * put
-     *
-     * Note that this function will retrieve items 
-     * without being hidrated
+     * updateItem
      *
      * @param object_store String
      * @param object Object
-     *
      */
-    var put = function (object_store, object) {
-        
-        /** @var transaction Create a transaction for all the objects */
-        var transaction = db.transaction (object_store, 'readwrite');
-        var store = transaction.objectStore (object_store);
-        
-        
-        // Modify the element in the store
-        store.put (object);
-
-    }
-    
-    
-    /**
-     * delete_item
-     *
-     * Delete item
-     *
-     * @param object_store String
-     * @param key Object
-     */
-    var delete_item = function (object_store, key) {
+    var updateItem = function (object_store, object) {
         
         // Return promise
         return new Promise ((resolve, reject) => {
         
             /** @var transaction Create a transaction for all the objects */
             var transaction = db.transaction (object_store, 'readwrite');
+            
+            
+            /** @var store objectStore */
             var store = transaction.objectStore (object_store);
             
             
+            // Bind the transaction
+            transaction.oncomplete = function () {
+                resolve ();
+            }
+            
+            
             // Modify the element in the store
-            store.delete (key)
-                .onsuccess = function () {
-                    resolve ();
-                }
-            ;
+            store.put (object);
             
         });
     }
     
     
     /**
-     * delete_items
+     * deleteItems
      *
-     * Delete item
+     * Allows to delete a collection of items
      *
      * @param object_store String
-     * @param key Object
+     * @param ids String|Array of keys
      */
-    var delete_items = function (object_store, keys) {
+    var deleteItems = function (object_store, ids) {
+        
+        // Set the key as an array
+        if ( ! Array.isArray (ids)) {
+            ids = [ids];
+        }
+        
         
         // Return promise
         return new Promise ((resolve, reject) => {
-            
-            /** @var callbacks int */
-            var callbacks = keys.length;
-            
-            
-            // Delete item 
-            $.each (keys, function (index, key) {
-                delete_item (object_store, key).then (function () {
-                    callbacks--;
-                    
-                    if ( ! callbacks) {
-                        resolve ();
-                    }
-                });
-            });
-        });
         
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (object_store, 'readwrite');
+            
+            
+            /** @var store objectStore */
+            var store = transaction.objectStore (object_store);
+            
+            
+            // All work is done
+            transaction.oncomplete = function () {
+                resolve ();
+            }
+            
+            
+            // Reject transaction
+            transaction.onerror = function (e) {
+                reject (e);
+            }
+            
+            
+            // Delete item
+            for (const id of ids) {
+                store.delete (id);
+            }
+        });
     }
     
     
@@ -424,6 +450,9 @@ define ([
         
         /** @var transaction Create a transaction for all the objects */
         var transaction = db.transaction (object_store, 'readwrite');
+        
+        
+        /** @var store objectStore */
         var store = transaction.objectStore (object_store);
         
         
@@ -475,26 +504,185 @@ define ([
     
     
     /**
+     * addItems
+     *
+     * This function allows to store multiple items in the database 
+     * at once
+     *
+     * This function uses the "add" method and ensures that all the 
+     * duplicated elements are returned in the callback. This action
+     * could be used to insert again
+     *
+     * @param object_store String 
+     * @param items Array
+     * @param key String
+     */
+    var addItems = function (object_store, items, key) {
+        
+        // Set the key
+        if ( ! key) {
+            key = 'id';
+        }
+        
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (object_store, 'readwrite');
+            
+            
+            /** @var store objectStore */
+            var store = transaction.objectStore (object_store);
+            
+            
+            /** @var i int */
+            var i = 0;
+            
+            
+            /** @var duplicated_items Array */
+            var duplicated_items = [];
+            
+            
+            /** @var private_callback function */
+            var private_callback = function () {
+                
+                // Check there are still items to check
+                if (i < items.length) {
+                    
+                    // If the item has the key we are asking for...
+                    if (items[i][key]) {
+                        
+                        // We want to ensure that the item does not exists on the db
+                        store.index (key).get (items[i][key]).onsuccess = function (e) {
+                            
+                            // Attach to the duplicated items
+                            if (e.target.result) {
+                                duplicated_items.push (e.target.result);
+                                ++i;
+                                private_callback ();
+                            } else {
+                                store.add (items[i]).onsuccess = private_callback;
+                                ++i;
+                            }
+                        };
+                        
+                    // If the item does not have the key
+                    } else {
+                        store.index ('id').add (items[i]).onsuccess = private_callback;
+                        ++i;
+                    }
+                } else {
+                    resolve (duplicated_items);
+                }
+            }
+            
+            
+            // Bind complete action
+            transaction.oncomplete = function () {
+                resolve (duplicated_items);
+            };
+            
+            
+            // Transaction error
+            transaction.onerror = function (e) {
+                reject (e);
+
+            }
+            
+            
+            // Add the element in the store
+            private_callback ();
+            
+        });
+    }
+    
+    
+    
+    /**
+     * updateItems
+     *
+     * @param object_store String 
+     * @param items Array
+     */
+    var updateItems = function (object_store, items) {
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
+            
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (object_store, 'readwrite');
+            
+            
+            /** @var store objectStore */
+            var store = transaction.objectStore (object_store);
+            
+            
+            /** @var i int */
+            var i = 0;
+            
+            
+            /** @var private_callback function */
+            var private_callback = function () {
+                
+                // Check there are still items to check
+                if (i < items.length) {
+                    
+                    store.put (items[i]).onsuccess = private_callback;
+                    ++i;
+
+                } else {
+                    resolve ();
+                }
+            }
+            
+            
+            // Bind complete action
+            transaction.oncomplete = function () {
+                resolve ();
+            };
+            
+            
+            // Transaction error
+            transaction.onerror = function (e) {
+                reject (e);
+            }
+            
+            
+            // Add the element in the store
+            private_callback ();
+            
+        });
+    }
+    
+    
+    /**
      * getByID
      *
      * Note that this function will retrieve items 
      * without being hidrated
      *
      * @param object_store String
-     * @param id int
+     * @param key int|string
      *
      * Retrives item from a object store
      */
-    var getByID = function (object_store, id) {
+    var getByID = function (object_store, key) {
         
         // Return promise
         return new Promise ((resolve, reject) => {
+            
+            // Check if it a valid key. If it not, return nothing
+            if ( ! key) {
+                resolve ();
+            }
+            
             
             /** @var transaction Create a transaction for all the objects */
             var transaction = db.transaction (object_store);
             
             
-            /** @var object */
+            /** @var store objectStore */
             var store = transaction.objectStore (object_store);
             
         
@@ -504,8 +692,8 @@ define ([
             };
             
             
-            // Bind on success action
-            store.get (id).onsuccess = function (event) {
+            // Retrieve by key
+            store.get (key).onsuccess = function (result) {
                 resolve (event.target.result);
             };
         });
@@ -571,13 +759,12 @@ define ([
         
             // Get student by ID
             getByID ('students', id).then (function (student) {
-                
+
                 // No student
                 if ( ! student) {
                     reject ();
                     return;
                 }
-                
                 
                 // Attach photo if the student hasn't any
                 if ( ! student.photo) {
@@ -641,8 +828,9 @@ define ([
                                 
                                 // Update callbacks
                                 callbacks--;
+
                                 
-                                if (callbacks === 0) {
+                                if ( ! callbacks) {
                                     resolve (student);
                                 }
 
@@ -763,7 +951,7 @@ define ([
             // Get each object store
             $.each (object_stores, function (index, object_store) {
                 
-                /** @var store */
+                /** @var store objectStore */
                 var store = transaction.objectStore (object_store);
                 
                 
@@ -809,9 +997,10 @@ define ([
         object_stores: object_stores,
         
         add: add,
-        put: put,
-        delete_item: delete_item, 
-        delete_items: delete_items,
+        addItems: addItems,
+        updateItem: updateItem,
+        updateItems: updateItems,
+        deleteItems: deleteItems,
         
         getAll: getAll,
         getAllByKey: getAllByKey, 

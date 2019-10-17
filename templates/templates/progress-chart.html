@@ -1,3 +1,32 @@
-<div class="pure-u-1-1">
-    <canvas id="{{ id }}" width="400" height="400"></canvas>
-</div>
+<article class="progress-rubric">
+
+    <h2>{{ name }}</h2>
+
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <ul class="progress-ratings">
+                {{# ratings }}
+                <li>
+                    <h3>{{ created }}</h3>
+                    <ul>
+                        {{# _values }}
+                        <li class="state_{{ value }}">
+                            <strong class="key">
+                                {{ key_text }}
+                            </strong>
+                            <span class="value">
+                                {{# evidences }} <span class="icon-edit" title="{{ . }}"></span> {{/ evidences }}
+                                {{ value_text }}
+                            </span>
+                            
+                        </li>
+                        {{/ _values }}
+                    </ul>
+                {{/ ratings }}
+            </ul>
+        </div>
+        <div class="pure-u-1-2">
+            <canvas id="{{ id }}" width="400" height="400"></canvas>
+        </div>
+    </div>
+</article>

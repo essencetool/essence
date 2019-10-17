@@ -176,6 +176,10 @@ define ([
         // Submit rating
         rate_form.submit (function (e) {
             
+            // Prevent default
+            e.preventDefault ();
+            
+            
             /** @var rating Object */
             var rating = {
                 'created': new Date (),
@@ -217,17 +221,14 @@ define ([
                     'evidence': rate_form.find ('[name="' + evidence_field + '"]').val ()
                 }
             });
-            
+
             
             // Store ratings
-            db.put ('ratings', rating);
-            
-            
-            // Notify the user
-            vex.dialog.alert ('Done!');
-            
-            
-            return false;
+            db.updateItem ('ratings', rating).then (function () {
+                vex.dialog.alert (i18n.frontend.pages.rate.messages.success);
+            }).catch (function (e) {
+                console.log (e); 
+            });
         });
         
         

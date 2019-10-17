@@ -21,12 +21,39 @@ define ([
     var student_id;
     
     
-     /** @var project_id int */
+    /** @var project_id int */
     var project_id;
     
     
-     /** @var rubric_id int */
+    /** @var rubric_id int */
     var rubric_id;
+    
+    
+    /** @var default_options Object */
+    var default_options = {
+        responsive: true,
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: ''
+        },
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 4,
+                stepSize: 1,
+                fontSize: 16
+            }
+        },
+        tooltips: {
+            callbacks: {
+                label: label_callback
+            }
+        }
+    };
         
         
     /**
@@ -47,7 +74,7 @@ define ([
         // Retrieve information about the student
         db.getStudentById (student_id).then (function (student) {
             render (student);
-        }).catch (function () {
+        }).catch (function (e) {
             vex.dialog.alert ({
                 message: i18n.frontend.pages.progress.messages.no_student,
                 callback: function () {
@@ -112,34 +139,69 @@ define ([
             // Get each rubric
             $.each (rubrics, function (index, rubric) {
                 
-                // Filter rubrics
+                // Filter rubrics in case that the user has turned on the filter
                 if (rubric_id && rubric.id != rubric_id) {
                     return true;
                 }
                 
                 
-                /** @var data Object */
+                /** @var data Object Data for the graph */
                 var data = {
                     labels: pluck (rubric.rows, 'key'),
                     datasets: []
                 };
                 
                 
-                // Get the last rubric of this student
+                // Get ratings for the student
+                // @todo Improve to get ratings also filtered by rubric_id
                 db.getAllByKey ('ratings', 'student_id', student_id).then (function (ratings) {
                     
-                    // Check there is no ratings
-                    var has_rubrics = false;
+                    /** @var filtered_ratings Array To get only the ratings */
+                    var filtered_ratings = [];
                     
                    
                    // Get all ratings
                     $.each (ratings, function (index, rating) {
-                        
-                        // Not my rubric
+
+                        // Not the rubric i was looking for. Continue
                         if (rating.rubric_id != rubric.id) {
                             return true;
                         }
-                        has_rubrics = true;
+                        
+                        
+                        // ATtach rubric for the template
+                        rating.rubric = rubric;
+                        
+                        
+                        // Include the values processes, transforming 
+                        // from object to array
+                        rating._values = [];
+                        
+                        $.each (rating.values, function (key, value) {
+                            
+                            /** @var key_text String Stores the textual value of the feature */
+                            var key_text = '';
+                            $.each (rubric.rows, function (index, row) {
+                                if (row.key === key) {
+                                    key_text = row.name;
+                                    return false;
+                                }
+                            });
+                            
+                            
+                            // Attach the processes rating for the template
+                            rating._values.push ({
+                                evidences: value.evidence ? [value.evidence] : null,
+                                key: key,
+                                key_text: key_text,
+                                value: value.value,
+                                value_text: rubric.valorations[value.value - 1].text,
+                            });
+                        });
+                        
+                        
+                        // Update the filtered ratings
+                        filtered_ratings.push (rating);
                         
                         
                         /** @var values Array */
@@ -153,8 +215,12 @@ define ([
                         var opacity = .5 + ((1 / ratings.length) * index);
                         
                         
+                        console.log ('rgba(' + rubric.color.join (',') + ', ' + opacity + ')');
+                        
                         // Create a new dataset
                         data.datasets.push ({
+                            rubric: rubric,
+                            rating: rating, 
                             label: new Date (rating.created).toUTCString(),
                             data: values,
                             backgroundColor: 'rgba(' + rubric.color.join (',') + ', ' + opacity + ')',
@@ -163,7 +229,8 @@ define ([
                     });
                     
                     
-                    if ( ! has_rubrics) {
+                    // No rubrics, then no render the graph
+                    if ( ! filtered_ratings.length) {
                         return true;
                     }
                     
@@ -174,36 +241,34 @@ define ([
                     
                     /** @var template_params Object */
                     var template_params = {
-                        id: chart_id
-                    }
+                        id: chart_id,
+                        name: rubric.name,
+                        ratings: filtered_ratings
+                    };
+                    
+                    
+                    template_params['i18n'] = function () {
+                        return function (text, render) {
+                            return ref (i18n, text);
+                        }
+                    };
                     
                     
                     // Render
                     wrapper.find ('.charts-placeholder').append (template_progress_chart.render (template_params));
-
-
+                    
+                    
+                    // Update name
+                    default_options.title.text = rubric.name;
+                    
+                    
                     // Render sample chart
                     new Chart (wrapper.find ('#' + chart_id), {
                         type: 'radar',
                         data: data,
                         defaultFontStyle: 14,
-                        options: {
-                            responsive: true,
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: rubric.name
-                            },
-                            scale: {
-                                ticks: {
-                                    beginAtZero: true,
-                                    min: 0,
-                                    max: 4
-                                }
-                            }
-                        }
+                        options: default_options,
+                        rubric: rubric
                     });
                     
                 });
@@ -224,6 +289,44 @@ define ([
         // Remove loading state
         $('body').removeClass ('loading-state');        
         
+    }
+    
+    
+    /**
+     * label_callback
+     *
+     * Allows to display the correct rating value and possible evidences
+     */
+    var label_callback = function (tooltipItem, data) {
+        
+        
+        /** @var dataset_index int */
+        var dataset_index = tooltipItem.datasetIndex;
+        
+        
+        /** @var label String */
+        var label = data.labels[tooltipItem.index];
+        
+        
+        /** @var rating Object */
+        var rating = data.datasets[dataset_index].rating;
+        
+        
+        /** @var rubric Object */
+        var rubric = data.datasets[dataset_index].rubric;
+        
+        
+        /** @var evidence String */
+        var evidence = rating.values[label].evidence;
+        
+        
+        /** @var score String */
+        var score = rubric.valorations[rubric.valorations.length - tooltipItem.yLabel].text;
+
+        
+        // Return 
+        return $.trim (score + ' ' + evidence) ;
+
     }
     
     

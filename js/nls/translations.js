@@ -20,7 +20,8 @@ define ({
             
             "message": {
                 "controller_not_allowed": "You are not allowed to be here. Please authenticate yourself.",
-                "controller_not_found": "Page not found"
+                "controller_not_found": "Page not found",
+                "indexed_db_not_supported": "Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available."
             },
             
             "controls": {
@@ -74,6 +75,9 @@ define ({
                             },
                             "export": {
                                 "text": "<span class='icon-left-big'></span> Export"
+                            },
+                            "assessment": {
+                                "text": "<span class='icon-edit'></span> Assessment"
                             }
                         }
                     }
@@ -104,10 +108,34 @@ define ({
                     
                     "messages": {
                         "no_file": "You need to attach one valid .csv to import",
-                        "success": "The file has been imported"
+                        "success": "%success% of %total% students were successfully added to '%group%'"
                     }
                 },
                 
+                "assessment": {
+                    
+                    "title": "Evaluation",
+                    
+                    "help": {
+                        "text": "<p>This tool is suggested to repeat once/twice a year in order to see student´s development.</p>"
+                    },
+                    "controls": {
+                        
+                        "name": {
+                            "label": "Please, introduce your name",
+                            "placeholder": "Please, introduce your name"
+                        },
+                        
+                        "email": {
+                            "label": "Please, introduce your email",
+                            "placeholder": "Please, introduce your email"
+                        },
+                        
+                        "submit": {
+                            "text": "Submit"
+                        }
+                    }
+                },
                 
                 "export": {
                     
@@ -140,12 +168,40 @@ define ({
                         "delete_projects": "Are you sure do you want to delete these projects?. This action cannot be undone",
                     },
                     
+                    "prompt": {
+                        "name": "Please, enter the new name for this project",
+                        "description": "Please, enter the new description for this project"
+                    },
+                    
+                    "messages": {
+                        "success": "The project has been updated",
+                        "ratings_attached": "Can't delete this project. There is ratings attached",
+                        "delete": "The project has been deleted"
+                    },
+                    
                     "controls": {
                         "create_project": {
-                            "text": "Create new project"
+                            "text": "&hellip; or create a new one"
+                        },
+                        "update_project": {
+                            "text": "Update this project"
                         },
                         "delete_project": {
                             "text": "Delete selected projects"
+                        },
+                        "project": {
+                            "label": "Search your project"
+                        },
+                        "name": {
+                            "text": "Name",
+                            "placeholder": "Please, enter the new of your project"
+                        },
+                        "description": {
+                            "text": "Description",
+                            "placeholder": "Please, write a short description about your project"
+                        },
+                        "submit": {
+                            "text": "Submit"
                         }
                     },
                     
@@ -177,10 +233,10 @@ define ({
                             "text": "Create subgroup"
                         },
                         "delete_group": {
-                            "text": "Delete selected groups"
+                            "text": "Delete group"
                         },
                         "delete_subgroup": {
-                            "text": "Delete selected subgroups"
+                            "text": "Delete subgroup"
                         }
                     },
                     
@@ -224,6 +280,7 @@ define ({
                     },
                     
                     "messages": {
+                        "success": "Done",
                         "no_student": "You must select a student",
                         "no_project": "You must select a project"
                     }

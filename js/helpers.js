@@ -48,7 +48,6 @@ define ([
             select.prop ('disabled', false).select2 ();
             
         });
-        
     }
     
     
@@ -63,19 +62,17 @@ define ([
         // Retrieve the groups
         db.getAllGroups ().then (function (groups) {
             
-            // Get qll groups
+            // Iterate over each group
             $.each (groups, function (index, group) {
             
-                // Append the optgroup
+                // Create a section within the select
                 select.append ($("<optgroup />").attr ('label', group.name));
                 
                 
-                // Get rubric
-                if (subgroup_id) {
-                    $.each (group.subgroups, function (index, subgroup) {
-                        subgroup.is_selected = subgroup.id = subgroup_id;
-                    });
-                }
+                // Set the is_selected item
+                $.each (group.subgroups, function (index, subgroup) {
+                    subgroup.is_selected = subgroup_id ? subgroup.id == subgroup_id : false;
+                });
                 
                 
                 // Iterate over the subgruoups
@@ -94,13 +91,54 @@ define ([
             select.prop ('disabled', false).select2 ();
             
         });
+    }
+    
+    
+    /**
+     * i18n_tpl
+     *
+     * @param object
+     */
+    var i18n_tpl = function (object) {
         
+        // If no object if provided, then create an object
+        if ( ! object) {
+            object = {};
+        }
+        
+        
+        // Attach to the object, the i18n variable
+        object['i18n'] = function () {
+            return function (text, render) {
+                return ref (i18n, text);
+            }
+        };
+        
+        
+        // Return the object
+        return object;
+
+    }
+    
+    
+    /**
+     * interpolate
+     *
+     * @param message String
+     * @param replacements Array
+     */
+    var interpolate = function (message, replacements) {
+        return message.replace (/%\w+%/g, function (all) {
+            return all in replacements ? replacements[all] : all;
+        });
     }
     
     
     // Return public API
     return {
         populate_select: populate_select,
-        populate_select_group: populate_select_group
+        populate_select_group: populate_select_group,
+        i18n_tpl: i18n_tpl,
+        interpolate: interpolate
     }
 }) ;

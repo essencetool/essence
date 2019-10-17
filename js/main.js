@@ -120,6 +120,14 @@ require ([
     'select2'
 ], function ($, config, db, i18n, vex) {
     
+    /** @var body DOM */
+    var body = $('body');
+    
+    
+    /** @var nav DOM */
+    var nav = $('nav');
+    
+    
     // Configure VEX
     // VEX is set in "window" to make this feature global
     window.vex.defaultOptions.className = 'vex-theme-plain';
@@ -137,18 +145,6 @@ require ([
     
     // Set base url
     $('.main-header').find ('a').attr ('href', config.base_url);
-
-    
-    // Create database
-    db.init ();
-    
-    
-    /** @var body DOM */
-    var body = $('body');
-    
-    
-    /** @var nav DOM */
-    var nav = $('nav');
     
     
     /**
@@ -162,75 +158,17 @@ require ([
 
     var main_controller = function () {
         
-        // Take parameters
+        /** @var hash String */
         var hash = getHash ();
+        
+        
+        /** @var params Array */
         var params = getParams ();
         
-
         
-        // The user has a token already
-        if (localStorage.token && config.protected_controllers.indexOf (hash) > -1) {
-            
-            // Renew token
-            api.get ('renew-token', {}, function (r) {
-                if (r.ok) {
-                    
-                    // Keep a new copy of the renewd token
-                    localStorage.token = r.data.token;
-                    
-                    
-                    // Call the controller according to the hash
-                    route_handler (hash, params);
-                    
-                } else {
-                    
-                    // Notify user and redirect to logout
-                    vex.dialog.alert ({
-                        message: r.data.message,
-                        callback: function () {
-                            window.location.hash = 'logout';
-                        }
-                    });
-                }
-                
-            // Error handling
-            }, function (r) {
-                window.location.hash = 'logout';
-            });
-        }
+        // Call the controller according to the hash
+        route_handler (hash, params);
         
-        
-        // The user has a token already but it is accessing a public part
-        if (localStorage.token && config.protected_controllers.indexOf (hash) == -1) {
-            route_handler (hash, params);
-        }
-        
-        
-        
-        // Basic credentials checking. In this step, we only 
-        // check in the client that the credentials exists
-        // to notifiy soon to the client and redirect it 
-        // to the login page
-        if ( ! localStorage.token) {
-            
-            // Blacklist
-            if (config.protected_controllers.indexOf (hash) > -1) {
-                
-                // Notify user and redirect to logout
-                vex.dialog.alert ({
-                    message: i18n.common.message.controller_not_allowed,
-                    callback: function () {
-                        window.location.hash = 'logout';
-                    }
-                });
-                
-            } else {
-                
-                // Call the controller according to the hash
-                route_handler (hash, params);
-
-            }
-        }
     }
     
     
@@ -244,7 +182,7 @@ require ([
      */
     var route_handler = function (hash, params) {
         
-        // Select the default option
+        // Select the default option according to the hash
         nav
             .find ('.pure-menu-item')
                 .removeClass ('pure-menu-selected')
@@ -253,10 +191,6 @@ require ([
                         .closest ('li')
                             .addClass ('pure-menu-selected')
         ;
-        
-        
-        // Remove menu state
-        body.removeClass ('state-menu');
         
         
         // Routes. According to the hash call individual controllers
@@ -307,6 +241,12 @@ require ([
                 });
                 break;
                 
+            case 'assessment':
+                require (['controllers/assessment'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
                 window.location = '#projects' ;
@@ -314,6 +254,10 @@ require ([
                 break;
                 
         }
+        
+        
+        // Remove menu state
+        body.removeClass ('state-menu');
     }
     
     
@@ -323,15 +267,22 @@ require ([
     });
     
     
-    // Handle redirections. Each time the hash changes, we need
-    // to perform a call to the main controller to decide in which
-    // controller has to delegate to.
-    $(window).on ('hashchange', function() {
-        main_controller () ;
-    });
-    
+    // Get database and ensure indexed db is available
+    db.init ().then (function () {
+        
+        // Handle redirections. Each time the hash changes, we need
+        // to perform a call to the main controller to decide in which
+        // controller has to delegate to.
+        $(window).on ('hashchange', function() {
+            main_controller ();
+        });
+        
 
-    // First run
-    main_controller () ;
-    
+        // First run
+        main_controller ();
+        
+    }).catch (function (message) {
+        vex.dialog.alert (message);
+    });
+
 });

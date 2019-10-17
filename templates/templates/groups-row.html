@@ -1,37 +1,34 @@
 <li>
-    <label>
-        <input data-id="{{ id }}" type="checkbox" name="groups" id="groups_{{ id }}" />
-         {{ name }}
-         
-        <button data-id="{{ id }}" type="button" class="edit-action modify-group-name-action">
-            <span class="icon-edit"></span>
-        </button>
-        
-        <button type="button" data-group="{{ id }}" disabled class="edit-action delete-subgroup-action pure-button">
-            <span class="icon-cancel"></span> 
-        </button>
-         
-     </label>   
+    <span>{{ name }}</span>
      
-     <ul>
+    <!-- Group actions -->
+    <button type="button" data-id="{{ id }}" class="edit-action modify-group-name-action">
+        <span class="icon-edit"></span>
+    </button>
+    
+    <button type="button" data-group="{{ id }}" class="edit-action create-subgroup-action">
+        +
+    </button>
+    
+    <button type="button" data-id="{{ id }}" class="edit-action delete-group-action" title="{{# i18n }} frontend.pages.groups.controls.delete_group.text {{/ i18n }}">
+        <span class="icon-cancel"></span> 
+    </button>
+    
+    
+    <!-- Subgroups -->
+    <ul>
         {{# subgroups }}
             <li>
-                <label>
-                    <input 
-                        data-id="{{ id }}" 
-                        type="checkbox" 
-                        name="subgroups" 
-                        data-group="{{ group_id }}" 
-                        id="subgroups_{{ id }}" /> {{ name }}
-                </label><button data-id="{{ id }}" type="button" class="edit-action modify-subgroup-name-action"><span class="icon-edit"></span></button>
+                <span>{{ name }}</span>
+                
+                <!-- Actions -->
+                <button type="button" data-id="{{ id }}" class="edit-action modify-subgroup-name-action">
+                    <span class="icon-edit"></span>
+                </button>
+                <button type="button" data-id="{{ id }}" class="edit-action delete-subgroup-action">
+                    <span class="icon-cancel"></span> 
+                </button>
             </li>
         {{/ subgroups }}
     </ul>
-   
-    <div class="rating-panel-actions">
-        <button type="button" data-group="{{ id }}" class="create-subgroup-action pure-button pure-button-primary">
-            {{# i18n }} frontend.pages.groups.controls.create_subgroup.text {{/ i18n }}
-        </button>
-
-    </div>
 </li>

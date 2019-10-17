@@ -1,10 +1,11 @@
 #wrapper {
+    display: block;
+    padding: 0 1rem 0 1rem;
+    border: none;
+    margin: 0;
     background-color: white;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 0 1rem 0 1rem;
-    border: none;
-    margin: 0 auto;
 }
 
 body.state-map #wrapper {
@@ -28,15 +29,19 @@ body.state-map #wrapper {
     background: none;
     color: blue;
     line-height: 1;
-    visibility: hidden;
 }
 
-*:hover > .edit-action {
-    visibility: initial;
-}
 
-.main-header {
-    
+
+.pure-form input,
+.pure-form select, 
+.pure-form textarea,
+.pure-g,
+.select2-container,
+.rating-panel-actions,
+.groups-table-placeholder,
+.help {
+    max-width: 62rem;
 }
 
 footer {
@@ -73,5 +78,27 @@ main h1 {
     display: inline-block;
     vertical-align: top;
     margin: 0 1.5rem 1.5rem 0;
-    width: 31%;
+    width: 30%;
+}
+
+canvas {
+    max-height: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+
+/** Mouse devices */
+@media (hover: hover) and (pointer: fine) {
+    .pure-menu-main:hover {
+        left: 0;
+    }  
+    
+    .edit-action {
+        visibility: hidden;
+    }
+    
+    *:hover > .edit-action {
+        visibility: initial;
+    } 
 }

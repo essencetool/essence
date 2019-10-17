@@ -69,7 +69,7 @@
         {"text": "Unacceptable", "id": 4, "score": 1}
     ],
     "rows": [{
-        "key": "future-number-of-ideas",
+        "key": "number",
         "name": "Number of ideas for the future imagined",
         "values": [
             {"id": 1, "text": "Always deliver much more new ideas she/he needs on each moment."},
@@ -78,7 +78,7 @@
             {"id": 4, "text": "Cannot imagine enough or even any new ideas."}
         ]
     }, {
-        "key": "future-easy-to-imagine",
+        "key": "imagination",
         "name": "Easy to imagine future ideas",
         "values": [
             {"id": 1, "text": "Fast and natural delivering of new ideas."},
@@ -87,7 +87,7 @@
             {"id": 4, "text": "Painful, slow and unsuccessful process of delivering new ideas"}
         ]
     }, {
-        "key": "future-novelty-of-ideas",
+        "key": "novelty",
         "name": "Novelty of ideas imagined",
         "values": [
             {"id": 1, "text": "Ideas proposed are completely new and unknown."},
@@ -96,7 +96,7 @@
             {"id": 4, "text": "Cannot imagine any new ideas."}
         ]
     }, {
-        "key": "think-strategical-argumentation",
+        "key": "argumentation",
         "name": "Argumentation of ideas",
         "values": [
             {"id": 1, "text": "She/he arguments, debate and defends its ideas clearly."},
@@ -120,7 +120,7 @@
         {"text": "Unacceptable", "id": 4, "score": 1}
     ],
     "rows": [{
-        "key": "awareness-on-its-environment",
+        "key": "awareness",
         "name": "[SELF-AWARENESS] Awareness of everything on its environment",
         "values": [
             {"id": 1, "text": "He/ She understands the overall picture and pays attention to the details of what is around him/her, not only to the elements he/she finds, but to the complex and wide relationships between those elements."},
@@ -129,7 +129,7 @@
             {"id": 4, "text": "He pays no attention to surrounding, shows no interest in what's around him/her."}
         ]
     }, {
-        "key": "consciousness-of-what-is-happening",
+        "key": "consciousness",
         "name": "[SELF-AWARENESS] Consciousness of what is happening.",
         "values": [
             {"id": 1, "text": "Describes in detail the situation in which he finds himself and understands in a complex way the processes that happen in that situation. Pay close attention to details."},
@@ -138,7 +138,7 @@
             {"id": 4, "text": "She/he doesn't realize what's going on."}
         ]
     }, {
-        "key": "consciousness-about-the-image-she-he-projects.",
+        "key": "own-image",
         "name": "[SELF-AWARENESS] Consciousness about the image she/he projects.",
         "values": [
             {"id": 1, "text": "She/he knows what image he projects on himself and in it he includes not only what he shows, what she/he does, but also the relationships and people around him/her."},
@@ -147,7 +147,7 @@
             {"id": 4, "text": "She/He has no idea what image she/he projects to others."}
         ]
     }, {
-        "key": "concern-about-what-other-people-think-of-him-her",
+        "key": "third-person-beliefs",
         "name": "[SELF-AWARENESS] Concern about what other people think of him/her",
         "values": [
             {"id": 1, "text": "She/he is aware of the image she/he projects of her/himself. When getting constructive feedback she/he can make conscious change that image."},
@@ -156,7 +156,7 @@
             {"id": 4, "text": "She/He pays no attention to what imagen she/he projects to others. At the opposite extreme, everything she/he does is done by thinking about what others think of him/her."}
         ]
     }, {
-        "key": "consciousness-of-its-inner-feelings",
+        "key": "inner-feelings",
         "name": "[SELF-AWARENESS] Consciousness of its inner feelings.",
         "values": [
             {"id": 1, "text": "Knows  his/her own feelings/preferences and their causes and expresses them assertively."},
@@ -165,7 +165,7 @@
             {"id": 4, "text": "She/he doesn’t understand or express its own feelings/preferences."}
         ]
     }, {
-        "key": "confidence-on-having-enough-persistence-to-achieve-goals",
+        "key": "persistence",
         "name": "[SELF-EFFICACY] Confidence on having enough persistence to achieve goals. ",
         "values": [
             {"id": 1, "text": "She/he is convinced that can persist until achieve its goals, even if they are big or taught."},
@@ -174,7 +174,7 @@
             {"id": 4, "text": "It’s convinced that she/he cannot persist until achieve its goals."}
         ]
     }, {
-        "key": "confidence-on-handle-obstacles-and-overcome-them",
+        "key": "confidence",
         "name": "[SELF-EFFICACY] Confidence on handle obstacles and overcome them.",
         "values": [
             {"id": 1, "text": "She/he is convinced that can handle and overcome obstacles, even if they are unexpected or difficult."},
@@ -183,7 +183,7 @@
             {"id": 4, "text": "It’s convinced that she/he cannot handle any obstacle. "}
         ]
     }, {
-        "key": "confidence-on-overcoming-opponents",
+        "key": "overcoming",
         "name": "[SELF-EFFICACY] Confidence on overcoming opponents",
         "values": [
             {"id": 1, "text": "She/he is convinced that can overcome any opponent she/he could have."},
@@ -192,7 +192,7 @@
             {"id": 4, "text": "It’s convinced that she/he cannot overcome any opponent."}
         ]
     }, {
-        "key": "confidence-on-solving-difficult-problems",
+        "key": "decisive",
         "name": "[SELF-EFFICACY] Confidence on solving difficult problems",
         "values": [
             {"id": 1, "text": "She/he is convinced that can solve any problem or difficulty she/he has, even if they are unexpected or taught."},

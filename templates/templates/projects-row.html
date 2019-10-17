@@ -1,11 +1,24 @@
-<tr>
-    <td><input type="checkbox" name="projects" id="projects_{{ id }}" /></td>
-    <td>
-        {{ name }} 
-        <button data-id="{{ id }}" type="button" class="edit-action modify-name-action"><span class="icon-edit"></span></button>
-    </td>
-    <td>
-        {{ description }}
-        <button data-id="{{ id }}" type="button" class="edit-action modify-description-action"><span class="icon-edit"></span></button>
-    </td>
-</tr>
+<!-- Hidden fields -->
+<input type="hidden" name="id" value="{{ id }}" />
+
+
+<!-- Name -->
+<label>
+    <div>{{# i18n }} frontend.pages.projects.controls.name.label {{/ i18n }}</div>
+    <input
+        type="text" 
+        name="name" 
+        value="{{ name }}" 
+        placeholder="{{# i18n }} frontend.pages.projects.controls.name.placeholder {{/ i18n }}" />
+</label>
+
+
+<!-- Description -->
+<label>
+    <div>{{# i18n }} frontend.pages.projects.controls.description.label {{/ i18n }}</div>
+    <textarea 
+        name="description" 
+        placeholder="{{# i18n }} frontend.pages.projects.controls.description.placeholder {{/ i18n }}"
+        rows="10">{{ description }}</textarea>
+</label>
+

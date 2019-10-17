@@ -10,9 +10,10 @@ define ([
     'hogan',
     'config', 
     'db',
+    'helpers',
     'i18n!nls/translations',
     'jquery-csv'
-], function (tpl, $, hogan, config, db, i18n) {
+], function (tpl, $, hogan, config, db, helpers, i18n) {
 
     /**
      * index
@@ -45,36 +46,7 @@ define ([
         
         
         // Populate groups
-        db.getAllGroups ().then (function (groups) {
-            
-            /** @var select DOM */
-            var select = wrapper.find ('[name="group"]');
-            
-            
-            // Iterate over the groups
-            $.each (groups, function (index, group) {
-                
-                // Append the optgroup
-                select.append ($("<optgroup />").attr ('label', group.name));
-                
-                
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    select
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .text (subgroup.name)
-                            );
-                });
-                
-            });
-            
-            
-            // Render select2 field
-            select.prop ('disabled', false).select2 ();
-            
-        });
+        helpers.populate_select_group (wrapper.find ('[name="group"]'));
         
         
         // Handle form
@@ -96,67 +68,137 @@ define ([
         // Handle submit
         form.submit (function (e) {
             
-            /** @var group_id int */
-            var group_id = form.find ('[name="group"]').val ();
+            // Prevent default action
+            e.preventDefault ();
             
             
-            /** @var students Array */
-            var students = form.find ('[name="students"]').val ();
+            /** @var group_id int The group to store the students */
+            var group_id = form.find ('[name="group"]').val () * 1;
+            
+            
+            /** @var students_csv Array Get the result for the file */
+            var students_csv = form.find ('[name="students"]').val ();
+            
+            
+            /** @var re RegExp To check the validity of the emails */
+            var re = /\S+@\S+\.\S+/;
+            
+            
+            /** @var students Array Store the students to insert */
+            var students = [];
+            
+            
+            /** 
+             * on_complete_callback
+             *
+             * This function will be called when all the students were 
+             * imported
+             */
+            var on_complete_callback = function (total_lines, total_imported) {
+                
+                /** @var messate String */
+                var message = helpers.interpolate (
+                    i18n.frontend.pages.import_students.messages.success, {
+                        '%success%': total_imported,
+                        '%total%': total_lines,
+                        '%group%': form.find ('[name="group"]').select2 ('data')[0].text
+                    }
+                );
+                
+                
+                // Notify the user
+                vex.dialog.alert ({
+                    message: message,
+                    callback: function () {
+                        window.location.hash = 'students/' + group_id;
+                    }
+                    
+                });
+            }
             
             
             // Check the validity of the students
-            if ( ! students) {
+            if ( ! students_csv) {
                 vex.dialog.alert (i18n.frontend.pages.import_students.messages.no_file);
                 return false;
             }
             
             
             // Transform to an array
-            students = $.csv.toArrays (students);
+            students_csv = $.csv.toArrays (students_csv);
             
+            
+            /** @var total_lines int */
+            var total_lines = students_csv.length - 1;
+            
+            
+            /** @var total_imported int */
+            var total_imported = 0;
             
             
             // For each student... 
-            $.each (students, function (index, student) {
+            $.each (students_csv, function (index, student_raw) {
                 
-                // Avoid title
+                // Avoid line 1 with the headers
                 if ( ! index) {
                     return true;
                 }
                 
                 
-                // Attach student
-                db.add ('students', {
-                    name: student[0],
-                    email: student[1],
+                /** @var name String The name is in the first column */
+                var name = student_raw[0];
+                
+                
+                /** @var email String The email is in the second column */
+                var email = student_raw[1];
+                
+                
+                // Validation. Students must have a valid email and name
+                // If not, skip to the next line
+                if ( ! (name && email && re.test (email))) {
+                    return true;
+                }
+                
+                
+                // Create the student and attach to students array
+                students.push ({
+                    name: name,
+                    email: email,
                     groups: [group_id],
-                }, {
-                    key: 'email',
-                    callback: function (student) {
-                        
-                        // Attach the new group
-                        student.groups.push (group_id);
-                        
-                        
-                        // Return the student
-                        return student;
-                    }
                 });
             });
             
             
-            // Notify the user
-            vex.dialog.alert (i18n.frontend.pages.import_students.messages.success);
+            // Update successful 
+            total_imported = students.length;
             
             
-            // Reset the form
-            form.trigger ("reset");
-            form.find ('[name="students"]').val ('');
-            
-            
-            return false;
+            // In case we successfully create students, store them
+            // in the database
+            if (students.length) db.addItems ('students', students, 'email').then (function (duplicate_students) {
+                    
+                // Update the already existent students by including the 
+                // new group
+                $.each (duplicate_students, function (index, student) {
+                    if (student.groups.indexOf (group_id) === -1) {
+                        student.groups.push (group_id);
+                    }
+                });
+                
+                
+                // Update group
+                if (duplicate_students.length) {
+                    db.updateItems ('students', duplicate_students).then (function () {
+                        on_complete_callback (total_lines, total_imported);
+                    });
+                } else {
+                    on_complete_callback (total_lines, total_imported);
+                }
+                
+            }).catch (function (e) {
+                console.log (e);
+            });
         });
-        
         
         
         // Remove loading state

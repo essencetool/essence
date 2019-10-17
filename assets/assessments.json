@@ -1,0 +1,62 @@
+[{
+    "id": 1,
+    "name": "Vision",
+    "description": "<p>Here there is six questions concerning your inner vision</p>",
+    "rubric_id": 2,
+    
+    "valorations": [
+        {"text": "Yes", "id": 1, "score": 2},
+        {"text": "Yes, to a certain degree", "id": 2, "score": 1},
+        {"text": "No, not at all", "id": 3, "score": 0}
+    ],
+    
+    "questions": [
+        {"text": "I have a dreamjob."},
+        {"text": "I have a plan how to achieve my dreamjob."},
+        {"text": "I can easily come up with new ideas"},
+        {"text": "I can easily get others excited about my ideas"},
+        {"text": "I can build an inspiring vision (idea)"},
+        {"text": "I can use my vision to guide others to convince."}
+    ]
+}, {
+    "id": 2,
+    "name": "Self awareness and self-efficacy",
+    "description": "<p>Here there is six questions concerning how you percieve your self-efficacy</p>",
+    "rubric_id": 1,
+    
+    "valorations": [
+        {"text": "Yes", "id": 1, "score": 2},
+        {"text": "Yes, to a certain degree", "id": 2, "score": 1},
+        {"text": "No, not at all", "id": 3, "score": 0}
+    ],
+    
+    "questions": [
+        {"text": "I am aware of my strengthens"},
+        {"text": "I know how to improve my weaknesses"},
+        {"text": "It is easy for me to stick to my aims"},
+        {"text": "It is easy for me to accomplish my goals."},
+        {"text": "I can recognize real life problems that needs to be solved"},
+        {"text": "When I am stuck with a problem I can find a solution."},
+        {"text": "If I try hard enough I can always achieve my dreams"}
+    ]
+}, {
+    "id": 3,
+    "name": "Working with others",
+    "description": "<p>These questions are concerning how do you work with other people. This includes groups and other groups</p>",
+    "rubric_id": 3,
+    
+    "valorations": [
+        {"text": "Yes", "id": 1, "score": 2},
+        {"text": "Yes, to a certain degree", "id": 2, "score": 1},
+        {"text": "No, not at all", "id": 3, "score": 0}
+    ],
+    
+    "questions": [
+        {"text": "I am a good team player (acknowledging others ideas)"},
+        {"text": "I am a good team builder"},
+        {"text": "I can create a specific team to solve specific problems"},
+        {"text": "When I have a problem I know whom to contact"},
+        {"text": "I can manage teams when finding new solutions"},
+        {"text": "I can solve conflicts in teams"}
+    ]
+}]
