@@ -57,11 +57,14 @@
                         <li>
                             <label>
                                 <input 
+                                    required
                                     type="radio" 
+                                    id="assessment_{{ assessment_id }}_{{ question_index }}_{{ score }}"
+                                    name="assessment_{{ assessment_id }}_{{ question_index }}" 
+                                    value="{{ score }}" 
                                     data-assessment="{{ assessment_id }}"
                                     data-question="{{ question_index }}"
-                                    name="assessment_{{ assessment_id }}_{{ question_index }}" 
-                                    value="{{ score }}" />
+                                 />
                                 <span>{{ text }}</span>
                             </label>
                         </li>

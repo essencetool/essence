@@ -204,12 +204,74 @@ define ([
                 click: function ($vexContent, event) {
                     
                     /** @var markdown String */
-                    var markdown = '';
+                    var markdown = new Date ().toString () + "\r\n" + name + " <" + email + ">\r\n".repeat (2);
                     
                     
                     // Get content
                     $(complete_feedback).filter ('h2, p').each (function () {
-                        markdown += $(this).text () + "\r\n";
+                        
+                        /** @var tag jQuery */
+                        var tag = $(this);
+                        
+                        
+                        /** @var text String */
+                        var text = tag.text ();
+                        
+                        
+                        /** @var separator String */
+                        var separator = tag.is ('p') ? "\r\n".repeat (2) : ("\r\n" + "-".repeat (80) + "\r\n");
+                        
+                        
+                        // Attach text
+                        markdown += text + separator;
+                    
+                    });
+                    
+                    
+                    // Include the list of the questions
+                    markdown += "\r\n";
+                    
+                    
+                    // Get the assessments in order
+                    $.each (assessments, function (index, assessment) {
+                        
+                        // Include the name of the assessment
+                        markdown += assessment.name + "\r\n" + "-".repeat (80) + "\r\n";
+                        
+                        
+                        // Get all the questions of this assessment
+                        $.each (assessment.questions, function (index_question, question) {
+                            
+                            // Include the name of the question
+                            markdown += (index_question + 1) + ") " + question.text + "\r\n";
+                            
+                            
+                            // Include all the possibilities
+                            $.each (assessment.valorations, function (index_valoration, valoration) {
+                                
+                                /** @var field_id String */
+                                var field_id = 
+                                    "#assessment_" 
+                                    + assessment.id + "_" 
+                                    + index_question + "_" 
+                                    + valoration.score
+                                ;
+                                
+                                
+                                /** @var is_checked String */
+                                var is_checked = form.find (field_id).is (':checked') ? "X" : " ";
+                                
+                                
+                                // Include question
+                                markdown += "[" + is_checked + "] " + valoration.text + " ".repeat (4);
+                                
+                            });
+                            
+                            
+                            // Next line
+                            markdown += "\r\n".repeat (2);
+                            
+                        });
                     });
                     
                     
@@ -218,7 +280,7 @@ define ([
                     
                     
                     // Close Vex
-                    vex.close ();
+                    vex.close ("1"); 
                 }
             };
             

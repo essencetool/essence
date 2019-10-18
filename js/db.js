@@ -760,9 +760,9 @@ define ([
             // Get student by ID
             getByID ('students', id).then (function (student) {
 
-                // No student
+                // No student? Resolve as the same way as "getById" does
                 if ( ! student) {
-                    reject ();
+                    resolve ();
                     return;
                 }
                 

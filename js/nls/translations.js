@@ -268,7 +268,7 @@ define ({
                             "label": "(2) Select the rubric"
                         },
                         "student": {
-                            "label": "(3) Select the student to rate"
+                            "label": "(3) Select a student or a group to rate"
                         },
                        "group": {
                             "label": "Filter students by group"

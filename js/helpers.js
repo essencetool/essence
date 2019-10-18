@@ -58,38 +58,47 @@ define ([
      * @param subgroup_id int
      */
     var populate_select_group = function (select, subgroup_id) {
+        
+        // Return promise
+        return new Promise ((resolve, reject) => {
 
-        // Retrieve the groups
-        db.getAllGroups ().then (function (groups) {
-            
-            // Iterate over each group
-            $.each (groups, function (index, group) {
-            
-                // Create a section within the select
-                select.append ($("<optgroup />").attr ('label', group.name));
+            // Retrieve the groups
+            db.getAllGroups ().then (function (groups) {
                 
+                // Iterate over each group
+                $.each (groups, function (index, group) {
                 
-                // Set the is_selected item
-                $.each (group.subgroups, function (index, subgroup) {
-                    subgroup.is_selected = subgroup_id ? subgroup.id == subgroup_id : false;
+                    // Create a section within the select
+                    select.append ($("<optgroup />").attr ('label', group.name));
+                    
+                    
+                    // Set the is_selected item
+                    $.each (group.subgroups, function (index, subgroup) {
+                        subgroup.is_selected = subgroup_id ? subgroup.id == subgroup_id : false;
+                    });
+                    
+                    
+                    // Iterate over the subgruoups
+                    $.each (group.subgroups, function (index_subgroup, subgroup) {
+                        select
+                            .find ('optgroup:last-child')
+                                .append ($("<option />")
+                                    .attr ('value', subgroup.id)
+                                    .attr ('selected', subgroup.is_selected)
+                                    .text (subgroup.name)
+                                );
+                    });
                 });
                 
                 
-                // Iterate over the subgruoups
-                $.each (group.subgroups, function (index_subgroup, subgroup) {
-                    select
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', subgroup.id)
-                                .attr ('selected', subgroup.is_selected)
-                                .text (subgroup.name)
-                            );
-                });
+                // Remove disable
+                select.prop ('disabled', false).select2 ();
                 
+                
+                // Notify end
+                resolve ();
+            
             });
-
-            select.prop ('disabled', false).select2 ();
-            
         });
     }
     
