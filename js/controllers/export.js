@@ -10,9 +10,10 @@ define ([
     'hogan',
     'config', 
     'db', 
+    'helpers',
     'i18n!nls/translations',
     'jquery-csv'
-], function (tpl, $, hogan, config, db, i18n) {
+], function (tpl, $, hogan, config, db, helpers, i18n) {
 
     /**
      * index
@@ -32,13 +33,7 @@ define ([
         
         
         /** @var template_params Object */
-        var template_params = {};
-        template_params['i18n'] = function () {
-            return function (text, render) {
-                return ref (i18n, text);
-            }
-        };
-        
+        var template_params = helpers.i18n_tpl ();
         
         
         // Render
@@ -60,17 +55,16 @@ define ([
             // Get all items from the database
             db.getAllItems ().then (function (response) {
                 
+                /** @var filename String */
+                var filename = 'essence-' + new Date ().getTime () + '.json';
+                
+                
                 /** @var database String */
                 var database = JSON.stringify (response, null, 2);
                 
-                var element = document.createElement ('a');
-                element.setAttribute ('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent (database));
-                element.setAttribute ('download', 'essence-' + new Date ().getTime () + '.json');
-                element.style.display = 'none';
-                document.body.appendChild (element);
-                element.click ();
-
-                document.body.removeChild(element);
+                
+                // Download
+                helpers.download_file (filename, database);
                 
                 
                 // Notify the user

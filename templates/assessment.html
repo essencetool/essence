@@ -38,7 +38,41 @@
 
     
     <!-- Placeholder -->
-    <section class="assessment-ph"></section>
+    <section class="assessment-ph">
+    
+        {{# assessments }}
+        <article class="assessment-item">
+        
+            <!-- Title -->
+            <h3>{{ name }}</h3>
+            
+            
+            <!-- List of question -->
+            <ul class="assessment-item-questions">
+            {{# questions }}
+                <li>
+                    <span class="assessment-item-questions-text">{{ text }}</span>
+                    <ul class="answers">
+                        {{# valorations }}
+                        <li>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    data-assessment="{{ assessment_id }}"
+                                    data-question="{{ question_index }}"
+                                    name="assessment_{{ assessment_id }}_{{ question_index }}" 
+                                    value="{{ score }}" />
+                                <span>{{ text }}</span>
+                            </label>
+                        </li>
+                        {{/ valorations }}
+                    </ul>
+                </li>
+            {{/ questions }}
+            </ul>
+        </article>
+        {{/ assessments }}
+    </section>
     
     
     <!-- Actions -->

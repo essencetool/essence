@@ -14,7 +14,8 @@ define ([
     'db',
     'helpers',
     'i18n!nls/translations',
-    'chartjs'
+    'chartjs',
+    'jquery-csv'
 ], function (tpl, tpl_progress_chart, tpl_student_row, $, hogan, config, db, helpers, i18n, chartjs) {
 
     /** @var student_id int */
@@ -46,11 +47,6 @@ define ([
                 max: 4,
                 stepSize: 1,
                 fontSize: 16
-            }
-        },
-        tooltips: {
-            callbacks: {
-                label: label_callback
             }
         }
     };
@@ -94,11 +90,7 @@ define ([
     var render = function (student) {
         
         // Include i18n
-        student['i18n'] = function () {
-            return function (text, render) {
-                return ref (i18n, text);
-            }
-        };
+        student = helpers.i18n_tpl (student);
         
     
         /** @var wrapper DOM zero element */
@@ -107,24 +99,25 @@ define ([
         
         /** @var template TPL */
         var template = hogan.compile (tpl);
+        
+        
+        /** @var template_progress_chart TPL */
         var template_progress_chart = hogan.compile (tpl_progress_chart);
+        
+        
+        /** @var template_student_row TPL */
         var template_student_row = hogan.compile (tpl_student_row);
         
         
         /** @var template_params Object */
-        var template_params = {};
-        template_params['i18n'] = function () {
-            return function (text, render) {
-                return ref (i18n, text);
-            }
-        };
+        var template_params = helpers.i18n_tpl ();
         
         
         // Render
         wrapper.html (template.render (template_params));
         
         
-        // Append
+        // Render the student box
         wrapper.find ('.student-placeholder').html (template_student_row.render (student));
 
         
@@ -133,7 +126,7 @@ define ([
         helpers.populate_select (wrapper.find ('[name="rubric"]'), 'rubrics', rubric_id); 
         
         
-        // Get rubrics
+        // Get all available rubrics
         db.getAll ('rubrics').then (function (rubrics) {
             
             // Get each rubric
@@ -206,16 +199,27 @@ define ([
                         
                         /** @var values Array */
                         var values = [];
+                        
+                        
+                        // Populate values
                         $.each (rating.values, function (key, result) {
-                            values.push (result.value * 1); 
+                            
+                            /** @var score int Search for the real score based on the ID */
+                            var score = rubric.valorations.find (x => x.id === result.value * 1).score;
+                            
+                            
+                            // Attach to the group
+                            values.push (score * 1); 
                         });
                         
                         
-                        /** @var opacity */
+                        /** @var opacity float */
                         var opacity = .5 + ((1 / ratings.length) * index);
                         
                         
-                        console.log ('rgba(' + rubric.color.join (',') + ', ' + opacity + ')');
+                        /** @var rgba String */
+                        var rgba = 'rgba(' + rubric.color.join (',') + ', ' + opacity + ')';
+                        
                         
                         // Create a new dataset
                         data.datasets.push ({
@@ -223,7 +227,7 @@ define ([
                             rating: rating, 
                             label: new Date (rating.created).toUTCString(),
                             data: values,
-                            backgroundColor: 'rgba(' + rubric.color.join (',') + ', ' + opacity + ')',
+                            backgroundColor: rgba,
                         });
 
                     });
@@ -240,39 +244,103 @@ define ([
                     
                     
                     /** @var template_params Object */
-                    var template_params = {
+                    var template_params = helpers.i18n_tpl ({
                         id: chart_id,
                         name: rubric.name,
                         ratings: filtered_ratings
-                    };
-                    
-                    
-                    template_params['i18n'] = function () {
-                        return function (text, render) {
-                            return ref (i18n, text);
-                        }
-                    };
+                    });
                     
                     
                     // Render
                     wrapper.find ('.charts-placeholder').append (template_progress_chart.render (template_params));
                     
                     
-                    // Update name
-                    default_options.title.text = rubric.name;
+                    /** @var options Object Create a copy of default options for us */
+                    var options = jQuery.extend (true, {}, default_options);
                     
                     
-                    // Render sample chart
+                    // Update metadata of the options
+                    options.title.text = rubric.name;
+                    options.tooltips = {
+                        callbacks: {
+                            label: label_callback
+                        }
+                    };
+                    
+                    
+                    // Render chart
                     new Chart (wrapper.find ('#' + chart_id), {
                         type: 'radar',
                         data: data,
-                        defaultFontStyle: 14,
-                        options: default_options,
+                        options: options,
                         rubric: rubric
                     });
                     
                 });
             });
+        });
+        
+        
+        /** 
+         * export-progress-action
+         */
+        wrapper.find ('.export-progress-action').click (function (e) {
+            
+            /** @var lines Array */
+            var lines = [];
+            
+            
+            // Iterate over rubrics
+            wrapper.find ('.progress-rubric').each (function () {
+            
+                /** @var rubric jQuery */
+                var rubric = $(this);
+                
+                
+                // Attach rubric name
+                lines.push ([$.trim ($(this).find ('h2').text  ())]);
+               
+                
+                // Look for ratings
+                rubric.find ('.progress-ratings > li').each (function () {
+                    
+                    /** @var ratings jQuery */
+                    var ratings = $(this);
+                    
+                    
+                    // Attach lines
+                    lines.push ([$.trim (ratings.find ('h3').html ())]);
+                    
+                    
+                    // Get every rating
+                    ratings.find ('li').each (function () {
+                        
+                        /** @var item jQuery */
+                        var item = $(this);
+                        
+                        
+                        // Attach
+                        lines.push ([
+                            $.trim (item.find ('.key').html ()), 
+                            $.trim (item.find ('.value').html ())
+                        ]);
+                        
+                    });
+               });
+            });
+            
+            
+            /** @var filename String */
+            var filename = student.email + '-' + new Date ().getTime () + '.csv';
+            
+            
+            /** @var csv Array */
+            var csv = $.csv.fromArrays (lines);
+            
+            
+            // Download
+            helpers.download_file (filename, csv);
+            
         });
         
         
@@ -298,7 +366,6 @@ define ([
      * Allows to display the correct rating value and possible evidences
      */
     var label_callback = function (tooltipItem, data) {
-        
         
         /** @var dataset_index int */
         var dataset_index = tooltipItem.datasetIndex;

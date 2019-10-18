@@ -323,6 +323,9 @@ define ({
                         },
                         "rubric": {
                             "label": "Filter by rubric"
+                        },
+                        "export": {
+                            "text": "Export results"
                         }
                     },
                     

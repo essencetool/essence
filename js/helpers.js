@@ -134,11 +134,39 @@ define ([
     }
     
     
+    /**
+     * download_file
+     *
+     * @param filename String
+     * @param filename String
+     */
+    var download_file = function (filename, content) {
+
+        /** @var element String */
+        var element = document.createElement ('a');
+        
+        
+        // Set attributes
+        element.setAttribute ('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent (content));
+        element.setAttribute ('download', filename);
+        element.style.display = 'none';
+        
+        
+        // Attach, download and remove
+        document.body.appendChild (element);
+        element.click ();
+
+        document.body.removeChild (element);
+        
+    }
+    
+    
     // Return public API
     return {
         populate_select: populate_select,
         populate_select_group: populate_select_group,
         i18n_tpl: i18n_tpl,
-        interpolate: interpolate
+        interpolate: interpolate,
+        download_file: download_file
     }
 }) ;

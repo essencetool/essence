@@ -6,14 +6,17 @@
 
 define ([
     'text!templatePath/assessment.html',
-    'text!templatePath/templates/assessment-item.html',
     'jquery', 
     'hogan',
     'config', 
     'db',
     'helpers',
     'i18n!nls/translations',
-], function (tpl, tpl_assessment, $, hogan, config, db, helpers, i18n) {
+], function (tpl, $, hogan, config, db, helpers, i18n) {
+    
+    /** @var wrapper DOM */
+    var wrapper;
+    
 
     /**
      * index
@@ -23,31 +26,6 @@ define ([
      * @package EssenceTool
      */
     var index = function (params) {
-    
-        /** @var wrapper DOM zero element */
-        var wrapper = $('#wrapper');
-        
-        
-        /** @var template TPL */
-        var template = hogan.compile (tpl);
-        var template_assessment = hogan.compile (tpl_assessment);
-        
-        
-        /** @var template_params Object */
-        var template_params = helpers.i18n_tpl ();
-        
-        
-        // Render
-        wrapper.html (template.render (template_params));
-        
-        
-        /** @var assessment_ph jQuery Object */
-        var assessment_ph = wrapper.find ('.assessment-ph');
-        
-        
-        /** @var form jQuery Object */
-        var form = wrapper.find ('[name="assessment-form"]');
-        
         
         // Retrieve all the assessments
         db.getAll ('assessments').then (function (assessments) {
@@ -74,30 +52,69 @@ define ([
                         valoration.assessment_id = assessment.id;
                     });
                 });
-                
-                /** @var template_params Object */
-                var template_params = helpers.i18n_tpl (assessment);
-                
-                
-                // Append to the placeholder
-                assessment_ph.append (template_assessment.render (template_params));
-                
            });
+           
+           
+           // Render the assessments
+           render (assessments);
+           
         });
+    }
+    
+    
+    /**
+     * render
+     *
+     * @param assessments
+     */
+    
+    var render = function (assessments) {
+        
+        // Start wrapper
+        wrapper = $('#wrapper');
         
         
-        // Handle events
+        /** @var template TPL */
+        var template = hogan.compile (tpl);
+        
+        
+        /** @var template_params Object */
+        var template_params = helpers.i18n_tpl ();
+        template_params['assessments'] = assessments;
+        
+        
+        // Render
+        wrapper.html (template.render (template_params));
+        
+        
+        /** @var form jQuery Object */
+        var form = wrapper.find ('[name="assessment-form"]');
+        
+        
+        // Handle form submision
         form.submit (function (e) {
             
-            /** @var results Object */
+            // Prevent default action
+            e.preventDefault ();
+            
+            
+            /** @var name String */
+            var name = form.find ('[name="name"]').val ();
+            
+            
+            /** @var email String */
+            var email = form.find ('[name="email"]').val ();
+            
+            
+            /** @var results Object To store the results for each assessment */
             var results = {
-                name: form.find ('[name="name"]').val (),
-                email: form.find ('[name="email"]').val (),
+                name: name,
+                email: email,
                 assessments: {}
             };
             
             
-            // Validation of the form
+            // Get the results of the user
             $('[name^="assessment_"]:checked').each (function () {
                 
                 /** @var self Object */
@@ -130,14 +147,94 @@ define ([
                 
             });
             
-            console.log (results);
             
-
-            return false;
-           
+            /** @var complete_feedback String */
+            var complete_feedback = '';
+            
+            
+            // Once we have the total of each assessment, we are going to 
+            // get the feedback according to the score
+            $.each (results.assessments, function (assessment_id, assessment_results) {
+                
+                /** @var assessment Object Get information about each assessment */
+                var assessment = assessments.find (x => x.id == assessment_id);
+                
+                
+                /** @var total int */
+                var total = assessment_results.total;
+                
+                
+                // Look for the feedback more according
+                $.each (assessment.feedbacks, function (index, feedback) {
+                    
+                    /** @var min int */
+                    var min = feedback.scores[0];
+                    
+                    
+                    /** @var max int */
+                    var max = feedback.scores[1];
+                        
+                        
+                    // Get if the score
+                    if (total >= min && total <= max) {
+                        
+                        // Attach the feedback to the results
+                        assessment_results.feedback = feedback.text;
+                        
+                        
+                        // Attach feedback
+                        complete_feedback += 
+                            '<h2>' + assessment.name + '</h2>' 
+                            + assessment.description 
+                            + feedback.text
+                        ;
+                        
+                        
+                        // Stop search
+                        return false;
+                    }
+                });
+            });
+            
+            
+            /** @var download_button Object */
+            var download_button = { 
+                className: 'vex-dialog-button-primary', 
+                text: 'Download results', 
+                click: function ($vexContent, event) {
+                    
+                    /** @var markdown String */
+                    var markdown = '';
+                    
+                    
+                    // Get content
+                    $(complete_feedback).filter ('h2, p').each (function () {
+                        markdown += $(this).text () + "\r\n";
+                    });
+                    
+                    
+                    // Download file
+                    helpers.download_file ('feedback-' + email + '.txt', markdown);
+                    
+                    
+                    // Close Vex
+                    vex.close ();
+                }
+            };
+            
+            
+            // Send feedback to the user
+            vex.dialog.open ({
+                unsafeMessage: complete_feedback,
+                className: 'vex-theme-plain full-width',
+                buttons: [
+                    $.extend ({}, vex.dialog.buttons.NO, download_button),
+                    vex.dialog.buttons.NO
+                ]
+            });
+            
         });
         
-
         
         // Remove loading state
         $('body').removeClass ('loading-state');

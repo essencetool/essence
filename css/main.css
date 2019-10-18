@@ -88,6 +88,14 @@ body, html {
     font-family: 'Montserrat', sans-serif;
 }
 
+.vex.vex-theme-plain.full-width {
+    padding-top: 1rem;
+}
+
+.vex.vex-theme-plain.full-width .vex-content {
+    width: 90vw;
+}
+
 
 /** Header */
 .main-header a,
