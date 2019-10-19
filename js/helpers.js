@@ -38,7 +38,7 @@ define ([
             $.each (items, function (index, item) {
                 select.append ($("<option />")
                     .attr ('value', item.id)
-                    .attr ('selected', item.is_selected)
+                    .prop ('selected', item.is_selected)
                     .text (item.name)
                 );
             });
@@ -55,9 +55,16 @@ define ([
      * populate_select_group
      *
      * @param select
-     * @param subgroup_id int
+     * @param subgroup_ids int|Array
      */
-    var populate_select_group = function (select, subgroup_id) {
+    var populate_select_group = function (select, subgroup_ids) {
+        
+        // Check if the ID is an array or a simple element. This is 
+        // valid when dealing when select multiple
+        if (subgroup_ids && ! (subgroup_ids instanceof Array)) {
+            subgroup_ids = [subgroup_ids];
+        }
+        
         
         // Return promise
         return new Promise ((resolve, reject) => {
@@ -74,19 +81,18 @@ define ([
                     
                     // Set the is_selected item
                     $.each (group.subgroups, function (index, subgroup) {
-                        subgroup.is_selected = subgroup_id ? subgroup.id == subgroup_id : false;
+                        subgroup.is_selected = subgroup_ids ? subgroup_ids.indexOf (subgroup.id) !== -1 : false;
                     });
                     
                     
                     // Iterate over the subgruoups
                     $.each (group.subgroups, function (index_subgroup, subgroup) {
-                        select
-                            .find ('optgroup:last-child')
-                                .append ($("<option />")
-                                    .attr ('value', subgroup.id)
-                                    .attr ('selected', subgroup.is_selected)
-                                    .text (subgroup.name)
-                                );
+                        select.find ('optgroup:last-child').append (
+                            $("<option />")
+                                .attr ('value', subgroup.id)
+                                .prop ('selected', subgroup.is_selected)
+                                .text (subgroup.name)
+                        )
                     });
                 });
                 

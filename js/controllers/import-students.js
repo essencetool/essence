@@ -33,12 +33,7 @@ define ([
         
         
         /** @var template_params Object */
-        var template_params = {};
-        template_params['i18n'] = function () {
-            return function (text, render) {
-                return ref (i18n, text);
-            }
-        };
+        var template_params = helpers.i18n_tpl ();
         
         
         // Render

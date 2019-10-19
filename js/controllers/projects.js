@@ -160,7 +160,7 @@ define ([
                             vex.dialog.alert ({
                                 message: i18n.frontend.pages.projects.messages.delete,
                                 callback: function () {
-                                    index (params);
+                                    window.location.hash = 'projects';
                                 }
                             });
                             

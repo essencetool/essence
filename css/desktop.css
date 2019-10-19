@@ -90,6 +90,19 @@ canvas {
 
 /** Mouse devices */
 @media (hover: hover) and (pointer: fine) {
+    
+    .rating-panel .actions {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;    
+        font-size: 0;
+    }
+
+    .rating-panel tbody tr:hover .actions {
+        display: block;
+    }
+    
     .pure-menu-main:hover {
         left: 0;
     }  

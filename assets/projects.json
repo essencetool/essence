@@ -1,5 +1,5 @@
 [{
     "id": 1,
-    "name": "Project Lorem Ipsum",
-    "description": "This is just a sample project to attach rubrics on it"
+    "name": "Default project",
+    "description": "This is the default project of Essence. Feel free to modify it to your needs."
 }]

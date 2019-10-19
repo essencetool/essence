@@ -12,31 +12,35 @@
 <!-- Form -->
 <form class="pure-form" name="import-students-form" method="post">
 
-  <input type="hidden" name="students" value="" />
+    <!-- Hidden fields -->
+    <input type="hidden" name="students" value="" />
+    
   
-  <!-- First step. Select group -->
-  <label class="form-step">
-    <div>{{# i18n }} frontend.pages.import_students.controls.group.label {{/ i18n }}</div>
-    <select name="group" disabled required>
-      <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
-    </select>
-  </label>
-
-  <!-- Second step. Include file -->
-  <div class="form-step">
-    <div>{{# i18n }} frontend.pages.import_students.controls.file.label {{/ i18n }}</div>
-    <label for="file" class="pure-button">
-        <span class="icon-attach"></span>
-        {{# i18n }} frontend.pages.import_students.controls.file.placeholder {{/ i18n }}
+    <!-- First step. Select group -->
+    <label class="form-step">
+        <div>{{# i18n }} frontend.pages.import_students.controls.group.label {{/ i18n }}</div>
+        <select name="group" disabled required>
+            <option value="" disabled selected>{{# i18n }} common.controls.select.placeholder {{/ i18n }}</option>
+        </select>
     </label>
-    <input id="file" name="file" type="file" hidden name="file" accept=".csv" />
-  </div>  
-
-  <!-- Submit -->
-  <div class="rating-panel-actions">
-    <button type="submit" class="pure-button pure-button-primary">
-        {{# i18n }} frontend.pages.import_students.controls.submit.text {{/ i18n }}
-    </button>
-  </div>
+    
+    
+    <!-- Second step. Include file -->
+    <div class="form-step">
+        <div>{{# i18n }} frontend.pages.import_students.controls.file.label {{/ i18n }}</div>
+        <label for="file" class="pure-button">
+            <span class="icon-attach"></span>
+            {{# i18n }} frontend.pages.import_students.controls.file.placeholder {{/ i18n }}
+        </label>
+        <input id="file" name="file" type="file" hidden name="file" accept=".csv" />
+    </div>  
+    
+    
+    <!-- Submit -->
+    <div class="rating-panel-actions">
+        <button type="submit" class="pure-button pure-button-primary">
+            {{# i18n }} frontend.pages.import_students.controls.submit.text {{/ i18n }}
+        </button>
+    </div>
   
 </form>

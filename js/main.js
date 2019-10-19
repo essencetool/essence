@@ -217,6 +217,12 @@ require ([
                 });
                 break;
                 
+            case 'student':
+                require (['controllers/student'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
             case 'progress':
                 require (['controllers/progress'], function (controller) {
                     controller.index (params);

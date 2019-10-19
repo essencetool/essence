@@ -39,6 +39,10 @@ define ({
                
                "select": {
                    "placeholder": "Please, select an option"
+               },
+               
+               "include_all_subgroups": {
+                   "text": "Include all subgroups"
                }
             }
         },
@@ -68,7 +72,7 @@ define ({
                                  "text": "<span class='icon-users'></span> Groups",
                             },
                             "rate": {
-                                "text": "<span class='icon-edit'></span> Rate"
+                                "text": "<span class='icon-edit'></span> Evaluations"
                             },
                             "import_students": {
                                 "text": "<span class='icon-right-big'></span> Import students"
@@ -77,7 +81,7 @@ define ({
                                 "text": "<span class='icon-left-big'></span> Export"
                             },
                             "assessment": {
-                                "text": "<span class='icon-edit'></span> Assessment"
+                                "text": "<span class='icon-edit'></span> Self-assessments"
                             }
                         }
                     }
@@ -114,25 +118,25 @@ define ({
                 
                 "assessment": {
                     
-                    "title": "Evaluation",
+                    "title": "Self-assessments",
                     
                     "help": {
-                        "text": "<p>This tool is suggested to repeat once/twice a year in order to see student´s development.</p>"
+                        "text": "<p>This form can help to perform a self-assessment. It is suggested to repeat once/twice a year in order to see your own development.</p>"
                     },
                     "controls": {
                         
                         "name": {
-                            "label": "Please, introduce your name",
-                            "placeholder": "Please, introduce your name"
+                            "label": "First, introduce your full-name",
+                            "placeholder": "Full name. Ex: John Doe"
                         },
                         
                         "email": {
-                            "label": "Please, introduce your email",
-                            "placeholder": "Please, introduce your email"
+                            "label": "And a contact email. Just in case you want to send your results",
+                            "placeholder": "Ex: john-doe@sample.com"
                         },
                         
                         "submit": {
-                            "text": "Submit"
+                            "text": "Get your results"
                         }
                     }
                 },
@@ -161,7 +165,7 @@ define ({
                     "title": "Projects",
                     
                     "help": {
-                        "text": "<p>In this section you can manage projects. A project is a handy way you can organise yourself. For example, a project can represent a course or an asignment</p>"
+                        "text": "<p>In this section you can manage projects. </p><p>A project is a handy way you can organise yourself. For example, a project can represent a course or an asignment</p>"
                     },
                     
                    "confirm": {
@@ -193,11 +197,11 @@ define ({
                             "label": "Search your project"
                         },
                         "name": {
-                            "text": "Name",
+                            "label": "Name",
                             "placeholder": "Please, enter the new of your project"
                         },
                         "description": {
-                            "text": "Description",
+                            "label": "Description",
                             "placeholder": "Please, write a short description about your project"
                         },
                         "submit": {
@@ -248,16 +252,10 @@ define ({
                 },
                 
                 "rate": {
-                    "title": "Rate the students",
+                    "title": "Evaluations",
                     
                     "help": {
-                        "text": "In this section, you can rate the students. To do it, you need to select also the rubric form and the project attached to it."
-                    },
-                    
-                    "tooltips": {
-                        "filter_by_group": {
-                            "text": "Filter by group"
-                        }
+                        "text": "<p>In this section, you can evaluate the students. To do it, you must select first a project and a rubric.</p> <p>The evaluations can be performed individually to a student, or you can evaluate a whole group or subgroup. Please, use the filters bellow to perform your selection.</p><p>Remember that you can see all the evaluations performed from the <a href='#students'>students's</a> section</p><p>Once you has selected the project, the rubric, and the students to evaluate, you should mark each criteria as <em>very-good</em>, <em>good</em>, <em>acceptable</em> or <em>unacceptable</em></p><p>It is possible to include evidences to remember you evaluation</p>"
                     },
                     
                     "controls": {
@@ -267,21 +265,26 @@ define ({
                         "rubric": {
                             "label": "(2) Select the rubric"
                         },
-                        "student": {
-                            "label": "(3) Select a student or a group to rate"
+                        "filter": {
+                            "label": "(3) Select student, group or subgroup",
+                            "optgroup": "Students"
                         },
-                       "group": {
-                            "label": "Filter students by group"
-                        },
-                        
                         "rate_action": {
-                            "text": "Save rate"
+                            "text": "Save evaluation"
                         },
+                        "evidences": {
+                            "label": "Include any evidences you want to remember"
+                        }
+                    },
+                    
+                    "tooltips": {
+                        "remove_selection": "Remove your selection",
+                        "evidences": "Include evidences to this criteria"
                     },
                     
                     "messages": {
-                        "success": "Done",
-                        "no_student": "You must select a student",
+                        "success": "The evaluation has been recorded",
+                        "no_student": "There are any student in your current selection",
                         "no_project": "You must select a project"
                     }
                 },
@@ -296,6 +299,9 @@ define ({
                         },
                         "progress": {
                             "text": "View progress"
+                        },
+                        "edit": {
+                            "text": "Edit"
                         }
                     },
                     
@@ -311,6 +317,41 @@ define ({
                         }
                     }
                     
+                },
+                
+                
+                "student": {
+                    
+                    "title": "Student",
+                    
+                    "controls": {
+                        "name": {
+                            "label": "Full name",
+                            "placeholder": "Type the full name of the student"
+                        },
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Type the email of the student"
+                        },
+                        "groups": {
+                            "label": "Groups",
+                        },
+                        "submit": {
+                            "text": "Update"
+                        },
+                        "delete_student": {
+                            "text": "Delete this student"
+                        }
+                    },
+                    
+                    "messages": {
+                        "success": "The student's information has been updated",
+                        "delete": "The student has been deleted from the database"
+                    },
+                    
+                    "confirm": {
+                        "delete": "Are you sure to delete this student? This action cannot be undone"
+                    }
                 },
                 
                 

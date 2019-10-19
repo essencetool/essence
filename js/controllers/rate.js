@@ -7,14 +7,13 @@
 define ([
     'text!templatePath/rate.html',
     'text!templatePath/templates/rubric-form.html',
-    'text!templatePath/templates/student-box.html',
     'jquery', 
     'hogan',
     'config', 
     'db',
     'helpers',
     'i18n!nls/translations'
-], function (tpl, tpl_rubric_form, tpl_student_box, $, hogan, config, db, helpers, i18n) {
+], function (tpl, tpl_rubric_form, $, hogan, config, db, helpers, i18n) {
 
     /** @var wrapper DOM zero element */
     var wrapper;
@@ -35,24 +34,32 @@ define ([
         
         // Render templates
         var template = hogan.compile (tpl);
-        var template_student_profile = hogan.compile (tpl_student_box);
         var template_rubric_form = hogan.compile (tpl_rubric_form);
         
         
-        /** @var rubric_id int */
-        var rubric_id = params[1] * 1;
-        
-        
-        /** @var student_id int */
-        var student_id = params[2] * 1;
-        
-        
         /** @var project_id int */
-        var project_id = params[3] * 1;
+        var project_id = params[1] * 1;
         
         
-        /** @var group_id int  */
-        var group_id = params[4] * 1;
+        /** @var rubric_id int */
+        var rubric_id = params[2] * 1;
+        
+        
+        /** @var filter_string String */
+        var filter_string = params[3];
+        
+        
+        // Extract information from the filter
+        if (filter_string) {
+            
+            /** @var filer_Type String */
+            var filter_type =  filter_string.split (':')[0];
+            
+            
+            /** @var filter_id int */
+            var filter_id =  filter_string.split (':')[1] * 1;
+        
+        }
         
         
         /** @var template_params Object */
@@ -75,34 +82,77 @@ define ([
         helpers.populate_select (wrapper.find ('[name="rubric"]'), 'rubrics', rubric_id);
         
         
-        /** @var select_student_or_group Select2 Populate groups and students in the same group */
-        var select_student_or_group = wrapper.find ('[name="student"]');
+        /** @var select_filter Select2 */
+        var select_filter = wrapper.find ('[name="filter"]');
         
         
         // Populate first the groups and subgroups
-        helpers.populate_select_group (select_student_or_group, group_id).then (function () {
+        db.getAllGroups ().then (function (groups) {
+            
+            // Iterate over each group
+            $.each (groups, function (index, group) {
+            
+                // Create a section within the select
+                select_filter.append ($("<optgroup />").attr ('label', group.name));
+                
+                
+                // Include all subgroups
+                select_filter
+                    .find ('optgroup:last-child')
+                        .append ($("<option />")
+                            .attr ('value', group.id)
+                            .attr ('data-type', 'group')
+                            .prop ('selected', filter_type == 'group' && filter_id == group.id)
+                            .text (i18n.common.controls.include_all_subgroups.text)
+                        )
+                ;
+                
+                
+                // Iterate over the subgruoups
+                $.each (group.subgroups, function (index_subgroup, subgroup) {
+                    select_filter.find ('optgroup:last-child').append (
+                        $("<option />")
+                            .attr ('value', subgroup.id)
+                            .attr ('data-type', 'subgroup')
+                            .prop ('selected', filter_type == 'subgroup' && filter_id == subgroup.id)
+                            .text (subgroup.name) 
+                    )
+                });
+            });
         
-        
-            // Create a section within the select
-            select_student_or_group.append ($("<optgroup />").attr ('label', 'Students'));
+            
+            // Now iterate over students
+            // First, create a section within the select for students
+            select_filter.append (
+                $("<optgroup />")
+                    .attr ('label', i18n.frontend.pages.rate.controls.filter.optgroup)
+            );
             
             
             // Retrieve all students
             db.getAll ('students').then (function (students) {
                 
+                // Sort students
+                students.sort ((a,b) => a.name.localeCompare (b.name));
+                
+                
                 // For each student
                 for (const student of students) {
                     
                     // Include student in the selector
-                    select_student_or_group
-                        .find ('optgroup:last-child')
-                            .append ($("<option />")
-                                .attr ('value', student.id)
-                                .attr ('selected', student_id && student_id == student.id)
-                                .attr ('data-is-student', 'true')
-                                .text (student.name)
-                            );
+                    select_filter.find ('optgroup:last-child').append (
+                        $("<option />")
+                            .attr ('value', student.id)
+                            .prop ('selected', filter_type == 'student' && filter_id == student.id)
+                            .attr ('data-type', 'student')
+                            .text (student.name)
+                    );
                 }
+            
+            
+                // Refresh the field
+                select_filter.select2 ();
+                
             });
             
         });
@@ -110,20 +160,13 @@ define ([
         
         // Render the rubric if available
         if (rubric_id) db.getByID ('rubrics', rubric_id).then (function (rubric) {
-
-            // Update form
-            wrapper
-                .find ('[name="rubric_id"]')
-                    .val (rubric.id)
-                    .end ()
+            
+            // Include i18n
+            rubric = helpers.i18n_tpl (rubric);
             
             
             // Render the rubric form
             rate_form.find ('.rubric-form-placeholder').html (template_rubric_form.render (rubric));
-            
-            
-            // Render the student ID
-            wrapper.find ('[name="student_id"]').val (student_id);
             
             
             // Attach evidence
@@ -136,73 +179,34 @@ define ([
             wrapper.find ('.remove-selection-action').unbind ().click (function (e) {
                 $(e.target).closest ('tr').find ('[type="radio"]').prop ('checked',false);
             });
-            
-            
-            // Nothing to do if we didn't have selected the project nor the student
-            if ( ! (project_id && student_id)) {
-                return;
-            }
-            
-            
-            // Update the rubric form with current rating
-            db.getRatingById ([project_id, rubric_id, student_id]).then (function (rating) {
-                
-                // No rating was found
-                if ( ! rating) {
-                    return;
-                }
-                
-                // Update rubric information with the last score of the user
-                $.each (rating.values, function (key, info) {
-                
-                    // Update evidence
-                    rate_form
-                        .find ('[name="' + key + '"][value="' + info.value + '"]')
-                            .prop ('checked', true)
-                            .end ()
-                        .find ('[name="' + key + '-evidences"]')
-                            .val (info.evidence)
-
-                });
-            });
         });
         
-        
-        // If we have an student selected, when can print their information
-        // on the screen
-        if (student_id) db.getStudentById (student_id, function (student) {
-            wrapper.find ('.student-profile-placeholder').html (template_student_profile.render (student));
-           
-        }).catch (function (e) {
-            console.log (e);
-        });
-  
         
         // Bind change form
         wrapper.find ('.filters').find ('select').on ('select2:select', function (e) {
-            
-            /** @var rubric_id int */
-            var rubric_id = wrapper.find ('[name="rubric"]').val () * 1;
-            
             
             /** @var project_id int */
             var project_id = wrapper.find ('[name="project"]').val () * 1;
             
             
-            /** @var student_select boolean */
-            var is_student = wrapper.find ('[name="student"]').find (':selected').data ('is-student') ? true : false;
+            /** @var rubric_id int */
+            var rubric_id = wrapper.find ('[name="rubric"]').val () * 1;
             
             
-            /** @var student_id int */
-            var student_id = is_student ? (wrapper.find ('[name="student"]').val () * 1) : "";
+            /** @var filter_type String */
+            var filter_type = wrapper.find ('[name="filter"]').find (':selected').data ('type');
             
             
-            /** @var group_id int */
-            var group_id = is_student ? "" : (wrapper.find ('[name="student"]').val () * 1);
+            /** @var filter_id int */
+            var filter_id = wrapper.find ('[name="filter"]').val () * 1;
+            
+            
+            /** @var filter String */
+            var filter = filter_type ? filter_type + ":" + filter_id : "";
             
             
             // Update hash
-            window.location.hash = 'rate/' + rubric_id + '/' + student_id + '/' + project_id + '/' + group_id;
+            window.location.hash = 'rate/' + project_id + '/' + rubric_id + '/' + filter;
             
         });
         
@@ -219,6 +223,14 @@ define ([
                 vex.dialog.alert (i18n.frontend.pages.rate.messages.no_project);
                 return false;
             }
+            
+            
+            /** @var filter_type String Get the element that was selected */
+            var filter_type = wrapper.find ('[name="filter"]').find (':selected').data ('type');
+            
+            
+            /** @var filter_id int Get the element that was selected */
+            var filter_id = wrapper.find ('[name="filter"]').val () * 1;
             
             
             /** @var values Object Here we will store the results */
@@ -251,6 +263,12 @@ define ([
              */
             var save_ratings = function (student_ids) {
                 
+                if ( ! student_ids.length) {
+                    vex.dialog.alert (i18n.frontend.pages.rate.messages.no_student);
+                    return;
+                }
+                
+                
                 /** @var ratings Array */
                 var ratings = [];
                 
@@ -277,34 +295,76 @@ define ([
             
             
             // If only one student was selected, it is easy
-            if (student_id) {
-                save_ratings ([student_id]);
+            switch (filter_type) {
                 
-            // But if the element is a group, we need to fetch all students
-            // that belong to the group
-            } else if (group_id) {
-                
-                /** @var student_ids Array Retrieve all student ids */
-                var student_ids = [];
-
-                
-                // Retriege all students
-                db.getAll ('students').then (function (students) {
+                // Rating an student
+                case 'student':
+                    save_ratings ([filter_id]);
+                    break;
                     
-                    // And for each one
-                    for (const student of students) {
-                        // Check if he belongs to my group
-                        if (student.groups.indexOf (group_id) != -1) {
-                            student_ids.push (student.id);
+                // By group
+                case 'group':
+                
+                    /** @var student_ids Array Retrieve all student ids */
+                    var student_ids = [];
+                    
+                    
+                    // Get the selected grouup
+                    db.getAllByKey ('subgroups', 'group_id', filter_id).then (function (subgroups) {
+                        
+                        /** @var subgroup_ids Array Retrieve all subgropus ids */
+                        var subgroup_ids = pluck (subgroups, 'id');
+                        
+                        
+                        // Retriege all students
+                        db.getAll ('students').then (function (students) {
+                            
+                            // And for each one
+                            for (const student of students) {
+                                
+                                // Check if he belongs to my group
+                                if (student.groups.some (r => subgroup_ids.includes(r))) {
+                                    student_ids.push (student.id);
+                                }
+                            }
+                            
+                            
+                            // Save them
+                            save_ratings (student_ids);
+                            
+                        });
+                    });
+                    break;
+                    
+                
+                // By subgroup
+                case 'subgroup':
+                
+                    /** @var student_ids Array Retrieve all student ids */
+                    var student_ids = [];
+                    
+                    
+                    // Retriege all students
+                    db.getAll ('students').then (function (students) {
+                        
+                        // And for each one
+                        for (const student of students) {
+                            // Check if he belongs to my group
+                            if (student.groups.indexOf (group_id) != -1) {
+                                student_ids.push (student.id);
+                            }
                         }
-                    }
+                        
+                        
+                        // Save them
+                        save_ratings (student_ids);
+                        
+                    });
+                    break;
                     
-                    
-                    // Save them
-                    save_ratings (student_ids);
-                    
-                });
+                
             }
+
         });
         
         

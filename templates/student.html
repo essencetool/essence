@@ -1,0 +1,57 @@
+<!-- Title -->
+<h1>
+    <a href="#students"><span class="icon-left-big"></span></a> {{ student.name }}
+</h1>
+
+
+<!-- Project -->
+<form class="pure-form" name="student-form">
+
+    <!-- Placeholder -->
+        <!-- Hidden fields -->
+    <input type="hidden" name="id" value="{{ id }}" />
+
+
+    <!-- Name -->
+    <label>
+        <div>{{# i18n }} frontend.pages.student.controls.name.label {{/ i18n }}</div>
+        <input
+            type="text" 
+            name="name" 
+            value="{{ student.name }}" 
+            placeholder="{{# i18n }} frontend.pages.student.controls.name.placeholder {{/ i18n }}" />
+    </label>
+
+
+    <!-- Email -->
+    <label>
+        <div>{{# i18n }} frontend.pages.student.controls.email.label {{/ i18n }}</div>
+        <input
+            type="text" 
+            name="email" 
+            value="{{ student.email }}" 
+            placeholder="{{# i18n }} frontend.pages.student.controls.email.placeholder {{/ i18n }}" />
+    </label>
+    
+    
+    <!-- Groups -->
+    <label class="form-step">
+        <div>{{# i18n }} frontend.pages.student.controls.groups.label {{/ i18n }}</div>
+        <select name="group" disabled required multiple></select>
+    </label>
+    
+    
+    <!-- Actions -->
+    <div class="rating-panel-actions">
+        <button type="submit" class="create-project-action pure-button pure-button-primary">
+            {{# i18n }} frontend.pages.student.controls.submit.text {{/ i18n }}
+        </button>
+        
+        <button type="button" class="delete-student-action pure-button">
+            <span class="icon-cancel"></span> 
+            {{# i18n }} frontend.pages.student.controls.delete_student.text {{/ i18n }}
+        </button>
+        
+    </div>
+    
+</form>

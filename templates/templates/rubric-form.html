@@ -1,18 +1,18 @@
-<!-- Hidden fields -->
-<input type="hidden" name="student_id" value="" />
-<input type="hidden" name="rubric_id" value="" />
-
-
 <table class="pure-table pure-table-bordered rating-panel">
 
+    <!-- Set the default width of the columns -->
     <col width="12%">
     <col width="22%">
     <col width="22%">
     <col width="22%">
     <col width="22%">
-
+    
+    
+    <!-- Name of the rubric -->
     <caption>{{ name }}</caption>
-
+    
+    
+    <!-- Head -->
     <thead>
         <tr>
             <th>Criteria</th>
@@ -21,6 +21,9 @@
             {{/ valorations }}
         </tr>
     </thead>
+    
+    
+    <!-- Criterias -->
     <tbody>
         {{# rows }}
         <tr>
@@ -28,14 +31,10 @@
                 {{ name }}
       
                 <div class="actions">
-                    <button 
-                        type="button" çclas
-                        class="pure-button remove-selection-action">
-                        <span class="icon-cancel"></span></button>
-                    <button 
-                        data-field="{{ key }}-evidences"
-                        type="button" 
-                        class="pure-button attach-evidence-action">
+                    <button type="button" class="pure-button remove-selection-action" title="{{# i18n }} frontend.pages.rate.tooltips.remove_selection {{/ i18n }}">
+                        <span class="icon-cancel"></span>
+                    </button>
+                    <button type="button" data-field="{{ key }}-evidences" class="pure-button attach-evidence-action" title="{{# i18n }} frontend.pages.rate.tooltips.evidences {{/ i18n }}">
                         <span class="icon-edit"></span>
                     </button>
                 </div>
@@ -60,7 +59,7 @@
             <td></td>
             <td colspan="4">
                 <label>
-                    <div>Evidences</div>
+                    <div>{{# i18n }} frontend.pages.rate.controls.evidences.label {{/ i18n }}</div>
                     <textarea rows="6" name="{{ key }}-evidences">{{ evidence }}</textarea>
                 </label>
             </td>
