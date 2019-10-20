@@ -270,7 +270,7 @@ define ({
                             "optgroup": "Students"
                         },
                         "rate_action": {
-                            "text": "Save evaluation"
+                            "text": "Save evaluations"
                         },
                         "evidences": {
                             "label": "Include any evidences you want to remember"
@@ -286,6 +286,10 @@ define ({
                         "success": "The evaluation has been recorded",
                         "no_student": "There are any student in your current selection",
                         "no_project": "You must select a project"
+                    },
+                    
+                    "confirm": {
+                        "leave_page": "There are unsaved ratings. Are you sure to leave this page?"
                     }
                 },
                 
