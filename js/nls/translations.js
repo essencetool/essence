@@ -165,7 +165,7 @@ define ({
                     "title": "Projects",
                     
                     "help": {
-                        "text": "<p>In this section you can manage projects. </p><p>A project is a handy way you can organise yourself. For example, a project can represent a course or an asignment</p>"
+                        "text": "<p>In this section you can manage projects. A project is a handy way you can organise your evaluations.</p>"
                     },
                     
                    "confirm": {
@@ -255,7 +255,7 @@ define ({
                     "title": "Evaluations",
                     
                     "help": {
-                        "text": "<p>In this section, you can evaluate the students. To do it, you must select first a project and a rubric.</p> <p>The evaluations can be performed individually to a student, or you can evaluate a whole group or subgroup. Please, use the filters bellow to perform your selection.</p><p>Remember that you can see all the evaluations performed from the <a href='#students'>students's</a> section</p><p>Once you has selected the project, the rubric, and the students to evaluate, you should mark each criteria as <em>very-good</em>, <em>good</em>, <em>acceptable</em> or <em>unacceptable</em></p><p>It is possible to include evidences to remember you evaluation</p>"
+                        "text": "<p>In this section, you can evaluate the students. To do it, you must select a project, a rubric, and the students you want to rate.</p> <p>The evaluations can be performed individually, or you can evaluate a whole group or a subgroup, but changes will not be saved until you rate the students.</p><p>Remember that you can see all the evaluations performed from the <a href='#students'>students's</a> section</p><p>Once you has selected the project, the rubric, and the students to evaluate, you should mark each criteria as <em>very-good</em>, <em>good</em>, <em>acceptable</em> or <em>unacceptable</em></p><p>It is possible to include evidences to remember you evaluation</p>"
                     },
                     
                     "controls": {
@@ -285,7 +285,7 @@ define ({
                     "messages": {
                         "success": "The evaluation has been recorded",
                         "no_student": "There are any student in your current selection",
-                        "no_project": "You must select a project"
+                        "no_ratings_to_save": "There is nothing in the current selection to save"
                     },
                     
                     "confirm": {

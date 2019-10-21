@@ -217,7 +217,6 @@ nav {
 .pure-menu-main {
     position: fixed;
     top: 0;
-    left: -14.5rem;
     bottom: 0;
     width: 15rem;
     box-shadow: 0 0 .25rem rgba(0,0,0,.5);;
@@ -278,7 +277,7 @@ nav {
 
 /** Wrappers */
 main {
-    margin: 1rem auto;
+    margin: 0 auto;
 }
 
 main h1 {
@@ -292,7 +291,7 @@ main h1 a {
 }
 
 #wrapper {
-    padding-bottom: 6rem;
+    padding: 0 1rem;
 }
 
 footer {
@@ -301,6 +300,14 @@ footer {
     font-size: .5rem;
     line-height: 1;
     color: white;
+}
+
+.rating-panel .column-1 {
+    min-width: 12rem;
+}
+
+.rating-panel .column-2 {
+    min-width: 25rem;
 }
 
 .rating-panel td {
@@ -373,7 +380,6 @@ footer {
 
 .rating-panel tbody th {
     position: relative;
-    padding: 0;
 }
 
 .rating-panel .actions .pure-button {
@@ -490,6 +496,29 @@ footer {
     overflow-x: scroll;
 }
 
+.rubric-form-placeholder::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.rubric-form-placeholder::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+.rubric-form-placeholder::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+.rubric-form-placeholder::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+.rubric-form-placeholder::-webkit-scrollbar-track {
+    border-radius: 10px;  
+    background-color: #ffffff; 
+}
+
 .hidden {
   display: none !important;
 }
@@ -536,7 +565,7 @@ footer {
 }
 
 .pure-menu-main {
-    left: -14.9rem;
+    left: -15rem;
     z-index: 9999;
     
     -webkit-transition: all .3s ease-out;
@@ -594,7 +623,6 @@ body.state-menu .toggle-menu-action {
 
 .progress-rubric h2 {
     margin: 0 0 1rem 0;
-    text-align: center;
 }
 
 .progress-ratings {
@@ -688,14 +716,17 @@ body.state-menu .toggle-menu-action {
 }
 
 .assessment-item .answers li {
-    display: inline-block;
-    vertical-align: top;
+    margin: 0.5rem 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
 }
 
 .assessment-item .answers {
     display: block;
-    font-size: .76rem;
     vertical-align: middle;
+    font-size: 1rem;
     font-family: monospace;
 }
 
@@ -713,6 +744,11 @@ body.state-menu .toggle-menu-action {
     width: 0;
     margin: 0;
 }
+
+.assessment-item .answers [type="radio"]:invalid:focus + span {
+    color: red;
+}
+
 
 .assessment-item .answers [type="radio"] + span {
     margin-left: -7px;
@@ -734,8 +770,11 @@ body.state-menu .toggle-menu-action {
 
 
 
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+@media only screen and (max-width: 35em) {
+    .pure-table td, .pure-table th {
+        padding: 1rem .5rem;
+    }
+
 }
 
 @media print,

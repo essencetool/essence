@@ -1,12 +1,4 @@
 <table class="pure-table pure-table-bordered rating-panel">
-
-    <!-- Set the default width of the columns -->
-    <col width="12%">
-    <col width="22%">
-    <col width="22%">
-    <col width="22%">
-    <col width="22%">
-    
     
     <!-- Name of the rubric -->
     <caption>{{ name }}</caption>
@@ -15,9 +7,9 @@
     <!-- Head -->
     <thead>
         <tr>
-            <th>Criteria</th>
+            <th class="column-1">Criteria</th>
             {{# valorations }}
-                <th>{{ text }}</th>
+                <th class="column-2">{{ text }}</th>
             {{/ valorations }}
         </tr>
     </thead>
@@ -27,7 +19,7 @@
     <tbody>
         {{# rows }}
         <tr>
-            <th>
+            <th class="column-1">
                 {{ name }}
       
                 <div class="actions">
@@ -41,7 +33,7 @@
             </th>
     
             {{# values }}
-                <td>
+                <td class="column-2">
                     <label>
                         <input 
                             novalidate 

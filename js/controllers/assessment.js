@@ -292,7 +292,15 @@ define ([
                 buttons: [
                     $.extend ({}, vex.dialog.buttons.NO, download_button),
                     vex.dialog.buttons.NO
-                ]
+                ],
+                
+                // As the content can be too long, we force vex to 
+                // go to the top
+                afterOpen: function () {
+                    setTimeout (function () {
+                        $('.vex')[0].scrollTo (0, 0);
+                    },1)
+                }
             });
             
         });

@@ -310,15 +310,15 @@ define ([
             e.preventDefault ();
             
             
-            // Validate that the selection has an project
-            if ( ! project_id) {
-                vex.dialog.alert (i18n.frontend.pages.rate.messages.no_project);
-                return false;
-            }
-            
-            
             // Save or update the current rating
             save_or_update_current_rating ();
+            
+            
+            // Validate that the selection has an project
+            if ( ! current_ratings.length) {
+                vex.dialog.alert (i18n.frontend.pages.rate.messages.no_ratings_to_save);
+                return false;
+            }
             
             
             /** 
