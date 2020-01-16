@@ -21,6 +21,10 @@ requirejs.onError = function (err) {
  // Require configuration
 require.config ({
     
+    // Set locale
+    locale: localStorage.getItem ('locale'),
+    
+    
     // For deployment
     /** @link http://requirejs.org/docs/api.html#config-urlArgs */
     urlArgs: function (id, url) {
@@ -98,7 +102,6 @@ require.config ({
         'helpers': {
             deps: ['db']
         }
-        
     }
 });
 
@@ -255,7 +258,7 @@ require ([
                 
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
-                window.location = '#projects' ;
+                window.location = '#projects';
                 window.location.reload () ;
                 break;
                 

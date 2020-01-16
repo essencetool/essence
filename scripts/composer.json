@@ -1,0 +1,7 @@
+{
+    "require": {
+        "adbario/php-dot-notation": "^2.2",
+        "symfony/finder": "^5.0",
+        "symfony/error-handler": "^5.0"
+    }
+}
