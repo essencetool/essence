@@ -137,6 +137,42 @@ define ([
     
     
     /**
+     * i18n_assessment
+     *
+     * This function i18ns an assesments
+     *
+     * @param assessment
+     * @param i18n
+     */
+    var i18n_assessment = function (assessment, i18n) {
+        
+        // i18n of the question text of the fields
+        assessment.name = i18n["name"];
+        assessment.description = i18n["description"];
+        
+        
+        // i18n of the feedbacks
+        $.each (assessment.feedbacks, function (index_feedback, feedback) {
+            feedback.text = i18n["feedbacks"][index_feedback];
+        });
+        
+        
+        // i18n of the questions and valorations
+        $.each (assessment.questions, function (index_question, question) {
+            
+            // i18n of the question text
+            question.text = i18n['questions'][index_question];
+            
+            
+            // Create the fieldname for each valoration
+            $.each (question.valorations, function (index_valoration, valoration) {
+                valoration.text = i18n["valorations"][valoration.id];
+            });
+        });
+    }
+    
+    
+    /**
      * interpolate
      *
      * @param message String
@@ -181,6 +217,7 @@ define ([
         populate_select: populate_select,
         populate_select_group: populate_select_group,
         i18n_tpl: i18n_tpl,
+        i18n_assessment: i18n_assessment,
         interpolate: interpolate,
         download_file: download_file
     }

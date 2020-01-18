@@ -12,7 +12,8 @@ define ([
     'db',
     'helpers',
     'i18n!nls/translations',
-], function (tpl, $, hogan, config, db, helpers, i18n) {
+    'i18n!nls/assessments'
+], function (tpl, $, hogan, config, db, helpers, i18n, i18n_assessments) {
     
     /** @var wrapper DOM */
     var wrapper;
@@ -52,6 +53,11 @@ define ([
                         valoration.assessment_id = assessment.id;
                     });
                 });
+                
+                
+                // i18n
+                helpers.i18n_assessment (assessment, i18n_assessments[assessment["id"]]);
+                
            });
            
            

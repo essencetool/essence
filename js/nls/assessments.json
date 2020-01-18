@@ -1,0 +1,70 @@
+{
+    "1": {
+        "name": "Vision",
+        "description": "<h2>Working towards your vision of the future.</h2> <p>Visioning is a process, in which images of the desired future goals, objectives and outcomes act as motivators for the present action.</p> <p>Imagination is the ability to produce and simulate new objects, peoples and ideas in the mind.</p><p>Thinking strategically is a way of looking at things and linking them together.</p>",
+        "valorations": {
+            "1": "Yes",
+            "2": "Yes, to a certain degree",
+            "3": "No, not at all"
+        },
+        "questions": [
+            "I have an idea of a dreamjob.",
+            "I have a plan how to achieve my dreamjob.",
+            "I can easily come up with new ideas.",
+            "I can easily get others excited about my ideas.",
+            "I can convince  others that my vision is important."
+        ],
+        
+        "feedbacks": [
+            "<p>Your score indicates that you could develop your abilities of visioning, imagination and strategic thinking. </p> <p>You may have faced difficulties in producing and stimulating ideas, dreams or visions.  </p> <p>Strategic thinkers have high levels of critical thinking skills. They are also more observant and reflective than the average person.</p> <p>Strategic talented thinkers create connections between ideas, plans and people that others fail to see.</p> <p>You could give yourself a change to see those connections by giving yourself time to just to dream and think, without any interruption or devices. Let your mind to see those possibilities.</p> <p>You can develop your imagination skills by doing some activities,  for example  -My dream profession.</p>",
+            "<p>Your score indicates that your abilities of visioning, imagination and strategic thinking, tends to be high.</p> <p>You can easily produce and simulate new ideas, dreams or visions.  </p> <p>You have good abilities to create connections between ideas, plans and people that others fail to see.</p> <p>You challenge yourself and others consider answers for particular questions.</p> <p>Strategic thinkers have high levels of critical thinking skills. They are also more observant and reflective than the average person. You may be one of those.</p>"
+        ]
+    }, 
+    
+    "2": {
+        "name": "Self awareness and self-efficacy",
+        "description": "<h2>Believe in yourself and keep developing</h2><p>Self-efficacy is one's belief in one's ability to succeed in specific situations or accomplish a task. </p> <p>Self-efficacy in all forms influence one’s thoughts, emotions, actions, and motivation.</p> <p>One's sense of self-efficacy can play a major role in how one approaches goals, tasks, and challenges</p> <p>People with high self-efficacy are more likely to make efforts to complete a task, and to persist longer in those efforts, than those with low self-efficacy.</p>",
+        "valorations": {
+            "1": "Yes",
+            "2": "Yes, to a certain degree",
+            "3": "No, not at all"
+        },
+    
+        "questions": [
+            "I am aware of my strengths.",
+            "I know how to improve my weaknesses.",
+            "It is easy for me to stick to my goals.",
+            "I can recognize everyday problems, that needs to be solved.",
+            "When I am stuck with a problem, I can find a solution.",
+            "If I try hard enough I can achieve my dreams."
+        ],
+    
+        "feedbacks": [
+            "<p>This feedback indicates how you recognize your strengths and  generally feel about your ability to handle situations successfully.</p> <p>Your score indicates </p> <p>that you may have not recognized your strengths. You may also lack confidence about your ability to successfully handle situations.</p> <p>You may feel challenging with sticking to your goals.</p> <p>A good idea to build  self-efficacy is to set goals reasonably and approach them one by one. Goals can be break down into smaller subgoals and work on achieving them one at a time, slowly and not over-stressing about results.</p> <p>Remember also do things that you like to do, trying new things and facing challenges.</p> <p>Be gracious to yourself by accepting failures and criticisms positively.</p>",
+            "<p>This feedback indicates how you recognize your strengths and  generally feel about your ability to handle situations successfully.</p> <p>Your score indicates that you have recognized your strengths and know how to use them.  You feel confident about your ability to successfully handle situations both expected and unexpected. </p> <p>You can stick to your goals.You have a strong sense of problem-solving focused on taking action with high hopes for success. You generally do not fear failure and are optimistic about outcomes. You tend to be calm especially when facing problems</p>"
+        ]
+    }, 
+    
+    "3": {
+        "name": "Working with others",
+        "description": "<h2>Team up, work together and network</h2><p>Working with others is the ability to interact, cooperate, collaborate and manage conflicts with other people in order to complete tasks and achieve shared goals. This includes working with one other person, or working in small or large groups of people.</p>",
+        "valorations": {
+            "1": "Yes",
+            "2": "Yes, to a certain degree",
+            "3": "No, not at all"
+        },
+        "questions": [
+            "When I am working in a team, I exchange information and ideas with other team members.",
+            "When I am working in a team, I acknowledge others’ ideas.",
+            "When I am working in a team, I adhere to commonly agreed rules and schedules.",
+            "I can build up a team to solve an specific problem.",
+            "When I have a problem I know whom to contact.",
+            "I can solve conflicts in teams."
+        ],
+        
+        "feedbacks": [
+            "<p>Based on your responses you may have difficulties in exchanging  information and ideas with other team members or  acknowledging others’ ideas.</p> <p>Effectively working with others involves understanding and working within the group’s culture, rules and schedules. It means joint planning and decision-making, negotiating and compromising.</p> <p>It requires also being flexible in terms of roles including knowing when to take a leadership role and knowing when to seek a team approach.</p> <p>When working in a team, everyone has the right in expressing opinions and ideas but also responsibility in respecting those of others, including people of differing backgrounds.</p> <p>If you are having problems in your team, you can offer a solution for it. </p> <p>Remember to support and respect your team members.  A good team player knows how to have fun, but would never do it at someone else’s expense.</p>", 
+            "<p>Based on your responses you have good abilities in exchanging  information and ideas with other team members and  acknowledging others’ ideas</p> <p>Effectively working with others involves understanding and working within the group’s culture, rules and schedules. It means joint planning and decision-making, negotiating and compromising.</p> <p>It requires also being flexible in terms of roles including knowing when to take a leadership role and  knowing when to seek a team approach.</p> <p>When working in a team, everyone has the right in expressing  opinions and ideas but also responsibility in respecting those of others, including people of differing backgrounds.  </p> <p>If you are having problems in your team, you are active in offering a solution for it. </p> <p>You support and respect your team members.  You  remember, that a good team player knows how to have fun, but would never do it at someone else’s expense.</p>"
+        ]
+    }
+}
