@@ -37,8 +37,8 @@
   font-style: normal;
   font-weight: 300;
   src: local('Montserrat Light'), local('Montserrat-Light'),
-       url('font/montserrat-v14-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('font/montserrat-v14-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* montserrat-300italic - latin */
 @font-face {
@@ -46,8 +46,8 @@
   font-style: italic;
   font-weight: 300;
   src: local('Montserrat Light Italic'), local('Montserrat-LightItalic'),
-       url('font/montserrat-v14-latin-300italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('font/montserrat-v14-latin-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-300italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* montserrat-regular - latin */
 @font-face {
@@ -55,8 +55,8 @@
   font-style: normal;
   font-weight: 400;
   src: local('Montserrat Regular'), local('Montserrat-Regular'),
-       url('font/montserrat-v14-latin-regular.woff2') format('woff2'), /
-       url('font/montserrat-v14-latin-regular.woff') format('woff'); 
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-regular.woff2') format('woff2'), /
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-regular.woff') format('woff'); 
 }
 /* montserrat-italic - latin */
 @font-face {
@@ -64,8 +64,8 @@
   font-style: italic;
   font-weight: 400;
   src: local('Montserrat Italic'), local('Montserrat-Italic'),
-       url('font/montserrat-v14-latin-italic.woff2') format('woff2'), 
-       url('font/montserrat-v14-latin-italic.woff') format('woff'); /
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-italic.woff') format('woff2'), 
+       url('font/montserrat-v14-cyrillic_latin_latin-ext-italic.woff2') format('woff'); /
 }
 
 /* amatic-sc-regular - latin */
@@ -75,8 +75,8 @@
   font-style: normal;
   font-weight: 400;
   src: local('Amatic SC Regular'), local('AmaticSC-Regular'),
-       url('font/amatic-sc-v13-latin-regular.woff2') format('woff2'), 
-       url('font/amatic-sc-v13-latin-regular.woff') format('woff'); 
+       url('font/amatic-sc-v13-cyrillic_latin_latin-ext-regular.woff2') format('woff2'), 
+       url('font/amatic-sc-v13-cyrillic_latin_latin-ext-regular.woff') format('woff'); 
 }
  
 [class^="icon-"]:before, [class*=" icon-"]:before {

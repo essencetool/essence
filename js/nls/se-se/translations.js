@@ -13,7 +13,7 @@ define ({
         "message": {
             "controller_not_allowed": "Det här avsnittet är låst, var god logga in.",
             "controller_not_found": "Sidan hittades inte",
-            "indexed_db_not_supported": "Din webbläsare stödjer inte en stabil verson av "IndexedDB""
+            "indexed_db_not_supported": "Din webbläsare stödjer inte en stabil verson av IndexedDB"
         },
         
         "controls": {
