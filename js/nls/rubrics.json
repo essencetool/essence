@@ -1,0 +1,158 @@
+{
+    "1": {
+        "name": "Assessment rubric for the ball (Working with others)",
+        "description": "To be used as an expert assessment tool, as a peer to peer tool, or as a self-assessment tool.",
+        "valorations": {
+            "1": "Very good",
+            "2": "Good",
+            "3": "Acceptable",
+            "4": "Unacceptable"
+        },
+        "rows": [
+            "Planning", 
+            "Tranquillity", 
+            "Motivation", 
+            "Help and respect", 
+            "Friendliness"
+        ],
+        "cells": [
+            {
+                "1": "Participate in planning by making valuable proposals and making reasoned decisions",
+                "2": "Participates in decision-making but does not make valuable proposals",
+                "3": "Does not participate in goal planning, but accepts the group's decision and follow the plan.",
+                "4": "Does not participate in planning goals and boycotts decisions made by peers."
+            }, {
+                "1": "Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions.",
+                "2": "He has difficulty keeping calm in the face of difficulties but ends up finding solutions.",
+                "3": "Keeps calm in the face of difficulties and asks for help or examples.",
+                "4": "You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given."
+            }, {
+                "1": "Maintains motivation towards the activity from the first moment to the last.",
+                "2": "Start the activity highly motivated but have difficulty maintaining it throughout the course of the activity.",
+                "3": "You need support from your group or teachers to maintain motivation towards the activity.",
+                "4": "Their low motivation causes problems in the group."
+            }, {
+                "1": "Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them.",
+                "2": "It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others.",
+                "3": "Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work.",
+                "4": "It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult. "
+            }, {
+                "1": "When you disagree don't agree with what a colleague does or says with a peer, you know how to give him or her suggest alternatives with correct and respectful language. ",
+                "2": "Expresses disagreement with a peer, but does not suggest alternatives at first and/or uses inappropriate language. Ends up suggesting alternatives.",
+                "3": "When disagreeing, he gets angry and doesn't talk about it or look for alternatives, even though he/she continue working",
+                "4": "When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions. Ends up giving in."
+            }
+        ]
+    
+    },
+    
+    "2": {
+        "name": "Vision. General Assessment",
+        "description": "Those aspects would be showed in many different ways, but would be basically being substanciated into some criteria to evaluate:",    
+        "valorations": {
+            "1": "Very good",
+            "2": "Good",
+            "3": "Acceptable",
+            "4": "Unacceptable"
+        },
+        "rows": [
+            "Number of ideas for the future imagined", 
+            "Easy to imagine future ideas", 
+            "Novelty of ideas imagined", 
+            "Argumentation of ideas"
+        ],
+        "cells": [
+            {
+                "1": "Always deliver much more new ideas she/he needs on each moment.",
+                "2": "Deliver as much new ideas as they need on each moment and sometimes more.",
+                "3": "Not always deliver as much new ideas as they need on each moment.",
+                "4": "Cannot imagine enough or even any new ideas."
+            }, {            
+                "1": "Fast and natural delivering of new ideas.",
+                "2": "Focused, systematic and successful delivering of new ideas",
+                "3": "Slow but constant and successful delivering of some new ideas",
+                "4": "Painful, slow and unsuccessful process of delivering new ideas"
+            }, {
+                "1": "Ideas proposed are completely new and unknown.",
+                "2": "Ideas proposed are based on other ideas from external sources and new proposals.",
+                "3": "Ideas proposed are based on other ideas from external sources.",
+                "4": "Cannot imagine any new ideas."
+            }, {
+                "1": "She/he arguments, debate and defends its ideas clearly.",
+                "2": "She/he arguments and debate its ideas ",
+                "3": "She/he arguments its ideas. ",
+                "4": "She/he cannot argument or debate its ideas."
+            }
+        ]
+    },
+    
+    "3": {
+        "name": "Self-awareness & Self-efficacy",
+        "description": "Self-awareness (SA) and Self-efficacy (SE) are two psychological abilities that help people to face their projects (e.g.) in a more realistic way, starting from their own conditions and improving them in order to improve also their possibilities of achieving their goals. As very well studied psychological skills, seems sensible start the definition of the assessment of these both from the criteria (dimensions) that are already evaluated in some validated scales created for psychological diagnosis (For self-efficacy we used Scholz, Doña, Sud, & Schwarzer, 2002, based on Schwarzer & Jerusalem, 1995; and for Self-awareness we used Govern & Marsch, 2001); but doing an adaptation to be useful in participative learning environments. ",
+        "valorations": {
+            "1": "Very good",
+            "2": "Good",
+            "3": "Acceptable",
+            "4": "Unacceptable"
+        },
+        "rows": [
+            "[SELF-AWARENESS] Awareness of everything on its environment", 
+            "[SELF-AWARENESS] Consciousness of what is happening.", 
+            "[SELF-AWARENESS] Consciousness about the image she/he projects.", 
+            "[SELF-AWARENESS] Concern about what other people think of him/her", 
+            "[SELF-AWARENESS] Consciousness of its inner feelings.",
+            "[SELF-EFFICACY] Confidence on having enough persistence to achieve goals.",
+            "[SELF-EFFICACY] Confidence on handle obstacles and overcome them.", 
+            "[SELF-EFFICACY] Confidence on overcoming opponents", 
+            "[SELF-EFFICACY] Confidence on solving difficult problems"    
+        ],
+        "cells": [
+            {
+                "1": "He/ She understands the overall picture and pays attention to the details of what is around him/her, not only to the elements he/she finds, but to the complex and wide relationships between those elements.",
+                "2": "He pays attention to what is around him/her, not only to the elements but to the relationships between elements. Nevertheless she/he miss some details",
+                "3": "He pays attention to some of the details that surround him/her, some of the elements and some of the situations, but does not relate to them or understand them as a complex context.",
+                "4": "He pays no attention to surrounding, shows no interest in what's around him/her."
+            }, {
+                "1": "Describes in detail the situation in which he finds himself and understands in a complex way the processes that happen in that situation. Pay close attention to details.",
+                "2": "She/he describes the situation in which he finds himself and understands the processes that take place in it.",
+                "3": "She/he knows that something is happening, he describes it superficially, but he is not able to describe it completely.",
+                "4": "She/he doesn't realize what's going on."
+            }, {
+                "1": "She/he knows what image he projects on himself and in it he includes not only what he shows, what she/he does, but also the relationships and people around him/her.",
+                "2": "She/he believes he/she projects an image about itself based on what others see of it and what it does.",
+                "3": "She/He thinks he projects an image on her/himself based on what others see of him/her.",
+                "4": "She/He has no idea what image she/he projects to others."
+            }, {
+                "1": "She/he is aware of the image she/he projects of her/himself. When getting constructive feedback she/he can make conscious change that image.",
+                "2": "She/he is aware of the image she/he projects of her/himself.  Doesn’t modify that image.",
+                "3": "She/he is partialy aware of the image she/he projects of her/himself.",
+                "4": "She/He pays no attention to what imagen she/he projects to others. At the opposite extreme, everything she/he does is done by thinking about what others think of him/her."
+            }, {
+                "1": "Knows  his/her own feelings/preferences and their causes and expresses them assertively.",
+                "2": "Knows and expresses feelings/preferences.",
+                "3": "Not really showing nor recognizing his/her own feelings and preferences but always looks for others' feelings/preferences for reference (Just in case).",
+                "4": "She/he doesn’t understand or express its own feelings/preferences."
+            }, {
+                "1": "She/he is convinced that can persist until achieve its goals, even if they are big or taught.",
+                "2": "She/he believes on its potential to persist until achieving most of the goals.",
+                "3": "She/he has doubts about on its potential to persist until achieving most of the goals.",
+                "4": "It’s convinced that she/he cannot persist until achieve its goals."
+            }, {
+                "1": "She/he is convinced that can handle and overcome obstacles, even if they are unexpected or difficult.",
+                "2": "She/he has the conviction of its potential on handle and overcome the majority of the potential obstacles.",
+                "3": "She/he believes on its potential to handle or overcome some easy potential obstacles.",
+                "4": "It’s convinced that she/he cannot handle any obstacle. "
+            }, {
+                "1": "She/he is convinced that can overcome any opponent she/he could have.",
+                "2": "She/he has the conviction of its potential to overcome its potential opponents.",
+                "3": "She/he has the conviction of its potential to overcome some easy potential opponents.",
+                "4": "It’s convinced that she/he cannot overcome any opponent."
+            }, {
+                "1": "She/he is convinced that can solve any problem or difficulty she/he has, even if they are unexpected or taught.",
+                "2": "She/he has the conviction of its potential to solve the majority of problems /difficulties.",
+                "3": "She/he has the conviction of its potential to solve the easiest problems /difficulties.",
+                "4": "It’s convinced that she/he cannot solve any difficulty."
+            }
+        ]
+    }
+}

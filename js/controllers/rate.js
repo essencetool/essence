@@ -12,8 +12,9 @@ define ([
     'config', 
     'db',
     'helpers',
-    'i18n!nls/translations'
-], function (tpl, tpl_rubric_form, $, hogan, config, db, helpers, i18n) {
+    'i18n!nls/translations',
+    'i18n!nls/rubrics'
+], function (tpl, tpl_rubric_form, $, hogan, config, db, helpers, i18n, i18n_rubrics) {
 
     /** @var wrapper DOM zero element */
     var wrapper;
@@ -174,12 +175,16 @@ define ([
         
         // Populate filtersa¡
         helpers.populate_select (select_project, 'projects', project_id);
-        helpers.populate_select (select_rubric, 'rubrics', rubric_id);
+        helpers.populate_select (select_rubric, 'rubrics', rubric_id, i18n_rubrics);
         populate_select_filter (select_filter);
         
         
         // Render the rubric if available
         if (rubric_id) db.getByID ('rubrics', rubric_id).then (function (rubric) {
+            
+            // i18n of the rubirc
+            helpers.i18n_rubric (rubric, i18n_rubrics[rubric.id]);
+            
             
             // Include i18n
             rubric = helpers.i18n_tpl (rubric);

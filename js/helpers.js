@@ -17,8 +17,9 @@ define ([
      * @param select
      * @param object_store
      * @param selected_id int
+     * @param i18n null|Object
      */
-    var populate_select = function (select, object_store, selected_id) {
+    var populate_select = function (select, object_store, selected_id, i18n) {
         
         // Populate projects
         db.getAll (object_store).then (function (items) {
@@ -34,12 +35,24 @@ define ([
             }
             
             
-            // Iterate over the groups
+            // Iterate over the items
             $.each (items, function (index, item) {
+                
+                /** @var id int */
+                var id = item.id;
+                
+                
+                /** @var name String */
+                var name = i18n && i18n[id] 
+                    ? i18n[id].name 
+                    : item.name
+                ;
+                
+                
                 select.append ($("<option />")
-                    .attr ('value', item.id)
+                    .attr ('value', id)
                     .prop ('selected', item.is_selected)
-                    .text (item.name)
+                    .text (name)
                 );
             });
             
@@ -172,6 +185,45 @@ define ([
     }
     
     
+    
+    /**
+     * i18n_rubric
+     *
+     * This function i18ns a rubric
+     *
+     * @param rubric
+     * @param i18n
+     */
+    var i18n_rubric = function (rubric, i18n) {
+        
+        // i18n of the question text of the fields
+        rubric.name = i18n["name"];
+        rubric.description = i18n["description"];
+        
+        
+        // i18n of the valorations
+        $.each (rubric.valorations, function (index_valoration, valoration) {
+            valoration.text = i18n["valorations"][valoration.id];
+        });
+        
+        
+        // i18n of the rows
+        $.each (rubric.rows, function (index_row, row) {
+            
+            // Update the name of row
+            row.name = i18n["rows"][index_row];
+            
+            
+            // Update the cell values
+            $.each (row.values, function (index_value, cell) {
+                cell.text = i18n["cells"][index_row][cell.id];
+            });
+            
+        });        
+
+    }
+    
+    
     /**
      * interpolate
      *
@@ -218,6 +270,7 @@ define ([
         populate_select_group: populate_select_group,
         i18n_tpl: i18n_tpl,
         i18n_assessment: i18n_assessment,
+        i18n_rubric: i18n_rubric,
         interpolate: interpolate,
         download_file: download_file
     }

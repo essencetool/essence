@@ -14,9 +14,10 @@ define ([
     'db',
     'helpers',
     'i18n!nls/translations',
+    'i18n!nls/rubrics',
     'chartjs',
     'jquery-csv'
-], function (tpl, tpl_progress_chart, tpl_student_row, $, hogan, config, db, helpers, i18n, chartjs) {
+], function (tpl, tpl_progress_chart, tpl_student_row, $, hogan, config, db, helpers, i18n, i18n_rubrics, chartjs) {
 
     /** @var student_id int */
     var student_id;
@@ -123,7 +124,7 @@ define ([
         
         // Populate selects
         helpers.populate_select (wrapper.find ('[name="project"]'), 'projects', project_id);
-        helpers.populate_select (wrapper.find ('[name="rubric"]'), 'rubrics', rubric_id); 
+        helpers.populate_select (wrapper.find ('[name="rubric"]'), 'rubrics', rubric_id, i18n_rubrics); 
         
         
         // Get all available rubrics
