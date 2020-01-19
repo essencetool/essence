@@ -4,6 +4,19 @@
     "description": "<h2>Working towards your vision of the future.</h2> <p>Visioning is a process, in which images of the desired future goals, objectives and outcomes act as motivators for the present action.</p> <p>Imagination is the ability to produce and simulate new objects, peoples and ideas in the mind.</p><p>Thinking strategically is a way of looking at things and linking them together.</p>",
     "rubric_id": 2,
     
+    "images": [
+        {
+            "path": "vision-1.png",
+            "scores": [0, 5]
+        }, {
+            "path": "vision-2.png",
+            "scores": [6, 8]
+        }, {        
+            "path": "vision-3.png",
+            "scores": [9, 12]
+        }
+    ],
+    
     "valorations": [
         {"text": "Yes", "id": 1, "score": 2},
         {"text": "Yes, to a certain degree", "id": 2, "score": 1},
@@ -13,9 +26,9 @@
     "questions": [
         {"text": "I have an idea of a dreamjob."},
         {"text": "I have a plan how to achieve my dreamjob."},
-        {"text": "I can easily come up with new ideas"},
-        {"text": "I can easily get others excited about my ideas"},
-        {"text": "I can convince  others that my vision is important"}
+        {"text": "I can easily come up with new ideas."},
+        {"text": "I can easily get others excited about my ideas."},
+        {"text": "I can convince  others that my vision is important."}
     ],
     
     "feedbacks": [
@@ -32,6 +45,19 @@
     "name": "Self awareness and self-efficacy",
     "description": "<h2>Believe in yourself and keep developing</h2><p>Self-efficacy is one's belief in one's ability to succeed in specific situations or accomplish a task. </p> <p>Self-efficacy in all forms influence one’s thoughts, emotions, actions, and motivation.</p> <p>One's sense of self-efficacy can play a major role in how one approaches goals, tasks, and challenges</p> <p>People with high self-efficacy are more likely to make efforts to complete a task, and to persist longer in those efforts, than those with low self-efficacy.</p>",
     "rubric_id": 1,
+    
+    "images": [
+        {
+            "path": "self-1.png",
+            "scores": [0, 5]
+        }, {
+            "path": "self-2.png",
+            "scores": [6, 8]
+        }, {        
+            "path": "self-3.png",
+            "scores": [9, 12]
+        }
+    ],
     
     "valorations": [
         {"text": "Yes", "id": 1, "score": 2},
@@ -62,6 +88,19 @@
     "name": "Working with others",
     "description": "<h2>Team up, work together and network</h2><p>Working with others is the ability to interact, cooperate, collaborate and manage conflicts with other people in order to complete tasks and achieve shared goals. This includes working with one other person, or working in small or large groups of people.</p>",
     "rubric_id": 3,
+    
+    "images": [
+        {
+            "path": "team-1.png",
+            "scores": [0, 5]
+        }, {
+            "path": "team-2.png",
+            "scores": [6, 8]
+        }, {        
+            "path": "team-3.png",
+            "scores": [9, 12]
+        }
+    ],   
     
     "valorations": [
         {"text": "Yes", "id": 1, "score": 2},

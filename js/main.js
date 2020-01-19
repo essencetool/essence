@@ -127,8 +127,16 @@ require ([
     var body = $('body');
     
     
+    /** @var html DOM */
+    var html = $('html');
+    
+    
     /** @var nav DOM */
     var nav = $('nav');
+    
+    
+    // Place locale
+    html.attr ('lang', localStorage.getItem ('locale'));
     
     
     // Configure VEX

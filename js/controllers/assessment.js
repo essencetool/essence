@@ -170,6 +170,38 @@ define ([
                 var total = assessment_results.total;
                 
                 
+                /** @var image String */
+                var image_score = '';
+               
+                
+                // Look for the feedback more according
+                $.each (assessment.images, function (index, image) {
+                    
+                    /** @var min int */
+                    var min = image.scores[0];
+                    
+                    
+                    /** @var max int */
+                    var max = image.scores[1];
+                    
+                    
+                    // Get if the score
+                    if (total >= min && total <= max) {
+
+                        // Update img
+                        image_score = 
+                            '<figure>' 
+                            + '<img alt="score" src="img/' + image.path + '" />'
+                            + '</figure>'
+                        ;
+
+                        
+                        // Stop search
+                        return false;
+                    }
+                });
+                
+                
                 // Look for the feedback more according
                 $.each (assessment.feedbacks, function (index, feedback) {
                     
@@ -191,13 +223,14 @@ define ([
                         // Attach feedback
                         complete_feedback += 
                             '<h2>' + assessment.name + '</h2>' 
-                            + assessment.description 
-                            + feedback.text
+                            + '<div class="feedback_assessment_description">' + assessment.description + image_score + '</div>'
+                            + '<div class="feedback_assessment_text">' + feedback.text + '</div>'
                         ;
                         
                         
                         // Stop search
                         return false;
+                    
                     }
                 });
             });

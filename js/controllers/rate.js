@@ -186,6 +186,20 @@ define ([
             helpers.i18n_rubric (rubric, i18n_rubrics[rubric.id]);
             
             
+            // Some languages require that ratings work in reverse order
+            if ('se-se', localStorage.getItem ('locale')) {
+                
+                // Reverse valorations
+                rubric.valorations = rubric.valorations.reverse ();
+                
+                
+                // Reverse values
+                $.each (rubric.rows, function (index, row) {
+                    row.values = row.values.reverse ();
+                });
+            }
+            
+            
             // Include i18n
             rubric = helpers.i18n_tpl (rubric);
             
