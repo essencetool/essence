@@ -2,4 +2,4 @@
 
 
 ## build
-nativefier --name "Essence App" "http://155.54.205.139/essence/"
+nativefier --name "Essence App" "https://pln.inf.um.es/essence/"
