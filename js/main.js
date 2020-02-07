@@ -80,6 +80,10 @@ require.config ({
         'jquery-csv': 'vendor/jquery.csv.min',
         
         
+        // Excel
+        'xlsx': 'vendor/xlsx.full.min',
+        
+        
         // ChartJS
         'chartjs': 'vendor/chart.bunble.min'
         

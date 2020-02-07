@@ -198,7 +198,7 @@ define ([
                         
                         
                         // Add to the database
-                        db.put (object_store, item);
+                        db.updateItem (object_store, item);
                         
                         
                         // Repopulate

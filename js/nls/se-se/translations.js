@@ -86,7 +86,7 @@ define ({
                 "title": "Lägg till elever",
                 
                 "help": {
-                    "text": "<p>I det här avsnittet kommer du att kunna lägga till en lista med elever och automatiskt tilldela dem en grupp. Notera att en elev endast kan läggas till i en grupp en gång, men samma elev kan tillhöra många olika grupper. Om du vill ha en specifik elev i många olika grupper, lägg till eleven en gång till men välj en annan grupp. </p><p>Du kan ladda ner en mall för att lägga till dina elever <a href='assets/templates/students.csv' download>här</a></p>"
+                    "text": "<p>I det här avsnittet kommer du att kunna lägga till en lista med elever och automatiskt tilldela dem en grupp. Notera att en elev endast kan läggas till i en grupp en gång, men samma elev kan tillhöra många olika grupper. Om du vill ha en specifik elev i många olika grupper, lägg till eleven en gång till men välj en annan grupp. </p><p>Du kan ladda ner en mall för att lägga till dina elever <a href='assets/templates/students.csv' download>här</a> (<a href='assets/templates/students.xlsx' download>Microsoft Excel</a>)</p>"
                 },
                 
                 "controls": {

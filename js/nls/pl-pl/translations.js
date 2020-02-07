@@ -86,7 +86,7 @@ define ({
                 "title": "Importuj uczniów",
                 
                 "help": {
-                    "text": "<p> W tej sekcji będziesz mógł zaimportować listę uczniów i przypisać ich automatycznie do grupy. Zauważ, że uczniowie mogą zostać uwzględnieni tylko raz, ale mogą należeć do wielu grup. Jeśli więc chcesz mieć tych samych uczniów w wielu grupach, zaimportuj ich ponownie, ale wybierz inną grupę. </p> <p> Możesz pobrać szablon, aby załadować swoich uczniów <a href = 'resources / templates / students.csv „pobierz> tutaj </a> </p>"
+                    "text": "<p> W tej sekcji będziesz mógł zaimportować listę uczniów i przypisać ich automatycznie do grupy. Zauważ, że uczniowie mogą zostać uwzględnieni tylko raz, ale mogą należeć do wielu grup. Jeśli więc chcesz mieć tych samych uczniów w wielu grupach, zaimportuj ich ponownie, ale wybierz inną grupę. </p> <p> Możesz pobrać szablon, aby załadować swoich uczniów <a href = 'resources / templates / students.csv „pobierz>tutaj</a> (<a href='assets/templates/students.xlsx' download>Microsoft Excel</a>)</p>"
                 },
                 
                 "controls": {

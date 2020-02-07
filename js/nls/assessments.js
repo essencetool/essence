@@ -10,6 +10,7 @@ define (['json!nls/assessments.json'], function (root) {
         "fi-fi": true,
         "pt-pt": true,
         "pl-pl": true,
-        "se-se": true
+        "se-se": true,
+        "tr-tr": true
     };
 });

@@ -86,7 +86,7 @@ define ({
                 "title": "Tuo opiskelijat",
                 
                 "help": {
-                    "text": "<p>Tässä osiossa voit tuoda luettelon opiskelijoista ja valita heidät automaattisesti johonkin ryhmään. Huomaa että opiskelijan voi nimetä vain kerran mutta yksi opiskelija voi kuulua useaan ryhmään. Jos haluat saman opiskelijan useaan ryhmään, sinun on tuotava hänet uudelleen mutta valittava toinen ryhmä. </p><p>Voit ladata pohjan johon tuot opiskelijat <a href='assets/templates/students.csv' download>here</a></p>"
+                    "text": "<p>Tässä osiossa voit tuoda luettelon opiskelijoista ja valita heidät automaattisesti johonkin ryhmään. Huomaa että opiskelijan voi nimetä vain kerran mutta yksi opiskelija voi kuulua useaan ryhmään. Jos haluat saman opiskelijan useaan ryhmään, sinun on tuotava hänet uudelleen mutta valittava toinen ryhmä. </p><p>Voit ladata pohjan johon tuot opiskelijat <a href='assets/templates/students.csv' download>here</a> (<a href='assets/templates/students.xlsx' download>Microsoft Excel</a>)</p>"
                 },
                 
                 "controls": {

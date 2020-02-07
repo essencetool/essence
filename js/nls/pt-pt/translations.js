@@ -86,7 +86,7 @@ define ({
                 "title": "Importar estudantes",
                 
                 "help": {
-                    "text": "<p>Nesta secção poderá importar uma lista de estudantes e atribuir-lhes automaticamente um grupo. Atenção os alunos só podem ser incluídos uma vez, mas podem pertencer a vários grupos. Portanto, se quiser ter os mesmos estudantes em vários grupos, importe-os novamente mas selecione outro grupo.</p><p> Pode fazer o download de um formulário para carregar os seus estudantes <a href='assets/templates/students.csv' download>aqui</a></p>"
+                    "text": "<p>Nesta secção poderá importar uma lista de estudantes e atribuir-lhes automaticamente um grupo. Atenção os alunos só podem ser incluídos uma vez, mas podem pertencer a vários grupos. Portanto, se quiser ter os mesmos estudantes em vários grupos, importe-os novamente mas selecione outro grupo.</p><p> Pode fazer o download de um formulário para carregar os seus estudantes <a href='assets/templates/students.csv' download>aqui</a> (<a href='assets/templates/students.xlsx' download>Microsoft Excel</a>)</p>"
                 },
                 
                 "controls": {

@@ -8,6 +8,14 @@
     background-repeat: no-repeat;
 }
 
+
+/** Global acctions */
+.toggle-menu-action {
+    left: 1rem;
+    right: auto;
+}
+
+
 /** Wrappers */
 main {
     margin: 1rem auto;
@@ -57,7 +65,7 @@ footer {
 
 main h1 {
     margin: 0 -1rem .5rem -1rem;
-    padding: 0 1rem 0 1rem;
+    padding: 0 1rem 0 4rem;
     line-height: 2;
     
     box-shadow: -0.5rem 0.5rem 0.25rem rgba(0,0,0,.1);
@@ -114,6 +122,7 @@ canvas {
     width: 22%;
     min-width: 0;
 }
+
 
 /** Mouse devices */
 @media (hover: hover) and (pointer: fine) {
