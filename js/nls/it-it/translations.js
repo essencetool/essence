@@ -30,7 +30,7 @@ define({
            },
            
            "select": {
-               "placeholder": "Per favore, seleziona una opzione"
+               "placeholder": "Per favore, seleziona un'opzione"
            },
            
            "include_all_subgroups": {
@@ -86,8 +86,10 @@ define({
                 "title": "Importare studenti",
                 
                 "help": {
-                    "text": "<p>In questa sezione è possibile importare una lista di studenti  ed assegnarli automaticamente ad un gruppo. Tieni conto che gli studenti possono essere inseriti una sola volta, ma possono appartenere a più gruppi. Quindi, se vuoi avere gli stessi studenti in più gruppi, importali di nuovo ma seleziona un altro gruppo.</p><p> Puoi scaricare un modello per caricare i tuoi studenti <a href='assets/templates/students.csv' download>here</a> (<a href='assets/templates/students.xlsx' download>Microsoft Excel</a>)</p>"
+                    "text": "<p>In questa sezione è possibile importare una lista di studenti ed assegnarli automaticamente ad un gruppo. Tieni conto che gli studenti possono essere inseriti una sola volta, ma possono appartenere a più gruppi. Quindi, se vuoi avere gli stessi studenti in più gruppi, importali di nuovo ma seleziona un altro gruppo.</p><p> Puoi scaricare un modello per caricare i tuoi studenti <a href='assets/templates/students.csv' download>qui</a> (<a href='assets/templates/students.xlsx' download>Microsoft Excel</a>)</p>"
                 },
+                
+                  
                 
                 "controls": {
                     "group": {
@@ -119,12 +121,12 @@ define({
                     
                     "name": {
                         "label": "Inizia inserendo nome e cognome",
-                        "placeholder": "Nome e cognome  Es: John Doe"
+                        "placeholder": "Nome e cognome  Es: Mario Rossi"
                     },
                     
                     "email": {
                         "label": "Aggiungi un indirizzo email se desideri ricevere i tuoi risultati",
-                        "placeholder": "Esempio: john-doe@sample.com"
+                        "placeholder": "Esempio: mario.rossi@sample.com"
                     },
                     
                     "submit": {
@@ -246,7 +248,7 @@ define({
                 "title": "Valutazioni",
                 
                 "help": {
-                    "text": "<p>In questa sezione puoi valutare gli studenti. Per farlo devi selezionare un progetto, una rubrica e gli studenti che vuoi valutare.</p> <p>Le valutazioni possono essere effettuate individualmente, per gruppo o sottogruppo, ma i cambiamenti non saranno salvati fino alla valutazione degli studenti.</p><p>Ricorda che si possono vedere tutte le valutazioni effettuate dal <a href='#students'>degli studenti</a> sezione</p><p>Una volta selezionati il progetto, la rubrica e gli studenti da valutare, dovrai segnare ogni criterio come  <em>molto buono</em>, <em>buono</em>, <em>accettabile</em> or <em>inaccettabile</em></p><p>È possibile inserire le prove per ricordare la valutazione</p>"
+                    "text": "<p>In questa sezione puoi valutare gli studenti. Per farlo devi selezionare un progetto, una rubrica e gli studenti che vuoi valutare.</p> <p>Le valutazioni possono essere effettuate individualmente, per gruppo o sottogruppo, ma i cambiamenti non saranno salvati fino alla valutazione degli studenti.</p><p>Ricorda che si possono vedere tutte le valutazioni <a href='#students'>degli studenti</a> nella sezione</p><p>Una volta selezionati il progetto, la rubrica e gli studenti da valutare, dovrai segnare ogni criterio come  <em>molto buono</em>, <em>buono</em>, <em>accettabile</em> o <em>inaccettabile</em></p><p>È possibile inserire le prove per ricordare la valutazione</p>"
                 },
                 
                 "controls": {

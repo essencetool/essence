@@ -8,11 +8,8 @@ define ([
     'jquery', 
     'config', 
     'i18n!nls/translations',
-    'json!assetsPath/projects.json',
-    'json!assetsPath/groups.json',
-    'json!assetsPath/rubrics.json',
-    'json!assetsPath/assessments.json'
-], function ($, config, i18n, projects, groups, rubrics, assessments) {
+
+], function ($, config, i18n) {
     
     /** @var db Here, we will store our database */
     var db;
@@ -74,77 +71,12 @@ define ([
                 }
                 
                 
-                /** @var transaction Create a transaction for all the objects */
-                var transaction = db.transaction (db.objectStoreNames, 'readwrite');
-                
-                
-                // Bind error handling
-                transaction.onerror = function (event) {
-                    console.log (event);
-                    reject ('Database error: ' + event.target.error.message);
-                };
-                
-                
-                // Bind success handling
-                transaction.oncomplete = function () {
-                    resolve ();
-                }
-                
-                
-                // Populate items
-                $.each ({
-                    'projects': projects, 
-                    'rubrics': rubrics,
-                    'assessments': assessments
-                }, function (object_store, data) {
-                    
-                    /** @var store objectStore */
-                    var store = transaction.objectStore (object_store);
-                    
-                    
-                    // Store individual items
-                    data.forEach (function (item) {
-                        store.add (item);
+                // Restore backup
+                require (['json!assetsPath/initial-database.json'], function (backup) {
+                    restore_backup (backup).then (function () {
+                        resolve ();
                     });
-                    
-                });
-                
-                
-                /** @var store_group objectStore */
-                var store_group = transaction.objectStore ('groups');
-                
-                
-                /** @var store_subgroup objectStore */
-                var store_subgroup = transaction.objectStore ('subgroups');
-                
-                
-                // Iterate over groups
-                $.each (groups, function (index, group) {
-                    
-                    /** @var slug String */
-                    var slug = slugify (group.name);
-                
-                
-                    // Crate group
-                    store_group.add ({
-                        name: group.name,
-                        slug: slug,
-                        key: group.key
-                    }).onsuccess = function (e) {
-                        
-                        /** @var group_id int */
-                        var group_id = e.target.result;
-                        
-                        
-                        // Create subgroup
-                        $.each (group.subgroups, function (index2, subgroup) {
-                            store_subgroup.add ({
-                                name: subgroup.name,
-                                slug: slugify (subgroup.name),
-                                group_id: group_id,
-                            });
-                        });
-                    };
+
                 });
             };
         
@@ -987,6 +919,104 @@ define ([
             });
         });
     }
+    
+    
+    /**
+     * truncate
+     */
+    var truncate = function () {
+        
+        return new Promise ((resolve, reject) => {
+            
+            console.log (db.objectStoreNames);
+            
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (db.objectStoreNames, 'readwrite');
+            
+            
+            // Bind error handling
+            transaction.onerror = function (event) {
+                console.log (event);
+                reject ('Database error: ' + event.target.error.message);
+            };
+            
+            
+            // Bind success handling
+            transaction.oncomplete = function () {
+                console.log ('truncated');
+                resolve ();
+            }
+            
+            
+            // Get each object store
+            $.each (object_stores, function (index, object_store) {
+                
+                /** @var store objectStore */
+                var store = transaction.objectStore (object_store);
+                
+                
+                /** @var clear_request objectStore */
+                var clear_request = store.clear ();
+                
+                
+                // Truncate
+                clear_request.onsuccess = function(event) {
+                    console.log ('truncate > ' + object_store);    
+                }
+                
+                
+            });
+            
+        });
+        
+    }
+    
+    
+    
+    /**
+     * restore_backup
+     *
+     * @param backup JSON
+     */
+    var restore_backup = function (backup) {
+        
+        return new Promise ((resolve, reject) => {
+        
+            /** @var transaction Create a transaction for all the objects */
+            var transaction = db.transaction (db.objectStoreNames, 'readwrite');
+    
+    
+            // Bind error handling
+            transaction.onerror = function (event) {
+                console.log (event);
+                reject ('Database error: ' + event.target.error.message);
+            };
+    
+    
+            // Bind success handling
+            transaction.oncomplete = function () {
+                resolve ();
+            }
+            
+            
+            // Populate projects, rubrics, and assesments
+            $.each (object_stores, function (index, object_store) {
+                
+                /** @var store objectStore */
+                var data = backup[object_store];
+                
+                
+                /** @var store objectStore */
+                var store = transaction.objectStore (object_store);
+                
+                
+                // Insert items
+                data.forEach (function (item) {
+                    store.add (item);
+                });
+            });
+        });
+    }
 
     
     
@@ -995,6 +1025,9 @@ define ([
         init: init,
         
         object_stores: object_stores,
+        
+        restore_backup: restore_backup,
+        truncate: truncate,
         
         add: add,
         addItems: addItems,

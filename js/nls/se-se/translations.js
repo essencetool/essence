@@ -246,7 +246,7 @@ define ({
                 "title": "Utvärderingar",
                 
                 "help": {
-                    "text": "<p>I det här avsnittet kan du utvärdera eleverna. För att göra detta måste du först välja ett projekt, en rubrik och vilka elever du vill göra bedömningen på. Utvärderingarna kan göras individuellt, i grupp eller i undergrupp, men ändringar kommer inte att sparas förrän du bedömt eleverna.</p><p>. Kom ihåg att du kan få en översikt över alla genomförda utvärderingar.<a href='#students'>students's</a> section</p><p> När du har valt projekt, rubrik och vilka elever du ska utvärdera, så väljer du kriterie, mycket väl godkänd, väl godkänd, godkänd eller ej godkänd. <em>mycket väl godkänd</em>, <em>väl godkänd</em>, <em>godkänd</em> or <em>ej godkänd</em></p><p>Det är möjligt att föra anteckningar över bedömningsunderlag för att minnas din utvärdering</p>"
+                    "text": "<p>I det här avsnittet kan du utvärdera eleverna. För att göra detta måste du först välja ett projekt, en rubrik och vilka elever du vill göra bedömningen på. Utvärderingarna kan göras individuellt, i grupp eller i undergrupp, men ändringar kommer inte att sparas förrän du bedömt eleverna.</p><p>. Kom ihåg att du kan få en översikt över alla genomförda utvärderingar.<a href='#students'>students's</a></p><p> När du har valt projekt, rubrik och vilka elever du ska utvärdera, så väljer du kriterie, mycket väl godkänd, väl godkänd, godkänd eller ej godkänd. <em>mycket väl godkänd</em>, <em>väl godkänd</em>, <em>godkänd</em> tai <em>ej godkänd</em></p><p>Det är möjligt att föra anteckningar över bedömningsunderlag för att minnas din utvärdering</p>"
                 },
                 
                 "controls": {

@@ -1,0 +1,38 @@
+<!-- Title -->
+<h1>
+    {{# i18n }} frontend.pages.restore_backup.title {{/ i18n }}
+</h1>
+
+<!-- Help and tips -->
+<blockquote class="help">
+    {{# i18n }} frontend.pages.restore_backup.help.text {{/ i18n }}
+</blockquote>
+
+
+<!-- Form -->
+<form class="pure-form" name="restore-backup-form" method="post">
+
+    <!-- Hidden fields -->
+    <input type="hidden" name="backup" value="" />
+    
+    
+    
+    <!-- Select JSON file -->
+    <div class="form-step">
+        <div>{{# i18n }} frontend.pages.restore_backup.controls.file.label {{/ i18n }}</div>
+        <label for="file" class="pure-button">
+            <span class="icon-attach"></span>
+            {{# i18n }} frontend.pages.restore_backup.controls.file.placeholder {{/ i18n }}
+        </label>
+        <input id="file" name="file" type="file" hidden name="file" accept=".json" />
+    </div>  
+    
+    
+    <!-- Submit -->
+    <div class="rating-panel-actions">
+        <button type="submit" class="pure-button pure-button-primary">
+            {{# i18n }} frontend.pages.restore_backup.controls.submit.text {{/ i18n }}
+        </button>
+    </div>
+  
+</form>

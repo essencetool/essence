@@ -1,0 +1,806 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Default project",
+      "description": "This is the default project of Essence. Feel free to modify it to your needs."
+    }
+  ],
+  "groups": [
+    {
+      "name": "Computer Science",
+      "slug": "computer-science",
+      "id": 1
+    },
+    {
+      "name": "Psychology",
+      "slug": "psychology",
+      "id": 2
+    }
+  ],
+  "subgroups": [
+    {
+      "name": "1th degree of Computer Science",
+      "slug": "1th-degree-of-computer-science",
+      "group_id": 1,
+      "id": 1
+    },
+    {
+      "name": "2th degree of Computer Science",
+      "slug": "2th-degree-of-computer-science",
+      "group_id": 1,
+      "id": 2
+    },
+    {
+      "name": "3th degree of Computer Science",
+      "slug": "3th-degree-of-computer-science",
+      "group_id": 1,
+      "id": 3
+    },
+    {
+      "name": "4th degree of Computer Science",
+      "slug": "4th-degree-of-computer-science",
+      "group_id": 1,
+      "id": 4
+    },
+    {
+      "name": "1th degree of Psychology",
+      "slug": "1th-degree-of-psychology",
+      "group_id": 2,
+      "id": 5
+    },
+    {
+      "name": "2th degree of Psychology",
+      "slug": "2th-degree-of-psychology",
+      "group_id": 2,
+      "id": 6
+    }
+  ],
+  "rubrics": [
+    {
+      "id": 1,
+      "name": "Assessment rubric for the ball (Working with others)",
+      "description": "To be used as an expert assessment tool, as a peer to peer tool, or as a self-assessment tool.",
+      "color": [
+        255,
+        99,
+        132
+      ],
+      "valorations": [
+        {
+          "text": "Very good",
+          "id": 1,
+          "score": 4
+        },
+        {
+          "text": "Good",
+          "id": 2,
+          "score": 3
+        },
+        {
+          "text": "Acceptable",
+          "id": 3,
+          "score": 2
+        },
+        {
+          "text": "Unacceptable",
+          "id": 4,
+          "score": 1
+        }
+      ],
+      "rows": [
+        {
+          "key": "planning",
+          "name": "Planning",
+          "values": [
+            {
+              "id": 1,
+              "text": "Participate in planning by making valuable proposals and making reasoned decisions"
+            },
+            {
+              "id": 2,
+              "text": "Participates in decision-making but does not make valuable proposals"
+            },
+            {
+              "id": 3,
+              "text": "Does not participate in goal planning, but accepts the group's decision and follow the plan."
+            },
+            {
+              "id": 4,
+              "text": "Does not participate in planning goals and boycotts decisions made by peers."
+            }
+          ]
+        },
+        {
+          "key": "tranquillity",
+          "name": "Tranquillity",
+          "values": [
+            {
+              "id": 1,
+              "text": "Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions."
+            },
+            {
+              "id": 2,
+              "text": "He has difficulty keeping calm in the face of difficulties but ends up finding solutions."
+            },
+            {
+              "id": 3,
+              "text": "Keeps calm in the face of difficulties and asks for help or examples."
+            },
+            {
+              "id": 4,
+              "text": "You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given."
+            }
+          ]
+        },
+        {
+          "key": "motivation",
+          "name": "Motivation",
+          "values": [
+            {
+              "id": 1,
+              "text": "Maintains motivation towards the activity from the first moment to the last."
+            },
+            {
+              "id": 2,
+              "text": "Start the activity highly motivated but have difficulty maintaining it throughout the course of the activity."
+            },
+            {
+              "id": 3,
+              "text": "You need support from your group or teachers to maintain motivation towards the activity."
+            },
+            {
+              "id": 4,
+              "text": "Their low motivation causes problems in the group."
+            }
+          ]
+        },
+        {
+          "key": "help-and-respect",
+          "name": "Help and respect",
+          "values": [
+            {
+              "id": 1,
+              "text": "Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them."
+            },
+            {
+              "id": 2,
+              "text": "It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others."
+            },
+            {
+              "id": 3,
+              "text": "Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work."
+            },
+            {
+              "id": 4,
+              "text": "It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult. "
+            }
+          ]
+        },
+        {
+          "key": "friendliness",
+          "name": "Friendliness",
+          "values": [
+            {
+              "id": 1,
+              "text": "When you disagree don't agree with what a colleague does or says with a peer, you know how to give him or her suggest alternatives with correct and respectful language. "
+            },
+            {
+              "id": 2,
+              "text": "Expresses disagreement with a peer, but does not suggest alternatives at first and/or uses inappropriate language. Ends up suggesting alternatives."
+            },
+            {
+              "id": 3,
+              "text": "When disagreeing, he gets angry and doesn't talk about it or look for alternatives, even though he/she continue working"
+            },
+            {
+              "id": 4,
+              "text": "When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions. Ends up giving in."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Vision. General Assessment",
+      "description": "Those aspects would be showed in many different ways, but would be basically being substanciated into some criteria to evaluate:",
+      "color": [
+        75,
+        192,
+        192
+      ],
+      "valorations": [
+        {
+          "text": "Very good",
+          "id": 1,
+          "score": 4
+        },
+        {
+          "text": "Good",
+          "id": 2,
+          "score": 3
+        },
+        {
+          "text": "Acceptable",
+          "id": 3,
+          "score": 2
+        },
+        {
+          "text": "Unacceptable",
+          "id": 4,
+          "score": 1
+        }
+      ],
+      "rows": [
+        {
+          "key": "number",
+          "name": "Number of ideas for the future imagined",
+          "values": [
+            {
+              "id": 1,
+              "text": "Always deliver much more new ideas she/he needs on each moment."
+            },
+            {
+              "id": 2,
+              "text": "Deliver as much new ideas as they need on each moment and sometimes more."
+            },
+            {
+              "id": 3,
+              "text": "Not always deliver as much new ideas as they need on each moment."
+            },
+            {
+              "id": 4,
+              "text": "Cannot imagine enough or even any new ideas."
+            }
+          ]
+        },
+        {
+          "key": "imagination",
+          "name": "Easy to imagine future ideas",
+          "values": [
+            {
+              "id": 1,
+              "text": "Fast and natural delivering of new ideas."
+            },
+            {
+              "id": 2,
+              "text": "Focused, systematic and successful delivering of new ideas"
+            },
+            {
+              "id": 3,
+              "text": "Slow but constant and successful delivering of some new ideas"
+            },
+            {
+              "id": 4,
+              "text": "Painful, slow and unsuccessful process of delivering new ideas"
+            }
+          ]
+        },
+        {
+          "key": "novelty",
+          "name": "Novelty of ideas imagined",
+          "values": [
+            {
+              "id": 1,
+              "text": "Ideas proposed are completely new and unknown."
+            },
+            {
+              "id": 2,
+              "text": "Ideas proposed are based on other ideas from external sources and new proposals."
+            },
+            {
+              "id": 3,
+              "text": "Ideas proposed are based on other ideas from external sources."
+            },
+            {
+              "id": 4,
+              "text": "Cannot imagine any new ideas."
+            }
+          ]
+        },
+        {
+          "key": "argumentation",
+          "name": "Argumentation of ideas",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he arguments, debate and defends its ideas clearly."
+            },
+            {
+              "id": 2,
+              "text": "She/he arguments and debate its ideas "
+            },
+            {
+              "id": 3,
+              "text": "She/he arguments its ideas. "
+            },
+            {
+              "id": 4,
+              "text": "She/he cannot argument or debate its ideas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Self-awareness & Self-efficacy",
+      "description": "Self-awareness (SA) and Self-efficacy (SE) are two psychological abilities that help people to face their projects (e.g.) in a more realistic way, starting from their own conditions and improving them in order to improve also their possibilities of achieving their goals. As very well studied psychological skills, seems sensible start the definition of the assessment of these both from the criteria (dimensions) that are already evaluated in some validated scales created for psychological diagnosis (For self-efficacy we used Scholz, Doña, Sud, & Schwarzer, 2002, based on Schwarzer & Jerusalem, 1995; and for Self-awareness we used Govern & Marsch, 2001); but doing an adaptation to be useful in participative learning environments. ",
+      "color": [
+        54,
+        162,
+        235
+      ],
+      "valorations": [
+        {
+          "text": "Very good",
+          "id": 1,
+          "score": 4
+        },
+        {
+          "text": "Good",
+          "id": 2,
+          "score": 3
+        },
+        {
+          "text": "Acceptable",
+          "id": 3,
+          "score": 2
+        },
+        {
+          "text": "Unacceptable",
+          "id": 4,
+          "score": 1
+        }
+      ],
+      "rows": [
+        {
+          "key": "awareness",
+          "name": "[SELF-AWARENESS] Awareness of everything on its environment",
+          "values": [
+            {
+              "id": 1,
+              "text": "He/ She understands the overall picture and pays attention to the details of what is around him/her, not only to the elements he/she finds, but to the complex and wide relationships between those elements."
+            },
+            {
+              "id": 2,
+              "text": "He pays attention to what is around him/her, not only to the elements but to the relationships between elements. Nevertheless she/he miss some details"
+            },
+            {
+              "id": 3,
+              "text": "He pays attention to some of the details that surround him/her, some of the elements and some of the situations, but does not relate to them or understand them as a complex context."
+            },
+            {
+              "id": 4,
+              "text": "He pays no attention to surrounding, shows no interest in what's around him/her."
+            }
+          ]
+        },
+        {
+          "key": "consciousness",
+          "name": "[SELF-AWARENESS] Consciousness of what is happening.",
+          "values": [
+            {
+              "id": 1,
+              "text": "Describes in detail the situation in which he finds himself and understands in a complex way the processes that happen in that situation. Pay close attention to details."
+            },
+            {
+              "id": 2,
+              "text": "She/he describes the situation in which he finds himself and understands the processes that take place in it."
+            },
+            {
+              "id": 3,
+              "text": "She/he knows that something is happening, he describes it superficially, but he is not able to describe it completely."
+            },
+            {
+              "id": 4,
+              "text": "She/he doesn't realize what's going on."
+            }
+          ]
+        },
+        {
+          "key": "own-image",
+          "name": "[SELF-AWARENESS] Consciousness about the image she/he projects.",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he knows what image he projects on himself and in it he includes not only what he shows, what she/he does, but also the relationships and people around him/her."
+            },
+            {
+              "id": 2,
+              "text": "She/he believes he/she projects an image about itself based on what others see of it and what it does."
+            },
+            {
+              "id": 3,
+              "text": "She/He thinks he projects an image on her/himself based on what others see of him/her."
+            },
+            {
+              "id": 4,
+              "text": "She/He has no idea what image she/he projects to others."
+            }
+          ]
+        },
+        {
+          "key": "third-person-beliefs",
+          "name": "[SELF-AWARENESS] Concern about what other people think of him/her",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he is aware of the image she/he projects of her/himself. When getting constructive feedback she/he can make conscious change that image."
+            },
+            {
+              "id": 2,
+              "text": "She/he is aware of the image she/he projects of her/himself.  Doesn’t modify that image."
+            },
+            {
+              "id": 3,
+              "text": "She/he is partialy aware of the image she/he projects of her/himself."
+            },
+            {
+              "id": 4,
+              "text": "She/He pays no attention to what imagen she/he projects to others. At the opposite extreme, everything she/he does is done by thinking about what others think of him/her."
+            }
+          ]
+        },
+        {
+          "key": "inner-feelings",
+          "name": "[SELF-AWARENESS] Consciousness of its inner feelings.",
+          "values": [
+            {
+              "id": 1,
+              "text": "Knows  his/her own feelings/preferences and their causes and expresses them assertively."
+            },
+            {
+              "id": 2,
+              "text": "Knows and expresses feelings/preferences."
+            },
+            {
+              "id": 3,
+              "text": "Not really showing nor recognizing his/her own feelings and preferences but always looks for others' feelings/preferences for reference (Just in case)."
+            },
+            {
+              "id": 4,
+              "text": "She/he doesn’t understand or express its own feelings/preferences."
+            }
+          ]
+        },
+        {
+          "key": "persistence",
+          "name": "[SELF-EFFICACY] Confidence on having enough persistence to achieve goals. ",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he is convinced that can persist until achieve its goals, even if they are big or taught."
+            },
+            {
+              "id": 2,
+              "text": "She/he believes on its potential to persist until achieving most of the goals."
+            },
+            {
+              "id": 3,
+              "text": "She/he has doubts about on its potential to persist until achieving most of the goals."
+            },
+            {
+              "id": 4,
+              "text": "It’s convinced that she/he cannot persist until achieve its goals."
+            }
+          ]
+        },
+        {
+          "key": "confidence",
+          "name": "[SELF-EFFICACY] Confidence on handle obstacles and overcome them.",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he is convinced that can handle and overcome obstacles, even if they are unexpected or difficult."
+            },
+            {
+              "id": 2,
+              "text": "She/he has the conviction of its potential on handle and overcome the majority of the potential obstacles."
+            },
+            {
+              "id": 3,
+              "text": "She/he believes on its potential to handle or overcome some easy potential obstacles."
+            },
+            {
+              "id": 4,
+              "text": "It’s convinced that she/he cannot handle any obstacle. "
+            }
+          ]
+        },
+        {
+          "key": "overcoming",
+          "name": "[SELF-EFFICACY] Confidence on overcoming opponents",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he is convinced that can overcome any opponent she/he could have."
+            },
+            {
+              "id": 2,
+              "text": "She/he has the conviction of its potential to overcome its potential opponents."
+            },
+            {
+              "id": 3,
+              "text": "She/he has the conviction of its potential to overcome some easy potential opponents."
+            },
+            {
+              "id": 4,
+              "text": "It’s convinced that she/he cannot overcome any opponent."
+            }
+          ]
+        },
+        {
+          "key": "decisive",
+          "name": "[SELF-EFFICACY] Confidence on solving difficult problems",
+          "values": [
+            {
+              "id": 1,
+              "text": "She/he is convinced that can solve any problem or difficulty she/he has, even if they are unexpected or taught."
+            },
+            {
+              "id": 2,
+              "text": "She/he has the conviction of its potential to solve the majority of problems /difficulties."
+            },
+            {
+              "id": 3,
+              "text": "She/he has the conviction of its potential to solve the easiest problems /difficulties."
+            },
+            {
+              "id": 4,
+              "text": "It’s convinced that she/he cannot solve any difficulty."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "students": [],
+  "ratings": [],
+  "assessments": [
+    {
+      "id": 1,
+      "name": "Vision",
+      "description": "<h2>Working towards your vision of the future.</h2> <p>Visioning is a process, in which images of the desired future goals, objectives and outcomes act as motivators for the present action.</p> <p>Imagination is the ability to produce and simulate new objects, peoples and ideas in the mind.</p><p>Thinking strategically is a way of looking at things and linking them together.</p>",
+      "rubric_id": 2,
+      "images": [
+        {
+          "path": "vision-1.png",
+          "scores": [
+            0,
+            5
+          ]
+        },
+        {
+          "path": "vision-2.png",
+          "scores": [
+            6,
+            8
+          ]
+        },
+        {
+          "path": "vision-3.png",
+          "scores": [
+            9,
+            12
+          ]
+        }
+      ],
+      "valorations": [
+        {
+          "text": "Yes",
+          "id": 1,
+          "score": 2
+        },
+        {
+          "text": "Yes, to a certain degree",
+          "id": 2,
+          "score": 1
+        },
+        {
+          "text": "No, not at all",
+          "id": 3,
+          "score": 0
+        }
+      ],
+      "questions": [
+        {
+          "text": "I have an idea of a dreamjob."
+        },
+        {
+          "text": "I have a plan how to achieve my dreamjob."
+        },
+        {
+          "text": "I can easily come up with new ideas."
+        },
+        {
+          "text": "I can easily get others excited about my ideas."
+        },
+        {
+          "text": "I can convince  others that my vision is important."
+        }
+      ],
+      "feedbacks": [
+        {
+          "text": "<p>Your score indicates that you could develop your abilities of visioning, imagination and strategic thinking. </p> <p>You may have faced difficulties in producing and stimulating ideas, dreams or visions.  </p> <p>Strategic thinkers have high levels of critical thinking skills. They are also more observant and reflective than the average person.</p> <p>Strategic talented thinkers create connections between ideas, plans and people that others fail to see.</p> <p>You could give yourself a change to see those connections by giving yourself time to just to dream and think, without any interruption or devices. Let your mind to see those possibilities.</p> <p>You can develop your imagination skills by doing some activities,  for example  -My dream profession.</p>",
+          "scores": [
+            0,
+            6
+          ]
+        },
+        {
+          "text": "<p>Your score indicates that your abilities of visioning, imagination and strategic thinking, tends to be high.</p> <p>You can easily produce and simulate new ideas, dreams or visions.  </p> <p>You have good abilities to create connections between ideas, plans and people that others fail to see.</p> <p>You challenge yourself and others consider answers for particular questions.</p> <p>Strategic thinkers have high levels of critical thinking skills. They are also more observant and reflective than the average person. You may be one of those.</p>",
+          "scores": [
+            7,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Self awareness and self-efficacy",
+      "description": "<h2>Believe in yourself and keep developing</h2><p>Self-efficacy is one's belief in one's ability to succeed in specific situations or accomplish a task. </p> <p>Self-efficacy in all forms influence one’s thoughts, emotions, actions, and motivation.</p> <p>One's sense of self-efficacy can play a major role in how one approaches goals, tasks, and challenges</p> <p>People with high self-efficacy are more likely to make efforts to complete a task, and to persist longer in those efforts, than those with low self-efficacy.</p>",
+      "rubric_id": 1,
+      "images": [
+        {
+          "path": "self-1.png",
+          "scores": [
+            0,
+            5
+          ]
+        },
+        {
+          "path": "self-2.png",
+          "scores": [
+            6,
+            8
+          ]
+        },
+        {
+          "path": "self-3.png",
+          "scores": [
+            9,
+            12
+          ]
+        }
+      ],
+      "valorations": [
+        {
+          "text": "Yes",
+          "id": 1,
+          "score": 2
+        },
+        {
+          "text": "Yes, to a certain degree",
+          "id": 2,
+          "score": 1
+        },
+        {
+          "text": "No, not at all",
+          "id": 3,
+          "score": 0
+        }
+      ],
+      "questions": [
+        {
+          "text": "I am aware of my strengths"
+        },
+        {
+          "text": "I know how to improve my weaknesses"
+        },
+        {
+          "text": "It is easy for me to stick to my goals"
+        },
+        {
+          "text": "I can recognize everyday problems, that needs to be solved"
+        },
+        {
+          "text": "When I am stuck with a problem, I can find a solution"
+        },
+        {
+          "text": "If I try hard enough I can achieve my dreams"
+        }
+      ],
+      "feedbacks": [
+        {
+          "text": "<p>This feedback indicates how you recognize your strengths and  generally feel about your ability to handle situations successfully.</p> <p>Your score indicates </p> <p>that you may have not recognized your strengths. You may also lack confidence about your ability to successfully handle situations.</p> <p>You may feel challenging with sticking to your goals.</p> <p>A good idea to build  self-efficacy is to set goals reasonably and approach them one by one. Goals can be break down into smaller subgoals and work on achieving them one at a time, slowly and not over-stressing about results.</p> <p>Remember also do things that you like to do, trying new things and facing challenges.</p> <p>Be gracious to yourself by accepting failures and criticisms positively.</p>",
+          "scores": [
+            0,
+            6
+          ]
+        },
+        {
+          "text": "<p>This feedback indicates how you recognize your strengths and  generally feel about your ability to handle situations successfully.</p> <p>Your score indicates that you have recognized your strengths and know how to use them.  You feel confident about your ability to successfully handle situations both expected and unexpected. </p> <p>You can stick to your goals.You have a strong sense of problem-solving focused on taking action with high hopes for success. You generally do not fear failure and are optimistic about outcomes. You tend to be calm especially when facing problems</p>",
+          "scores": [
+            7,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Working with others",
+      "description": "<h2>Team up, work together and network</h2><p>Working with others is the ability to interact, cooperate, collaborate and manage conflicts with other people in order to complete tasks and achieve shared goals. This includes working with one other person, or working in small or large groups of people.</p>",
+      "rubric_id": 3,
+      "images": [
+        {
+          "path": "team-1.png",
+          "scores": [
+            0,
+            5
+          ]
+        },
+        {
+          "path": "team-2.png",
+          "scores": [
+            6,
+            8
+          ]
+        },
+        {
+          "path": "team-3.png",
+          "scores": [
+            9,
+            12
+          ]
+        }
+      ],
+      "valorations": [
+        {
+          "text": "Yes",
+          "id": 1,
+          "score": 2
+        },
+        {
+          "text": "Yes, to a certain degree",
+          "id": 2,
+          "score": 1
+        },
+        {
+          "text": "No, not at all",
+          "id": 3,
+          "score": 0
+        }
+      ],
+      "questions": [
+        {
+          "text": "When I am working in a team, I exchange information and ideas with other team members"
+        },
+        {
+          "text": "When I am working in a team, I acknowledge others’ ideas"
+        },
+        {
+          "text": "When I am working in a team, I adhere to commonly agreed rules and schedules"
+        },
+        {
+          "text": "I  can build up a team to solve an specific problem"
+        },
+        {
+          "text": "When I have a problem I know whom to contac"
+        },
+        {
+          "text": "I can solve conflicts in teams."
+        }
+      ],
+      "feedbacks": [
+        {
+          "text": "<p>Based on your responses you may have difficulties in exchanging  information and ideas with other team members or  acknowledging others’ ideas.</p> <p>Effectively working with others involves understanding and working within the group’s culture, rules and schedules. It means joint planning and decision-making, negotiating and compromising.</p> <p>It requires also being flexible in terms of roles including knowing when to take a leadership role and knowing when to seek a team approach.</p> <p>When working in a team, everyone has the right in expressing opinions and ideas but also responsibility in respecting those of others, including people of differing backgrounds.</p> <p>If you are having problems in your team, you can offer a solution for it. </p> <p>Remember to support and respect your team members.  A good team player knows how to have fun, but would never do it at someone else’s expense.</p>",
+          "scores": [
+            0,
+            7
+          ]
+        },
+        {
+          "text": "<p>Based on your responses you have good abilities in exchanging  information and ideas with other team members and  acknowledging others’ ideas</p> <p>Effectively working with others involves understanding and working within the group’s culture, rules and schedules. It means joint planning and decision-making, negotiating and compromising.</p> <p>It requires also being flexible in terms of roles including knowing when to take a leadership role and  knowing when to seek a team approach.</p> <p>When working in a team, everyone has the right in expressing  opinions and ideas but also responsibility in respecting those of others, including people of differing backgrounds.  </p> <p>If you are having problems in your team, you are active in offering a solution for it. </p> <p>You support and respect your team members.  You  remember, that a good team player knows how to have fun, but would never do it at someone else’s expense.</p>",
+          "scores": [
+            8,
+            14
+          ]
+        }
+      ]
+    }
+  ]
+}

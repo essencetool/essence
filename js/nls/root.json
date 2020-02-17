@@ -108,6 +108,30 @@
                 }
             },
             
+            "restore_backup": {
+                
+                "title": "Restore backup",
+                
+                "help": {
+                    "text": "<p>In this section you will be able to restore a back-up and Submit. Remember, all previously stored info will be lost</p>"
+                },
+                
+                "controls": {
+                    "file": {
+                        "label": "Submit your last restoration point",
+                        "placeholder": "Select a file"
+                    },
+                    "submit": {
+                        "text": "Submit"
+                    }
+                },
+                
+                "messages": {
+                    "no_file": "You need to attach one valid .json to import",
+                    "success": "Database restored"
+                }
+            },
+            
             "assessment": {
                 
                 "title": "Self-assessments",

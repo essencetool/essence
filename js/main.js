@@ -152,6 +152,14 @@ require ([
     window.vex.dialog.buttons.NO.text = i18n.vex.cancel;
     
     
+    // Tell our webapp that we have a service-worker
+    // Notice how we test our browser if 'serviceWorkers' are 
+    // supported. If not, our web app should behave as a regular web 
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register ('service-worker.js');
+    }
+    
+    
     // i18n the main page
     $('[data-i18n]').each (function () {
         $(this).html (ref (i18n, $(this).attr ('data-i18n')));
@@ -246,6 +254,12 @@ require ([
             
             case 'export':
                 require (['controllers/export'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
+            case 'restore-backup':
+                require (['controllers/restore-backup'], function (controller) {
                     controller.index (params);
                 });
                 break;
