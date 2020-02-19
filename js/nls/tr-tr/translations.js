@@ -72,6 +72,9 @@ define({
                         "export": {
                             "text": "<span class='icon-left-big'></span> Gönder"
                         },
+                        "restore": {
+                            "text": "<span class='icon-right-big'></span> Yedeği geri yükle"
+                        },
                         "assessment": {
                             "text": "<span class='icon-edit'></span> Özdeğerlendirme"
                         }
@@ -105,6 +108,30 @@ define({
                 "messages": {
                     "no_file": "Almak için geçerli bir .csv eklemeniz gerekir",
                     "success": "%success% de %total% estudiantes se han añadido a '%group%'"
+                }
+            },
+            
+            "restore_backup": {
+                
+                "title": "Yedeği geri yükle",
+                
+                "help": {
+                    "text": "<p>Bu bölümde bir yedeklemeyi geri yükleyebilir ve Gönderebilirsiniz. Unutmayın, önceden depolanmış tüm bilgiler kaybolacaktır</p>"
+                },
+                
+                "controls": {
+                    "file": {
+                        "label": "Son geri yükleme noktanızı gönderin",
+                        "placeholder": "Bir dosya seçin"
+                    },
+                    "submit": {
+                        "text": "Sunmak"
+                    }
+                },
+                
+                "messages": {
+                    "no_file": "İçe aktarmak için geçerli bir .json eklemeniz gerekir",
+                    "success": "Veritabanı geri yüklendi"
                 }
             },
             

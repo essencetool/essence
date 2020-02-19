@@ -72,6 +72,9 @@ define ({
                         "export": {
                             "text": "<span class='icon-left-big'></span> Exportera"
                         },
+                        "restore": {
+                            "text": "<span class='icon-right-big'></span> Återställa säkerhetskopia"
+                        },
                         "assessment": {
                             "text": "<span class='icon-edit'></span> Självbedömning"
                         }
@@ -105,6 +108,30 @@ define ({
                 "messages": {
                     "no_file": "Du måste infoga ett giltigt filnamn.csv ",
                     "success": "%success% av %totalen% elever lades till '%group%"
+                }
+            },
+            
+            "restore_backup": {
+                
+                "title": "Återställa säkerhetskopia",
+                
+                "help": {
+                    "text": "<p>I det här avsnittet kommer du att kunna återställa en säkerhetskopia och skicka. Kom ihåg att all tidigare lagrad information går förlorad</p>"
+                },
+                
+                "controls": {
+                    "file": {
+                        "label": "Skicka in din sista restaureringsplats",
+                        "placeholder": "Välj en fil"
+                    },
+                    "submit": {
+                        "text": "Skicka in"
+                    }
+                },
+                
+                "messages": {
+                    "no_file": "Du måste bifoga en giltig .json för att importera",
+                    "success": "Databasen återställd"
                 }
             },
             

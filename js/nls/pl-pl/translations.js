@@ -72,6 +72,9 @@ define ({
                         "export": {
                             "text": "<span class='icon-left-big'></span> Eksport"
                         },
+                        "restore": {
+                            "text": "<span class='icon-right-big'></span> Przywracać"
+                        },
                         "assessment": {
                             "text": "<span class='icon-edit'></span> Samoocena"
                         }
@@ -105,6 +108,30 @@ define ({
                 "messages": {
                     "no_file": "Aby zaimportować, musisz dołączyć jeden prawidłowy plik .csv",
                     "success": "%success% z %total% uczniowie zostali dodani do '%group%"
+                }
+            },
+            
+            "restore_backup": {
+                
+                "title": "Przywracania kopii zapasowej",
+                
+                "help": {
+                    "text": "<p>W tej sekcji będziesz mógł przywrócić kopię zapasową i przesłać. Pamiętaj, że wszystkie wcześniej zapisane informacje zostaną utracone</p>"
+                },
+                
+                "controls": {
+                    "file": {
+                        "label": "Prześlij swój ostatni punkt przywracania",
+                        "placeholder": "Wybierz plik"
+                    },
+                    "submit": {
+                        "text": "Importuj bazę danych"
+                    }
+                },
+                
+                "messages": {
+                    "no_file": "Aby zaimportować, musisz dołączyć jeden prawidłowy plik .json",
+                    "success": "Baza danych została przywrócona"
                 }
             },
             

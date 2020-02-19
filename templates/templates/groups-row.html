@@ -1,33 +1,37 @@
 <li>
-    <span>{{ name }}</span>
-     
+    <span class="groups-table-name">{{ name }}</span>
+    
     <!-- Group actions -->
-    <button type="button" data-id="{{ id }}" class="edit-action modify-group-name-action">
-        <span class="icon-edit"></span>
-    </button>
-    
-    <button type="button" data-group="{{ id }}" class="edit-action create-subgroup-action">
-        +
-    </button>
-    
-    <button type="button" data-id="{{ id }}" class="edit-action delete-group-action" title="{{# i18n }} frontend.pages.groups.controls.delete_group.text {{/ i18n }}">
-        <span class="icon-cancel"></span> 
-    </button>
+    <span class="groups-table-actions">
+        <button type="button" data-id="{{ id }}" class="edit-action modify-group-name-action">
+            <span class="icon-edit"></span>
+        </button>
+        
+        <button type="button" data-group="{{ id }}" class="edit-action create-subgroup-action">
+            +
+        </button>
+        
+        <button type="button" data-id="{{ id }}" class="edit-action delete-group-action" title="{{# i18n }} frontend.pages.groups.controls.delete_group.text {{/ i18n }}">
+            <span class="icon-cancel"></span> 
+        </button>
+    </span>
     
     
     <!-- Subgroups -->
     <ul>
         {{# subgroups }}
             <li>
-                <span>{{ name }}</span>
+                <span class="groups-table-name">{{ name }}</span>
                 
                 <!-- Actions -->
-                <button type="button" data-id="{{ id }}" class="edit-action modify-subgroup-name-action">
-                    <span class="icon-edit"></span>
-                </button>
-                <button type="button" data-id="{{ id }}" class="edit-action delete-subgroup-action">
-                    <span class="icon-cancel"></span> 
-                </button>
+                <span class="groups-table-actions">
+                    <button type="button" data-id="{{ id }}" class="edit-action modify-subgroup-name-action">
+                        <span class="icon-edit"></span>
+                    </button>
+                    <button type="button" data-id="{{ id }}" class="edit-action delete-subgroup-action">
+                        <span class="icon-cancel"></span> 
+                    </button>
+                </span>
             </li>
         {{/ subgroups }}
     </ul>

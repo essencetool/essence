@@ -72,6 +72,9 @@ define ({
                         "export": {
                             "text": "<span class='icon-left-big'></span> Exportar"
                         },
+                        "restore": {
+                            "text": "<span class='icon-right-big'></span> Restaurar backup"
+                        },
                         "assessment": {
                             "text": "<span class='icon-edit'></span> Autoavaliação"
                         }
@@ -105,6 +108,30 @@ define ({
                 "messages": {
                     "no_file": "Precisa anexar um ficheiro válido .csv para importar",
                     "success": "%success% of %total% os estudantes foram adicionados com sucesso a '%group%'"
+                }
+            },
+            
+            "restore_backup": {
+                
+                "title": "Restaurar backup",
+                
+                "help": {
+                    "text": "<p>Nesta seção, você poderá restaurar um backup e enviar. Lembre-se de que todas as informações armazenadas anteriormente serão perdidas</p>"
+                },
+                
+                "controls": {
+                    "file": {
+                        "label": "Envie seu último ponto de restauração",
+                        "placeholder": "Selecione um arquivo"
+                    },
+                    "submit": {
+                        "text": "Enviar"
+                    }
+                },
+                
+                "messages": {
+                    "no_file": "Você precisa anexar um .json válido para importar",
+                    "success": "Banco de dados restaurado"
                 }
             },
             

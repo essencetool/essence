@@ -72,6 +72,9 @@
                         "export": {
                             "text": "<span class='icon-left-big'></span> Export"
                         },
+                        "restore": {
+                            "text": "<span class='icon-right-big'></span> Restore backup"
+                        },
                         "assessment": {
                             "text": "<span class='icon-edit'></span> Self-assessments"
                         }

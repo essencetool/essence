@@ -1,6 +1,7 @@
 {
-    "name":"Essence App",
-    "short_name":"Essence App",
+    "name":"Essence Tool",
+    "short_name":"Essence Tool",
+    "description": "Essence Project provides a application for easing the evaluation of of transversal skills such as critical thinking, creativity and initiative.",
     "icons":[
     {
         "src":"/essence/android-chrome-192x192.png",

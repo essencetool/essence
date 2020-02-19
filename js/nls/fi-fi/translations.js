@@ -72,6 +72,9 @@ define ({
                         "export": {
                             "text": "<span class='icon-left-big'></span> Vie"
                         },
+                        "restore": {
+                            "text": "<span class='icon-left-right'></span> Palauta varmuuskopio"
+                        },
                         "assessment": {
                             "text": "<span class='icon-edit'></span> Itsearvioinnit"
                         }
@@ -105,6 +108,30 @@ define ({
                 "messages": {
                     "no_file": "Sinun on liitettävä yksi kelvollinen .csv tuotavaksi",
                     "success": "%success% yhteensä  %total% opiskelijasta liitettiin onnistuneesti ryhmään '%group%'"
+                }
+            },
+            
+            "restore_backup": {
+                
+                "title": "Palauta varmuuskopio",
+                
+                "help": {
+                    "text": "<p>Tässä osassa voit palauttaa varmuuskopion ja lähettää. Muista, että kaikki aiemmin tallennetut tiedot menetetään</p>"
+                },
+                
+                "controls": {
+                    "file": {
+                        "label": "Lähetä viimeinen palautuspiste",
+                        "placeholder": "Valitse tiedosto"
+                    },
+                    "submit": {
+                        "text": "Lähetä"
+                    }
+                },
+                
+                "messages": {
+                    "no_file": "Sinun on liitettävä yksi kelvollinen .json tuontiin",
+                    "success": "Tietokanta palautettu"
                 }
             },
             
