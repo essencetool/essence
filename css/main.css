@@ -148,6 +148,11 @@ select {
     width: 90vw;
 }
 
+.pure-table td, .pure-table th {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
 
 /** Header */
 .main-header a,
@@ -338,9 +343,8 @@ footer {
 
 .rating-panel label {
     cursor: pointer;
-    display: block;
+    display: inline;
     margin: 0;
-    text-align: center;
     font-size: 1rem;
     font-family: arial, sans-serif;
 }
@@ -618,8 +622,64 @@ body.state-menu .toggle-menu-action {
     overflow: hidden;
 }
 
-.groups-table-placeholder ul li:hover {
+.groups-table-placeholder ul li:nth-child(odd) {
     background-color: #f0f0f0;
+}
+
+.groups-table-placeholder ul li:hover {
+    background-color: #f7f7f7;
+}
+
+.groups-table-name {
+    vertical-align: middle;
+    display: inline-block;
+    float: left;
+    height: 2rem;
+    line-height: 2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 62%;
+}
+
+.groups-table-actions {
+    float: right;
+    vertical-align: middle;
+}
+
+.groups-table-placeholder ul {
+    clear: left;
+    margin: 0;
+    border: none;
+}
+
+.groups-table-placeholder > li {
+    margin: 0 0 1rem 0;
+}
+
+.groups-table-actions button, 
+.groups-table-actions [type="button"], 
+.groups-table-actions [type="reset"], 
+.groups-table-actions [type="submit"] {
+    -webkit-appearance: none;
+    border: none;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin: 0 .25rem 0 0;
+    border-radius: 100%;
+    background-color: #0078e7;
+    color: white;
+}
+
+.groups-table-actions .create-subgroup-action {
+    background-color: rgb(28, 184, 65);
+}
+
+.groups-table-actions .delete-group-action,
+.groups-table-actions .delete-subgroup-action {
+    background-color: rgb(202, 60, 60);
 }
 
 .project-list {
@@ -816,60 +876,6 @@ body.state-menu .toggle-menu-action {
     .pure-table td, .pure-table th {
         padding: 1rem .5rem;
     }
-    
-    .groups-table-name {
-        vertical-align: middle;
-        display: inline-block;
-        float: left;
-        line-height: 1;
-        height: 2rem;
-        line-height: 2rem;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 62%;
-    }
-    
-    .groups-table-actions {
-        float: right;
-        vertical-align: middle;
-    }
-    
-    .groups-table-placeholder ul {
-        clear: left;
-        margin: 0;
-        border: none;
-    }
-    
-    .groups-table-placeholder > li {
-        margin: 0 0 1rem 0;
-    }
-    
-    .groups-table-actions button, 
-    .groups-table-actions [type="button"], 
-    .groups-table-actions [type="reset"], 
-    .groups-table-actions [type="submit"] {
-        -webkit-appearance: none;
-        border: none;
-        padding: 0;
-        width: 2rem;
-        height: 2rem;
-        line-height: 2rem;
-        margin: 0 .25rem 0 0;
-        border-radius: 100%;
-        background-color: #0078e7;
-        color: white;
-    }
-    
-    .groups-table-actions .create-subgroup-action {
-        background-color: rgb(28, 184, 65);
-    }
-    
-    .groups-table-actions .delete-group-action,
-    .groups-table-actions .delete-subgroup-action {
-        background-color: rgb(202, 60, 60);
-    }
-
 }
 
 @media print,

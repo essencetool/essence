@@ -144,10 +144,12 @@ canvas {
     }  
     
     .edit-action {
-        visibility: hidden;
+        -webkit-transition: .3s ease-out;
+                transition: .3s ease-out;
+        opacity: .3;
     }
     
-    *:hover > .edit-action {
-        visibility: initial;
+    li:hover .edit-action {
+        opacity: 1;
     } 
 }

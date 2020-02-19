@@ -499,7 +499,7 @@ define ([
                             // And for each one
                             for (const student of students) {
                                 // Check if he belongs to my group
-                                if (student.groups.indexOf (group_id) != -1) {
+                                if (student.groups.indexOf (filter_id) != -1) {
                                     student_ids.push (student.id);
                                 }
                             }

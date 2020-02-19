@@ -46,6 +46,8 @@ define ([
             show_delete_button: project_id ? true : false
         });
         
+        console.log (template_params);
+        
         
         // Render
         wrapper.html (template.render (template_params));

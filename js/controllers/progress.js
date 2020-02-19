@@ -320,10 +320,26 @@ define ([
                         var item = $(this);
                         
                         
+                        /** @var rating jQuery */
+                        var rating = item.find ('.value').clone ();
+                        
+                        
+                        /** @var attachment String */
+                        var attachment = '';
+                        if (rating.find ('.icon-edit').length) {
+                            attachment = " " + rating.find ('.icon-edit').attr ('title');
+                        }
+                        
+                        
+                        
+                        // Remove icon edit
+                        rating.find ('.icon-edit').remove ();
+                        
+                        
                         // Attach
                         lines.push ([
                             $.trim (item.find ('.key').html ()), 
-                            $.trim (item.find ('.value').html ())
+                            $.trim (rating.html () + attachment)
                         ]);
                         
                     });
@@ -356,7 +372,7 @@ define ([
 
         
         // Remove loading state
-        $('body').removeClass ('loading-state');        
+        $('body').removeClass ('loading-state');
         
     }
     

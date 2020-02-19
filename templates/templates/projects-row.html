@@ -6,6 +6,7 @@
 <label>
     <div>{{# i18n }} frontend.pages.projects.controls.name.label {{/ i18n }}</div>
     <input
+        required
         type="text" 
         name="name" 
         value="{{ name }}" 
@@ -17,6 +18,7 @@
 <label>
     <div>{{# i18n }} frontend.pages.projects.controls.description.label {{/ i18n }}</div>
     <textarea 
+        required
         name="description" 
         placeholder="{{# i18n }} frontend.pages.projects.controls.description.placeholder {{/ i18n }}"
         rows="10">{{ description }}</textarea>
