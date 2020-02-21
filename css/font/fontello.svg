@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2019 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
 <defs>
 <font id="fontello" horiz-adv-x="1000" >
 <font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -27,6 +27,10 @@
 <glyph glyph-name="menu" unicode="&#xf0c9;" d="M857 100v-71q0-15-10-25t-26-11h-785q-15 0-25 11t-11 25v71q0 15 11 25t25 11h785q15 0 26-11t10-25z m0 286v-72q0-14-10-25t-26-10h-785q-15 0-25 10t-11 25v72q0 14 11 25t25 10h785q15 0 26-10t10-25z m0 285v-71q0-14-10-25t-26-11h-785q-15 0-25 11t-11 25v71q0 15 11 26t25 10h785q15 0 26-10t10-26z" horiz-adv-x="857.1" />
 
 <glyph glyph-name="chart-pie" unicode="&#xf200;" d="M429 353l304-304q-59-61-138-94t-166-34q-117 0-216 58t-155 156-58 215 58 215 155 156 216 58v-426z m104-3h431q0-88-33-167t-94-138z m396 71h-429v429q117 0 215-57t156-156 58-216z" horiz-adv-x="1000" />
+
+<glyph glyph-name="window-maximize" unicode="&#xf2d0;" d="M143 64h714v429h-714v-429z m857 625v-678q0-37-26-63t-63-27h-822q-36 0-63 27t-26 63v678q0 37 26 63t63 27h822q37 0 63-27t26-63z" horiz-adv-x="1000" />
+
+<glyph glyph-name="window-minimize" unicode="&#xf2d1;" d="M1000 118v-107q0-37-26-63t-63-27h-822q-36 0-63 27t-26 63v107q0 37 26 63t63 26h822q37 0 63-26t26-63z" horiz-adv-x="1000" />
 </font>
 </defs>
 </svg>

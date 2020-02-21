@@ -150,7 +150,7 @@
                     },
                     
                     "email": {
-                        "label": "And a contact email. Just in case you want to send your results",
+                        "label": "Add a contact email. Just in case you want to send your results",
                         "placeholder": "Ex: john-doe@sample.com"
                     },
                     

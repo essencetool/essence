@@ -187,7 +187,7 @@ define ([
             
             
             // Some languages require that ratings work in reverse order
-            if ('se-se', localStorage.getItem ('locale')) {
+            if ('se-se' == localStorage.getItem ('locale')) {
                 
                 // Reverse valorations
                 rubric.valorations = rubric.valorations.reverse ();
@@ -220,7 +220,13 @@ define ([
             });
             
             
-            // Rebind the information in the rate form
+            // Attach minimize-maximize table
+            wrapper.find ('.minimize-maximize-action').unbind ().click (function (e) {
+                $(e.target).closest ('tr').toggleClass ('is-minimized');
+            });
+            
+            
+            // Re-bind the information in the rate form
             if ( ! jQuery.isEmptyObject (current_rating.values)) {
                 
                 // Iterate over values
@@ -266,7 +272,7 @@ define ([
                 
                 
                 /** @var field jQuery */
-                var field = rate_form.find ('[type="radio"][data-key="' + key + '"]');
+                var field = rate_form.find ('[type="radio"][data-key="' + key + '"]:checked');
                 
                 
                 /** @var evidence_field jQuery */
@@ -278,7 +284,6 @@ define ([
                     'value': field.val (),
                     'evidence': evidence_field.val ()
                 };
-                
             });
             
         });
@@ -429,6 +434,10 @@ define ([
                 
                 /** @var rating_id int */
                 var rating_id = current_rating.rating_id * 1;
+                
+                
+                /** @var rubric_id int */
+                var rubric_id  = current_rating.rubric_id * 1;
                 
                 
                 /** @var filter_string String */

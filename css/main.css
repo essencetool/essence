@@ -106,6 +106,8 @@
 .icon-folder-open:before { content: '\e808'; } 
 .icon-menu:before { content: '\f0c9'; } 
 .icon-chart-pie:before { content: '\f200'; } 
+.icon-window-maximize:before { content: '\f2d0'; }
+.icon-window-minimize:before { content: '\f2d1'; }
 
 
 /** Base layout */
@@ -134,10 +136,6 @@ body, html {
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     font-family: 'Montserrat', sans-serif;
-}
-
-select {
-    visibility: hidden;
 }
 
 .vex.vex-theme-plain.full-width {
@@ -196,6 +194,11 @@ select {
     
     -webkit-transition: all .3s ease-out;
             transition: all .3s ease-out;
+}
+
+html[lang="pt-pt"] .toggle-menu-action {
+    right: auto;
+    left: .5rem;
 }
 
 .toggle-menu-action span {
@@ -395,8 +398,43 @@ footer {
     position: relative;
 }
 
+
+/** Minimize action */
+.rating-panel .is-minimized label {
+    font-size: 0;
+}
+
+.rating-panel .is-minimized .shadow {
+    background-color: #333;
+}
+
+.rating-panel .is-minimized .icon-window-minimize:before {
+    content: '\f2d0';
+}
+
+.rating-panel .is-minimized .actions {
+    display: block;
+    left: auto;
+    right: 0;
+}
+
+.rating-panel .is-minimized .actions .pure-button {
+    display: none;
+}
+
+.rating-panel .is-minimized .actions .minimize-maximize-action {
+    display: block;
+}
+
+
+
+/** Actions */
 .rating-panel .actions .pure-button {
+    padding: .3rem .3rem;
     font-size: 1rem;
+    border-right: 1px solid white;
+    background-color: #e59100;
+    color: white;
 }
 
 .rating-panel-actions {

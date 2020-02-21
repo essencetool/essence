@@ -625,7 +625,7 @@ define ([
             
             
             // Retrieve by key
-            store.get (key).onsuccess = function (result) {
+            store.get (key).onsuccess = function (event) {
                 resolve (event.target.result);
             };
         });

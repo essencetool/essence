@@ -123,7 +123,7 @@ define({
                 
                 "controls": {
                     "file": {
-                        "label": "Invia il tuo ultimo punto di restauro",
+                        "label": "Invia la tua ultima versione",
                         "placeholder": "Seleziona un file"
                     },
                     "submit": {
@@ -251,7 +251,7 @@ define({
                 
                 "controls": {
                     "create_group": {
-                        "text": "Crea un nuovo sottogruppo"
+                        "text": "Crea un nuovo gruppo"
                     },
                     "create_subgroup": {
                         "text": "Crea il sottogruppo"
@@ -299,7 +299,7 @@ define({
                 
                 "tooltips": {
                     "remove_selection": "Cancella la selezione",
-                    "evidences": "Inserisci prove in questo criterio"
+                    "evidences": "Inserisci prove/osservazioni"
                 },
                 
                 "messages": {

@@ -123,6 +123,10 @@ canvas {
     min-width: 0;
 }
 
+.form-step-rating > div {
+    min-height: 2.6rem;
+}
+
 
 /** Mouse devices */
 @media (hover: hover) and (pointer: fine) {

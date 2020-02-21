@@ -6,6 +6,7 @@
 
 define ([
     'text!templatePath/assessment.html',
+    'text!templatePath/templates/assessment-template.html',
     'jquery', 
     'hogan',
     'config', 
@@ -13,7 +14,7 @@ define ([
     'helpers',
     'i18n!nls/translations',
     'i18n!nls/assessments'
-], function (tpl, $, hogan, config, db, helpers, i18n, i18n_assessments) {
+], function (tpl, tpl_download, $, hogan, config, db, helpers, i18n, i18n_assessments) {
     
     /** @var wrapper DOM */
     var wrapper;
@@ -242,84 +243,54 @@ define ([
                 text: 'Download results', 
                 click: function ($vexContent, event) {
                     
-                    /** @var markdown String */
-                    var markdown = new Date ().toString () + "\r\n" + name + " <" + email + ">\r\n".repeat (2);
+                    /** @var number_of_callbacks int */
+                    var number_of_callbacks = $(complete_feedback).find ('img').length;
                     
                     
-                    // Get content
-                    $(complete_feedback).filter ('h2, p').each (function () {
+                    // Iterate
+                    $(complete_feedback).find ('img').each (function () {
                         
-                        /** @var tag jQuery */
-                        var tag = $(this);
-                        
-                        
-                        /** @var text String */
-                        var text = tag.text ();
+                        /** @var img */
+                        var img = $(this);
                         
                         
-                        /** @var separator String */
-                        var separator = tag.is ('p') ? "\r\n".repeat (2) : ("\r\n" + "-".repeat (80) + "\r\n");
-                        
-                        
-                        // Attach text
-                        markdown += text + separator;
-                    
-                    });
-                    
-                    
-                    // Include the list of the questions
-                    markdown += "\r\n";
-                    
-                    
-                    // Get the assessments in order
-                    $.each (assessments, function (index, assessment) {
-                        
-                        // Include the name of the assessment
-                        markdown += assessment.name + "\r\n" + "-".repeat (80) + "\r\n";
-                        
-                        
-                        // Get all the questions of this assessment
-                        $.each (assessment.questions, function (index_question, question) {
+                        // Replace
+                        toDataURL (img.attr ('src'), function (base64) {
                             
-                            // Include the name of the question
-                            markdown += (index_question + 1) + ") " + question.text + "\r\n";
+                            // Replace img in the HTML code
+                            complete_feedback = complete_feedback.replace (img.attr ('src'), base64)
                             
                             
-                            // Include all the possibilities
-                            $.each (assessment.valorations, function (index_valoration, valoration) {
-                                
-                                /** @var field_id String */
-                                var field_id = 
-                                    "#assessment_" 
-                                    + assessment.id + "_" 
-                                    + index_question + "_" 
-                                    + valoration.score
-                                ;
-                                
-                                
-                                /** @var is_checked String */
-                                var is_checked = form.find (field_id).is (':checked') ? "X" : " ";
-                                
-                                
-                                // Include question
-                                markdown += "[" + is_checked + "] " + valoration.text + " ".repeat (4);
-                                
-                            });
+                            // Remove a callback
+                            number_of_callbacks--;
                             
                             
-                            // Next line
-                            markdown += "\r\n".repeat (2);
-                            
+                            // last callback
+                            if ( ! number_of_callbacks) {
+                                
+                                /** @var template TPL */
+                                var template = hogan.compile (tpl_download);
+                                
+                                
+                                /** @var template_params Object */
+                                var template_params = helpers.i18n_tpl ();
+                                template_params['html'] = new Date ().toString () + "\r\n" + name + " <" + email + ">\r\n".repeat (2) + complete_feedback;
+
+                                
+                                /** @var html String Render */
+                                html = template.render (template_params);
+
+                                
+                                // Download all the file
+                                helpers.download_file ('feedback-' + email + '.html', html);
+                                
+                                
+                                // Close Vex
+                                vex.close ("1"); 
+                                
+                            }
                         });
                     });
-                    
-                    
-                    // Download file
-                    helpers.download_file ('feedback-' + email + '.txt', markdown);
-                    
-                    
-                    // Close Vex
-                    vex.close ("1"); 
                 }
             };
             
@@ -349,6 +320,31 @@ define ([
         $('body').removeClass ('loading-state');
         
     }
+    
+    
+    /**
+     * toDataURL
+     */
+    var toDataURL = function (src, callback, outputFormat) {
+        var img = new Image ();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function() {
+            var canvas = document.createElement('CANVAS');
+            var ctx = canvas.getContext('2d');
+            var dataURL;
+            canvas.height = this.naturalHeight;
+            canvas.width = this.naturalWidth;
+            ctx.drawImage(this, 0, 0);
+            dataURL = canvas.toDataURL(outputFormat);
+            callback(dataURL);
+        };
+        img.src = src;
+        if (img.complete || img.complete === undefined) {
+            img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+            img.src = src;
+        }
+}
+
     
     
     // Return public API

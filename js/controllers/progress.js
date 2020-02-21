@@ -139,6 +139,10 @@ define ([
                 }
                 
                 
+                // i18n of the rubirc
+                helpers.i18n_rubric (rubric, i18n_rubrics[rubric.id]);
+                
+                
                 /** @var data Object Data for the graph */
                 var data = {
                     labels: pluck (rubric.rows, 'key'),

@@ -22,7 +22,7 @@ define ({
                 "3": "Non partecipa alla pianificazione degli obiettivi, ma accetta la decisione del gruppo e segue il piano di lavoro.",
                 "4": "Non partecipa alla pianificazione degli  obiettivi e ostacola le decisioni prese dai colleghi."
             }, {
-                "1": "Durante l'esecuzione di una sequenza di attività, rimane calmo di fronte alle difficoltà  e trova soluzioni alternative.",
+                "1": "Durante l'esecuzione di un'attività, rimane calmo di fronte alle difficoltà  e trova soluzioni alternative.",
                 "2": "Ha difficoltà a mantenere la calma di fronte alle difficoltà, ma riesce a  trovare soluzioni.",
                 "3": "Mantiene la calma di fronte alle difficoltà e chiede aiuto o esempi.",
                 "4": "Ha difficoltà a mantenere la calma di fronte alle difficoltà e a chiedere o ad accettare l'aiuto che gli/le viene dato."
@@ -142,7 +142,6 @@ define ({
                 "2": "È convinto/a delle proprie potenzialità per gestire e superare la maggior parte di eventuali ostacoli.",
                 "3": "Crede nelle sue potenzialità di gestire e superare alcuni possibili semplici ostacoli.",
                 "4": "È convinto/a di non riuscire a gestire alcun ostacolo."
-            }, {
             }, {
                 "1": "E' convinto/a di poter superare qualsiasi antagonista.",
                 "2": "È convinto/a delle proprie potenzialità per superare eventuali antagonisti.",
