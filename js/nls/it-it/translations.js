@@ -334,7 +334,7 @@ define({
                         "fields": {
                             "photo": "Foto",
                             "name": "Name",
-                            "email": "Email",
+                            "identifier": "Email",
                             "groups": "Gruppi",
                             "rubrics": "Rubriche"
                         }
@@ -353,7 +353,7 @@ define({
                         "label": "Nome e cognome",
                         "placeholder": "Scrivi nome e cognome dello studente"
                     },
-                    "email": {
+                    "identifier": {
                         "label": "Indirizzo email",
                         "placeholder": "Scrivi l'indirizzo email dello studente"
                     },

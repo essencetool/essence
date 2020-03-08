@@ -26,7 +26,7 @@ $output = fopen ('php://output', 'w');
 
 
 // output the column headings
-fputcsv ($output, ['name', 'email']);
+fputcsv ($output, ['name', 'identifier']);
 
 
 // Output ten students

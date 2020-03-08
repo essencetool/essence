@@ -10,9 +10,12 @@ define ({
         },
         "rows": [
             "Planering", 
+            "Tid",
+            "Material",
             "Lugn", 
             "Motivation", 
             "Hjälp och respekt", 
+            "Delegera",
             "Vänlighet"
         ],
         "cells": [
@@ -21,6 +24,16 @@ define ({
                 "2": "Deltar i beslutsfattande men lägger inte fram värdefulla förslag.",
                 "3": "Deltar inte i planering av mål, men accepterar gruppens beslut och följer planen.",
                 "4": "Deltar inte i planering av mål och följer inte de beslut som fattats av medarbetarna."
+            }, {
+                "1": "Kan uppskatta vilken tid som krävs för utvecklingen av en produkt eller utförandet av en uppgift och anpassar sig efter eventuella förändringar och uförutsedda händelser.",
+                "2": "Kan uppskatta vilken tid som krävs för utvecklingen av en produkt eller utförandet av en uppgift, men har svårt för att anpassa sig till eventuella förändringar och uförutsedda händelser.",
+                "3": "Missbedömer tidsplaneringen för utförandet av uppgiften men lyckas justera och slutligen redovisa i tid.",
+                "4": "Missbedömer tidplaneringen som för varje steg i utförandet av uppgiften vilket resulterar i att hen gör en ofullständig redovisning, eller ingen alls."
+            }, {
+                "1": "Eleven tillhandahåller nödvändigt material (fysiskt material, tidigare föreberedelser hemifrån etc) för att kunna fungera bra i klassen och lägger värde i att detta material är av god kvalitet.",
+                "2": "Eleven tar med sig material för att kunna arbeta under lektionstid, men kvaliteten är undermålig eller direkt dålig för att kunna få ett braresultat.",
+                "3": "Eleven är försenad med sitt material eller har undermåligt material och det försämrar gruppens resultat.",
+                "4": "Eleven har inte tagit fram tillräckligt med underlag för att kunna slutföra uppgiften."
             }, {
                 "1": "Behåller lugnet när svårigheter uppstår under genomförande av olika aktiviteter och hittar alternativa lösningar på problemen.",
                 "2": "Har svårt att behålla lugnet när svårigheter uppstår men hittar slutligen lösningar.",
@@ -37,11 +50,16 @@ define ({
                 "3": "Har svårt att se och nyttja andras potential och förargas över deras begränsningar. Tenderar att arbeta mer självständigt än att arbeta tillsammans i gruppen.",
                 "4": "Är individualistisk. Bekräftar eller uppskattar inte sina klasskamraters arbete. Arbetar inte tillsammans med gruppen eller försvårar grupparbetet och fuskar sig igenom arbetet."
             }, {
+                "1": "Kan ta emot kritik/feedback från sina klasskamrater och rättar sig efter den. Har koll på vilka klasskamrater som kan höja nivån på uppgiftens resultat och delegerar därför till dessa.",
+                "2": "Hen får ofta kritik/feedback av sina klasskamrater men har svårt för att acceptera och rätta sig efter den. Hen delegerar till klasskamrater som hen vet kan utföra uppgiften på ett bättre sätt.",
+                "3": "Hen blir arg av kritik/feedback som hen mottager av sina kamrater men rättar sig ändå utefter den. Hen har svårt att delegera uppgifter till sina klasskamrater.",
+                "4": "Hen varken accepterar eller rättar sig efter den feedback som uppstår och vet inte heller hur en delegerar. Hen vill göra allting själv eftersom hen inte litar på sina klasskamrater att lösa uppgiften."
+            }, {
                 "1": "Kan ge förslag på alternativ på ett korrekt och respektfullt sätt om en inte håller med om vad en medarbetare säger eller gör. ",
                 "2": "Uttrycker att en inte håller med en medarbetare men föreslår inga alternativ till en början och/eller använder ett opassande språk. Föreslår slutligen alternativ.",
                 "3": "Blir arg när meningsskiljaktigheter uppstår och pratar inte om det eller försöker hitta alternativ även om hen fortsätter arbeta.",
                 "4": "Blir arg när meningsskiljaktigheter uppstår och provocerar konflikter istället för att leta efter alternativa lösningar. Ger slutligen upp.",
-            }                
+            }
         ]
     
     },
@@ -59,7 +77,11 @@ define ({
             "Antal idéer och föreställningar om framtiden",
             "Har lätt för att föreställa sig idéer kring framtiden.",
             "Föreställda idéers innovativitet",
-            "Argumentera för idéer"
+            "Argumentera för idéer",
+            "Tydlighet i planer / schema utvecklad",
+            "Dokumentation av idéutveckling",
+            "Genomförbarhet / realism i framtida scenarier föreställt",
+            "Förmåga att överväga risker och potentialer"
         ],
         "cells": [
             {
@@ -82,6 +104,26 @@ define ({
                 "2": "Argumenterar för och debatterar sina idéer.",
                 "3": "Argumenterar för sina idéer.",
                 "4": "Kan inte argumentera för eller debattera sina idéer."
+            }, {
+                "1": "Hen har utarbetat en tydlig, detaljerad och realistisk plan.",
+                "2": "Hen har utarbetat en tydlig och realistisk plan.",
+                "3": "Hen har utarbetat en plan, men den är inte helt realistisk (eller tydlig)",
+                "4": "Det finns ingen plan. Det finns enbart en skiss och en icke genomförbar plan."
+            }, {
+                "1": "Hen redovisar samtliga källor  och underlag som legat till grund för planen och har en djupgående kunskap kring dessa.",
+                "2": "Hen redovisar samtliga källor  och underlag som legat till grund för planen och har en grundläggande kunskap kring dessa.",
+                "3": "Hen redovisar till viss del källor  och underlag som legat till grund för planen.",
+                "4": "Hen redovisar inga källor eller underlag."
+            }, {
+                "1": "Föreslagna scenarier är fullständigt realtistiska (nivån av realismen ska bestämmas av deltagarna i förhand)",
+                "2": "Föreslagna scenarier är fullständigt realtistiska (nivån av realismen ska bestämmas av deltagarna i förhand)",
+                "3": "Föreslagna scenarier är fullständigt realtistiska (nivån av realismen ska bestämmas av deltagarna i förhand)",
+                "4": "Föreslagna scenarier är helt orealistiska."
+            }, {
+                "1": "Hen har tagit hänsyn till alla risker och möjligheter kopplat till hens idé",
+                "2": "Hen har tagit hänsyn till de flesta risker och möjligheter kopplat till hens idé",
+                "3": "Hen har tagit hänsyn till vissa risker och möjligheter kopplat till hens idé",
+                "4": "Hen har inte tagit hänsyn till några risker och möjligheter kopplat till hens idé"
             }
         ]
     },

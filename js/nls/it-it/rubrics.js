@@ -10,9 +10,12 @@ define ({
         },
         "rows": [
             "Pianificazione", 
+            "Tempo",
+            "Materiale",
             "Tranquillità", 
             "Motivazione", 
             "Aiuto e rispetto", 
+            "Delegare",
             "Cordialità"
         ],
         "cells": [
@@ -21,6 +24,16 @@ define ({
                 "2": "Partecipa al processo decisionale ma non formula proposte valide",
                 "3": "Non partecipa alla pianificazione degli obiettivi, ma accetta la decisione del gruppo e segue il piano di lavoro.",
                 "4": "Non partecipa alla pianificazione degli  obiettivi e ostacola le decisioni prese dai colleghi."
+            }, {
+                "1": "Stima il tempo necessario per le fasi di sviluppo di un prodotto o di un'attività e si adatta a possibili cambiamenti ed eventi imprevisti.",
+                "2": "Stima il tempo necessario per le fasi di sviluppo di un prodotto o di un'attività, ma ha difficoltà ad adattarsi a possibili cambiamenti ed eventi imprevisti.",
+                "3": "Pianifica in modo poco adeguato il tempo necessario per lo sviluppo di un'attività, ma riesce a presentarla in tempo",
+                "4": "Non pianifica il tempo necessario per ogni fase dell'attività a tal punto da non presentarla o presentarla incompleta"
+            }, {
+                "1": "Fornisce il materiale necessario  per poter lavoarare bene in classe e si preoccupa che sia di buona qualità",
+                "2": "Fornisce il  materiale per poter lavorare in classe, ma la qualità non è molto alta o presenta alcuni errori che non impediscono, però, l'esecuzione del lavoro",
+                "3": "Fornisce materiale in ritardo o con errori che ostacolano le prestazioni del lavoro di gruppo",
+                "4": "Non fornisce abbastanza materiale per poter svolgere correttamente il lavoro"
             }, {
                 "1": "Durante l'esecuzione di un'attività, rimane calmo di fronte alle difficoltà  e trova soluzioni alternative.",
                 "2": "Ha difficoltà a mantenere la calma di fronte alle difficoltà, ma riesce a  trovare soluzioni.",
@@ -36,6 +49,11 @@ define ({
                 "2": "Sfrutta le potenzialità degli altri e rispetta i loro limiti, anche se non fa molto per aiutarli. Si preoccupa più di finire il lavoro che di aiutare gli altri.",
                 "3": "Ha difficoltà a riconoscere il potenziale dei pari e si arrabbia per i loro limiti. Tende più al lavoro individuale che al lavoro di gruppo",
                 "4": "Non riconosce il lavoro dei suoi compagni. Si chiude in se stesso/a e rende difficile il lavoro di gruppo."
+            }, {
+                "1": "Accetta le critiche dei colleghi e riesce a cambiare in meglio. È consapevole di quali colleghi possono migliorare il lavoro e li delega a farlo",
+                "2": "Ascolta le critiche dei colleghi, ma gli risulta difficile cambiare in meglio. Delega ai colleghi ciò che ritiene sappiano fare meglio",
+                "3": "Si arrabbia per le critiche ma riesce a cambiare. Delega alcune cose, anche se gli risulta difficile ",
+                "4": "Non accetta le critiche e non sa delegare. Vuole fare tutto da solo perché non si fida dei suoi colleghi"
             }, {
                 "1": "Quando non è d'accordo su ciò che un collega fa o dice con un altro collega, sa come suggerirgli alternative con un linguaggio corretto e rispettoso.",
                 "2": "Esprime disaccordo con un pari, ma inizialmente non suggerisce alternative e/o usa un linguaggio inappropriato. Finisce per suggerire alternative.",
@@ -59,7 +77,11 @@ define ({
             "Numero di idee immaginate  per il futuro", 
             "Facilità nell'immaginare idee future", 
             "Novità delle idee immaginate", 
-            "Argomentazione delle idee"
+            "Argomentazione delle idee",
+            "Chiarezza nei piani / programmi sviluppati",
+            "Documentazione sullo sviluppo di idee",
+            "Fattibilità / realismo sugli scenari futuri immaginati",
+            "Capacità di considerare rischi e potenzialità"
         ],
         "cells": [
             {
@@ -82,6 +104,26 @@ define ({
                 "2": "Argomenta e motiva le sue idee chiaramente.",
                 "3": "Argomenta le sue idee.",
                 "4": "Non sa argomentare o motivare le sue idee."
+            }, {
+                "1": "Ha sviluppato un progettto chiaro, dettagliato e realistico",
+                "2": "Ha sviluppato un progetto chiaro e realistico",
+                "3": "Ha sviluppato un progetto, ma non è completamente realistico (o chiaro)",
+                "4": "Non c'è un progetto, ma solo un piano accennato e non fattibile"
+            }, {
+                "1": "Presenta e conosce approfonditamente tutte le fonti utilizzate per delineare il progetto ",
+                "2": "Presenta tutte le fonti utilizzate per delineare il progetto ma ne conosce solo alcune ",
+                "3": "Presenta solo alcune fonti usate per delineare il progetto",
+                "4": "Non presenta alcuna fonte usata per delineare il progetto"
+            }, {
+                "1": "Gli scenari proposti sono completamente realistici (il livello di realismo è deciso precedentemente dai partecipanti)",
+                "2": "Gli scenari proposti sono completamente realistici (il livello di realismo è deciso precedentemente dai partecipanti)",
+                "3": "Gli scenari proposti sono completamente realistici (il livello di realismo è deciso precedentemente dai partecipanti)",
+                "4": "Gli scenari proposti non sono affatto realistici"
+            }, {
+                "1": "Ha considerato i rischi e le potenzialità associati  alla sua proposta, anche  quelli meno probabili.",
+                "2": "Ha considerato i rischi e le potenzialità più probabili  associati alla sua proposta ",
+                "3": "Ha considerato alcuni rischi e potenzialità associati alla sua proposta",
+                "4": "Non ha considerato i rischi e le potenzialità associati alla sua proposta"
             }
         ]
     },

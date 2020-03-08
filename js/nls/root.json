@@ -13,25 +13,30 @@
         "message": {
             "controller_not_allowed": "You are not allowed to be here. Please authenticate yourself.",
             "controller_not_found": "Page not found",
-            "indexed_db_not_supported": "Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available."
+            "indexed_db_not_supported": "Your browser doesn't support a stable version of IndexedDB. Note that some browsers in incognito mode can disable it."
         },
         
         "controls": {
-           "select_all_groups": {
+        
+            "required_field": {
+                "text": "This field is required"
+            },
+        
+            "select_all_groups": {
                "text": "All groups"
-           },
+            },
            
-           "select_all_projects": {
+            "select_all_projects": {
                 "text": "All projects"
-           },
+            },
            
-           "select_all_rubrics": {
+            "select_all_rubrics": {
                 "text": "All rubrics"
-           },
+            },
            
-           "select": {
+            "select": {
                "placeholder": "Please, select an option"
-           },
+            },
            
            "include_all_subgroups": {
                "text": "Include all subgroups"
@@ -332,7 +337,7 @@
                         "fields": {
                             "photo": "Photo",
                             "name": "Name",
-                            "email": "Email",
+                            "identifier": "Identifier",
                             "groups": "Groups",
                             "rubrics": "Rubrics"
                         }
@@ -351,9 +356,9 @@
                         "label": "Full name",
                         "placeholder": "Type the full name of the student"
                     },
-                    "email": {
-                        "label": "Email",
-                        "placeholder": "Type the email of the student"
+                    "identifier": {
+                        "label": "Identifier",
+                        "placeholder": "A unique identifier for the student. For example, their email"
                     },
                     "groups": {
                         "label": "Groups"

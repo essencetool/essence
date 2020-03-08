@@ -10,9 +10,12 @@ define ({
         },
         "rows": [
             "Suunnittelu", 
+            "Aika",
+            "Materiaali",
             "Rauhallisuus", 
             "Motivaatio", 
             "Auta ja kunnioita", 
+            "Delegoida",
             "Ystävällisyys"
         ],
         "cells": [
@@ -21,6 +24,16 @@ define ({
                 "2": "Osallistuu päätöksentekoon muttei tee hyödyllisiä ehdotuksia ",
                 "3": "Ei osallistu tavoitteen suunnitteluun, mutta hyväksyy ryhmän päätökset ja noudattaa suunnitelmaa.",
                 "4": "Ei osallistu tavoitteen suunnitteluun eikä noudata vertaisten tekemiä päätöksiä."
+            }, {
+                "1": "Arvioi tuotoksen tai tehtävän kehittämisen eri vaiheisiin tarvittavan ajan, ja mukauttaa sen mahdollisten muutosten tai ennakoimattomien asioiden mukaan.",
+                "2": "Arvioi tuotoksen tai tehtävän kehittämisen eri vaiheisiin tarvittavan ajan, mutta pystyy jotenkin suhteuttamaan sen mahdollisten muutosten tai ennakoimattomien asioiden mukaan.",
+                "3": "Tehtävän suunnittelussa ottaa vain vähän huomioon tekemiseen tarvittavan ajan mutta pystyy suorittamaan tehtävän ajoissa.",
+                "4": "Ei suunnittele tehtävän eri vaiheita tarvittavan ajan mukaan, joten ei suorita tehtävää ajoissa tai se jää kesken."
+            }, {
+                "1": "Tarjoaa tarvittavan materiaalin (tarvikkeet, aiempi kotona tehty tutkimus…) luokassa hyvin suoriutumiseen, ja pitää huolta että materiaali on laadukasta.",
+                "2": "Tarjoaa tarvittavan materiaalin, joka mahdollistaa hyvän luokkatyöskentelyn, mutta sen laatu ei ole kovin hyvä. Se ei kuitenkaan estä työskentelyä.",
+                "3": "Tarjoaa materiaalin myöhässä tai virheellisenä, mikä estää ryhmän työskentelyn.",
+                "4": "Ei tarjoa riittävästi materiaalia jotta työn pystyy suorittamaan kunnolla."
             }, {
                 "1": "Pysyy rauhallisena kohdatessaan vaikeuksia tehtävien suorituksessa ja löytää vaihtoehtoisia ratkaisuja.",
                 "2": "Hänen on vaikea pysyä rauhallisena vaikeuksia kohdatessaan mutta löytää lopulta ratkaisuja.",
@@ -36,6 +49,11 @@ define ({
                 "2": "Hyödyntää muiden tarjoamia mahdollisuuksia ja kunnioittaa heidän rajoituksiaan, mutta ei tee paljonkaan muiden auttamiseksi. Välittää enemmän siitä että työ tulee tehtyä kuin muiden auttamisesta. ",
                 "3": "On vaikeuksia tunnistaa vertaistensa kyvyt, suuttuu heidän rajoitteistaan, taipumukset viittaavat enemmän yksilö- kuin ryhmätyöhön. ",
                 "4": "Yksilötyöskentelijä. Ei arvosta luokkatovereidensa työtä. Sulkeutuu eikä toimi ryhmässä tai vaikeuttaa ryhmän työtä. "
+            }, {
+                "1": "Kykenee ottamaan vastaan muiden (vertaistensa) arvostelua ja yrittää parantaa suoritustaan. Hahmottaa kuka jäsenistä pystyy parantamaan työtä ja jakaa tietoa heille.",
+                "2": "Kuuntelee vertaistensa arvostelua, mutta hänen on vaikea muuttua parempaan suuntaan. Hän jakaa tietoa sellaisille ryhmän jäsenille joiden hän tietää suoriutuvan paremmin.",
+                "3": "Hän suuttuu arvostelusta, mutta päätyy parantamaan käytöstään. Hänen on vaikea jakaa asioita vertaistensa kanssa mutta pystyy jakamaan joitakin asioita.",
+                "4": "Hän ei hyväksy arvostelua eikä osaa jakaa asioita. Hän haluaa tehdä itse kaiken koska ei luota ryhmäänsä."
             }, {
                 "1": "Kun olet eri mieltä siitä mitä kollega tekee tai sanoo vertaiselleen, osaat ehdottaa hänelle vaihtoehtoja käyttäen oikeita sanoja ja kunnioittavaa kieltä. ",
                 "2": "Ilmaisee erimielisyytensä vertaiselleen, muttei ole ensimmäisenä ehdottamassa vaihtoehtoja ja /tai käyttää epäsopivaa kieltä. Ehdottaa lopulta vaihtoehtoja.",
@@ -59,7 +77,11 @@ define ({
             "Ideoiden määrä jolla ilmennetään kuviteltua tulevaisuutta", 
             "Helppo keksiä ideoita tulevaan", 
             "Keksittyjen ideoiden uutuusarvo", 
-            "Ideoiden perustelu"
+            "Ideoiden perustelu",
+            "Selkeys suunnitelmissa / aikataulussa kehitetty",
+            "Ideoiden kehittämisen dokumentointi",
+            "Kuviteltujen tulevaisuuden skenaarioiden toteutettavuus/realismi",
+            "Kyky harkita riskejä ja mahdollisuuksia."
         ],
         "cells": [
             {
@@ -82,6 +104,26 @@ define ({
                 "2": "Hän perustelee ideansa ja pystyy keskustelemaan niistä",
                 "3": "Hän pystyy perustelemaan ideansa.",
                 "4": "Hän ei pysty perustelemaan ideoitaan tai keskustelemaan niistä. "
+            }, {
+                "1": "Hän on tehnyt selkeän, yksityiskohtaisen ja realistisen suunnitelman sekä aikataulun.",
+                "2": "Hän on tehnyt selkeän ja realistisen suunnitelman sekä aikataulun.",
+                "3": "Hän on tehnyt suunnitelman ja aikataulun, mutta ne eivät ole täysin realistisia tai selkeitä.",
+                "4": "Hän ei ole tehnyt suunnitelmaa tai aikataulua vaan turvautuu nopeasti kyhättyyn esitykseen."
+            }, {
+                "1": "Hän tuntee ja esittelee kaikki suunnitelmaan liittyvät lähteet.",
+                "2": "Hän esittelee kaikki suunnitelmaan liittyvät lähteet ja pystyy kommentoimaan joitakin niistä.",
+                "3": "Hän esittelee joitakin suunnitelmaan liittyviä lähteitä.",
+                "4": "Hän ei esittele ollenkaan suunnitelmaan liittyviä lähteitä."
+            }, {
+                "1": "Esitetty ehdotus on realistinen (realismin taso voidaan sopia osallistujien kesken ennen harjoitusta).",
+                "2": "Esitetty ehdotus on täysin realistinen (realismin taso voidaan määritellä yhdessä osallistujien kesken ennen harjoitusta).",
+                "3": "Esitetty ehdotus on täysin realistinen (realismin taso voidaan sopia osallistujien kesken ennen harjoitusta).",
+                "4": "Esitetetyt ehdotukset eivät ole ollenkaan realistisia."
+            }, {
+                "1": "Hän on ottanut huomioon tavanomaisten lisäksi myös ehdotukseen liittyvät vähemmän todennäköiset riskit ja mahdollisuudet.",
+                "2": "Hän on ottanut huomioon todennäköisimmät ehdotukseen liittyvät riskit ja mahdollisuudet.",
+                "3": "Hän on ottanut huomioon joitakin ehdotukseen liittyviä riskejä ja mahdollisuuksia.",
+                "4": "Hän ei ole ottanut huomioon ehdotukseen liittyviä riskejä tai mahdollisuuksia."
             }
         ]
     },

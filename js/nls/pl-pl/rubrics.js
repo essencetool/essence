@@ -22,6 +22,16 @@ define ({
                 "3": "Nie bierze udziału w planowaniu celów, ale akceptuje decyzję grupy i postępuje zgodnie z planem.",
                 "4": "Nie bierze udziału w planowaniu celów i podwarza decyzje podjęte przez rówieśników."
             }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
                 "1": "Zachowuje spokój w obliczu trudności w wykonywaniu sekwencji czynności i znajduje alternatywne rozwiązania.",
                 "2": "Ma trudności z zachowaniem spokoju w obliczu trudności, ale w końcu znajduje rozwiązania.",
                 "3": "Zachowuje spokój w obliczu trudności i prosi o pomoc lub przykłady.",
@@ -36,6 +46,11 @@ define ({
                 "2": "Wykorzystuje potencjał innych i szanuje ich ograniczenia, chociaż niewiele im pomaga. Bardziej zależy mu na wykonaniu pracy niż na pomaganiu innym.",
                 "3": "Ma trudności z rozpoznaniem potencjału rówieśników i denerwuje się ich ograniczeniami. Skłania się raczej do pracy indywidualnej niż pracy grupowej.",
                 "4": "Jest indywidualistyczny. Nie rozpoznaje pracy swoich kolegów z klasy. W końcu sam się osłania i nie pracuje z grupą ani nie utrudnia pracy w grupie."
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
             }, {
                 "1": "Kiedy się nie zgadzasz, z tym, co kolega robi lub mówi z rówieśnikiem, wiesz, jak zaproponować alternatywę w poprawnym i pełnym szacunku języku.",
                 "2": "Wyraża spór z rówieśnikiem, ale na początku nie sugeruje alternatyw i / lub używa niewłaściwego języka. Ostatecznie sugeruje alternatywy.",
@@ -59,7 +74,11 @@ define ({
             "Liczba wymyślonych pomysłów na przyszłość", 
             "Łatwo wyobrazić sobie nowe pomysły.", 
             "Nowe wyobrażone pomysły", 
-            "Argumentacja pomysłów"
+            "Argumentacja pomysłów",
+            "",
+            "",
+            "",
+            ""
         ],
         "cells": [
             {
@@ -82,6 +101,26 @@ define ({
                 "2": "Kłóci się i debatuje nad swoimi pomysłami",
                 "3": "Argumentuje jej pomysły.",
                 "4": "Nie może argumentować ani dyskutować na temat jego pomysłów."
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
             }
         ]
     },

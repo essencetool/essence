@@ -332,7 +332,7 @@ define ({
                         "fields": {
                             "photo": "Foto",
                             "name": "Namn",
-                            "email": "E-post",
+                            "identifier": "E-post",
                             "groups": "Grupper",
                             "rubrics": "Rubrics"
                         }
@@ -351,7 +351,7 @@ define ({
                         "label": "Fullständigt namn",
                         "placeholder": "Fyll i elevens fullständiga namn"
                     },
-                    "email": {
+                    "identifier": {
                         "label": "E-post",
                         "placeholder": "Fyll i elevens e-postadress"
                     },

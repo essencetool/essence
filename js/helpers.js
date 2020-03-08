@@ -211,15 +211,19 @@ define ([
         $.each (rubric.rows, function (index_row, row) {
             
             // Update the name of row
-            row.name = i18n["rows"][index_row];
+            if (i18n["rows"][index_row]) {
+                row.name = i18n["rows"][index_row];
+            }
             
             
             // Update the cell values
             $.each (row.values, function (index_value, cell) {
-                cell.text = i18n["cells"][index_row][cell.id];
+                if (i18n["cells"][index_row][cell.id]) {
+                    cell.text = i18n["cells"][index_row][cell.id];
+                }
             });
             
-        });        
+        });
 
     }
     
@@ -240,26 +244,39 @@ define ([
     /**
      * download_file
      *
+     * @see https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+     *
      * @param filename String
      * @param filename String
      */
     var download_file = function (filename, content) {
+ 
+        // IE10 polyfill
+        if (navigator.msSaveBlob) {
+            navigator.msSaveBlob (new Blob ([content], {
+                type: 'text/plain'
+            }), filename);
+        
+        // Regular browsers
+        } else {
 
-        /** @var element String */
-        var element = document.createElement ('a');
-        
-        
-        // Set attributes
-        element.setAttribute ('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent (content));
-        element.setAttribute ('download', filename);
-        element.style.display = 'none';
-        
-        
-        // Attach, download and remove
-        document.body.appendChild (element);
-        element.click ();
+            /** @var element String */
+            var element = document.createElement ('a');
+            
+            
+            // Set attributes
+            element.setAttribute ('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent (content));
+            element.setAttribute ('download', filename);
+            element.style.display = 'none';
+            
+            
+            // Attach, download and remove
+            document.body.appendChild (element);
+            element.click ();
 
-        document.body.removeChild (element);
+            document.body.removeChild (element);
+        
+        }
         
     }
     

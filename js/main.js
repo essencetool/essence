@@ -282,9 +282,15 @@ require ([
                 });
                 break;
                 
+            case 'reset':
+                require (['controllers/reset'], function (controller) {
+                    controller.index (params);
+                });
+                break;
+                
             case 'set-locale':
                 localStorage.setItem ('locale', params[1]) ;
-                window.location = '#projects';
+                window.location = '#rate';
                 window.location.reload () ;
                 break;
                 
@@ -317,7 +323,14 @@ require ([
         main_controller ();
         
     }).catch (function (message) {
-        vex.dialog.alert (message);
+        
+        window.vex.dialog.alert ({
+            message: message,
+            callback: function () {
+                $('body').removeClass ('loading-state');
+            }
+        });
+        
     });
 
 });

@@ -332,7 +332,7 @@ define ({
                         "fields": {
                             "photo": "Kuva",
                             "name": "Nimi",
-                            "email": "Sähköposti",
+                            "identifier": "Sähköposti",
                             "groups": "Ryhmät",
                             "rubrics": "Ohjeet"
                         }
@@ -351,7 +351,7 @@ define ({
                         "label": "Koko nimi",
                         "placeholder": "Anna opiskelijan koko nimi"
                     },
-                    "email": {
+                    "identifier": {
                         "label": "Sähköposti",
                         "placeholder": "Anna opiskelijan sähköpostiosoite"
                     },

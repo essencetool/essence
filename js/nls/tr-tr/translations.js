@@ -332,7 +332,7 @@ define({
                         "fields": {
                             "photo": "Foto",
                             "name": "İsim",
-                            "email": "Email",
+                            "identifier": "Email",
                             "groups": "Gruplar",
                             "rubrics": "Yönergeler"
                         }
@@ -351,7 +351,7 @@ define({
                         "label": "Ful isim",
                         "placeholder": "Öğrencinin ful adını yaz"
                     },
-                    "email": {
+                    "identifier": {
                         "label": "Email",
                         "placeholder": "Öğrencinin emailini yaz"
                     },

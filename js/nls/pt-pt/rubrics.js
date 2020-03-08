@@ -10,9 +10,12 @@ define ({
         },
         "rows": [
             "Planificação", 
+            "Tempo",
+            "Material",
             "Tranquilidade", 
             "Motivação", 
             "Ajuda e respeito", 
+            "Delegar",
             "Amizade"
         ],
         "cells": [
@@ -21,6 +24,16 @@ define ({
                 "2": "Participates in decision-making but does not make valuable proposals",
                 "3": "Não participa na planificação de objetivos, mas aceita a decisão do grupo e segue a planificação.",
                 "4": "Não participa na planificação de objetivos e boicota as decisões tomadas pelos pares."
+            }, {
+                "1": "Estima o tempo necessário para o desenvolvimento de etapas de um produto ou tarefa e adapta-se a possíveis mudanças e imprevistos.",
+                "2": "Estima o tempo necessário para o desenvolvimento de etapas de um produto ou tarefa mas tem dificuldade em adaptar-se a possíveis mudanças e imprevistos.",
+                "3": "Faz uma planificação pouco adaptada ao tempo necessário para desenvolver a tarefa mas organiza-se para apresentar atempadamente.",
+                "4": "Não planifica o tempo necessário para cada etapa da tarefa de modo que acaba por não apresentar ou apresentar de forma incompleta."
+            }, {
+                "1": "Providencia o material necessário (suporte físico, pesquisas em casa…) para conseguir trabalhar bem na aula e preocupa-se que este material seja de boa qualidade.",
+                "2": "Providencia o material para trabalhar na aula, embora este não seja de boa qualidade ou até tenha algumas falhas, estas não impedem a realização do trabalho.",
+                "3": "Providencia o material tardiamente ou com erros que comprometem a realização do trabalho de grupo.",
+                "4": "Não providencia material suficiente para ser capaz de fazer o trabalho convenientemente."
             }, {
                 "1": "Permanece calmo perante as dificuldades na execução de uma sequêncuia de atividades e encontra solulções alternativas.",
                 "2": "Tem dificuldade em manter-se calmo perante as dificuldades mas acaba por encontrar soluções.",
@@ -36,6 +49,11 @@ define ({
                 "2": "Tira proveito das potencialidades dos outros e respeita as suas limitações embora não faça muito para os ajudar. Preocupa-se mais em ter o trabalho feito do que em ajudar os outros.",
                 "3": "Tem dificuldade em  reconhecer o potencial dos seus pares e fica zangado com as suas limitações. Tem mais tendência para trabalho individual do que ttrabalho de grupo.",
                 "4": "É individualista. Não reconhece o trabalho dos seus colegas. Acaba por se isolar e não trabalhar com o grupo ou torna o trabalho de grupo difícil."
+            }, {
+                "1": "Aceita críticas dos pares e tenta rectificar para melhor. Tem consciência de quais os pares que podem melhorar o trabalho e delega-lhes tarefas.",
+                "2": "Ouve as críticas dos pares mas é-lhe díficil mudar para melhor. Delega nos pares que sabe que podem fazer melhor.",
+                "3": "Zanga-se com as críticas mas acaba por rectificar. Acha díficil delegar nos pares mas consegue delegar algumas coisas.",
+                "4": "Não aceita críticas e não sabe como delegar. Quer fazer tudo porque não confia nos colegas de grupo."
             }, {
                 "1": "Quando discorda com o que um colega ou diz a um par, sabe como lhe sugerir alternativas usando uma linguagem correta e respeitadora.",
                 "2": "Discorda com um par, mas não sugere logo alternativas ou usa linguagem inapropriada. Acaba por sugerir alternativas.",
@@ -59,7 +77,11 @@ define ({
             "Número de ideias para o futuro imaginadod", 
             "Facilmente imagina ideias futuras", 
             "Inovação de ideias pensadas", 
-            "Argumentação de ideias"
+            "Argumentação de ideias",
+            "Clareza nos planos / cronograma desenvolvido",
+            "Documentação de desenvolvimento de idéias",
+            "Viabilidade / realismo nos cenários futuros imaginados",
+            "Capacidade de considerar riscos e potencialidades"
         ],
         "cells": [
             {
@@ -82,6 +104,26 @@ define ({
                 "2": "Argumenta e debate as suas ideias",
                 "3": "Argumenta as suas ideias",
                 "4": "Não consegue argumentar ou debater as suas ideias"
+            }, {
+                "1": "Desenvolveu um plano e um horário claro,detalhado e realista.",
+                "2": "Desenvolveu um plano e um horário claro e realista.",
+                "3": "Desenvolveu um plano e um horário, mas não é completamente realista (ou claro).",
+                "4": "Não há qualquer plano ou horário. Existe um rascunho não exequível."
+            }, {
+                "1": "Apresenta todas as fontes usadas para definir o plano e conhece profundamente cada uma delas.",
+                "2": "Apresenta todas as fontes usadas para definir o plano e consegue falar sobre algumas delas.",
+                "3": "Apresenta algumass fontes usadas para definir o plano.",
+                "4": "Não apresenta nenhuma das fontes usadas para definir o plano."
+            }, {
+                "1": "Os cenários propostos são completamente realistas (o nível de realismo seria decidido pelos participantes antecipadamente).",
+                "2": "Os cenários propostos são completamente realistas (o nível de realismo seria decidido pelos participantes antecipadamente).",
+                "3": "Os cenários propostos são completamente realistas (o nível de realismo seria decidido pelos participantes antecipadamente).",
+                "4": "Os cenários propostos não são nada realistas."
+            }, {
+                "1": "Leva em consideração, além do óbvio, até os riscos e potencialidades menos prováveis associados à sua proposta.",
+                "2": "Leva em consideração os riscos e potencialidades mais prováveis associados à sua proposta.",
+                "3": "Leva em consideração alguns dos riscos e potencialidades associados à sua proposta.",
+                "4": "Não leva em consideração nenhum risco ou potencialidade associados à sua proposta."
             }
         ]
     },

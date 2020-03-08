@@ -22,6 +22,16 @@ define ({
                 "3": "Hedef planlamaya katılmaz, ancak grubun kararını kabul eder ve planı takip eder.",
                 "4": "Hedeflerin planlanmasına katılmaz ve akranlar tarafından alınan kararları boykot eder"
             }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
                 "1": "Bir dizi aktiviteyi gerçekleştirmede zorluklarla karşılaşır ve alternatif çözümler bulur.",
                 "2": "Zorluklar karşısında sakin durmakta zorluk çekiyor, ancak çözüm buluyor.",
                 "3": "Zorluklar karşısında sakin durur ve yardım ya da örnek ister.",
@@ -36,6 +46,11 @@ define ({
                 "2": "Başkalarının potansiyellerinden yararlanır ve onlara yardım etmek için fazla bir şey yapmasa da sınırlamalarına saygı gösterir. İşi yapma konusunda başkalarına yardım etmekten daha fazla önem veriyor.",
                 "3": "Akranlarının potansiyelini tanımakta güçlük çeker ve sınırlamalarına kızar. bireysel çalışmalara grup çalışmasından daha fazla eğilim gösterir.",
                 "4": "Bireyselcidir. Sınıf arkadaşlarının çalışmalarını tanımıyor. Sonunda kendini kapatarak grupla çalışmaz ya da grup çalışmasını zorlaştırmaz."
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
             }, {
                 "1": "Bir meslektaşınızın bir akran ile ne yaptığını ya da söylediklerini kabul etmediğinizde, ona doğru ve saygılı bir dille öneri alternatiflerini nasıl vereceğinizi bilirsiniz.",
                 "2": "Bir akranla anlaşmazlığı ifade eder, ancak ilk başta alternatifler önermez ve / veya uygunsuz bir dil kullanır. Sonunda alternatifler öneriyor.",
@@ -59,7 +74,11 @@ define ({
             "Hayal edilen gelecek için fikir sayısı", 
             "Gelecekteki fikirleri hayal etmek kolay", 
             "Hayal edilen fikirlerin yeniliği", 
-            "Fikirlerin tartışılması"
+            "Fikirlerin tartışılması",
+            "",
+            "",
+            "",
+            ""
         ],
         "cells": [
             {
@@ -82,6 +101,26 @@ define ({
                 "2": "Fikirlerini tartışır ve tartışır.",
                 "3": "Fikirlerini tartışır.",
                 "4": "Fikirlerini tartışamaz ve tartışamaz."
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
+            }, {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": ""
             }
         ]
     },

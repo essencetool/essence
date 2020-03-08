@@ -100,13 +100,21 @@ define ([
             
             
             /** @var name String */
-             var name = form.find ('[name="name"]').val ();
+            var name = $.trim (form.find ('[name="name"]').val ());
             
             
             /** @var description String */
-            var description = form.find ('[name="description"]').val ();
-             
-             
+            var description = $.trim (form.find ('[name="description"]').val ());
+            
+            
+            // No name is selected. Just for security reasons. The field is 
+            // validated using the required and regex pattern
+            // @see https://stackoverflow.com/questions/13766015/is-it-possible-to-configure-a-required-field-to-ignore-white-space
+            if ( ! name) {
+                return;
+            }
+            
+            
             /** @var project Object */
             var project = {
                 name: name,

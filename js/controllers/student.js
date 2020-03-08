@@ -89,7 +89,7 @@ define ([
             
             // Modify the student according to the form
             student.name = form.find ('[name="name"]').val ();
-            student.email = form.find ('[name="email"]').val ();
+            student.identifier = form.find ('[name="identifier"]').val ();
             student.groups = form.find ('[name="group"]').val ().map (Number);
             
             

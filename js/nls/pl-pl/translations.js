@@ -332,7 +332,7 @@ define ({
                         "fields": {
                             "photo": "Zdjęcie",
                             "name": "Nazwisko",
-                            "email": "Email",
+                            "identifier": "Email",
                             "groups": "Grupy",
                             "rubrics": "Rubryki"
                         }
@@ -351,7 +351,7 @@ define ({
                         "label": "Pełne imię i nazwisko",
                         "placeholder": "Imię i nazwisko. Np: John Doe"
                     },
-                    "email": {
+                    "identifier": {
                         "label": "Email",
                         "placeholder": "Wpisz email ucznia"
                     },

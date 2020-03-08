@@ -10,17 +10,30 @@
         },
         "rows": [
             "Planning", 
+            "Time", 
+            "Material", 
             "Tranquillity", 
             "Motivation", 
             "Help and respect", 
+            "Delegate", 
             "Friendliness"
         ],
         "cells": [
             {
-                "1": "Participate in planning by making valuable proposals and making reasoned decisions",
-                "2": "Participates in decision-making but does not make valuable proposals",
-                "3": "Does not participate in goal planning, but accepts the group's decision and follow the plan.",
+                "1": "Participate in planning by making valuable proposals and making reasoned decisions.",
+                "2": "Participates in decision-making but does not make important proposals.",
+                "3": "Does not participate in goal planning, but accepts the group's decision.",
                 "4": "Does not participate in planning goals and boycotts decisions made by peers."
+            }, {
+                "1": "Estimates the time required by the development steps of a product or task and adapts to possible changes and unforeseen events.",
+                "2": "Estimates the time required for the development steps of a product or task but has difficulty adapting to possible changes and unforeseen events.",
+                "3": "Makes a planning little adapted to the time required for the development of the task but adapts to present it in time",
+                "4": "Does not plan the time required for each step of the task in a way that ends up not presenting it or presenting it incomplete."
+            }, {
+                "1": "It provides the necessary material (physical material, previous research at home...) to be able to work well in class and is concerned that this material is of good quality.",
+                "2": "It provides material to be able to work in class, but the quality is not very high or even has some failure that does not prevent the performance of the work.",
+                "3": "Provides material late or with errors that hinder the performance of group work.",
+                "4": "It does not provide enough material to be able to do the job properly."
             }, {
                 "1": "Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions.",
                 "2": "He has difficulty keeping calm in the face of difficulties but ends up finding solutions.",
@@ -35,12 +48,17 @@
                 "1": "Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them.",
                 "2": "It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others.",
                 "3": "Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work.",
-                "4": "It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult. "
+                "4": "It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult."
             }, {
-                "1": "When you disagree don't agree with what a colleague does or says with a peer, you know how to give him or her suggest alternatives with correct and respectful language. ",
-                "2": "Expresses disagreement with a peer, but does not suggest alternatives at first and/or uses inappropriate language. Ends up suggesting alternatives.",
-                "3": "When disagreeing, he gets angry and doesn't talk about it or look for alternatives, even though he/she continue working",
-                "4": "When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions. Ends up giving in."
+                "1": "Accept criticism from peers and try to rectify for the better.Is aware of which peers that can improve the work and delegates to them.",
+                "2": "He hears criticism from, peers but it's hard for him to change for the better. He delegates to peers what he knows they can do better.",
+                "3": "He gets angry with the critics but ends up rectifying.He finds it difficult to delegate to peers but manage to delegate some things.",
+                "4": "He doesn't accept criticism and doesn't know how to delegate. He wants to do everything because he doesn't trust his teammates."
+            }, {
+                "1": "When you don't agree with what a colleague does or says, you know how to give him or her alternatives with correct and respectful language.",
+                "2": "Expresses disagreement with a partner, but does not suggest alternatives and/or uses inappropriate language.",
+                "3": "When he doesn't agree with something, he gets angry and doesn't allow himself to talk about it or look for alternatives, even though he ends up giving in.",
+                "4": "When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions."
             }
         ]
     
@@ -59,7 +77,11 @@
             "Number of ideas for the future imagined", 
             "Easy to imagine future ideas", 
             "Novelty of ideas imagined", 
-            "Argumentation of ideas"
+            "Argumentation of ideas",
+            "Clarity in plans/schedule developed",
+            "Documentation of ideas development",
+            "Feasibility/realism on the future scenarios imagined",
+            "Ability to consider risks and potentialities"
         ],
         "cells": [
             {
@@ -82,6 +104,26 @@
                 "2": "She/he arguments and debate its ideas ",
                 "3": "She/he arguments its ideas. ",
                 "4": "She/he cannot argument or debate its ideas."
+            }, {
+                "1": "She/he has developed a clear, detailed and realistic plan and schedule.",
+                "2": "She/he has developed a clear and realistic plan and schedule.",
+                "3": "She/he has developed a plan and schedule, but is not completely realistic (or clear)",
+                "4": "There is not any plan or schedule. There is a fast-drawing not feasible plan."
+            }, {
+                "1": "She/he presents all the sources used to define the plan and know profoundly each one of the sources.",
+                "2": "She/he presents all the sources used to define the plan and can comment some of them.",
+                "3": "She/he presents some sources used to define the plan.",
+                "4": "She/he doesn’t present any of the sources used to define the plan."
+            }, {                
+                "1": "Scenarios proposed are completely realistic (the level of realism would be decided by participants in advance).",
+                "2": "Scenarios proposed are completely realistic (the level of realism would be decided by participants in advance).",
+                "3": "Scenarios proposed are completely realistic (the level of realism would be decided by participants in advance).",
+                "4": "Scenarios proposed are not realistic at all."
+            }, {
+                "1": "It has taken into account, apart from normal, even the less probable risks and potentialities associated with its proposal.",
+                "2": "It has taken into account the most probable risks and potentialities associated with its proposal.",
+                "3": "It has taken into account some risks and potentialities associated with its proposal.",
+                "4": "It hasn’t taken into account any risk or potentiality associated to its proposal."
             }
         ]
     },

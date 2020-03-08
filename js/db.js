@@ -41,7 +41,7 @@ define ([
         
             // Check compatibility
             if ( ! window.indexedDB) {
-                reject (i18n.common.message,indexed_db_not_supported);
+                reject (i18n.common.message.indexed_db_not_supported);
                 return false;
             }
         
@@ -76,7 +76,6 @@ define ([
                     restore_backup (backup).then (function () {
                         resolve ();
                     });
-
                 });
             };
         
@@ -127,7 +126,7 @@ define ([
                 // Students
                 var student_object_store = db.createObjectStore ('students', default_properties);
                 student_object_store.createIndex ('id', 'id')
-                student_object_store.createIndex ('email', 'email', { unique: true });
+                student_object_store.createIndex ('identifier', 'identifier', { unique: true });
                 
                 
                 // Ratings
@@ -923,12 +922,14 @@ define ([
     
     /**
      * truncate
+     *
+     * Truncate all the object names of the database
+     *
+     * @package EssenceTool
      */
     var truncate = function () {
         
         return new Promise ((resolve, reject) => {
-            
-            console.log (db.objectStoreNames);
             
             /** @var transaction Create a transaction for all the objects */
             var transaction = db.transaction (db.objectStoreNames, 'readwrite');
@@ -936,14 +937,12 @@ define ([
             
             // Bind error handling
             transaction.onerror = function (event) {
-                console.log (event);
                 reject ('Database error: ' + event.target.error.message);
             };
             
             
             // Bind success handling
             transaction.oncomplete = function () {
-                console.log ('truncated');
                 resolve ();
             }
             
@@ -960,15 +959,11 @@ define ([
                 
                 
                 // Truncate
-                clear_request.onsuccess = function(event) {
-                    console.log ('truncate > ' + object_store);    
+                clear_request.onsuccess = function (event) {
+                    
                 }
-                
-                
             });
-            
         });
-        
     }
     
     
@@ -1017,12 +1012,39 @@ define ([
             });
         });
     }
+    
+    
+    /**
+     * remove_db
+     *
+     * @param backup JSON
+     */    
+    var remove_db = function () {
+        
+        return new Promise ((resolve, reject) => {
+        
+            var req = window.indexedDB.deleteDatabase ('essenceDB');
+            req.onsuccess = function () {
+                resolve ();
+            };
 
+            req.onerror = function () {
+                reject ("Couldn't delete database");
+            };
+
+            req.onblocked = function () {
+                reject ("Couldn't delete database due to the operation being blocked");
+            };
+
+        });
+        
+    }
     
     
     // Return public API
     return {
         init: init,
+        remove_db: remove_db,
         
         object_stores: object_stores,
         

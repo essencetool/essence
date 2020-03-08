@@ -1,6 +1,12 @@
 /**
  * Export Controller
  *
+ * This section allows to create backup-points of your data. 
+ *
+ * Data is downloaded in JSON format and contains information
+ * regarding groups, subgroups, students, rubrics, etc.
+ * 
+ *
  * @package EssenceTool
  */
 
@@ -38,7 +44,6 @@ define ([
         
         // Render
         wrapper.html (template.render (template_params));
-        
         
         
         /** @var form DOM */

@@ -1,5 +1,5 @@
 /**
- * ImportStudents Controller
+ * Import Students Controller
  *
  * @package EssenceTool
  */
@@ -169,10 +169,6 @@ define ([
             var students_csv = students_field.val ();
             
             
-            /** @var re RegExp To check the validity of the emails */
-            var re = /\S+@\S+\.\S+/;
-            
-            
             /** @var students Array Store the students to insert */
             var students = [];
             
@@ -218,7 +214,7 @@ define ([
             
             
             /** @var total_lines int */
-            var total_lines = students_csv.length - 1;
+            var total_lines = 0;
             
             
             /** @var total_imported int */
@@ -234,17 +230,22 @@ define ([
                 }
                 
                 
+                // Update total lines
+                total_lines++;
+                
+                
+                
                 /** @var name String The name is in the first column */
                 var name = student_raw[0];
                 
                 
-                /** @var email String The email is in the second column */
-                var email = student_raw[1];
+                /** @var identifier String The identifier is in the second column */
+                var identifier = student_raw[1];
                 
                 
-                // Validation. Students must have a valid email and name
+                // Validation. Students must have a valid identifier and name
                 // If not, skip to the next line
-                if ( ! (name && email && re.test (email))) {
+                if ( ! (name && identifier)) {
                     return true;
                 }
                 
@@ -252,7 +253,7 @@ define ([
                 // Create the student and attach to students array
                 students.push ({
                     name: name,
-                    email: email,
+                    identifier: identifier,
                     groups: [group_id],
                 });
             });
@@ -264,7 +265,7 @@ define ([
             
             // In case we successfully create students, store them
             // in the database
-            if (students.length) db.addItems ('students', students, 'email').then (function (duplicate_students) {
+            if (students.length) db.addItems ('students', students, 'identifier').then (function (duplicate_students) {
                     
                 // Update the already existent students by including the 
                 // new group
