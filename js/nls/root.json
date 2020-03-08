@@ -248,6 +248,7 @@
                 },
                 
                 "prompt": {
+                    "update_name": "Please, type the new name",
                     "name_gruop": "Please, type the name of the group",
                     "name_subgruop": "Please, type the name of the new subgroup"
                 },

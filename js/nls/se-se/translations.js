@@ -243,6 +243,7 @@ define ({
                 },
                 
                 "prompt": {
+                    "update_name": "Vänligen, skriv det nya namnet",
                     "name_gruop": "Ange ett namn för din undergrupp.",
                     "name_subgruop": "Ange namnet på den nya undergruppen"
                 },

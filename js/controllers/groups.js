@@ -182,7 +182,7 @@ define ([
                 
                 // Request the new name
                 vex.dialog.prompt ({
-                    message: "Please, type the new name",
+                    message: i18n.frontend.pages.groups.prompt.update_name,
                     value: item.name,
                     callback: function (value) {
                         

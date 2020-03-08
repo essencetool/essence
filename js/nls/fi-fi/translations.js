@@ -238,6 +238,7 @@ define ({
                 },
                 
                "confirm": {
+                    "update_name": "Kirjoita uusi nimi",
                     "delete_groups": "Haluatko varmasti poistaa nämä ryhmät? Toimintoa ei voi peruuttaa. ",
                     "delete_subgroups": "Haluatko varmasti poistaa nämä alaryhmät? Toimintoa ei voi peruuttaa. "
                 },

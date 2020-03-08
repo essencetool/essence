@@ -243,6 +243,7 @@ define ({
                 },
                 
                 "prompt": {
+                    "update_name": "Por favor, digite o novo nome",
                     "name_gruop": "Por favor, indicar o nome do grupo",
                     "name_subgruop": "Por favor, indicar o nome do novo subgrupo"
                 },

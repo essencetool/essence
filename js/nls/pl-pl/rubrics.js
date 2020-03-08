@@ -10,9 +10,12 @@ define ({
         },
         "rows": [
             "Planowanie", 
+            "Czas",
+            "Materiał",
             "Spokój", 
             "Motywacja", 
             "Pomoc i szacunek", 
+            "Delegat",
             "Życzliwość"
         ],
         "cells": [
@@ -22,15 +25,15 @@ define ({
                 "3": "Nie bierze udziału w planowaniu celów, ale akceptuje decyzję grupy i postępuje zgodnie z planem.",
                 "4": "Nie bierze udziału w planowaniu celów i podwarza decyzje podjęte przez rówieśników."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Szacuje czas wymagany przez etapy rozwoju produktu lub zadania i dostosowuje się do możliwych zmian i nieprzewidzianych zdarzeń.",
+                "2": "Szacuje czas wymagany na etapy rozwoju produktu lub zadania, ale ma trudności z dostosowaniem się do możliwych zmian i nieprzewidzianych zdarzeń.",
+                "3": "Sprawia, że planowanie niewiele dostosowuje się do czasu potrzebnego na opracowanie zadania, ale dostosowuje się do przedstawienia go na czas.",
+                "4": "Nie planuje czasu wymaganego dla każdego etapu zadania w sposób, który ostatecznie go nie przedstawia lub przedstawia jako niekompletny."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Zapewnia niezbędny materiał (materiał fizyczny, wcześniejsze badania w domu ...), aby móc dobrze pracować w klasie i obawia się, że ten materiał jest dobrej jakości.",
+                "2": "Zapewnia materiał do pracy w klasie, ale jakość nie jest bardzo wysoka, a nawet ma pewne awarie, które nie uniemożliwiają wykonania pracy.",
+                "3": "Dostarcza materiał późno lub z błędami, które utrudniają pracę w grupie.",
+                "4": "Nie zapewnia wystarczającej ilości materiału, aby móc poprawnie wykonać zadanie."
             }, {
                 "1": "Zachowuje spokój w obliczu trudności w wykonywaniu sekwencji czynności i znajduje alternatywne rozwiązania.",
                 "2": "Ma trudności z zachowaniem spokoju w obliczu trudności, ale w końcu znajduje rozwiązania.",
@@ -47,10 +50,10 @@ define ({
                 "3": "Ma trudności z rozpoznaniem potencjału rówieśników i denerwuje się ich ograniczeniami. Skłania się raczej do pracy indywidualnej niż pracy grupowej.",
                 "4": "Jest indywidualistyczny. Nie rozpoznaje pracy swoich kolegów z klasy. W końcu sam się osłania i nie pracuje z grupą ani nie utrudnia pracy w grupie."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Zaakceptuje krytykę ze strony rówieśników i staraa się poprawić na lepsze. Zdaję sobie sprawę, którzy rówieśnicy mogą poprawić pracę i delegują się do nich.",
+                "2": "Słucha krytyki rówieśników, ale trudno mu się zmienić na lepsze. Przekazuje innym, co wie, że mogą zrobić lepiej.",
+                "3": "Złości go krytyka, ale w końcu zgadza się z nią. Ma trudności z delegowaniem do rówieśników, ale niektóre z nich są w stanie przekazać.",
+                "4": "Nie przyjmuje krytyki i nie wie, jak delegować zadania. Chce zrobić wszystko, ponieważ nie ufa swoim kolegom z grupy."
             }, {
                 "1": "Kiedy się nie zgadzasz, z tym, co kolega robi lub mówi z rówieśnikiem, wiesz, jak zaproponować alternatywę w poprawnym i pełnym szacunku języku.",
                 "2": "Wyraża spór z rówieśnikiem, ale na początku nie sugeruje alternatyw i / lub używa niewłaściwego języka. Ostatecznie sugeruje alternatywy.",
@@ -75,10 +78,10 @@ define ({
             "Łatwo wyobrazić sobie nowe pomysły.", 
             "Nowe wyobrażone pomysły", 
             "Argumentacja pomysłów",
-            "",
-            "",
-            "",
-            ""
+            "Opracowano przejrzystość planów / harmonogramu",
+            "Dokumentacja rozwoju pomysłów",
+            "Wykonalność / realizm wyobrażonych przyszłych scenariuszy",
+            "Umiejętność uwzględnienia ryzyka i potencjalnych możliwości"
         ],
         "cells": [
             {
@@ -102,25 +105,25 @@ define ({
                 "3": "Argumentuje jej pomysły.",
                 "4": "Nie może argumentować ani dyskutować na temat jego pomysłów."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Opracował jasny, szczegółowy i realistyczny plan i harmonogram.",
+                "2": "Opracował jasny i realistyczny plan i harmonogram.",
+                "3": "Ona / on opracował plan i harmonogram, ale nie jest całkowicie realistyczny (lub jasny).",
+                "4": "Nie ma żadnego planu ani harmonogramu. Istnieje szybki, niemożliwy do zrealizowania plan."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Przedstawia wszystkie źródła użyte do zdefiniowania planu i dogłębnie zna każde ze źródeł.",
+                "2": "Przedstawia wszystkie źródła użyte do zdefiniowania planu i może skomentować niektóre z nich.",
+                "3": "Przedstawia źródła użyte do zdefiniowania planu.",
+                "4": "Nie przedstawia żadnego źródła użytego do zdefiniowania planu."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Proponowane scenariusze są całkowicie realistyczne (poziom realizmu zostanie ustalony z góry przez uczestników).",
+                "2": "Proponowane scenariusze są całkowicie realistyczne (poziom realizmu zostanie ustalony z góry przez uczestników).",
+                "3": "Proponowane scenariusze są całkowicie realistyczne (poziom realizmu zostanie ustalony z góry przez uczestników).",
+                "4": "Proponowane scenariusze wcale nie są realistyczne."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Wziął pod uwagę, oprócz normalnych, nawet mniej prawdopodobne ryzyko i potencjalne związane z jego propozycją.",
+                "2": "Wziął pod uwagę najbardziej prawdopodobne ryzyko i potencjalne związane z tym wnioskiem.",
+                "3": "Wziął pod uwagę pewne i potencjalne ryzyko związane z jego propozycją.",
+                "4": "Nie wziął pod uwagę żadnego ryzyka ani potencjału związanego z jego propozycją."
             }
         ]
     },

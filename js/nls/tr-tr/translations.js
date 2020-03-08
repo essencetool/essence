@@ -243,6 +243,7 @@ define({
                 },
                 
                 "prompt": {
+                    "update_name": "Lütfen yeni adı yazın",
                     "name_gruop": "Lütfen grubun ismini yaz",
                     "name_subgruop": "Lütfen yeni alt grubun adını yazın"
                 },

@@ -10,10 +10,13 @@ define ({
         },
         "rows": [
             "Planlama", 
-            "huzur", 
-            "motivasyon", 
-            "yardım ve saygı", 
-            "dostluk"
+            "Zaman",
+            "Malzeme",
+            "Huzur", 
+            "Motivasyon", 
+            "Yardım ve saygı", 
+            "Temsilci",
+            "Dostluk"
         ],
         "cells": [
             {
@@ -22,15 +25,15 @@ define ({
                 "3": "Hedef planlamaya katılmaz, ancak grubun kararını kabul eder ve planı takip eder.",
                 "4": "Hedeflerin planlanmasına katılmaz ve akranlar tarafından alınan kararları boykot eder"
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Bir ürünün veya görevin geliştirme adımlarının gerektirdiği zamanı tahmin eder ve olası değişikliklere ve öngörülemeyen olaylara uyum sağlar.",
+                "2": "Bir ürünün veya görevin geliştirme adımları için gereken süreyi tahmin eder, ancak olası değişikliklere ve öngörülemeyen olaylara uyum sağlamada zorluk çeker.",
+                "3": "Bir planlamanın, görevin geliştirilmesi için gereken zamana çok az adapte olmasını sağlar, ancak görevi zamanında sunmak için adapte olur",
+                "4": "Görevin her adımı için gereken süreyi, onu sunmayacak veya eksik sunacak şekilde planlamaz."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Sınıfta iyi çalışabilmek için gerekli materyali (fiziksel materyal, evdeki önceki araştırmalar ...) sağlar ve bu materyalin kaliteli olduğundan endişe duyar.",
+                "2": "Malzemenin sınıfta çalışabilmesini sağlar, ancak kalite çok yüksek değildir ve hatta işin performansını engellemeyen bir başarısızlığa sahiptir.",
+                "3": "Geç veya grup çalışmasının performansını engelleyen hatalar sunar.",
+                "4": "İşi düzgün bir şekilde yapabilmek için yeterli malzeme sağlamaz."
             }, {
                 "1": "Bir dizi aktiviteyi gerçekleştirmede zorluklarla karşılaşır ve alternatif çözümler bulur.",
                 "2": "Zorluklar karşısında sakin durmakta zorluk çekiyor, ancak çözüm buluyor.",
@@ -47,10 +50,10 @@ define ({
                 "3": "Akranlarının potansiyelini tanımakta güçlük çeker ve sınırlamalarına kızar. bireysel çalışmalara grup çalışmasından daha fazla eğilim gösterir.",
                 "4": "Bireyselcidir. Sınıf arkadaşlarının çalışmalarını tanımıyor. Sonunda kendini kapatarak grupla çalışmaz ya da grup çalışmasını zorlaştırmaz."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Akranlardan gelen eleştiriyi kabul edin ve daha iyisini düzeltmeye çalışın.İşleri geliştirebilecek akranların ve onlara delegelerin farkında.",
+                "2": "Eleştiri duyuyor, akranları ama daha iyisi için değişmesi zor. Daha iyisini yapabileceklerini bildiklerini akranlarına devreder.",
+                "3": "Eleştirmenlere kızıyor, ancak düzeltiyor ve akranlarına delege etmekte zorlanıyor, ancak bazı şeyleri delege etmeyi başarıyor.",
+                "4": "Eleştiriyi kabul etmiyor ve nasıl temsilci atacağını bilmiyor. Her şeyi yapmak istiyor çünkü takım arkadaşlarına güvenmiyor."
             }, {
                 "1": "Bir meslektaşınızın bir akran ile ne yaptığını ya da söylediklerini kabul etmediğinizde, ona doğru ve saygılı bir dille öneri alternatiflerini nasıl vereceğinizi bilirsiniz.",
                 "2": "Bir akranla anlaşmazlığı ifade eder, ancak ilk başta alternatifler önermez ve / veya uygunsuz bir dil kullanır. Sonunda alternatifler öneriyor.",
@@ -75,10 +78,10 @@ define ({
             "Gelecekteki fikirleri hayal etmek kolay", 
             "Hayal edilen fikirlerin yeniliği", 
             "Fikirlerin tartışılması",
-            "",
-            "",
-            "",
-            ""
+            "Planlarda / programlarda netlik geliştirildi",
+            "Fikir geliştirme dokümantasyonu",
+            "Gelecekteki senaryolarda fizibilite / gerçekçilik",
+            "Riskleri ve potansiyelleri dikkate alma"
         ],
         "cells": [
             {
@@ -102,25 +105,25 @@ define ({
                 "3": "Fikirlerini tartışır.",
                 "4": "Fikirlerini tartışamaz ve tartışamaz."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Net, ayrıntılı ve gerçekçi bir plan ve program geliştirmiştir.",
+                "2": "Açık ve gerçekçi bir plan ve program geliştirmiştir.",
+                "3": "Bir plan ve program geliştirdi, ancak tamamen gerçekçi değil (veya açık değil)",
+                "4": "Herhangi bir plan veya program yok. Hızlı çizim mümkün olmayan bir plan var."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Planı tanımlamak ve kaynakların her birini derinlemesine bilmek için kullanılan tüm kaynakları sunar.",
+                "2": "Planı tanımlamak için kullanılan tüm kaynakları sunar ve bazılarını yorumlayabilir.",
+                "3": "Planı tanımlamak için kullanılan bazı kaynakları sunar.",
+                "4": "Planı tanımlamak için kullanılan kaynakların hiçbirini sunmaz."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Önerilen senaryolar tamamen gerçekçi (gerçekçilik düzeyi, katılımcılar tarafından önceden kararlaştırılacaktı).",
+                "2": "Önerilen senaryolar tamamen gerçekçi (gerçekçilik düzeyi, katılımcılar tarafından önceden kararlaştırılacaktı).",
+                "3": "Önerilen senaryolar tamamen gerçekçi (gerçekçilik düzeyi, katılımcılar tarafından önceden kararlaştırılacaktı).",
+                "4": "Önerilen senaryolar hiç gerçekçi değil."
             }, {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": ""
+                "1": "Normalin yanı sıra, teklifiyle ilişkili daha az olası riskleri ve potansiyelleri bile dikkate almıştır.",
+                "2": "Teklifiyle ilişkili en olası riskleri ve potansiyelleri dikkate almıştır.",
+                "3": "Teklifiyle ilişkili bazı riskleri ve potansiyelleri dikkate almıştır.",
+                "4": "Teklifiyle ilişkili herhangi bir risk veya potansiyeli dikkate almamıştı"
             }
         ]
     },

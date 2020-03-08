@@ -29,6 +29,12 @@ define ([
      */
     var index = function (params) {
         
+        // For students
+        if (params[1] && params[1] == 'evaluation') {
+            $('body').addClass ('self-assessment-state');
+        }
+        
+        
         // Retrieve all the assessments
         db.getAll ('assessments').then (function (assessments) {
             

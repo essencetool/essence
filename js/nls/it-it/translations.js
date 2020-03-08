@@ -240,8 +240,9 @@ define({
                 },
                 
                "confirm": {
-                    "delete_groups": "Sei sicuro di volere eliminare questi gruppi? Questa operazione non si potrà annullare",
-                    "delete_subgroups": "Sei sicuro di volere eliminare questi sottogruppi? Questa operazione non si potrà annullare"
+                    "update_name": "Per favore, digita il nuovo nome",
+                    "delete_groups": "Sei sicuro di voler eliminare questo gruppo?",
+                    "delete_subgroups": "Sei sicuro di voler eliminare questo sottogruppo?"
                 },
                 
                 "prompt": {
