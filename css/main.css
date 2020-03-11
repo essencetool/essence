@@ -910,6 +910,7 @@ body.state-menu .toggle-menu-action {
 
 
 /** For self-assessment */
+.self-assessment-state .pure-menu-main,
 .self-assessment-state .toggle-menu-action {
     display: none !important;
 }

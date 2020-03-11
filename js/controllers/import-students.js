@@ -176,16 +176,19 @@ define ([
             /** 
              * on_complete_callback
              *
+             * @param success int
+             * @param total int
+             *
              * This function will be called when all the students were 
              * imported
              */
-            var on_complete_callback = function (total_lines, total_imported) {
+            var on_complete_callback = function (success, total) {
                 
                 /** @var messate String */
                 var message = helpers.interpolate (
                     i18n.frontend.pages.import_students.messages.success, {
-                        '%success%': total_imported,
-                        '%total%': total_lines,
+                        '%success%': success,
+                        '%total%': total,
                         '%group%': group_field.select2 ('data')[0].text
                     }
                 );
@@ -230,11 +233,6 @@ define ([
                 }
                 
                 
-                // Update total lines
-                total_lines++;
-                
-                
-                
                 /** @var name String The name is in the first column */
                 var name = student_raw[0];
                 
@@ -248,6 +246,10 @@ define ([
                 if ( ! (name && identifier)) {
                     return true;
                 }
+                
+                
+                // Update total lines
+                total_lines++;
                 
                 
                 // Create the student and attach to students array
@@ -279,13 +281,15 @@ define ([
                 // Update group
                 if (duplicate_students.length) {
                     db.updateItems ('students', duplicate_students).then (function () {
-                        on_complete_callback (total_lines, total_imported);
+                        on_complete_callback (total_imported, total_lines);
                     });
                 } else {
-                    on_complete_callback (total_lines, total_imported);
+                    on_complete_callback (total_imported, total_lines);
                 }
                 
+            // Register error
             }).catch (function (e) {
+                console.log ('on update students');
                 console.log (e);
             });
         });

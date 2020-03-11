@@ -30,7 +30,7 @@ define ([
     var index = function (params) {
         
         // For students
-        if (params[1] && params[1] == 'evaluation') {
+        if ( ! (params[1] && params[1] == 'educators')) {
             $('body').addClass ('self-assessment-state');
         }
         

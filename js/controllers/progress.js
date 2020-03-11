@@ -145,13 +145,12 @@ define ([
                 
                 /** @var data Object Data for the graph */
                 var data = {
-                    labels: pluck (rubric.rows, 'key'),
+                    labels: [],
                     datasets: []
                 };
                 
                 
                 // Get ratings for the student
-                // @todo Improve to get ratings also filtered by rubric_id
                 db.getAllByKey ('ratings', 'student_id', student_id).then (function (ratings) {
                     
                     /** @var filtered_ratings Array To get only the ratings */
@@ -167,7 +166,7 @@ define ([
                         }
                         
                         
-                        // ATtach rubric for the template
+                        // Attach rubric data to the rating
                         rating.rubric = rubric;
                         
                         
@@ -175,12 +174,15 @@ define ([
                         // from object to array
                         rating._values = [];
                         
+                        
+                        // Fill the values
                         $.each (rating.values, function (key, value) {
                             
                             /** @var key_text String Stores the textual value of the feature */
                             var key_text = '';
                             $.each (rubric.rows, function (index, row) {
                                 if (row.key === key) {
+                                    data.labels.push (row.name);
                                     key_text = row.name;
                                     return false;
                                 }
@@ -226,11 +228,18 @@ define ([
                         var rgba = 'rgba(' + rubric.color.join (',') + ', ' + opacity + ')';
                         
                         
+                        /** @var date String */
+                        var date = localStorage.getItem ('locale')
+                            ? new Date (rating.created).toLocaleString (localStorage.getItem ('locale'))
+                            : new Date (rating.created).toUTCString ()
+                        ;
+                        
+                        
                         // Create a new dataset
                         data.datasets.push ({
                             rubric: rubric,
                             rating: rating, 
-                            label: new Date (rating.created).toUTCString(),
+                            label: date,
                             data: values,
                             backgroundColor: rgba,
                         });
@@ -266,11 +275,6 @@ define ([
                     
                     // Update metadata of the options
                     options.title.text = rubric.name;
-                    options.tooltips = {
-                        callbacks: {
-                            label: label_callback
-                        }
-                    };
                     
                     
                     // Render chart
