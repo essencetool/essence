@@ -11,6 +11,7 @@ define (['json!nls/root.json'], function (root) {
         "pt-pt": true,
         "pl-pl": true,
         "se-se": true,
-        "tr-tr": true
+        "tr-tr": true,
+        "es-es": true
     };
 });

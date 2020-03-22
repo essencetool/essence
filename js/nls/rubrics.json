@@ -20,45 +20,45 @@
         ],
         "cells": [
             {
-                "1": "Participate in planning by making valuable proposals and making reasoned decisions.",
-                "2": "Participates in decision-making but does not make important proposals.",
-                "3": "Does not participate in goal planning, but accepts the group's decision.",
-                "4": "Does not participate in planning goals and boycotts decisions made by peers."
+                "1": "The student participates in planning by making valuable proposals and making reasoned decisions.",
+                "2": "The student participates in decision-making but does not make important proposals.",
+                "3": "The student does not participate in goal planning, but accepts the group's decision.",
+                "4": "The student does not participate in planning goals and boycotts decisions made by peers."
             }, {
-                "1": "Estimates the time required by the development steps of a product or task and adapts to possible changes and unforeseen events.",
-                "2": "Estimates the time required for the development steps of a product or task but has difficulty adapting to possible changes and unforeseen events.",
-                "3": "Makes a planning little adapted to the time required for the development of the task but adapts to present it in time",
-                "4": "Does not plan the time required for each step of the task in a way that ends up not presenting it or presenting it incomplete."
+                "1": "The student estimates the time required by the development steps of a product or task and adapts to possible changes and unforeseen events.",
+                "2": "The student estimates the time required for the development steps of a product or task but has difficulty adapting to possible changes and unforeseen events.",
+                "3": "The student makes a planning little adapted to the time required for the development of the task but adapts to present it in time",
+                "4": "The student does not plan the time required for each step of the task in a way that ends up not presenting it or presenting it incomplete."
             }, {
-                "1": "It provides the necessary material (physical material, previous research at home...) to be able to work well in class and is concerned that this material is of good quality.",
-                "2": "It provides material to be able to work in class, but the quality is not very high or even has some failure that does not prevent the performance of the work.",
-                "3": "Provides material late or with errors that hinder the performance of group work.",
-                "4": "It does not provide enough material to be able to do the job properly."
+                "1": "The student provides the necessary material (physical material, previous research at home...) to be able to work well in class and is concerned that this material is of good quality.",
+                "2": "The student provides material to be able to work in class, but the quality is not very high or even has some failure that does not prevent the performance of the work.",
+                "3": "The student provides material late or with errors that hinder the performance of group work.",
+                "4": "The student does not provide enough material to be able to do the job properly."
             }, {
-                "1": "Remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions.",
-                "2": "He has difficulty keeping calm in the face of difficulties but ends up finding solutions.",
-                "3": "Keeps calm in the face of difficulties and asks for help or examples.",
-                "4": "You have difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given."
+                "1": "The student remains calm in the face of difficulties in performing a sequence of activities and finds alternative solutions.",
+                "2": "The student has difficulty keeping calm in the face of difficulties but ends up finding solutions.",
+                "3": "The student keeps calm in the face of difficulties and asks for help or examples.",
+                "4": "The student has difficulty keeping calm in the face of difficulties as well as asking for help or accepting the help you are given."
             }, {
-                "1": "Maintains motivation towards the activity from the first moment to the last.",
-                "2": "Start the activity highly motivated but have difficulty maintaining it throughout the course of the activity.",
-                "3": "You need support from your group or teachers to maintain motivation towards the activity.",
-                "4": "Their low motivation causes problems in the group."
+                "1": "The student maintains motivation towards the activity from the first moment to the last.",
+                "2": "The student starts the activity highly motivated but have difficulty maintaining it throughout the course of the activity.",
+                "3": "The student needs support from your group or teachers to maintain motivation towards the activity.",
+                "4": "The student´s low motivation causes problems in the group."
             }, {
-                "1": "Encourage other members of your group and recognize the work they do. Respect the limitations of others and help them to improve and learn from them.",
-                "2": "It takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. He cares more about getting the job done than he cares about helping others.",
-                "3": "Has difficulty recognizing the potential of peers and becomes angry at their limitations. tends more to individual work than to group work.",
-                "4": "It's individualistic. He doesn't recognize the work of his classmates. He ends up sheathing himself and not working with the group or making group work difficult."
+                "1": "The student encourages other members of your group and recognize the work they do. The student respects the limitations of others and help them to improve and learn from them.",
+                "2": "The student takes advantage of the potentialities of others and respects their limitations although it does not do much to help them. The student cares more about getting the job done than he/she cares about helping others.",
+                "3": "The student has difficulty recognizing the potential of peers and becomes angry at their limitations. The student tends more to individual work than to group work.",
+                "4": "The student is  individualistic. The student doesn't recognize the work of his/her classmates. The student ends up sheathing himself and not working with the group or making group work difficult."
             }, {
-                "1": "Accept criticism from peers and try to rectify for the better.Is aware of which peers that can improve the work and delegates to them.",
-                "2": "He hears criticism from, peers but it's hard for him to change for the better. He delegates to peers what he knows they can do better.",
-                "3": "He gets angry with the critics but ends up rectifying.He finds it difficult to delegate to peers but manage to delegate some things.",
-                "4": "He doesn't accept criticism and doesn't know how to delegate. He wants to do everything because he doesn't trust his teammates."
+                "1": "The student accepts criticism from peers and try to rectify for the better. The student is aware of which peers can improve the work and he/she delegates to them.",
+                "2": "The student hears criticism from peers but it's hard for him/her to change for the better. The student delegates to peers what he/she knows they can do better.",
+                "3": "The student gets angry with the critics but ends up rectifying.The student finds it difficult to delegate to peers but manage to delegate some things.",
+                "4": "The student doesn't accept criticism and doesn't know how to delegate. The student wants to do everything because he/she  doesn't trust his/her teammates."
             }, {
-                "1": "When you don't agree with what a colleague does or says, you know how to give him or her alternatives with correct and respectful language.",
-                "2": "Expresses disagreement with a partner, but does not suggest alternatives and/or uses inappropriate language.",
-                "3": "When he doesn't agree with something, he gets angry and doesn't allow himself to talk about it or look for alternatives, even though he ends up giving in.",
-                "4": "When he disagrees with something, he gets angry and provokes conflicts instead of looking for alternative solutions."
+                "1": "When The student doesn't agree with what a colleague does or says, The student knows how to give him or her alternatives with correct and respectful language.",
+                "2": "The student expresses disagreement with a partner, but does not suggest alternatives and/or uses inappropriate language.",
+                "3": "When The student doesn't agree with something, he/she gets angry and doesn't allow himself to talk about it or look for alternatives, even though he/she ends up giving in.",
+                "4": "When The student disagrees with something, he/she gets angry and provokes conflicts instead of looking for alternative solutions."
             }
         ]
     
@@ -86,51 +86,51 @@
         "cells": [
             {
                 "1": "Always deliver much more new ideas she/he needs on each moment.",
-                "2": "Deliver as much new ideas as they need on each moment and sometimes more.",
-                "3": "Not always deliver as much new ideas as they need on each moment.",
-                "4": "Cannot imagine enough or even any new ideas."
+                "2": "The student delivers as much new ideas as they need on each moment and sometimes more.",
+                "3": "The student not always deliver as much new ideas as they need on each moment.",
+                "4": "The student cannot imagine enough or even any new ideas."
             }, {            
                 "1": "Fast and natural delivering of new ideas.",
-                "2": "Focused, systematic and successful delivering of new ideas",
-                "3": "Slow but constant and successful delivering of some new ideas",
-                "4": "Painful, slow and unsuccessful process of delivering new ideas"
+                "2": "Focused, systematic and successful delivering of new ideas.",
+                "3": "Slow but constant and successful delivering of some new ideas.",
+                "4": "Painful, slow and unsuccessful process of delivering new ideas."
             }, {
                 "1": "Ideas proposed are completely new and unknown.",
                 "2": "Ideas proposed are based on other ideas from external sources and new proposals.",
                 "3": "Ideas proposed are based on other ideas from external sources.",
                 "4": "Cannot imagine any new ideas."
             }, {
-                "1": "She/he arguments, debate and defends its ideas clearly.",
-                "2": "She/he arguments and debate its ideas ",
-                "3": "She/he arguments its ideas. ",
-                "4": "She/he cannot argument or debate its ideas."
+                "1": "The student arguments, debate and defends its ideas clearly.",
+                "2": "The student arguments and debate its ideas.",
+                "3": "The student arguments its ideas.",
+                "4": "The student cannot argument or debate its ideas."
             }, {
-                "1": "She/he has developed a clear, detailed and realistic plan and schedule.",
-                "2": "She/he has developed a clear and realistic plan and schedule.",
-                "3": "She/he has developed a plan and schedule, but is not completely realistic (or clear)",
+                "1": "The student has developed a clear, detailed and realistic plan and schedule.",
+                "2": "The student has developed a clear and realistic plan and schedule.",
+                "3": "The student has developed a plan and schedule, but is not completely realistic (or clear).",
                 "4": "There is not any plan or schedule. There is a fast-drawing not feasible plan."
             }, {
-                "1": "She/he presents all the sources used to define the plan and know profoundly each one of the sources.",
-                "2": "She/he presents all the sources used to define the plan and can comment some of them.",
-                "3": "She/he presents some sources used to define the plan.",
-                "4": "She/he doesn’t present any of the sources used to define the plan."
-            }, {                
+                "1": "The student presents all the sources used to define the plan and know profoundly each one of the sources.",
+                "2": "The student presents all the sources used to define the plan and can comment some of them.",
+                "3": "The student presents some sources used to define the plan.",
+                "4": "The student doesn’t present any of the sources used to define the plan."
+            }, {
                 "1": "Scenarios proposed are completely realistic (the level of realism would be decided by participants in advance).",
                 "2": "Scenarios proposed are completely realistic (the level of realism would be decided by participants in advance).",
                 "3": "Scenarios proposed are completely realistic (the level of realism would be decided by participants in advance).",
                 "4": "Scenarios proposed are not realistic at all."
             }, {
-                "1": "It has taken into account, apart from normal, even the less probable risks and potentialities associated with its proposal.",
-                "2": "It has taken into account the most probable risks and potentialities associated with its proposal.",
-                "3": "It has taken into account some risks and potentialities associated with its proposal.",
-                "4": "It hasn’t taken into account any risk or potentiality associated to its proposal."
+                "1": "The student has taken into account, apart from normal, even the less probable risks and potentialities associated with its proposal.",
+                "2": "The student has taken into account the most probable risks and potentialities associated with its proposal.",
+                "3": "The student has taken into account some risks and potentialities associated with its proposal.",
+                "4": "The student hasn’t taken into account any risk or potentiality associated to its proposal."
             }
         ]
     },
     
     "3": {
         "name": "Self-awareness & Self-efficacy",
-        "description": "Self-awareness (SA) and Self-efficacy (SE) are two psychological abilities that help people to face their projects (e.g.) in a more realistic way, starting from their own conditions and improving them in order to improve also their possibilities of achieving their goals. As very well studied psychological skills, seems sensible start the definition of the assessment of these both from the criteria (dimensions) that are already evaluated in some validated scales created for psychological diagnosis (For self-efficacy we used Scholz, Doña, Sud, & Schwarzer, 2002, based on Schwarzer & Jerusalem, 1995; and for Self-awareness we used Govern & Marsch, 2001); but doing an adaptation to be useful in participative learning environments. ",
+        "description": "Self-awareness (SA) and Self-efficacy (SE) are two psychological abilities that help people to face their projects (e.g.) in a more realistic way, starting from their own conditions and improving them in order to improve also their possibilities of achieving their goals. As very well studied psychological skills, seems sensible start the definition of the assessment of these both from the criteria (dimensions) that are already evaluated in some validated scales created for psychological diagnosis (For self-efficacy we used Scholz, Doña, Sud, & Schwarzer, 2002, based on Schwarzer & Jerusalem, 1995; and for Self-awareness we used Govern & Marsch, 2001); but doing an adaptation to be useful in participative learning environments.",
         "valorations": {
             "1": "Very good",
             "2": "Good",
@@ -150,50 +150,50 @@
         ],
         "cells": [
             {
-                "1": "He/ She understands the overall picture and pays attention to the details of what is around him/her, not only to the elements he/she finds, but to the complex and wide relationships between those elements.",
-                "2": "He pays attention to what is around him/her, not only to the elements but to the relationships between elements. Nevertheless she/he miss some details",
-                "3": "He pays attention to some of the details that surround him/her, some of the elements and some of the situations, but does not relate to them or understand them as a complex context.",
-                "4": "He pays no attention to surrounding, shows no interest in what's around him/her."
+                "1": "The student understands the overall picture and pays attention to the details of what is around him/her, not only to the elements he/she finds, but to the complex and wide relationships between those elements.",
+                "2": "The student pays attention to what is around him/her, not only to the elements but to the relationships between elements. Nevertheless she/he miss some details.",
+                "3": "The student pays attention to some of the details that surround him/her, some of the elements and some of the situations, but does not relate to them or understand them as a complex context.",
+                "4": "The student pays no attention to surrounding, shows no interest in what's around him/her."
             }, {
-                "1": "Describes in detail the situation in which he finds himself and understands in a complex way the processes that happen in that situation. Pay close attention to details.",
-                "2": "She/he describes the situation in which he finds himself and understands the processes that take place in it.",
-                "3": "She/he knows that something is happening, he describes it superficially, but he is not able to describe it completely.",
-                "4": "She/he doesn't realize what's going on."
+                "1": "The student describes in detail the situation in which he finds himself and understands in a complex way the processes that happen in that situation.  The student pays close attention to details.",
+                "2": "The student describes the situation in which he finds himself and understands the processes that take place in it.",
+                "3": "The student knows that something is happening, he describes it superficially, but he is not able to describe it completely.",
+                "4": "The student doesn't realize what's going on."
             }, {
-                "1": "She/he knows what image he projects on himself and in it he includes not only what he shows, what she/he does, but also the relationships and people around him/her.",
-                "2": "She/he believes he/she projects an image about itself based on what others see of it and what it does.",
-                "3": "She/He thinks he projects an image on her/himself based on what others see of him/her.",
-                "4": "She/He has no idea what image she/he projects to others."
+                "1": "The student knows what image he projects on himself and in it he includes not only what he shows, what she/he does, but also the relationships and people around him/her.",
+                "2": "The student believes he/she projects an image about itself based on what others see of it and what it does.",
+                "3": "The student thinks he/she projects an image on her/himself based on what others see of him/her.",
+                "4": "The student has no idea what image she/he projects to others."
             }, {
-                "1": "She/he is aware of the image she/he projects of her/himself. When getting constructive feedback she/he can make conscious change that image.",
-                "2": "She/he is aware of the image she/he projects of her/himself.  Doesn’t modify that image.",
-                "3": "She/he is partialy aware of the image she/he projects of her/himself.",
-                "4": "She/He pays no attention to what imagen she/he projects to others. At the opposite extreme, everything she/he does is done by thinking about what others think of him/her."
+                "1": "The student is aware of the image she/he projects of her/himself. When getting constructive feedback she/he can make conscious change that image.",
+                "2": "The student is aware of the image she/he projects of her/himself. Doesn’t modify that image.",
+                "3": "The student is partialy aware of the image she/he projects of her/himself.",
+                "4": "The student pays no attention to what imagen she/he projects to others. At the opposite extreme, everything she/he does is done by thinking about what others think of him/her."
             }, {
-                "1": "Knows  his/her own feelings/preferences and their causes and expresses them assertively.",
-                "2": "Knows and expresses feelings/preferences.",
-                "3": "Not really showing nor recognizing his/her own feelings and preferences but always looks for others' feelings/preferences for reference (Just in case).",
-                "4": "She/he doesn’t understand or express its own feelings/preferences."
+                "1": "The student knows his/her own feelings/preferences and their causes and expresses them assertively.",
+                "2": "The student knows and expresses feelings/preferences.",
+                "3": "The student doesn´t really show nor recognize his/her own feelings and preferences but always looks for others' feelings/preferences for reference (Just in case).",
+                "4": "The student doesn’t understand or express its own feelings/preferences."
             }, {
-                "1": "She/he is convinced that can persist until achieve its goals, even if they are big or taught.",
-                "2": "She/he believes on its potential to persist until achieving most of the goals.",
-                "3": "She/he has doubts about on its potential to persist until achieving most of the goals.",
-                "4": "It’s convinced that she/he cannot persist until achieve its goals."
+                "1": "The student is convinced that can persist until achieve its goals, even if they are big or tough.",
+                "2": "The student believes on its potential to persist until achieving most of the goals.",
+                "3": "The studenthas doubts about on its potential to persist until achieving most of the goals.",
+                "4": "The student is convinced that she/he cannot persist until achieve its goals."
             }, {
-                "1": "She/he is convinced that can handle and overcome obstacles, even if they are unexpected or difficult.",
-                "2": "She/he has the conviction of its potential on handle and overcome the majority of the potential obstacles.",
-                "3": "She/he believes on its potential to handle or overcome some easy potential obstacles.",
-                "4": "It’s convinced that she/he cannot handle any obstacle. "
+                "1": "The student is convinced that can handle and overcome obstacles, even if they are unexpected or difficult.",
+                "2": "The student has the conviction of its potential on handle and overcome the majority of the potential obstacles.",
+                "3": "The student believes on its potential to handle or overcome some easy potential obstacles.",
+                "4": "The student is convinced that she/he cannot handle any obstacle."
             }, {
-                "1": "She/he is convinced that can overcome any opponent she/he could have.",
-                "2": "She/he has the conviction of its potential to overcome its potential opponents.",
-                "3": "She/he has the conviction of its potential to overcome some easy potential opponents.",
-                "4": "It’s convinced that she/he cannot overcome any opponent."
+                "1": "The student is convinced that can overcome any opponent she/he could have.",
+                "2": "The student has the conviction of its potential to overcome its potential opponents.",
+                "3": "The student has the conviction of its potential to overcome some easy potential opponents.",
+                "4": "The student is convinced that she/he cannot overcome any opponent."
             }, {
-                "1": "She/he is convinced that can solve any problem or difficulty she/he has, even if they are unexpected or taught.",
-                "2": "She/he has the conviction of its potential to solve the majority of problems /difficulties.",
-                "3": "She/he has the conviction of its potential to solve the easiest problems /difficulties.",
-                "4": "It’s convinced that she/he cannot solve any difficulty."
+                "1": "The student is convinced that can solve any problem or difficulty she/he has, even if they are unexpected or tough.",
+                "2": "The student has the conviction of its potential to solve the majority of problems/difficulties.",
+                "3": "The student has the conviction of its potential to solve the easiest problems/difficulties.",
+                "4": "The student is convinced that she/he cannot solve any difficulty."
             }
         ]
     }
