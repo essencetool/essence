@@ -54,7 +54,7 @@
                 },
                 "footer": {
                     "copyright": {
-                        "text": "&copy; Proyecto ESSENCE 2019."
+                        "text": "<p>ESSENCE Tool has been developed under the project \"ESSENCE - entrepreneurial skills in schools education: nurturing citizenship and entrepreneurship\", an Erasmus + KA2 N. 2018-1-IT02-KA201-048137 funded by the EC. </p><p>The European Commission support for the production of this publication does not constitute an endorsement of the contents which reflects the views only of the authors, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p><img src=\"img/logo-erasmus.png\" alt=\"Erasmus\"/> <img src=\"img/logo-essence.jpg\" alt=\"E.S.S.E.N.C.E.\" />"
                     }
                 },
                 "menu": {

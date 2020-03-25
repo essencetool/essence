@@ -49,7 +49,7 @@ define ({
                 },
                 "footer": {
                     "copyright": {
-                        "text": "&copy; Projeto ESSENCE 2019."
+
                     }
                 },
                 "menu": {
