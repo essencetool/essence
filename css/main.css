@@ -152,6 +152,28 @@ body, html {
 }
 
 
+/** Footer */
+footer {
+    text-align: left;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: white;
+    background-color: rgb(229,145,0);
+}
+
+footer p {
+    margin: 0 auto .75rem auto;
+    max-width: 80rem;
+    font-size: .875rem;
+}
+
+footer img {
+    vertical-align: middle;
+    max-height: 4rem;
+}
+
+
 /** Header */
 .main-header a,
 .main-header a:hover,
@@ -179,7 +201,7 @@ body, html {
     top: .5rem;
     width: 2rem;
     height: 2rem;
-    z-index: 10000;
+    z-index: 2;
     margin: 0;
     border: none;
     padding: 0;
@@ -311,14 +333,6 @@ main h1 a {
     padding: 0 1rem;
 }
 
-footer {
-    padding: 0;
-    text-align: center;
-    font-size: .5rem;
-    line-height: 1;
-    color: white;
-}
-
 .rating-panel .column-1 {
     min-width: 12rem;
 }
@@ -438,8 +452,14 @@ footer {
 }
 
 .rating-panel-actions {
+    padding: 1rem;
     margin: 1rem 0;
+    background-color: #f0f0f0;
     text-align: right;
+}
+
+.rating-panel-actions .pure-button {
+    font-size: 1.25rem;
 }
 
 .help {
@@ -536,6 +556,12 @@ footer {
 .form-step > div {
     margin: 0 0 1rem 0;
     font-family: 'Montserrat', sans-serif;
+}
+
+.form-file-ph {
+    vertical-align: middle;
+    line-height: 1;
+    font-size: .875rem;
 }
 
 .form-step.inline {

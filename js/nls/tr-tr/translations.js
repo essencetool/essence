@@ -94,7 +94,7 @@ define({
                 
                 "controls": {
                     "group": {
-                        "label": "<strong>Step 1. </strong>Grubu seç ve yeni birini yarat"
+                        "label": "<strong>Step 1. </strong>Bir alt grup seçin"
                     },
                     "file": {
                         "label": "<strong>Step 2. </strong> Öğrencilerle bu dosyaya katıl",

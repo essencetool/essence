@@ -96,10 +96,10 @@ define({
                 
                 "controls": {
                     "group": {
-                        "label": "<strong>Step 1. </strong>Seleziona un gruppo o creane uno nuovo"
+                        "label": "<strong>Step 1. </strong>Seleziona un sottogruppo"
                     },
                     "file": {
-                        "label": "<strong>Step 2. </strong> Invia il file con gli studenti",
+                        "label": "<strong>Step 2. </strong>Seleziona un file con gli studenti",
                         "placeholder": "Seleziona un file"
                     },
                     "submit": {
@@ -246,6 +246,7 @@ define({
                 },
                 
                 "prompt": {
+                    "update_name": "Per favore, inserisci il nuovo nome",
                     "name_gruop": "Per favore, scrivi il nome del gruppo",
                     "name_subgruop": "Per favore, scrivi il nome del nuovo sottogruppo"
                 },

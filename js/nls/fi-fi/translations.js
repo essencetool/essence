@@ -94,7 +94,7 @@ define ({
                 
                 "controls": {
                     "group": {
-                        "label": "<strong>Step 1. </strong>Valitse ryhmä tai luo uusi"
+                        "label": "<strong>Step 1. </strong>Valitse alaryhmä"
                     },
                     "file": {
                         "label": "<strong>Step 2. </strong>Lähetä tiedosto johon opiskelijat on tuotu",

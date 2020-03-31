@@ -94,7 +94,7 @@ define ({
                 
                 "controls": {
                     "group": {
-                        "label": "<strong>Passo 1. </strong>Selecionar um grupo ou criar um novo"
+                        "label": "<strong>Passo 1. </strong>Selecione um subgrupo"
                     },
                     "file": {
                         "label": "<strong>Passo 2. </strong>Submeter um ficheiro com os estudantes",

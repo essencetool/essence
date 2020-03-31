@@ -94,7 +94,7 @@ define ({
                 
                 "controls": {
                     "group": {
-                        "label": "<strong>Step 1. </strong>Wybierz grupę lub wybierz nową"
+                        "label": "<strong>Step 1. </strong>Wybierz podgrupę"
                     },
                     "file": {
                         "label": "<strong>Step 2. </strong>SWybierz plik z uczniami",

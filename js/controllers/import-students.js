@@ -80,10 +80,12 @@ define ([
             const ext = name.substring (name.lastIndexOf ('.') + 1);
             
             
-            
             /** @var fileReader */
             var fileReader = new FileReader ();
-
+            
+            
+            // Display name on the screen
+            form.find ('.form-file-ph').html (name);
             
             
             // Read

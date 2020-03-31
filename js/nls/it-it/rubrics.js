@@ -58,7 +58,7 @@ define ({
                 "1": "Quando non è d'accordo su ciò che un collega fa o dice con un altro collega, sa come suggerirgli alternative con un linguaggio corretto e rispettoso.",
                 "2": "Esprime disaccordo con un pari, ma inizialmente non suggerisce alternative e/o usa un linguaggio inappropriato. Finisce per suggerire alternative.",
                 "3": "Quando non è d'accordo, si arrabbia e non ne parla né cerca alternative, anche se continua a lavorare",
-                "4": "Quando non è d'accordo con qualcosa, si arrabbia e provoca conflitti invece di cercare soluzioni alternative. Finisce per arrendersi."
+                "4": "Quando non è d'accordo, si arrabbia e provoca conflitti invece di cercare soluzioni alternative. Finisce per arrendersi."
             }
         ]
     
@@ -78,9 +78,9 @@ define ({
             "Facilità nell'immaginare idee future", 
             "Novità delle idee immaginate", 
             "Argomentazione delle idee",
-            "Chiarezza nei piani / programmi sviluppati",
+            "Chiarezza dei progetti sviluppati",
             "Documentazione sullo sviluppo di idee",
-            "Fattibilità / realismo sugli scenari futuri immaginati",
+            "Fattibilità/realismo degli scenari futuri immaginati",
             "Capacità di considerare rischi e potenzialità"
         ],
         "cells": [
