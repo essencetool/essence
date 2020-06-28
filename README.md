@@ -1,4 +1,6 @@
-![Essence](./img/logo-essence.jpg)
+<p align="center">
+  <img src="https://github.com/essencetool/essence/img/logo-essence.jpg" alt="Essence logo"/>
+</p>
 
 
 # Essence
@@ -43,6 +45,6 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 This project is licensed under the MIT License
 
 ## Acknowledgments
-This project is funded by the European Union by the Erasmus+ program
+This project is funded by the European Union by the [Erasmus+ program](https://ec.europa.eu/programmes/erasmus-plus/node_en)
 
 ![Eramus Project](./img/logo-erasmus.png)
