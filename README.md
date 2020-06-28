@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/essencetool/essence/img/logo-essence.jpg" alt="Essence logo"/>
+  <img src="https://essencetool.github.io/essence/img/logo-essence.jpg" alt="Essence logo"/>
 </p>
 
 
@@ -47,4 +47,7 @@ This project is licensed under the MIT License
 ## Acknowledgments
 This project is funded by the European Union by the [Erasmus+ program](https://ec.europa.eu/programmes/erasmus-plus/node_en)
 
-![Eramus Project](./img/logo-erasmus.png)
+
+<p align="center">
+  <img src="https://essencetool.github.io/essence/img/logo-erasmus.png" alt="Eramus Project"/>
+</p>
