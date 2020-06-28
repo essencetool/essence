@@ -1,5 +1,11 @@
+![Eramus Project](https://essencetool.github.io/essence/img/logo-erasmus.png)
+![Essence](https://essencetool.github.io/essence/img/logo-essence.jpg)
+
+
 # Essence
 Essence is a open-source project to help educators for acquiring/evaluating the entrepreneurial competences. Learn more about the project at [the web of the European Project](https://essenceproject.eu/project-objectives/)
+
+You can see the project running at: https://essencetool.github.io/essence/
 
 ## Getting Started
 Essence Tool is build upon web technologies and it is only need to use a browser to use it. The web-browser requires the IndexedDB API (see [compatibility](https://caniuse.com/#feat=indexeddb)).
