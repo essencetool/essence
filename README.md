@@ -17,6 +17,7 @@ However, there are a few cases in which you should download the tool in your com
 * If you want to create your own rubrics or self-assessments
 * If you want to embed this tool inside another education platform such as [Sakai](https://www.sakailms.org/)
 * If your needs require to modify the source files of the project
+* If you need to create a custom translation of the app
 
 
 All you need to do is to download the project (as is described in the following figure), unzip it to a local folder, and then open the file "index.html" in your favorite browser.
