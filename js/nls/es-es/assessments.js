@@ -35,7 +35,7 @@ define ({
             "Soy consciente de mis fortalezas.",
             "Sé cómo mejorar mis debilidades.",
             "Es fácil para mí cumplir mis objetivos.",
-            "Puedo reconocer problemas cotidianos que ecesitan resolverse.",
+            "Puedo reconocer problemas cotidianos que necesitan resolverse.",
             "Cuando tengo un problema, puedo encontrar una solución.",
             "Si me esfuerzo lo suficiente puedo lograr mis sueños."
         ],

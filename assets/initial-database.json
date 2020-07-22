@@ -16,20 +16,20 @@
 		}
 	],
 	"subgroups": [{
-			"name": "1th degree of Computer Science",
-			"slug": "1th-degree-of-computer-science",
+			"name": "1st degree of Computer Science",
+			"slug": "1st-degree-of-computer-science",
 			"group_id": 1,
 			"id": 1
 		},
 		{
-			"name": "2th degree of Computer Science",
-			"slug": "2th-degree-of-computer-science",
+			"name": "2nd degree of Computer Science",
+			"slug": "2nd-degree-of-computer-science",
 			"group_id": 1,
 			"id": 2
 		},
 		{
-			"name": "3th degree of Computer Science",
-			"slug": "3th-degree-of-computer-science",
+			"name": "3rd degree of Computer Science",
+			"slug": "3rd-degree-of-computer-science",
 			"group_id": 1,
 			"id": 3
 		},
@@ -40,14 +40,14 @@
 			"id": 4
 		},
 		{
-			"name": "1th degree of Psychology",
-			"slug": "1th-degree-of-psychology",
+			"name": "1st degree of Psychology",
+			"slug": "1st-degree-of-psychology",
 			"group_id": 2,
 			"id": 5
 		},
 		{
-			"name": "2th degree of Psychology",
-			"slug": "2th-degree-of-psychology",
+			"name": "2nd degree of Psychology",
+			"slug": "2nd-degree-of-psychology",
 			"group_id": 2,
 			"id": 6
 		}
@@ -709,7 +709,7 @@
 				}
 			],
 			"questions": [{
-					"text": "I have an idea of a dreamjob."
+					"text": "I have an idea of my dreamjob."
 				},
 				{
 					"text": "I have a plan how to achieve my dreamjob."
@@ -793,7 +793,7 @@
 					"text": "It is easy for me to stick to my goals"
 				},
 				{
-					"text": "I can recognize everyday problems, that needs to be solved"
+					"text": "I can recognize everyday problems that need to be solved"
 				},
 				{
 					"text": "When I am stuck with a problem, I can find a solution"
@@ -871,7 +871,7 @@
 					"text": "When I am working in a team, I adhere to commonly agreed rules and schedules"
 				},
 				{
-					"text": "I  can build up a team to solve an specific problem"
+					"text": "I can build up a team to solve a specific problem"
 				},
 				{
 					"text": "When I have a problem I know whom to contac"
