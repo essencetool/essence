@@ -84,6 +84,7 @@ const filesToCache = [
     'js/controllers/restore-backup.js',
     'js/controllers/student.js',
     'js/controllers/students.js',
+
     
     'js/nls/assessments.js',
     'js/nls/assessments.json',
@@ -144,12 +145,13 @@ self.addEventListener ('install', function (event) {
  * (which includes all non-GET requests, as they cannot be cached).
  */
 
-self.addEventListener ('fetch', function(event) {
-    console.log ('@fetch');
+self.addEventListener ('fetch', function (event) {
     event.respondWith (fetch (event.request).catch (function () {
-        return caches.match(event.request);
+        return caches.match (event.request);
     }));
 });
+
+
 
 
 

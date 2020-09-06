@@ -263,6 +263,9 @@ define ([
             });
             
             
+            console.log (students);
+            
+            
             // Update successful 
             total_imported = students.length;
             

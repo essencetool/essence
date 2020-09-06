@@ -34,7 +34,7 @@ require.config ({
         
         // By default, args it will be a datetime to avoid cache
         var args = (new Date()).getTime();
-        var args = '';
+        // var args = '';
         
         
         // If the URL contains google JSAPI, then remove it
@@ -208,13 +208,6 @@ require ([
      * @package AllergyLESS
      */
     var route_handler = function (hash, params) {
-        
-        console.log ('@route-handler');
-        console.log (caches);
-        caches.open ('pages-cache-v2').then (function (cache) { 
-            console.log (cache) 
-        })
-        
         
         // Select the default option according to the hash
         nav

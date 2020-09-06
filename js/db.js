@@ -739,11 +739,13 @@ define ([
                 // Get subgroups
                 if ( ! callbacks)  {
                     resolve (student);
+                    return;
                 }
                 
+
             
                 // For each group
-                if (callbacks > 0) $.each (student.groups, function (index, subgroup_id) {
+                $.each (student.groups, function (index, subgroup_id) {
                 
                     // Get all groups. @todo Index by subgroups
                     getAll ('subgroups').then (function (subgroups) {
@@ -761,7 +763,7 @@ define ([
                                 callbacks--;
 
                                 
-                                if ( ! callbacks) {
+                                if ( ! callbacks) {                     
                                     resolve (student);
                                 }
 
@@ -799,7 +801,11 @@ define ([
                 
                 // Get each plain object
                 $.each (ids, function (index, student_id) {
+                    
                     getStudentById (student_id).then (function (student) {
+                        
+                        console.log (student_id);
+                        
                         response.push (student);
                         callbacks--;
                    
