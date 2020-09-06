@@ -746,6 +746,13 @@ body.state-menu .toggle-menu-action {
     background-color: rgb(202, 60, 60);
 }
 
+.groups-table-actions .delete-group-action[disabled],
+.groups-table-actions .delete-subgroup-action[disabled] {
+    opacity: .3;
+    background-color: #666;
+}
+
+
 .project-list {
     margin: 0;
     padding: 0;
@@ -789,41 +796,31 @@ body.state-menu .toggle-menu-action {
 
 .progress-ratings ul li {
     border-bottom: 1px dotted #ccc;
+    margin: 0 0 .3rem 0;
     padding: .5rem 0 .5rem 1rem;
-    font-size: .75rem;
+    font-size: 1rem;
     line-height: 1;
     overflow: hidden;
 }
 
-.progress-ratings ul li .key,
-.progress-ratings ul li .value {
-    display: inline-block;
-    vertical-align: top;
+.progress-ratings ul li .icon-edit {
+    cursor: pointer;
 }
 
-.progress-ratings ul li .key {
-    float: left;
-    max-width: 70%;
-}
 
-.progress-ratings ul li .value {
-    float: right;
-    padding: 0 .5rem;
-}
-
-.progress-ratings .state_1 .value {
+.progress-ratings .state_1 {
     background-color: rgba(0,255,0,.3);
 }
 
-.progress-ratings .state_2 .value {
+.progress-ratings .state_2 {
     background-color: rgba(255,255,0,.3);
 }
 
-.progress-ratings .state_3 .value {
+.progress-ratings .state_3 {
     background-color: rgba(0,0,255,.3);
 }
 
-.progress-ratings .state_4 .value {
+.progress-ratings .state_4 {
     background-color: rgba(255,0,0,.3);
 }
 

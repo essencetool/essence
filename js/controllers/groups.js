@@ -140,7 +140,7 @@ define ([
                     var subgroup = {
                         name: name,
                         slug: slugify (name),
-                        group_id: group_id,
+                        group_id: group_id
                     }
                     
                     
@@ -226,32 +226,58 @@ define ([
                 message: i18n.frontend.pages.groups.confirm.delete_groups,
                 callback: function (confirm) {
                     
-                    // Request user confirmation
+                    // The user cancel this operation
                     if ( ! confirm) {
                         return;
                     }
                     
-                    
-                    // Delete the subgroups
+                        
+                    // Retrieve all the subgroups for this group
                     db.getAllByKey ('subgroups', 'group_id', group_id).then (function (subgroups) {
+                        
+                        /** @var subgroup_ids Array */
+                        var subgroup_ids = $.map (subgroups, function (item) { return item["id"]; })
+                        
+                    
+                        // Next, we will check if there are students within this groups
+                        db.getAll ('students').then (function (students) {
+                                
+                            // Check every student...
+                            $.each (students, function (index, student) {
+                                
+                                /** @var student_subgroup_ids Array */
+                                var student_subgroup_ids = $.map (student.groups, function (item) { return item["id"]; })
+                                
+                                
+                                // The groups of the student are the difference
+                                student.groups = student_subgroup_ids.filter (x => ! subgroup_ids.includes (x));
+                                
+                                
+                                // Update student
+                                db.updateItem ('students', student);
+                                
+                            });
+                        });
+                        
+                        
+                        // Delete the subgroups
                         $.each (subgroups, function (index, subgroup) {
                             db.deleteItems ('subgroups', subgroup.id);
                         });
+                    
+                    
+                        // Delete group
+                        db.deleteItems ('groups', group_id).then (function () {
+                            index (params);
+                        });
+                        
                     });
-                    
-                    
-                    // Delete group
-                    db.deleteItems ('groups', group_id).then (function () {
-                        index (params);
-                    });
-                    
                 }
             });
         });
         
         
         // Delete subgroup action
-        // @todo. Check if there are students with these groups
         table.on ('click', '.delete-subgroup-action', function (e) {
             
             /** @var subgroup_id int */
@@ -267,9 +293,32 @@ define ([
                     if ( ! confirm) {
                         return;
                     }
+                        
+                        
+                    // Check if there are students in the subgroup we are 
+                    // going to delete. If so, remove it
+                    db.getAll ('students').then (function (students) {
+                        
+                        // Check every student...
+                        $.each (students, function (index, student) {
+                            
+                            // If they belong to the subgruop
+                            if (student.groups.includes (subgroup_id)) {
+                                
+                                // Remove this subgroup for the student
+                                student.groups = student.groups.filter (function (item) {
+                                    return item !== subgroup_id
+                                })
+                                
+                                // Update student
+                                db.updateItem ('students', student);
+                                
+                            }
+                        });
+                    });
                     
                     
-                    // Delete items
+                    // Delete the subgroup
                     db.deleteItems ('subgroups', subgroup_id).then (function () {
                         index (params);
                     });

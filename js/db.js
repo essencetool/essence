@@ -742,8 +742,7 @@ define ([
                     return;
                 }
                 
-
-            
+                
                 // For each group
                 $.each (student.groups, function (index, subgroup_id) {
                 
@@ -799,13 +798,18 @@ define ([
                 var callbacks = ids.length;
                 
                 
+                // No callbacks, then there are no results and we will return
+                // an empty array
+                if ( ! callbacks) {
+                    resolve ([]);
+                    return;
+                }
+                
+                
                 // Get each plain object
                 $.each (ids, function (index, student_id) {
                     
                     getStudentById (student_id).then (function (student) {
-                        
-                        console.log (student_id);
-                        
                         response.push (student);
                         callbacks--;
                    
@@ -838,6 +842,14 @@ define ([
             
                 /** @var callbacks int To know when every object is full */
                 var callbacks = groups.length;
+                
+                
+                // No callbacks, then there are no results and we will return
+                // an empty array
+                if ( ! callbacks) {
+                    resolve ([]);
+                    return;
+                }
                 
                 
                 // Get each plain object
