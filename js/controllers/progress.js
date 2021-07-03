@@ -62,7 +62,7 @@ define ([
      */
     var index = function (params) {
         
-        // Resolve paramters
+        // Resolve parameters and treat them as numer
         student_id = params[1] * 1;
         project_id = params[2] * 1;
         rubric_id = params[3] * 1;

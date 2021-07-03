@@ -196,6 +196,11 @@ define ([
      */
     var i18n_rubric = function (rubric, i18n) {
         
+        // No transcription is available
+        if ( ! i18n) {
+            return;
+        }
+        
         // i18n of the question text of the fields
         rubric.name = i18n["name"];
         rubric.description = i18n["description"];
