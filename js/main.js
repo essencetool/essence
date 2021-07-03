@@ -21,6 +21,9 @@ requirejs.onError = function (err) {
  // Require configuration
 require.config ({
     
+    baseUrl: './js',
+    
+    
     // Set locale
     locale: localStorage.getItem ('locale'),
     
@@ -31,6 +34,7 @@ require.config ({
         
         // By default, args it will be a datetime to avoid cache
         var args = (new Date()).getTime();
+        // var args = '';
         
         
         // If the URL contains google JSAPI, then remove it

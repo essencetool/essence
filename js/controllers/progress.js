@@ -42,12 +42,16 @@ define ([
             text: ''
         },
         scale: {
+            pointLabels: {
+                fontSize: 0
+            },
             ticks: {
                 beginAtZero: true,
                 min: 0,
                 max: 4,
                 stepSize: 1,
-                fontSize: 16
+                fontSize: 16,
+                userCallback: label_callback
             }
         }
     };
@@ -125,6 +129,14 @@ define ([
         // Populate selects
         helpers.populate_select (wrapper.find ('[name="project"]'), 'projects', project_id);
         helpers.populate_select (wrapper.find ('[name="rubric"]'), 'rubrics', rubric_id, i18n_rubrics); 
+        
+        
+        // Show attachment in a popup
+        wrapper.off ('click.show_evidence').on ('click.show_evidence', '.show-attachment-action', function () {
+            var self = $(this);
+            vex.dialog.alert (self.attr ('title'));
+        });
+        
         
         
         // Get all available rubrics

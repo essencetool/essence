@@ -5,51 +5,16 @@
 		"description": "This is the default project of Essence. Feel free to modify it to your needs."
 	}],
 	"groups": [{
-			"name": "Computer Science",
-			"slug": "computer-science",
+			"name": "Default group",
+			"slug": "default-group",
 			"id": 1
-		},
-		{
-			"name": "Psychology",
-			"slug": "psychology",
-			"id": 2
 		}
 	],
 	"subgroups": [{
-			"name": "1st degree of Computer Science",
-			"slug": "1st-degree-of-computer-science",
+			"name": "Default subgroup",
+			"slug": "default-subgroup",
 			"group_id": 1,
 			"id": 1
-		},
-		{
-			"name": "2nd degree of Computer Science",
-			"slug": "2nd-degree-of-computer-science",
-			"group_id": 1,
-			"id": 2
-		},
-		{
-			"name": "3rd degree of Computer Science",
-			"slug": "3rd-degree-of-computer-science",
-			"group_id": 1,
-			"id": 3
-		},
-		{
-			"name": "4th degree of Computer Science",
-			"slug": "4th-degree-of-computer-science",
-			"group_id": 1,
-			"id": 4
-		},
-		{
-			"name": "1st degree of Psychology",
-			"slug": "1st-degree-of-psychology",
-			"group_id": 2,
-			"id": 5
-		},
-		{
-			"name": "2nd degree of Psychology",
-			"slug": "2nd-degree-of-psychology",
-			"group_id": 2,
-			"id": 6
 		}
 	],
 	"rubrics": [{

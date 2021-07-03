@@ -536,7 +536,6 @@ define ([
      * populate_select_filter
      * 
      * Populates the filter with students, groups and subgrups
-     *
      */
     var populate_select_filter = function (select_filter) {
         

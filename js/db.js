@@ -739,11 +739,12 @@ define ([
                 // Get subgroups
                 if ( ! callbacks)  {
                     resolve (student);
+                    return;
                 }
                 
-            
+                
                 // For each group
-                if (callbacks > 0) $.each (student.groups, function (index, subgroup_id) {
+                $.each (student.groups, function (index, subgroup_id) {
                 
                     // Get all groups. @todo Index by subgroups
                     getAll ('subgroups').then (function (subgroups) {
@@ -761,7 +762,7 @@ define ([
                                 callbacks--;
 
                                 
-                                if ( ! callbacks) {
+                                if ( ! callbacks) {                     
                                     resolve (student);
                                 }
 
@@ -797,8 +798,17 @@ define ([
                 var callbacks = ids.length;
                 
                 
+                // No callbacks, then there are no results and we will return
+                // an empty array
+                if ( ! callbacks) {
+                    resolve ([]);
+                    return;
+                }
+                
+                
                 // Get each plain object
                 $.each (ids, function (index, student_id) {
+                    
                     getStudentById (student_id).then (function (student) {
                         response.push (student);
                         callbacks--;
@@ -832,6 +842,14 @@ define ([
             
                 /** @var callbacks int To know when every object is full */
                 var callbacks = groups.length;
+                
+                
+                // No callbacks, then there are no results and we will return
+                // an empty array
+                if ( ! callbacks) {
+                    resolve ([]);
+                    return;
+                }
                 
                 
                 // Get each plain object
