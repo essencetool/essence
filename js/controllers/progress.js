@@ -172,7 +172,7 @@ define ([
                    // Get all ratings
                     $.each (ratings, function (index, rating) {
 
-                        // Not the rubric i was looking for. Continue
+                        // Not the rubric I was looking for. Continue
                         if (rating.rubric_id != rubric.id) {
                             return true;
                         }
@@ -276,26 +276,31 @@ define ([
                         ratings: filtered_ratings
                     });
                     
-                    
+
                     // Render
                     wrapper.find ('.charts-placeholder').append (template_progress_chart.render (template_params));
+
+                    
+                    // This is used to avoid render polar charts from custom rubics with 
+                    // dicotomic values
+                    if (rubric.rows.length >= 3) {
+                    
+                        /** @var options Object Create a copy of default options for us */
+                        var options = jQuery.extend (true, {}, default_options);
+                        
+                        
+                        // Update metadata of the options
+                        options.title.text = rubric.name;
                     
                     
-                    /** @var options Object Create a copy of default options for us */
-                    var options = jQuery.extend (true, {}, default_options);
-                    
-                    
-                    // Update metadata of the options
-                    options.title.text = rubric.name;
-                    
-                    
-                    // Render chart
-                    new Chart (wrapper.find ('#' + chart_id), {
-                        type: 'radar',
-                        data: data,
-                        options: options,
-                        rubric: rubric
-                    });
+                        // Render chart
+                        new Chart (wrapper.find ('#' + chart_id), {
+                            type: 'radar',
+                            data: data,
+                            options: options,
+                            rubric: rubric
+                        });
+                    }
                     
                 });
             });
