@@ -55,7 +55,7 @@ nativefier --name "Essence App" "https://pln.inf.um.es/essence"
 nativefier --name "Essence App" "https://pln.inf.um.es/essence" --platform windows
 ```
 
-Pre-build versions can be fount at
+Pre-build versions can be found at
 ```
 https://pln.inf.um.es/essence/dist/essence-win.zip
 https://pln.inf.um.es/essence/dist/essence-linux.zip
