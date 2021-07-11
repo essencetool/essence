@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://www.um.es/essenceeu/tool/Herramienta-ESSENCE.html">
-    <img src="https://pln.inf.um.es/essence/img/logo-essence.jpg" alt="Essence logo"/>
+    <img src="img/logo-essence.jpg" alt="Essence logo"/>
   </a>
 
   <h3 align="center">E.S.S.E.N.C.E. tool</h3>
