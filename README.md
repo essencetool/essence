@@ -51,17 +51,15 @@ All you need to do is to download the project (as is described in the following 
 In addition, it is possible to use [Nativier](https://github.com/jiahaog/nativefier/blob/master/docs/api.md#platform) to build a desktop version of the platform. Here are some examples. 
 
 ```
-nativefier --name "Essence App" "https://essencetool.github.io/essence/"
-nativefier --name "Essence App" "https://essencetool.github.io/essence/" --platform windows
+nativefier --name "Essence App" "https://pln.inf.um.es/essence"
+nativefier --name "Essence App" "https://pln.inf.um.es/essence" --platform windows
 ```
 
-<!--
 Pre-build versions can be fount at
 ```
 https://pln.inf.um.es/essence/dist/essence-win.zip
 https://pln.inf.um.es/essence/dist/essence-linux.zip
-```
--->
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
