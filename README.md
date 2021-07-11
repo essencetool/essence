@@ -13,7 +13,8 @@
     ·
     <a href="https://github.com/essencetool/essence/issues">Report Bug</a>
     ·
-    <a href="https://github.com/essencetool/essence/issues">Request Feature</a>
+    <a href="https://github.com/essencetool/essence/wiki">Wiki</a>
+    ·
   </p>
 </p>
 
