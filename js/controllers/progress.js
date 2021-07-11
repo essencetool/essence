@@ -373,7 +373,7 @@ define ([
             
             
             /** @var filename String */
-            var filename = student.email + '-' + new Date ().getTime () + '.csv';
+            var filename = student.identifier + '-' + new Date ().getTime () + '.csv';
             
             
             /** @var csv Array */
