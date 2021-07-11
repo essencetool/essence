@@ -5,8 +5,6 @@
     <img src="img/logo-essence.jpg" alt="Essence logo"/>
   </a>
 
-  <h3 align="center">E.S.S.E.N.C.E. tool</h3>
-
   <p align="center">
     ESSENCE – entrepreneurial skills in schools education: nurturing citizenship and entrepreneurship
     <br />
@@ -19,13 +17,6 @@
   </p>
 </p>
 
-
-<p align="center">
-  
-</p>
-
-
-# Essence
 Essence is a open-source project to help educators for acquiring/evaluating the entrepreneurial competences. Learn more about the project at [the web of the European Project](https://essenceproject.eu/project-objectives/)
 
 Essence Tool is build upon web technologies and it is only need to use a browser to use it. The web-browser requires the IndexedDB API (see [compatibility](https://caniuse.com/#feat=indexeddb)).
@@ -36,8 +27,8 @@ As all the data you manage in the app is stored in your browser, you are free to
 ## Humans.txt
 This tool has been developed by the University of Murcia [UMU](https://www.um.es/).
 
-- Project coordinator: Linda Castañeda <lindacq@um.es>
-- Programmer: José Antonio García-Díaz <joseantonio.garcia8@um.es>
+* Project coordinator: Linda Castañeda <lindacq@um.es>
+* Programmer: José Antonio García-Díaz <joseantonio.garcia8@um.es>
 
 
 
@@ -63,11 +54,13 @@ nativefier --name "Essence App" "https://essencetool.github.io/essence/"
 nativefier --name "Essence App" "https://essencetool.github.io/essence/" --platform windows
 ```
 
+<!--
 Pre-build versions can be fount at
 ```
 https://pln.inf.um.es/essence/dist/essence-win.zip
 https://pln.inf.um.es/essence/dist/essence-linux.zip
 ```
+-->
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -82,5 +75,5 @@ This project is funded by the European Union by the [Erasmus+ program](https://e
 
 
 <p align="center">
-  <img src="https://essencetool.github.io/essence/img/logo-erasmus.png" alt="Eramus Project"/>
+  <img src="img/logo-erasmus.png" alt="Eramus Project"/>
 </p>
