@@ -1,5 +1,27 @@
+<!-- PROJECT LOGO -->
+<br />
 <p align="center">
-  <img src="https://essencetool.github.io/essence/img/logo-essence.jpg" alt="Essence logo"/>
+  <a href="https://www.um.es/essenceeu/tool/Herramienta-ESSENCE.html">
+    <img src="https://pln.inf.um.es/essence/img/logo-essence.jpg" alt="Essence logo"/>
+  </a>
+
+  <h3 align="center">E.S.S.E.N.C.E. tool</h3>
+
+  <p align="center">
+    ESSENCE – entrepreneurial skills in schools education: nurturing citizenship and entrepreneurship
+    <br />
+    <br />
+    <a href="https://pln.inf.um.es/essence">Use the tool</a>
+    ·
+    <a href="https://github.com/essencetool/essence/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/essencetool/essence/issues">Request Feature</a>
+  </p>
+</p>
+
+
+<p align="center">
+  
 </p>
 
 
@@ -8,7 +30,15 @@ Essence is a open-source project to help educators for acquiring/evaluating the 
 
 Essence Tool is build upon web technologies and it is only need to use a browser to use it. The web-browser requires the IndexedDB API (see [compatibility](https://caniuse.com/#feat=indexeddb)).
 
-As all the data you manage in the app is stored in your browser, you are free to use the tool from the following URL: https://essencetool.github.io/essence/
+As all the data you manage in the app is stored in your browser, you are free to use the tool from the following URL: https://pln.inf.um.es/essence
+
+
+## Humans.txt
+This tool has been developed by the University of Murcia [UMU](https://www.um.es/).
+
+- Project coordinator: Linda Castañeda <lindacq@um.es>
+- Programmer: José Antonio García-Díaz <joseantonio.garcia8@um.es>
+
 
 
 ## Getting Started
@@ -40,7 +70,9 @@ https://pln.inf.um.es/essence/dist/essence-linux.zip
 ```
 
 ## Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
 
 ## License
 This project is licensed under the MIT License
