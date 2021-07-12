@@ -18,17 +18,19 @@
   </p>
 </p>
 
-Essence is a open-source project to help educators for acquiring/evaluating the entrepreneurial competences. Learn more about the project at [the web of the European Project](https://essenceproject.eu/project-objectives/)
+Essence is a open-source project to help educators for acquiring/evaluating the entrepreneurial competences. Learn more about the project at [the web of the European Project](https://www.um.es/essenceeu)
 
 Essence Tool is build upon web technologies and it is only need to use a browser to use it. The web-browser requires the IndexedDB API (see [compatibility](https://caniuse.com/#feat=indexeddb)).
 
 As all the data you manage in the app is stored in your browser, you are free to use the tool from the following URL: https://pln.inf.um.es/essence
 
+On [this web site](https://www.um.es/essenceeu/herramienta/ESSENCE-Tool.html) you can find other ESSENCE results and a tutorial ESSENCE tool.
+
 
 ## Humans.txt
-This tool has been developed by the University of Murcia [UMU](https://www.um.es/).
+This tool has been developed by the University of Murcia ESSENCE team.
 
-* Project coordinator: Linda Castañeda <lindacq@um.es>
+* ESSENCE coordinator at the UMU: Linda Castañeda <lindacq@um.es>
 * Programmer: José Antonio García-Díaz <joseantonio.garcia8@um.es>
 
 
@@ -72,6 +74,8 @@ This project is licensed under the MIT License
 
 ## Acknowledgments
 This project is funded by the European Union by the [Erasmus+ program](https://ec.europa.eu/programmes/erasmus-plus/node_en)
+
+ESSENCE "ESSENCE – entrepreneurial skills in schools education: nurturing citizenship and entrepreneurship" Erasmus + KA2 N. 2018-1-IT02-KA201-048137  
 
 
 <p align="center">
