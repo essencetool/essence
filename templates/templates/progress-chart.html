@@ -11,8 +11,8 @@
                     <ul>
                         {{# _values }}
                         <li class="state_{{ value }}">
-                            {{ key_text }}
-                            <strong class="key value">{{ value_text }}</strong>
+                            <span class="key">{{ key_text }}</span>
+                            <strong class="value">{{ value_text }}</strong>
                             {{# evidences }} <span class="show-attachment-action icon-edit" title="{{ . }}"></span> {{/ evidences }} 
                         </li>
                         {{/ _values }}
