@@ -291,8 +291,14 @@ define ([
                         
                         // Update metadata of the options
                         options.title.text = rubric.name;
-                    
-                    
+                        
+                        
+                        // Filter duplicates
+                        data.labels = data.labels.filter (function onlyUnique (value, index, self) {
+                            return self.indexOf(value) === index;
+                        })
+
+                        
                         // Render chart
                         new Chart (wrapper.find ('#' + chart_id), {
                             type: 'radar',
