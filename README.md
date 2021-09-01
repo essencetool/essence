@@ -9,7 +9,7 @@
     ESSENCE – entrepreneurial skills in schools education: nurturing citizenship and entrepreneurship
     <br />
     <br />
-    <a href="https://pln.inf.um.es/essence">Use the tool</a>
+    <a href="https://www.um.es/essenceeu/online">Use the tool</a>
     ·
     <a href="https://github.com/essencetool/essence/issues">Report Bug</a>
     ·
@@ -22,7 +22,7 @@ Essence is a open-source project to help educators for acquiring/evaluating the 
 
 Essence Tool is build upon web technologies and it is only need to use a browser to use it. The web-browser requires the IndexedDB API (see [compatibility](https://caniuse.com/#feat=indexeddb)).
 
-As all the data you manage in the app is stored in your browser, you are free to use the tool from the following URL: https://pln.inf.um.es/essence
+As all the data you manage in the app is stored in your browser, you are free to use the tool from the following URL: https://www.um.es/essenceeu/online
 
 On [this web site](https://www.um.es/essenceeu/herramienta/ESSENCE-Tool.html) you can find other ESSENCE results and a tutorial ESSENCE tool.
 
@@ -53,14 +53,14 @@ All you need to do is to download the project (as is described in the following 
 In addition, it is possible to use [Nativier](https://github.com/jiahaog/nativefier/blob/master/docs/api.md#platform) to build a desktop version of the platform. Here are some examples. 
 
 ```
-nativefier --name "Essence App" "https://pln.inf.um.es/essence"
-nativefier --name "Essence App" "https://pln.inf.um.es/essence" --platform windows
+nativefier --name "Essence App" "https://www.um.es/essenceeu/online"
+nativefier --name "Essence App" "https://www.um.es/essenceeu/online" --platform windows
 ```
 
 Pre-build versions can be found at
 ```
-https://pln.inf.um.es/essence/dist/essence-win.zip
-https://pln.inf.um.es/essence/dist/essence-linux.zip
+https://www.um.es/essenceeu/online/dist/essence-win.zip
+https://www.um.es/essenceeu/online/dist/essence-linux.zip
 ```
 
 
