@@ -81,3 +81,7 @@ ESSENCE "ESSENCE – entrepreneurial skills in schools education: nurturing citi
 <p align="center">
   <img src="img/logo-erasmus.png" alt="Eramus Project"/>
 </p>
+
+
+## Disclaimer
+The European Commission support for the production of this publication does not constitute an endorsement of the contents which reflects the views only of the authors, and the Commission cannot be held responsible for any use which may be made of the information contained therein
